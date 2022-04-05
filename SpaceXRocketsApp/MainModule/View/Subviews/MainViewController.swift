@@ -5,7 +5,7 @@
 //  Created by Ruslan on 05.04.2022.
 //
 
-import UIKit.UIViewController
+import UIKit
 
 final class MainViewController: UIViewController {
     
@@ -17,12 +17,7 @@ final class MainViewController: UIViewController {
         return $0
     }(UIImageView())
 
-    lazy var containerView: UIView = {
-        $0.backgroundColor = .systemGray2
-        $0.layer.cornerRadius = 30.0
-        $0.clipsToBounds = true
-        return $0
-    }(UIView())
+    lazy var containerView = MainContainerView()
     
     // MARK: - Properties
     
@@ -50,6 +45,8 @@ final class MainViewController: UIViewController {
     // MARK: - Private methods
     
     private func configureUI() {
+        containerView.tableView.dataSource = self
+        containerView.tableView.delegate = self
         
         // view
         view.backgroundColor = .systemBackground
@@ -79,19 +76,19 @@ final class MainViewController: UIViewController {
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture(gesture:)))
         panGesture.delegate = self
         // changing to false to immediately listen on gesture movement
-        panGesture.delaysTouchesBegan = true
-        panGesture.delaysTouchesEnded = true
-        view.addGestureRecognizer(panGesture)
+        panGesture.delaysTouchesBegan = false
+        panGesture.delaysTouchesEnded = false
+        containerView.topView.dragView.addGestureRecognizer(panGesture)
     }
 
     @objc
     private func handlePanGesture(gesture: UIPanGestureRecognizer) {
-        
+
         let translation = gesture.translation(in: view)
         let isDraggingDown = translation.y > 0
         let transitionHeight = translation.y.magnitude > 100.0
         let newHeight = currentContainerHeight - translation.y
-        
+
         switch gesture.state {
         case .changed:
             if newHeight < maxContainerHeight && newHeight >= minContainerHeight {
@@ -112,7 +109,7 @@ final class MainViewController: UIViewController {
             break
         }
     }
-    
+
     private func animateContainerHeight(_ height: CGFloat) {
         UIView.animate(withDuration: 0.5) {
             self.containerViewHeightConstraint?.constant = height
@@ -131,5 +128,49 @@ extension MainViewController: UIGestureRecognizerDelegate {
             return false
         }
         return canSwipe
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension MainViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UITableViewCell()
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        guard section == 1 else { return nil }
+        
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 200))
+        footerView.backgroundColor = .systemGray4
+        
+        let showButton = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 70))
+        showButton.layer.cornerRadius = 20
+        showButton.backgroundColor = .systemGray
+        showButton.setTitle("Посмотреть запуски", for: .normal)
+        
+        showButton.center = footerView.center
+        
+        footerView.addSubview(showButton)
+        
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        guard section == 1 else { return 20 }
+        
+        return 200
     }
 }
