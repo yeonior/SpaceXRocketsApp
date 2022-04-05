@@ -5,7 +5,7 @@
 //  Created by Ruslan on 05.04.2022.
 //
 
-import UIKit
+import UIKit.UIPageViewController
 
 final class MainPageViewController: UIPageViewController {
     
@@ -42,6 +42,7 @@ final class MainPageViewController: UIPageViewController {
     // MARK: - Private methods
     
     private func setupPageViewController() {
+        delegate = self
         dataSource = self
         view.backgroundColor = .systemBackground
         setViewControllers([viewControllersToDisplay[0]], direction: .forward, animated: true, completion: nil)
@@ -96,5 +97,23 @@ extension MainPageViewController: UIPageViewControllerDataSource {
     // the current page index reflecting in the page indicator
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         0
+    }
+}
+
+// MARK: - UIPageViewControllerDelegate
+extension MainPageViewController: UIPageViewControllerDelegate {
+    
+    // blocking the pan gesture to prevent simultaneous recognizing
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let vc = viewControllers?.first as? MainViewController else { return }
+        vc.canSwipe = false
+        vc.panGesture.isEnabled = false
+    }
+    
+    // unblocking
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard let vc = previousViewControllers.first as? MainViewController else { return }
+        vc.canSwipe = true
+        vc.panGesture.isEnabled = true
     }
 }

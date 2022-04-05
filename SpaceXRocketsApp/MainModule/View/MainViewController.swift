@@ -9,12 +9,34 @@ import UIKit.UIViewController
 
 final class MainViewController: UIViewController {
     
-    // MARK: - Views
-    private lazy var backgroundImageView: UIImageView = {
-        $0.backgroundColor = .red
+    // MARK: - Subviews
+    
+    lazy var backgroundImageView: UIImageView = {
+        $0.backgroundColor = .systemGray4
         $0.contentMode = .scaleAspectFill
         return $0
     }(UIImageView())
+
+    lazy var containerView: UIView = {
+        $0.backgroundColor = .systemGray2
+        $0.layer.cornerRadius = 30.0
+        $0.clipsToBounds = true
+        return $0
+    }(UIView())
+    
+    // MARK: - Properties
+    
+    // container heights
+    let minContainerHeight: CGFloat = 400.0
+    let maxContainerHeight: CGFloat = UIScreen.main.bounds.height - 100.0
+    var currentContainerHeight: CGFloat = 400.0
+    
+    // dynamic container constraints
+    var containerViewHeightConstraint: NSLayoutConstraint?
+    var containerViewBottomConstraint: NSLayoutConstraint?
+    
+    var canSwipe = true
+    var panGesture = UIGestureRecognizer()
     
     // MARK: - Lifecycle
     
@@ -22,6 +44,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        setupPanGesture()
     }
     
     // MARK: - Private methods
@@ -31,9 +54,11 @@ final class MainViewController: UIViewController {
         // view
         view.backgroundColor = .systemBackground
         view.addSubview(backgroundImageView)
+        view.addSubview(containerView)
         
         // constraints
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             backgroundImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -41,5 +66,70 @@ final class MainViewController: UIViewController {
             backgroundImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
+
+        containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: minContainerHeight)
+        containerViewBottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40.0)
+        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        containerViewHeightConstraint?.isActive = true
+        containerViewBottomConstraint?.isActive = true
+    }
+    
+    private func setupPanGesture() {
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture(gesture:)))
+        panGesture.delegate = self
+        // changing to false to immediately listen on gesture movement
+        panGesture.delaysTouchesBegan = true
+        panGesture.delaysTouchesEnded = true
+        view.addGestureRecognizer(panGesture)
+    }
+
+    @objc
+    private func handlePanGesture(gesture: UIPanGestureRecognizer) {
+        
+        let translation = gesture.translation(in: view)
+        let isDraggingDown = translation.y > 0
+        let transitionHeight = translation.y.magnitude > 100.0
+        let newHeight = currentContainerHeight - translation.y
+        
+        switch gesture.state {
+        case .changed:
+            if newHeight < maxContainerHeight && newHeight >= minContainerHeight {
+                canSwipe = false
+                containerViewHeightConstraint?.constant = newHeight
+                view.layoutIfNeeded()
+            }
+        case .ended:
+            if newHeight < maxContainerHeight && newHeight > minContainerHeight && isDraggingDown {
+                // if new height is below max and going down, set to default height
+                transitionHeight ? animateContainerHeight(minContainerHeight) : animateContainerHeight(maxContainerHeight)
+            }
+            else if newHeight > minContainerHeight && newHeight < maxContainerHeight && !isDraggingDown {
+                // if new height is below max and going up, set to max height at top
+                transitionHeight ? animateContainerHeight(maxContainerHeight) : animateContainerHeight(minContainerHeight)
+            }
+        default:
+            break
+        }
+    }
+    
+    private func animateContainerHeight(_ height: CGFloat) {
+        UIView.animate(withDuration: 0.5) {
+            self.containerViewHeightConstraint?.constant = height
+            self.view.layoutIfNeeded()
+        } completion: { [unowned self] _ in
+            self.currentContainerHeight = height
+            self.canSwipe = true
+        }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension MainViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if currentContainerHeight == maxContainerHeight {
+            return false
+        }
+        return canSwipe
     }
 }
