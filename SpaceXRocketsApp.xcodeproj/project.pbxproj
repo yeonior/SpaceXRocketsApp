@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */; };
 		A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */; };
-		A275CA1327FC1C2F0020B02B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA1227FC1C2F0020B02B /* ViewController.swift */; };
 		A275CA1627FC1C2F0020B02B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A275CA1427FC1C2F0020B02B /* Main.storyboard */; };
 		A275CA1827FC1C300020B02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A275CA1727FC1C300020B02B /* Assets.xcassets */; };
 		A275CA1B27FC1C300020B02B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A275CA1927FC1C300020B02B /* LaunchScreen.storyboard */; };
+		A275CA2627FC21D20020B02B /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA2527FC21D20020B02B /* MainPageViewController.swift */; };
+		A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA2C27FC24040020B02B /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A275CA0B27FC1C2F0020B02B /* SpaceXRocketsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceXRocketsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A275CA1227FC1C2F0020B02B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A275CA1527FC1C2F0020B02B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A275CA1727FC1C300020B02B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A275CA1A27FC1C300020B02B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A275CA1C27FC1C300020B02B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A275CA2527FC21D20020B02B /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		A275CA2C27FC24040020B02B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,48 @@
 		A275CA0D27FC1C2F0020B02B /* SpaceXRocketsApp */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */,
-				A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */,
-				A275CA1227FC1C2F0020B02B /* ViewController.swift */,
-				A275CA1427FC1C2F0020B02B /* Main.storyboard */,
-				A275CA1727FC1C300020B02B /* Assets.xcassets */,
-				A275CA1927FC1C300020B02B /* LaunchScreen.storyboard */,
-				A275CA1C27FC1C300020B02B /* Info.plist */,
+				A275CA2727FC22450020B02B /* MainModule */,
+				A275CA2327FC1CFA0020B02B /* Supporting Files */,
+				A275CA2427FC1D060020B02B /* Storyboards */,
 			);
 			path = SpaceXRocketsApp;
+			sourceTree = "<group>";
+		};
+		A275CA2327FC1CFA0020B02B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */,
+				A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */,
+				A275CA1727FC1C300020B02B /* Assets.xcassets */,
+				A275CA1C27FC1C300020B02B /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A275CA2427FC1D060020B02B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA1427FC1C2F0020B02B /* Main.storyboard */,
+				A275CA1927FC1C300020B02B /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A275CA2727FC22450020B02B /* MainModule */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA2827FC224B0020B02B /* View */,
+			);
+			path = MainModule;
+			sourceTree = "<group>";
+		};
+		A275CA2827FC224B0020B02B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA2C27FC24040020B02B /* MainViewController.swift */,
+				A275CA2527FC21D20020B02B /* MainPageViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +173,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A275CA1327FC1C2F0020B02B /* ViewController.swift in Sources */,
+				A275CA2627FC21D20020B02B /* MainPageViewController.swift in Sources */,
+				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
 				A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */,
 			);
@@ -291,12 +327,15 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U3JHK4U826;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SpaceXRocketsApp/Info.plist;
+				INFOPLIST_FILE = "SpaceXRocketsApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,12 +358,15 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U3JHK4U826;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SpaceXRocketsApp/Info.plist;
+				INFOPLIST_FILE = "SpaceXRocketsApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
