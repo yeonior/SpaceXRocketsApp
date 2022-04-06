@@ -5,7 +5,7 @@
 //  Created by Ruslan on 06.04.2022.
 //
 
-import UIKit.UITableViewCell
+import UIKit
 
 final class MainFirstSectionTableViewCell: UITableViewCell {
     
@@ -41,6 +41,7 @@ final class MainFirstSectionTableViewCell: UITableViewCell {
     private func setup() {
         
         contentView.backgroundColor = Color.tableCell.uiColor
+        isUserInteractionEnabled = false
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, detailTitleLabel])
         stackView.axis = .horizontal

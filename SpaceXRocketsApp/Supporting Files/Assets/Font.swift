@@ -29,8 +29,10 @@ enum Font {
             return UIFont(name: "LabGrotesque-\(Style.regular.rawValue)", size: 16)!
         case .tableCellDetailTitle:
             return UIFont(name: "LabGrotesque-\(Style.medium.rawValue)", size: 16)!
-        case .tableSectionHeader, .showButton:
+        case .tableSectionHeader:
             return UIFont(name: "LabGrotesque-\(Style.bold.rawValue)", size: 16)!
+        case .showButton:
+            return UIFont(name: "LabGrotesque-\(Style.bold.rawValue)", size: 18)!
         }
     }
 }

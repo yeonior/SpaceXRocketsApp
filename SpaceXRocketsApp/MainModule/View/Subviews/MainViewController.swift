@@ -43,6 +43,7 @@ final class MainViewController: UIViewController {
         setupPanGesture()
     }
     
+    // reseting the bottom sheet position to min
     override func viewDidDisappear(_ animated: Bool) {
         animateContainerHeight(minContainerHeight)
     }
@@ -115,7 +116,7 @@ final class MainViewController: UIViewController {
             break
         }
     }
-
+    
     private func animateContainerHeight(_ height: CGFloat) {
         UIView.animate(withDuration: 0.5) {
             self.containerViewHeightConstraint?.constant = height
@@ -162,24 +163,56 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         indexPath.section == 3 ? MainShowButtonTableViewCell() : MainFirstSectionTableViewCell()
     }
+    
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        
+//        let header = view as? UITableViewHeaderFooterView
+//        header?.textLabel?.font = Font.tableSectionHeader.uiFont
+//        header?.textLabel?.textColor = Color.tableSectionHeader.uiColor
+//    }
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        "ПЕРВАЯ СТУПЕНЬ"
+//    }
 }
 
 // MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        indexPath.section == 3 ? 60 : 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 0, 3:
+            return nil
+        default:
+            return MainTableViewSectionHeader()
+        }
+    }
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return section == 0 ? 0.0 : 32
-        0
+        switch section {
+        case 0, 3:
+            return 0
+        default:
+            return 40
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        UIView()
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        guard section == 2 else { return 0 }
-//
-//        return 120
-        0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath.section == 3 ? 60 : 50
+        switch section {
+        case 0, 1:
+            return 20
+        case 2, 3:
+            return 32
+        default:
+            return 0
+        }
     }
 }
