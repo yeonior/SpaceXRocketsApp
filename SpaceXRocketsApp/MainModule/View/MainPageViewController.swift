@@ -58,6 +58,7 @@ final class MainPageViewController: UIPageViewController {
         pageControl.pageIndicatorTintColor = Color.pageIndicator.uiColor
         pageControl.backgroundColor = .clear
         pageControl.center = view.center
+        pageControl.isUserInteractionEnabled = false
     }
     
     private func configurePageControlHeight() {

@@ -14,7 +14,7 @@
 		A275CA1B27FC1C300020B02B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A275CA1927FC1C300020B02B /* LaunchScreen.storyboard */; };
 		A275CA2627FC21D20020B02B /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA2527FC21D20020B02B /* MainPageViewController.swift */; };
 		A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA2C27FC24040020B02B /* MainViewController.swift */; };
-		A275CA3227FC9E310020B02B /* MainContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3127FC9E310020B02B /* MainContainerView.swift */; };
+		A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */; };
 		A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3327FCAB530020B02B /* MainDragView.swift */; };
 		A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3627FCAC400020B02B /* MainTopView.swift */; };
 		A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */; };
@@ -38,7 +38,7 @@
 		A275CA1C27FC1C300020B02B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A275CA2527FC21D20020B02B /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		A275CA2C27FC24040020B02B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		A275CA3127FC9E310020B02B /* MainContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerView.swift; sourceTree = "<group>"; };
+		A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBottomSheetView.swift; sourceTree = "<group>"; };
 		A275CA3327FCAB530020B02B /* MainDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDragView.swift; sourceTree = "<group>"; };
 		A275CA3627FCAC400020B02B /* MainTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTopView.swift; sourceTree = "<group>"; };
 		A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 				A275CA2C27FC24040020B02B /* MainViewController.swift */,
 				A2DB9CFE27FD85E000339D48 /* MainShowButton.swift */,
 				A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */,
-				A2DB9D0027FD86C200339D48 /* ContainerView */,
+				A2DB9D0027FD86C200339D48 /* MainBottomSheetView */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -157,13 +157,13 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		A2DB9D0027FD86C200339D48 /* ContainerView */ = {
+		A2DB9D0027FD86C200339D48 /* MainBottomSheetView */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA3127FC9E310020B02B /* MainContainerView.swift */,
+				A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */,
 				A2DB9D0127FD86DF00339D48 /* TopView */,
 			);
-			path = ContainerView;
+			path = MainBottomSheetView;
 			sourceTree = "<group>";
 		};
 		A2DB9D0127FD86DF00339D48 /* TopView */ = {
@@ -276,7 +276,7 @@
 				A2DB9CFF27FD85E000339D48 /* MainShowButton.swift in Sources */,
 				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
-				A275CA3227FC9E310020B02B /* MainContainerView.swift in Sources */,
+				A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
 				A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */,
 				A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */,

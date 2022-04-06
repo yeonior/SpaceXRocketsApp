@@ -1,5 +1,5 @@
 //
-//  MainContainerView.swift
+//  MainBottomSheetView.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 05.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit.UIView
 
-final class MainContainerView: UIView {
+final class MainBottomSheetView: UIView {
     
     lazy var topView = MainTopView()
     lazy var tableView = UITableView()
@@ -32,6 +32,9 @@ final class MainContainerView: UIView {
         tableView = UITableView(frame: bounds, style: .grouped)
         tableView.register(MainFirstSectionTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = Color.containerBackground.uiColor
+//        tableView.isScrollEnabled = isScrollEnabled
+        tableView.bounces = false
+        tableView.showsVerticalScrollIndicator = false
 //        tableView.contentInset.bottom = 100
         
         addSubview(topView)
@@ -53,5 +56,11 @@ final class MainContainerView: UIView {
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+    }
+}
+
+extension MainBottomSheetView {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        false
     }
 }

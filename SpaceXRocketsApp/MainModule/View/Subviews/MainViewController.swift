@@ -18,7 +18,7 @@ final class MainViewController: UIViewController {
         return $0
     }(UIImageView())
 
-    lazy var containerView = MainContainerView()
+    lazy var bottomSheetView = MainBottomSheetView()
     
     // MARK: - Properties
     
@@ -43,20 +43,24 @@ final class MainViewController: UIViewController {
         setupPanGesture()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        animateContainerHeight(minContainerHeight)
+    }
+    
     // MARK: - Private methods
     
     private func configureUI() {
-        containerView.tableView.dataSource = self
-        containerView.tableView.delegate = self
+        bottomSheetView.tableView.dataSource = self
+        bottomSheetView.tableView.delegate = self
         
         // view
         view.backgroundColor = .systemBackground
         view.addSubview(backgroundImageView)
-        view.addSubview(containerView)
+        view.addSubview(bottomSheetView)
         
         // constraints
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.translatesAutoresizingMaskIntoConstraints = false
+        bottomSheetView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             backgroundImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -65,10 +69,10 @@ final class MainViewController: UIViewController {
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
 
-        containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: minContainerHeight)
-        containerViewBottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40.0)
-        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        containerViewHeightConstraint = bottomSheetView.heightAnchor.constraint(equalToConstant: minContainerHeight)
+        containerViewBottomConstraint = bottomSheetView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40.0)
+        bottomSheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        bottomSheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         containerViewHeightConstraint?.isActive = true
         containerViewBottomConstraint?.isActive = true
     }
@@ -79,7 +83,7 @@ final class MainViewController: UIViewController {
         // changing to false to immediately listen on gesture movement
         panGesture.delaysTouchesBegan = false
         panGesture.delaysTouchesEnded = false
-        containerView.topView.dragView.addGestureRecognizer(panGesture)
+        view.addGestureRecognizer(panGesture)
     }
 
     @objc
@@ -91,9 +95,10 @@ final class MainViewController: UIViewController {
         let newHeight = currentContainerHeight - translation.y
 
         switch gesture.state {
+        case .began:
+            canSwipe = false
         case .changed:
             if newHeight < maxContainerHeight && newHeight >= minContainerHeight {
-                canSwipe = false
                 containerViewHeightConstraint?.constant = newHeight
                 view.layoutIfNeeded()
             }
@@ -169,5 +174,9 @@ extension MainViewController: UITableViewDelegate {
         guard section == 2 else { return 20 }
         
         return 200
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
     }
 }
