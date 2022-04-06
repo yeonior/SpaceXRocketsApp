@@ -138,8 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				A275CA2C27FC24040020B02B /* MainViewController.swift */,
-				A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */,
 				A2DB9CFE27FD85E000339D48 /* MainShowButton.swift */,
+				A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */,
 				A2DB9D0027FD86C200339D48 /* ContainerView */,
 			);
 			path = Subviews;

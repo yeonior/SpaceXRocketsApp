@@ -19,10 +19,11 @@ enum Color {
     case indicatorBackground
     case currentPageIndicator
     case pageIndicator
+    case tableCell
     
     var uiColor: UIColor {
         switch self {
-        case .background, .containerBackground:
+        case .containerBackground, .tableCell:
             return hexStringToUIColor(hex: "#000000")
         case .showButton:
             return hexStringToUIColor(hex: "#212121")
@@ -32,7 +33,7 @@ enum Color {
             return hexStringToUIColor(hex: "#F6F6F6")
         case .dragIndicator, .pageIndicator:
             return hexStringToUIColor(hex: "#8E8E8F")
-        case .indicatorBackground:
+        case .background, .indicatorBackground:
             return hexStringToUIColor(hex: "#121212")
         case .currentPageIndicator:
             return hexStringToUIColor(hex: "#FFFFFF")

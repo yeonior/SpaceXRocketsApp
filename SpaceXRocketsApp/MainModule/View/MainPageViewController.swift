@@ -25,7 +25,6 @@ final class MainPageViewController: UIPageViewController {
         super.init(transitionStyle: style,
                    navigationOrientation: navigationOrientation,
                    options: options)
-        
         setupPageViewController()
     }
     
@@ -35,8 +34,12 @@ final class MainPageViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configurePageIndicator()
+        configurePageControl()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configurePageControlHeight()
     }
     
     // MARK: - Private methods
@@ -49,11 +52,20 @@ final class MainPageViewController: UIPageViewController {
         setViewControllers([viewControllersToDisplay[0]], direction: .forward, animated: true, completion: nil)
     }
     
-    private func configurePageIndicator() {
-        let indicatorAppearance = UIPageControl.appearance()
-        indicatorAppearance.currentPageIndicatorTintColor = Color.currentPageIndicator.uiColor
-        indicatorAppearance.pageIndicatorTintColor = Color.pageIndicator.uiColor
-        indicatorAppearance.backgroundColor = Color.indicatorBackground.uiColor
+    private func configurePageControl() {
+        let pageControl = UIPageControl.appearance()
+        pageControl.currentPageIndicatorTintColor = Color.currentPageIndicator.uiColor
+        pageControl.pageIndicatorTintColor = Color.pageIndicator.uiColor
+        pageControl.backgroundColor = .clear
+        pageControl.center = view.center
+    }
+    
+    private func configurePageControlHeight() {
+        for view in self.view.subviews{
+            if view is UIPageControl {
+                view.frame.origin.y = self.view.frame.size.height - 56
+            }
+        }
     }
 }
 

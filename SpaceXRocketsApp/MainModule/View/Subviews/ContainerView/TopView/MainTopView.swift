@@ -40,6 +40,7 @@ final class MainTopView: UIView {
         ])
         
         // titleLabel
+        titleLabel.textAlignment = .left
         titleLabel.backgroundColor = .clear
         titleLabel.font = Font.containerHeader.uiFont
         titleLabel.textColor = Color.containerHeader.uiColor

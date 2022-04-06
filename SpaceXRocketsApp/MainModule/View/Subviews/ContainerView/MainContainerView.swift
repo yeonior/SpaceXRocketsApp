@@ -14,7 +14,6 @@ final class MainContainerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setup()
     }
     
@@ -31,7 +30,7 @@ final class MainContainerView: UIView {
         
         // tableView
         tableView = UITableView(frame: bounds, style: .grouped)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(MainFirstSectionTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = Color.containerBackground.uiColor
 //        tableView.contentInset.bottom = 100
         
