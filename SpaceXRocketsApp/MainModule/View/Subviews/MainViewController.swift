@@ -12,7 +12,8 @@ final class MainViewController: UIViewController {
     // MARK: - Subviews
     
     lazy var backgroundImageView: UIImageView = {
-        $0.backgroundColor = .systemGray4
+        $0.image = UIImage(named: "rocket")
+        $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
         return $0
     }(UIImageView())
@@ -135,11 +136,11 @@ extension MainViewController: UIGestureRecognizerDelegate {
 extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        6
+        3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -151,16 +152,12 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
-        guard section == 1 else { return nil }
+        guard section == 2 else { return nil }
         
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 200))
-        footerView.backgroundColor = .systemGray4
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 160))
+        footerView.backgroundColor = .black
         
-        let showButton = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 70))
-        showButton.layer.cornerRadius = 20
-        showButton.backgroundColor = .systemGray
-        showButton.setTitle("Посмотреть запуски", for: .normal)
-        
+        let showButton = MainShowButton(frame: CGRect(x: 0, y: 0, width: 300, height: 54))
         showButton.center = footerView.center
         
         footerView.addSubview(showButton)
@@ -169,7 +166,7 @@ extension MainViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard section == 1 else { return 20 }
+        guard section == 2 else { return 20 }
         
         return 200
     }

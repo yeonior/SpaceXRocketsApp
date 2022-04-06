@@ -44,15 +44,16 @@ final class MainPageViewController: UIPageViewController {
     private func setupPageViewController() {
         delegate = self
         dataSource = self
-        view.backgroundColor = .systemBackground
+        additionalSafeAreaInsets.bottom = CGFloat(12)
+        view.backgroundColor = Color.background.uiColor
         setViewControllers([viewControllersToDisplay[0]], direction: .forward, animated: true, completion: nil)
     }
     
     private func configurePageIndicator() {
         let indicatorAppearance = UIPageControl.appearance()
-        indicatorAppearance.currentPageIndicatorTintColor = .label
-        indicatorAppearance.pageIndicatorTintColor = .gray.withAlphaComponent(0.5)
-        indicatorAppearance.backgroundColor = .clear
+        indicatorAppearance.currentPageIndicatorTintColor = Color.currentPageIndicator.uiColor
+        indicatorAppearance.pageIndicatorTintColor = Color.pageIndicator.uiColor
+        indicatorAppearance.backgroundColor = Color.indicatorBackground.uiColor
     }
 }
 

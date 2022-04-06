@@ -26,14 +26,13 @@ final class MainContainerView: UIView {
     private func setup() {
         
         // view
-        backgroundColor = .systemGray2
-        layer.cornerRadius = 30.0
+        layer.cornerRadius = 32.0
         clipsToBounds = true
         
         // tableView
         tableView = UITableView(frame: bounds, style: .grouped)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.backgroundColor = .black
+        tableView.backgroundColor = Color.containerBackground.uiColor
 //        tableView.contentInset.bottom = 100
         
         addSubview(topView)

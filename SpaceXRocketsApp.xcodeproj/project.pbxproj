@@ -17,6 +17,15 @@
 		A275CA3227FC9E310020B02B /* MainContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3127FC9E310020B02B /* MainContainerView.swift */; };
 		A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3327FCAB530020B02B /* MainDragView.swift */; };
 		A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3627FCAC400020B02B /* MainTopView.swift */; };
+		A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */; };
+		A2DB9CF927FD7F7000339D48 /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */; };
+		A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */; };
+		A2DB9CFB27FD7F7000339D48 /* LabGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF727FD7F7000339D48 /* LabGrotesque-Medium.ttf */; };
+		A2DB9CFD27FD806200339D48 /* FontNames in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CFC27FD806100339D48 /* FontNames */; };
+		A2DB9CFF27FD85E000339D48 /* MainShowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9CFE27FD85E000339D48 /* MainShowButton.swift */; };
+		A2DB9D0427FD882F00339D48 /* MainFirstSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */; };
+		A2DB9D0627FD88A700339D48 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0527FD88A700339D48 /* Font.swift */; };
+		A2DB9D0827FD997C00339D48 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0727FD997C00339D48 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +41,15 @@
 		A275CA3127FC9E310020B02B /* MainContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerView.swift; sourceTree = "<group>"; };
 		A275CA3327FCAB530020B02B /* MainDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDragView.swift; sourceTree = "<group>"; };
 		A275CA3627FCAC400020B02B /* MainTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTopView.swift; sourceTree = "<group>"; };
+		A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
+		A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
+		A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
+		A2DB9CF727FD7F7000339D48 /* LabGrotesque-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Medium.ttf"; sourceTree = "<group>"; };
+		A2DB9CFC27FD806100339D48 /* FontNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = FontNames; sourceTree = "<group>"; };
+		A2DB9CFE27FD85E000339D48 /* MainShowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainShowButton.swift; sourceTree = "<group>"; };
+		A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFirstSectionTableViewCell.swift; sourceTree = "<group>"; };
+		A2DB9D0527FD88A700339D48 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		A2DB9D0727FD997C00339D48 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +95,8 @@
 			children = (
 				A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */,
 				A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */,
-				A275CA1727FC1C300020B02B /* Assets.xcassets */,
 				A275CA1C27FC1C300020B02B /* Info.plist */,
+				A2DB9D0927FD9BE600339D48 /* Assets */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -119,12 +137,61 @@
 		A275CA3527FCAC1E0020B02B /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA3327FCAB530020B02B /* MainDragView.swift */,
-				A275CA3627FCAC400020B02B /* MainTopView.swift */,
-				A275CA3127FC9E310020B02B /* MainContainerView.swift */,
 				A275CA2C27FC24040020B02B /* MainViewController.swift */,
+				A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */,
+				A2DB9CFE27FD85E000339D48 /* MainShowButton.swift */,
+				A2DB9D0027FD86C200339D48 /* ContainerView */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A2DB9CF327FD7F1600339D48 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A2DB9CFC27FD806100339D48 /* FontNames */,
+				A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */,
+				A2DB9CF727FD7F7000339D48 /* LabGrotesque-Medium.ttf */,
+				A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */,
+				A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A2DB9D0027FD86C200339D48 /* ContainerView */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA3127FC9E310020B02B /* MainContainerView.swift */,
+				A2DB9D0127FD86DF00339D48 /* TopView */,
+			);
+			path = ContainerView;
+			sourceTree = "<group>";
+		};
+		A2DB9D0127FD86DF00339D48 /* TopView */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA3627FCAC400020B02B /* MainTopView.swift */,
+				A2DB9D0227FD86E900339D48 /* DragView */,
+			);
+			path = TopView;
+			sourceTree = "<group>";
+		};
+		A2DB9D0227FD86E900339D48 /* DragView */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA3327FCAB530020B02B /* MainDragView.swift */,
+			);
+			path = DragView;
+			sourceTree = "<group>";
+		};
+		A2DB9D0927FD9BE600339D48 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA1727FC1C300020B02B /* Assets.xcassets */,
+				A2DB9D0727FD997C00339D48 /* Color.swift */,
+				A2DB9D0527FD88A700339D48 /* Font.swift */,
+				A2DB9CF327FD7F1600339D48 /* Fonts */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +252,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2DB9CFB27FD7F7000339D48 /* LabGrotesque-Medium.ttf in Resources */,
 				A275CA1B27FC1C300020B02B /* LaunchScreen.storyboard in Resources */,
+				A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */,
+				A2DB9CF927FD7F7000339D48 /* LabGrotesque-Thin.ttf in Resources */,
+				A2DB9CFD27FD806200339D48 /* FontNames in Resources */,
 				A275CA1827FC1C300020B02B /* Assets.xcassets in Resources */,
 				A275CA1627FC1C2F0020B02B /* Main.storyboard in Resources */,
+				A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +270,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2DB9D0427FD882F00339D48 /* MainFirstSectionTableViewCell.swift in Sources */,
 				A275CA2627FC21D20020B02B /* MainPageViewController.swift in Sources */,
+				A2DB9D0827FD997C00339D48 /* Color.swift in Sources */,
+				A2DB9CFF27FD85E000339D48 /* MainShowButton.swift in Sources */,
+				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainContainerView.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,

@@ -23,10 +23,10 @@ final class MainDragView: UIView {
     private func setup() {
         
         // view
-        backgroundColor = .darkGray
+        backgroundColor = Color.containerBackground.uiColor
         
         // indicatorView
-        indicatorView.backgroundColor = .systemGray3
+        indicatorView.backgroundColor = Color.dragIndicator.uiColor
         indicatorView.layer.cornerRadius = 3
         
         addSubview(indicatorView)

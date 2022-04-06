@@ -26,11 +26,9 @@ final class MainTopView: UIView {
     private func setup() {
         
         // view
-        backgroundColor = .systemBrown
+        backgroundColor = Color.containerBackground.uiColor
         
         // dragView
-        dragView.backgroundColor = .systemGray
-        
         addSubview(dragView)
         
         dragView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,18 +40,19 @@ final class MainTopView: UIView {
         ])
         
         // titleLabel
-        titleLabel.backgroundColor = .systemPurple
-        titleLabel.font = .systemFont(ofSize: 30)
-        titleLabel.text = "Saegewegwwgeewg"
+        titleLabel.backgroundColor = .clear
+        titleLabel.font = Font.containerHeader.uiFont
+        titleLabel.textColor = Color.containerHeader.uiColor
+        titleLabel.text = "Falcon Heavy"
         
         addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: dragViewHeight / 2),
-            titleLabel.heightAnchor.constraint(equalToConstant: 50),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+            titleLabel.heightAnchor.constraint(equalToConstant: 32),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32)
         ])
     }
 }
