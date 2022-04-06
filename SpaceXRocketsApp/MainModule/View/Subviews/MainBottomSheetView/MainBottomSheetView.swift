@@ -31,10 +31,13 @@ final class MainBottomSheetView: UIView {
         // tableView
         tableView = UITableView(frame: bounds, style: .grouped)
         tableView.register(MainFirstSectionTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.backgroundColor = Color.containerBackground.uiColor
-//        tableView.isScrollEnabled = isScrollEnabled
+        tableView.register(MainShowButtonTableViewCell.self, forCellReuseIdentifier: "buttonCell")
+        tableView.backgroundColor = .white//Color.containerBackground.uiColor
+        tableView.isScrollEnabled = false
         tableView.bounces = false
         tableView.showsVerticalScrollIndicator = false
+        tableView.estimatedSectionHeaderHeight = 20.0
+        tableView.contentInset = UIEdgeInsets(top: -18, left: 0, bottom: -6, right: 0)
 //        tableView.contentInset.bottom = 100
         
         addSubview(topView)

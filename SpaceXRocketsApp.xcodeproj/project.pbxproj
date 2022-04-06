@@ -17,12 +17,12 @@
 		A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */; };
 		A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3327FCAB530020B02B /* MainDragView.swift */; };
 		A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3627FCAC400020B02B /* MainTopView.swift */; };
+		A2852F8E27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F8D27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift */; };
 		A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */; };
 		A2DB9CF927FD7F7000339D48 /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */; };
 		A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */; };
 		A2DB9CFB27FD7F7000339D48 /* LabGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF727FD7F7000339D48 /* LabGrotesque-Medium.ttf */; };
 		A2DB9CFD27FD806200339D48 /* FontNames in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CFC27FD806100339D48 /* FontNames */; };
-		A2DB9CFF27FD85E000339D48 /* MainShowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9CFE27FD85E000339D48 /* MainShowButton.swift */; };
 		A2DB9D0427FD882F00339D48 /* MainFirstSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */; };
 		A2DB9D0627FD88A700339D48 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0527FD88A700339D48 /* Font.swift */; };
 		A2DB9D0827FD997C00339D48 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0727FD997C00339D48 /* Color.swift */; };
@@ -41,12 +41,12 @@
 		A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBottomSheetView.swift; sourceTree = "<group>"; };
 		A275CA3327FCAB530020B02B /* MainDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDragView.swift; sourceTree = "<group>"; };
 		A275CA3627FCAC400020B02B /* MainTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTopView.swift; sourceTree = "<group>"; };
+		A2852F8D27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainShowButtonTableViewCell.swift; sourceTree = "<group>"; };
 		A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
 		A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
 		A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
 		A2DB9CF727FD7F7000339D48 /* LabGrotesque-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Medium.ttf"; sourceTree = "<group>"; };
 		A2DB9CFC27FD806100339D48 /* FontNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = FontNames; sourceTree = "<group>"; };
-		A2DB9CFE27FD85E000339D48 /* MainShowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainShowButton.swift; sourceTree = "<group>"; };
 		A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFirstSectionTableViewCell.swift; sourceTree = "<group>"; };
 		A2DB9D0527FD88A700339D48 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		A2DB9D0727FD997C00339D48 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -138,11 +138,18 @@
 			isa = PBXGroup;
 			children = (
 				A275CA2C27FC24040020B02B /* MainViewController.swift */,
-				A2DB9CFE27FD85E000339D48 /* MainShowButton.swift */,
-				A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */,
 				A2DB9D0027FD86C200339D48 /* MainBottomSheetView */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A2852F8F27FE2253000CDA92 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A2852F8D27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift */,
+				A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		A2DB9CF327FD7F1600339D48 /* Fonts */ = {
@@ -161,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */,
+				A2852F8F27FE2253000CDA92 /* Cells */,
 				A2DB9D0127FD86DF00339D48 /* TopView */,
 			);
 			path = MainBottomSheetView;
@@ -273,7 +281,7 @@
 				A2DB9D0427FD882F00339D48 /* MainFirstSectionTableViewCell.swift in Sources */,
 				A275CA2627FC21D20020B02B /* MainPageViewController.swift in Sources */,
 				A2DB9D0827FD997C00339D48 /* Color.swift in Sources */,
-				A2DB9CFF27FD85E000339D48 /* MainShowButton.swift in Sources */,
+				A2852F8E27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift in Sources */,
 				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */,

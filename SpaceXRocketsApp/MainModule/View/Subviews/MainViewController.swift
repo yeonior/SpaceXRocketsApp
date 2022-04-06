@@ -123,6 +123,13 @@ final class MainViewController: UIViewController {
         } completion: { [unowned self] _ in
             self.currentContainerHeight = height
             self.canSwipe = true
+            scrollTableToTop()
+        }
+    }
+    
+    private func scrollTableToTop() {
+        if currentContainerHeight == minContainerHeight {
+            bottomSheetView.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
         }
     }
 }
@@ -130,9 +137,13 @@ final class MainViewController: UIViewController {
 // MARK: - UIGestureRecognizerDelegate
 extension MainViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        
         if currentContainerHeight == maxContainerHeight {
+            bottomSheetView.tableView.isScrollEnabled = true
             return false
         }
+        
+        bottomSheetView.tableView.isScrollEnabled = false
         return canSwipe
     }
 }
@@ -141,42 +152,34 @@ extension MainViewController: UIGestureRecognizerDelegate {
 extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        section == 3 ? 1 : 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        MainFirstSectionTableViewCell()
+        indexPath.section == 3 ? MainShowButtonTableViewCell() : MainFirstSectionTableViewCell()
     }
 }
 
 // MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        guard section == 2 else { return nil }
-        
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 160))
-        footerView.backgroundColor = .black
-        
-        let showButton = MainShowButton(frame: CGRect(x: 0, y: 0, width: 300, height: 54))
-        showButton.center = footerView.center
-        
-        footerView.addSubview(showButton)
-        
-        return footerView
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return section == 0 ? 0.0 : 32
+        0
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard section == 2 else { return 20 }
-        
-        return 200
+//        guard section == 2 else { return 0 }
+//
+//        return 120
+        0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        50
+        indexPath.section == 3 ? 60 : 50
     }
 }
