@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let rootViewController = MainPageViewController(transitionStyle: .scroll,
                                                         navigationOrientation: .horizontal,
                                                         options: nil)
+        rootViewController.viewControllersToDisplay = [MainViewController(), MainViewController(), MainViewController(), MainViewController()]
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }

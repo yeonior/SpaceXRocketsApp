@@ -34,6 +34,8 @@ final class MainViewController: UIViewController {
     var canSwipe = true
     var panGesture = UIGestureRecognizer()
     
+    var presenter: MainPresenterProtocol!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {

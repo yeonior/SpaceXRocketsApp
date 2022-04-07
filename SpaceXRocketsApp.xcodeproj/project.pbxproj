@@ -10,6 +10,9 @@
 		A24EE55327FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */; };
 		A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55427FF17640005E3D1 /* RocketModel.swift */; };
 		A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5527FF712E007649EF /* NetworkManager.swift */; };
+		A251FB5A27FF7E62007649EF /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5927FF7E62007649EF /* MainPresenter.swift */; };
+		A251FB5C27FF7FC5007649EF /* MainPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5B27FF7FC5007649EF /* MainPageModel.swift */; };
+		A251FB6027FF8454007649EF /* Rockets.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A251FB5F27FF8454007649EF /* Rockets.JSON */; };
 		A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */; };
 		A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */; };
 		A275CA1627FC1C2F0020B02B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A275CA1427FC1C2F0020B02B /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 		A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStageSectionTableViewCell.swift; sourceTree = "<group>"; };
 		A24EE55427FF17640005E3D1 /* RocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModel.swift; sourceTree = "<group>"; };
 		A251FB5527FF712E007649EF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A251FB5927FF7E62007649EF /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		A251FB5B27FF7FC5007649EF /* MainPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageModel.swift; sourceTree = "<group>"; };
+		A251FB5F27FF8454007649EF /* Rockets.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Rockets.JSON; sourceTree = "<group>"; };
 		A275CA0B27FC1C2F0020B02B /* SpaceXRocketsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceXRocketsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +77,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A251FB5727FF7DF3007649EF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A24EE55427FF17640005E3D1 /* RocketModel.swift */,
+				A251FB5B27FF7FC5007649EF /* MainPageModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A251FB5827FF7E00007649EF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A251FB5927FF7E62007649EF /* MainPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A251FB5D27FF8320007649EF /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA2727FC22450020B02B /* MainModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		A251FB5E27FF835E007649EF /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA2427FC1D060020B02B /* Storyboards */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		A275CA0227FC1C2F0020B02B = {
 			isa = PBXGroup;
 			children = (
@@ -90,23 +129,23 @@
 		A275CA0D27FC1C2F0020B02B /* SpaceXRocketsApp */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA2727FC22450020B02B /* MainModule */,
+				A275CA2327FC1CFA0020B02B /* Core */,
+				A251FB5D27FF8320007649EF /* Modules */,
 				A275CA3027FC850D0020B02B /* Services */,
-				A275CA2327FC1CFA0020B02B /* Supporting Files */,
-				A275CA2427FC1D060020B02B /* Storyboards */,
+				A2DB9D0927FD9BE600339D48 /* Supporting Files */,
+				A251FB5E27FF835E007649EF /* Other */,
 			);
 			path = SpaceXRocketsApp;
 			sourceTree = "<group>";
 		};
-		A275CA2327FC1CFA0020B02B /* Supporting Files */ = {
+		A275CA2327FC1CFA0020B02B /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */,
 				A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */,
 				A275CA1C27FC1C300020B02B /* Info.plist */,
-				A2DB9D0927FD9BE600339D48 /* Assets */,
 			);
-			path = "Supporting Files";
+			path = Core;
 			sourceTree = "<group>";
 		};
 		A275CA2427FC1D060020B02B /* Storyboards */ = {
@@ -121,8 +160,9 @@
 		A275CA2727FC22450020B02B /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				A251FB5727FF7DF3007649EF /* Model */,
 				A275CA2827FC224B0020B02B /* View */,
-				A24EE55427FF17640005E3D1 /* RocketModel.swift */,
+				A251FB5827FF7E00007649EF /* Presenter */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -203,15 +243,16 @@
 			path = DragView;
 			sourceTree = "<group>";
 		};
-		A2DB9D0927FD9BE600339D48 /* Assets */ = {
+		A2DB9D0927FD9BE600339D48 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				A275CA1727FC1C300020B02B /* Assets.xcassets */,
 				A2DB9D0727FD997C00339D48 /* Color.swift */,
 				A2DB9D0527FD88A700339D48 /* Font.swift */,
+				A251FB5F27FF8454007649EF /* Rockets.JSON */,
 				A2DB9CF327FD7F1600339D48 /* Fonts */,
 			);
-			path = Assets;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +317,7 @@
 				A275CA1B27FC1C300020B02B /* LaunchScreen.storyboard in Resources */,
 				A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */,
 				A2DB9CF927FD7F7000339D48 /* LabGrotesque-Thin.ttf in Resources */,
+				A251FB6027FF8454007649EF /* Rockets.JSON in Resources */,
 				A2DB9CFD27FD806200339D48 /* FontNames in Resources */,
 				A275CA1827FC1C300020B02B /* Assets.xcassets in Resources */,
 				A275CA1627FC1C2F0020B02B /* Main.storyboard in Resources */,
@@ -301,6 +343,8 @@
 				A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift in Sources */,
+				A251FB5A27FF7E62007649EF /* MainPresenter.swift in Sources */,
+				A251FB5C27FF7FC5007649EF /* MainPageModel.swift in Sources */,
 				A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */,
 				A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */,
 				A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */,
@@ -455,7 +499,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U3JHK4U826;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SpaceXRocketsApp/Supporting Files/Info.plist";
+				INFOPLIST_FILE = SpaceXRocketsApp/Core/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
@@ -485,7 +529,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U3JHK4U826;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SpaceXRocketsApp/Supporting Files/Info.plist";
+				INFOPLIST_FILE = SpaceXRocketsApp/Core/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;

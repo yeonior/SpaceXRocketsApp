@@ -9,31 +9,13 @@ import UIKit.UIPageViewController
 
 final class MainPageViewController: UIPageViewController {
     
-    private let viewControllersToDisplay: [MainViewController] = {
-        var viewControllers = [MainViewController]()
-        for _ in 1...5 {
-            viewControllers.append(MainViewController())
-        }
-        return viewControllers
-    }()
+    var viewControllersToDisplay: [MainViewController]!
     
     // MARK: - Lifycycle
     
-    override init(transitionStyle style: UIPageViewController.TransitionStyle,
-                  navigationOrientation: UIPageViewController.NavigationOrientation,
-                  options: [UIPageViewController.OptionsKey : Any]? = nil) {
-        super.init(transitionStyle: style,
-                   navigationOrientation: navigationOrientation,
-                   options: options)
-        setupPageViewController()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupPageViewController()
         configurePageControl()
         setupScrollViewDelegate()
     }
