@@ -35,6 +35,7 @@ final class MainPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePageControl()
+        setupScrollViewDelegate()
     }
     
     override func viewDidLayoutSubviews() {
@@ -67,6 +68,11 @@ final class MainPageViewController: UIPageViewController {
                 view.frame.origin.y = self.view.frame.size.height - 56
             }
         }
+    }
+    
+    private func setupScrollViewDelegate() {
+        let scrollView = view.subviews.compactMap({ $0 as? UIScrollView }).first!
+        scrollView.delegate = self
     }
 }
 
@@ -103,12 +109,12 @@ extension MainPageViewController: UIPageViewControllerDataSource {
         return nil
     }
     
-    // the number of pages reflecting in the page indicator
+    // the number of pages reflecting in the page control
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         viewControllersToDisplay.count
     }
     
-    // the current page index reflecting in the page indicator
+    // the current page index reflecting in the page control
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         0
     }
@@ -124,10 +130,41 @@ extension MainPageViewController: UIPageViewControllerDelegate {
         vc.panGesture.isEnabled = false
     }
     
-    // unblocking
+    // unblocking the pan gesture
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let vc = previousViewControllers.first as? MainViewController else { return }
         vc.canSwipe = true
         vc.panGesture.isEnabled = true
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension MainPageViewController: UIScrollViewDelegate {
+    
+    // disabling UIPageViewController bounce
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard viewControllersToDisplay.count > 1 else {
+            scrollView.isScrollEnabled = false
+            return
+        }
+        
+        guard let viewControllers = viewControllers, viewControllers.count != 0 else { return }
+        
+        let baseRecord = viewControllers
+            .map{ [superview = view!] viewController -> (viewController: UIViewController, originX: CGFloat) in
+                let originX = superview.convert(viewController.view.bounds.origin, from: viewController.view).x
+                return (viewController: viewController, originX: originX)
+            }
+            .sorted(by: { $0.originX < $1.originX })
+            .first!
+        
+        guard let baseIndex = viewControllersToDisplay.firstIndex(of: baseRecord.viewController as! MainViewController) else { return }
+        
+        let baseViewControllerOffsetXRatio = -baseRecord.originX/scrollView.bounds.width
+        let progress = (CGFloat(baseIndex) + baseViewControllerOffsetXRatio)/CGFloat(viewControllersToDisplay.count - 1)
+        if !(0...1 ~= progress) {
+            scrollView.isScrollEnabled = false
+            scrollView.isScrollEnabled = true
+        }
     }
 }
