@@ -26,7 +26,7 @@ final class MainShowButtonTableViewCell: UITableViewCell {
     
     private func setup() {
         
-        baseView.backgroundColor = Color.tableCell.uiColor
+        baseView.backgroundColor = Color.tableViewCellBackground.uiColor
         
         showButton.layer.cornerRadius = 14
         showButton.backgroundColor = Color.showButton.uiColor

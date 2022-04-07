@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class MainFirstSectionTableViewCell: UITableViewCell {
+class MainInfoSectionTableViewCell: UITableViewCell {
     
-    let titleLabel: UILabel = {
-        $0.font = Font.tableCellTitle.uiFont
-        $0.textColor = Color.tableCellTitle.uiColor
+    let mainLabel: UILabel = {
+        $0.font = Font.tableViewCellMainLabel.uiFont
+        $0.textColor = Color.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
         $0.clipsToBounds = true
         $0.text = "Первый запуск"
@@ -19,9 +19,9 @@ final class MainFirstSectionTableViewCell: UITableViewCell {
         return $0
     }(UILabel())
     
-    let detailTitleLabel: UILabel = {
-        $0.font = Font.tableCellDetailTitle.uiFont
-        $0.textColor = Color.tableCellDetailTitle.uiColor
+    let detailsLabel: UILabel = {
+        $0.font = Font.tableViewCellDetailsLabel.uiFont
+        $0.textColor = Color.tableViewCellDetailsLabel.uiColor
         $0.textAlignment = .right
         $0.clipsToBounds = true
         $0.text = "7 февраля 2018"
@@ -31,19 +31,22 @@ final class MainFirstSectionTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
+        setupView()
+        setupLabels()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setup() {
-        
-        contentView.backgroundColor = Color.tableCell.uiColor
+    private func setupView() {
+        contentView.backgroundColor = Color.tableViewCellBackground.uiColor
         isUserInteractionEnabled = false
+    }
+    
+    func setupLabels() {
         
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, detailTitleLabel])
+        let stackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 0

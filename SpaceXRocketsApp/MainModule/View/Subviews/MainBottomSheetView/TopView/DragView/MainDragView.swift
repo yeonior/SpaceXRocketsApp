@@ -23,7 +23,7 @@ final class MainDragView: UIView {
     private func setup() {
         
         // view
-        backgroundColor = Color.containerBackground.uiColor
+        backgroundColor = Color.bottomSheetViewBackground.uiColor
         
         // indicatorView
         indicatorView.backgroundColor = Color.dragIndicator.uiColor

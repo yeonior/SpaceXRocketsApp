@@ -22,10 +22,10 @@ final class MainTableViewSectionHeader: UITableViewHeaderFooterView {
     
     private func setup() {
         
-        contentView.backgroundColor = Color.tableCell.uiColor
+        contentView.backgroundColor = Color.tableViewCellBackground.uiColor
         
-        titleLabel.font = Font.tableSectionHeader.uiFont
-        titleLabel.textColor = Color.tableSectionHeader.uiColor
+        titleLabel.font = Font.tableViewStageSectionHeader.uiFont
+        titleLabel.textColor = Color.tableViewStageSectionHeader.uiColor
         titleLabel.textAlignment = .left
         titleLabel.clipsToBounds = true
         titleLabel.text = "ПЕРВАЯ СТУПЕНЬ"

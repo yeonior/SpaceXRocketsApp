@@ -9,31 +9,32 @@ import UIKit.UIColor
 
 enum Color {
     case background
-    case containerBackground
+    case bottomSheetViewBackground
     case showButton
-    case tableCellTitle
-    case tableCellDetailTitle
-    case containerHeader
-    case tableSectionHeader
+    case tableViewCellMainLabel
+    case tableViewCellDetailsLabel
+    case tableViewCellUnitLabel
+    case bottomSheetViewHeader
+    case tableViewStageSectionHeader
     case dragIndicator
-    case indicatorBackground
+    case dragIndicatorBackground
     case currentPageIndicator
     case pageIndicator
-    case tableCell
+    case tableViewCellBackground
     
     var uiColor: UIColor {
         switch self {
-        case .containerBackground, .tableCell:
+        case .bottomSheetViewBackground, .tableViewCellBackground:
             return hexStringToUIColor(hex: "#000000")
         case .showButton:
             return hexStringToUIColor(hex: "#212121")
-        case .tableCellTitle:
+        case .tableViewCellMainLabel:
             return hexStringToUIColor(hex: "#CACACA")
-        case .tableCellDetailTitle, .containerHeader, .tableSectionHeader:
+        case .tableViewCellDetailsLabel, .bottomSheetViewHeader, .tableViewStageSectionHeader:
             return hexStringToUIColor(hex: "#F6F6F6")
-        case .dragIndicator, .pageIndicator:
+        case .dragIndicator, .pageIndicator, .tableViewCellUnitLabel:
             return hexStringToUIColor(hex: "#8E8E8F")
-        case .background, .indicatorBackground:
+        case .background, .dragIndicatorBackground:
             return hexStringToUIColor(hex: "#121212")
         case .currentPageIndicator:
             return hexStringToUIColor(hex: "#FFFFFF")

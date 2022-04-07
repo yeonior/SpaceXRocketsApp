@@ -26,7 +26,7 @@ final class MainTopView: UIView {
     private func setup() {
         
         // view
-        backgroundColor = Color.containerBackground.uiColor
+        backgroundColor = Color.bottomSheetViewBackground.uiColor
         
         // dragView
         addSubview(dragView)
@@ -42,8 +42,8 @@ final class MainTopView: UIView {
         // titleLabel
         titleLabel.textAlignment = .left
         titleLabel.backgroundColor = .clear
-        titleLabel.font = Font.containerHeader.uiFont
-        titleLabel.textColor = Color.containerHeader.uiColor
+        titleLabel.font = Font.bottomSheetViewHeader.uiFont
+        titleLabel.textColor = Color.bottomSheetViewHeader.uiColor
         titleLabel.text = "Falcon Heavy"
         
         addSubview(titleLabel)

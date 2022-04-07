@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A24EE55327FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */; };
 		A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */; };
 		A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */; };
 		A275CA1627FC1C2F0020B02B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A275CA1427FC1C2F0020B02B /* Main.storyboard */; };
@@ -24,12 +25,13 @@
 		A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */; };
 		A2DB9CFB27FD7F7000339D48 /* LabGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF727FD7F7000339D48 /* LabGrotesque-Medium.ttf */; };
 		A2DB9CFD27FD806200339D48 /* FontNames in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CFC27FD806100339D48 /* FontNames */; };
-		A2DB9D0427FD882F00339D48 /* MainFirstSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */; };
+		A2DB9D0427FD882F00339D48 /* MainInfoSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0327FD882F00339D48 /* MainInfoSectionTableViewCell.swift */; };
 		A2DB9D0627FD88A700339D48 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0527FD88A700339D48 /* Font.swift */; };
 		A2DB9D0827FD997C00339D48 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0727FD997C00339D48 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStageSectionTableViewCell.swift; sourceTree = "<group>"; };
 		A275CA0B27FC1C2F0020B02B /* SpaceXRocketsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceXRocketsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +51,7 @@
 		A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
 		A2DB9CF727FD7F7000339D48 /* LabGrotesque-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Medium.ttf"; sourceTree = "<group>"; };
 		A2DB9CFC27FD806100339D48 /* FontNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = FontNames; sourceTree = "<group>"; };
-		A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFirstSectionTableViewCell.swift; sourceTree = "<group>"; };
+		A2DB9D0327FD882F00339D48 /* MainInfoSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoSectionTableViewCell.swift; sourceTree = "<group>"; };
 		A2DB9D0527FD88A700339D48 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		A2DB9D0727FD997C00339D48 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,7 +150,8 @@
 		A2852F8F27FE2253000CDA92 /* Cells and Headers */ = {
 			isa = PBXGroup;
 			children = (
-				A2DB9D0327FD882F00339D48 /* MainFirstSectionTableViewCell.swift */,
+				A2DB9D0327FD882F00339D48 /* MainInfoSectionTableViewCell.swift */,
+				A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */,
 				A2852F8D27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift */,
 				A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */,
 			);
@@ -281,7 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2DB9D0427FD882F00339D48 /* MainFirstSectionTableViewCell.swift in Sources */,
+				A2DB9D0427FD882F00339D48 /* MainInfoSectionTableViewCell.swift in Sources */,
 				A275CA2627FC21D20020B02B /* MainPageViewController.swift in Sources */,
 				A2DB9D0827FD997C00339D48 /* Color.swift in Sources */,
 				A2852F8E27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift in Sources */,
@@ -290,6 +293,7 @@
 				A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
+				A24EE55327FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift in Sources */,
 				A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */,
 				A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */,
 				A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */,

@@ -17,7 +17,7 @@ final class MainViewController: UIViewController {
         $0.contentMode = .scaleAspectFill
         return $0
     }(UIImageView())
-
+    
     lazy var bottomSheetView = MainBottomSheetView()
     
     // MARK: - Properties
@@ -161,7 +161,15 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        indexPath.section == 3 ? MainShowButtonTableViewCell() : MainFirstSectionTableViewCell()
+//        indexPath.section == 3 ? MainShowButtonTableViewCell() : MainStageSectionTableViewCell()
+        switch indexPath.section {
+        case 0:
+            return MainInfoSectionTableViewCell()
+        case 3:
+            return MainShowButtonTableViewCell()
+        default:
+            return MainStageSectionTableViewCell()
+        }
     }
     
 //    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

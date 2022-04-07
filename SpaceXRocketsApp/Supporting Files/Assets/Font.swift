@@ -15,21 +15,22 @@ enum Font {
         case bold = "Bold"
     }
 
-    case containerHeader
-    case tableCellTitle
-    case tableCellDetailTitle
-    case tableSectionHeader
+    case bottomSheetViewHeader
+    case tableViewCellMainLabel
+    case tableViewCellDetailsLabel
+    case tableViewCellUnitLabel
+    case tableViewStageSectionHeader
     case showButton
 
     var uiFont: UIFont {
         switch self {
-        case .containerHeader:
+        case .bottomSheetViewHeader:
             return UIFont(name: "LabGrotesque-\(Style.regular.rawValue)", size: 32)!
-        case .tableCellTitle:
+        case .tableViewCellMainLabel:
             return UIFont(name: "LabGrotesque-\(Style.regular.rawValue)", size: 16)!
-        case .tableCellDetailTitle:
+        case .tableViewCellDetailsLabel:
             return UIFont(name: "LabGrotesque-\(Style.medium.rawValue)", size: 16)!
-        case .tableSectionHeader:
+        case .tableViewStageSectionHeader, .tableViewCellUnitLabel:
             return UIFont(name: "LabGrotesque-\(Style.bold.rawValue)", size: 16)!
         case .showButton:
             return UIFont(name: "LabGrotesque-\(Style.bold.rawValue)", size: 18)!
