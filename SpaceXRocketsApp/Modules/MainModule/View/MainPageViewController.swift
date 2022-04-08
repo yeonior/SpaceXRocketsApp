@@ -16,6 +16,7 @@ final class MainPageViewController: UIPageViewController {
     
     var viewControllersToDisplay: [MainViewController]!
     var presenter: MainPresenterProtocol!
+    var router: Routing!
     
     // MARK: - Lifecycle
     

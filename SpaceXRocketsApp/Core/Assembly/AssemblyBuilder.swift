@@ -8,11 +8,11 @@
 import UIKit
 
 protocol AssemblyBuilderProtocol {
-    static func buildMainModule() -> UIViewController
+    func buildMainModule(router: Routing) -> UIViewController
 }
 
 final class AssemblyBuilder: AssemblyBuilderProtocol {
-    static func buildMainModule() -> UIViewController {
+    func buildMainModule(router: Routing) -> UIViewController {
         
         let networkManager = NetworkManager.shared
         
@@ -31,3 +31,4 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         return view
     }
 }
+    
