@@ -5,19 +5,26 @@
 //  Created by Ruslan on 05.04.2022.
 //
 
-import UIKit.UIPageViewController
+import UIKit
+
+protocol MainViewProtocol: AnyObject {
+    func success()
+    func failure(error: Error)
+}
 
 final class MainPageViewController: UIPageViewController {
     
     var viewControllersToDisplay: [MainViewController]!
+    var presenter: MainPresenterProtocol!
     
-    // MARK: - Lifycycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPageViewController()
         configurePageControl()
         setupScrollViewDelegate()
+        presenter.fetchPages()
     }
     
     override func viewDidLayoutSubviews() {
@@ -148,5 +155,16 @@ extension MainPageViewController: UIScrollViewDelegate {
             scrollView.isScrollEnabled = false
             scrollView.isScrollEnabled = true
         }
+    }
+}
+
+// MARK: - MainViewProtocol
+extension MainPageViewController: MainViewProtocol {
+    func success() {
+        print("DONE")
+    }
+    
+    func failure(error: Error) {
+        debugPrint(error.localizedDescription)
     }
 }

@@ -22,6 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let rootViewController = MainPageViewController(transitionStyle: .scroll,
                                                         navigationOrientation: .horizontal,
                                                         options: nil)
+        let networkManager = NetworkManager.shared
+        rootViewController.presenter = MainPresenter(networkManager: networkManager, view: rootViewController)
         rootViewController.viewControllersToDisplay = [MainViewController(), MainViewController(), MainViewController(), MainViewController()]
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()

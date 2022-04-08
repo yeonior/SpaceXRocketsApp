@@ -56,7 +56,7 @@ final class NetworkManager: NetworkManagerProtocol {
                 let elements = try JSONDecoder().decode(T.self, from: data)
                 completionOnMain(.success(elements))
             } catch {
-                debugPrint("Could not translate the data to the requested type. Reason: \(error.localizedDescription)")
+                debugPrint("Could not translate the data to the requested type.")
                 completionOnMain(.failure(error))
             }
         }.resume()
