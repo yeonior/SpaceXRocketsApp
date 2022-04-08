@@ -19,12 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let rootViewController = MainPageViewController(transitionStyle: .scroll,
-                                                        navigationOrientation: .horizontal,
-                                                        options: nil)
-        let networkManager = NetworkManager.shared
-        rootViewController.presenter = MainPresenter(networkManager: networkManager, view: rootViewController)
-        rootViewController.viewControllersToDisplay = [MainViewController(), MainViewController(), MainViewController(), MainViewController()]
+        let rootViewController = AssemblyBuilder.buildMainModule()
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }

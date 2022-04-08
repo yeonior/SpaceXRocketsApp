@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A24BBC7628004F0600EA5A87 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7528004F0600EA5A87 /* API.swift */; };
+		A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */; };
 		A24EE55327FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */; };
 		A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55427FF17640005E3D1 /* RocketModel.swift */; };
 		A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5527FF712E007649EF /* NetworkManager.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A24BBC7528004F0600EA5A87 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilder.swift; sourceTree = "<group>"; };
 		A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStageSectionTableViewCell.swift; sourceTree = "<group>"; };
 		A24EE55427FF17640005E3D1 /* RocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModel.swift; sourceTree = "<group>"; };
 		A251FB5527FF712E007649EF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -77,6 +81,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A24BBC7728004F9100EA5A87 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		A24BBC7A2800502100EA5A87 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */,
+				A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		A251FB5727FF7DF3007649EF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,8 +162,8 @@
 		A275CA2327FC1CFA0020B02B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */,
-				A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */,
+				A24BBC7A2800502100EA5A87 /* Delegates */,
+				A24BBC7728004F9100EA5A87 /* Assembly */,
 				A275CA1C27FC1C300020B02B /* Info.plist */,
 			);
 			path = Core;
@@ -249,6 +270,7 @@
 				A275CA1727FC1C300020B02B /* Assets.xcassets */,
 				A2DB9D0727FD997C00339D48 /* Color.swift */,
 				A2DB9D0527FD88A700339D48 /* Font.swift */,
+				A24BBC7528004F0600EA5A87 /* API.swift */,
 				A251FB5F27FF8454007649EF /* Rockets.JSON */,
 				A2DB9CF327FD7F1600339D48 /* Fonts */,
 			);
@@ -336,6 +358,7 @@
 				A275CA2627FC21D20020B02B /* MainPageViewController.swift in Sources */,
 				A2DB9D0827FD997C00339D48 /* Color.swift in Sources */,
 				A2852F8E27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift in Sources */,
+				A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */,
 				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
 				A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */,
@@ -348,6 +371,7 @@
 				A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */,
 				A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */,
 				A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */,
+				A24BBC7628004F0600EA5A87 /* API.swift in Sources */,
 				A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

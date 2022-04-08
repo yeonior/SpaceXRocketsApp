@@ -7,20 +7,6 @@
 
 import Foundation
 
-enum API {
-    case rockets
-    case launches
-    
-    var url: URL {
-        switch self {
-        case .rockets:
-            return URL(string: "https://api.spacexdata.com/v4/rockets")!
-        case .launches:
-            return URL(string: "https://api.spacexdata.com/v4/launches")!
-        }
-    }
-}
-
 protocol NetworkManagerProtocol {
     func request<T: Decodable>(fromURL url: URL, completion: @escaping (Result<T, Error>) -> Void)
     func getData(from stringURL: String) -> Data
