@@ -1,5 +1,5 @@
 //
-//  MainPageViewController.swift
+//  BasePageViewController.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 05.04.2022.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol MainViewProtocol: AnyObject {
+protocol BaseViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
 }
 
-final class MainPageViewController: UIPageViewController {
+final class BasePageViewController: UIPageViewController {
     
     var viewControllersToDisplay: [MainViewController]!
-    var presenter: MainPresenterProtocol!
+    var presenter: BasePresenterProtocol!
     var router: Routing!
     
     // MARK: - Lifecycle
@@ -67,7 +67,7 @@ final class MainPageViewController: UIPageViewController {
 }
 
 // MARK: - UIPageViewControllerDataSource
-extension MainPageViewController: UIPageViewControllerDataSource {
+extension BasePageViewController: UIPageViewControllerDataSource {
     
     // the view controller before the given one
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -111,7 +111,7 @@ extension MainPageViewController: UIPageViewControllerDataSource {
 }
 
 // MARK: - UIPageViewControllerDelegate
-extension MainPageViewController: UIPageViewControllerDelegate {
+extension BasePageViewController: UIPageViewControllerDelegate {
     
     // blocking the pan gesture to prevent simultaneous recognizing
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
@@ -129,7 +129,7 @@ extension MainPageViewController: UIPageViewControllerDelegate {
 }
 
 // MARK: - UIScrollViewDelegate
-extension MainPageViewController: UIScrollViewDelegate {
+extension BasePageViewController: UIScrollViewDelegate {
     
     // disabling UIPageViewController bounce
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -160,7 +160,7 @@ extension MainPageViewController: UIScrollViewDelegate {
 }
 
 // MARK: - MainViewProtocol
-extension MainPageViewController: MainViewProtocol {
+extension BasePageViewController: BaseViewProtocol {
     func success() {
         print("DONE")
     }

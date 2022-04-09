@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationViewController = UINavigationController()
         let assemblyBuilder = AssemblyBuilder()
         let router = Router(navigationController: navigationViewController, assemblyBuilder: assemblyBuilder)
-        router.showInitialViewController()
+        router.instantiateBaseModule()
         window?.rootViewController = navigationViewController
         window?.makeKeyAndVisible()
     }

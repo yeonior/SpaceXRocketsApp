@@ -36,7 +36,7 @@ final class MainBottomSheetView: UIView {
         tableView.register(MainStageSectionTableViewCell.self, forCellReuseIdentifier: "stageCell")
         tableView.backgroundColor = Color.bottomSheetViewBackground.uiColor
         tableView.separatorColor = .clear
-        tableView.bounces = false
+        tableView.bounces = true
         tableView.isScrollEnabled = false
         tableView.showsVerticalScrollIndicator = false
 //        tableView.estimatedSectionHeaderHeight = 20.0

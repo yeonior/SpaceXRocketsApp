@@ -11,17 +11,17 @@
 		A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */; };
 		A24BBC7C2800543900EA5A87 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7B2800543900EA5A87 /* Router.swift */; };
 		A24EE55327FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */; };
-		A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55427FF17640005E3D1 /* RocketModel.swift */; };
+		A24EE55527FF17640005E3D1 /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55427FF17640005E3D1 /* Rocket.swift */; };
 		A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5527FF712E007649EF /* NetworkManager.swift */; };
-		A251FB5A27FF7E62007649EF /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5927FF7E62007649EF /* MainPresenter.swift */; };
-		A251FB5C27FF7FC5007649EF /* MainPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5B27FF7FC5007649EF /* MainPageModel.swift */; };
+		A251FB5A27FF7E62007649EF /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5927FF7E62007649EF /* BasePresenter.swift */; };
+		A251FB5C27FF7FC5007649EF /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5B27FF7FC5007649EF /* Page.swift */; };
 		A251FB6027FF8454007649EF /* Rockets.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A251FB5F27FF8454007649EF /* Rockets.JSON */; };
 		A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */; };
 		A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */; };
 		A275CA1627FC1C2F0020B02B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A275CA1427FC1C2F0020B02B /* Main.storyboard */; };
 		A275CA1827FC1C300020B02B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A275CA1727FC1C300020B02B /* Assets.xcassets */; };
 		A275CA1B27FC1C300020B02B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A275CA1927FC1C300020B02B /* LaunchScreen.storyboard */; };
-		A275CA2627FC21D20020B02B /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA2527FC21D20020B02B /* MainPageViewController.swift */; };
+		A275CA2627FC21D20020B02B /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA2527FC21D20020B02B /* BasePageViewController.swift */; };
 		A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA2C27FC24040020B02B /* MainViewController.swift */; };
 		A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */; };
 		A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3327FCAB530020B02B /* MainDragView.swift */; };
@@ -43,10 +43,10 @@
 		A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilder.swift; sourceTree = "<group>"; };
 		A24BBC7B2800543900EA5A87 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStageSectionTableViewCell.swift; sourceTree = "<group>"; };
-		A24EE55427FF17640005E3D1 /* RocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModel.swift; sourceTree = "<group>"; };
+		A24EE55427FF17640005E3D1 /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
 		A251FB5527FF712E007649EF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		A251FB5927FF7E62007649EF /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
-		A251FB5B27FF7FC5007649EF /* MainPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageModel.swift; sourceTree = "<group>"; };
+		A251FB5927FF7E62007649EF /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
+		A251FB5B27FF7FC5007649EF /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		A251FB5F27FF8454007649EF /* Rockets.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Rockets.JSON; sourceTree = "<group>"; };
 		A275CA0B27FC1C2F0020B02B /* SpaceXRocketsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceXRocketsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		A275CA1727FC1C300020B02B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A275CA1A27FC1C300020B02B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A275CA1C27FC1C300020B02B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A275CA2527FC21D20020B02B /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		A275CA2527FC21D20020B02B /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
 		A275CA2C27FC24040020B02B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBottomSheetView.swift; sourceTree = "<group>"; };
 		A275CA3327FCAB530020B02B /* MainDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDragView.swift; sourceTree = "<group>"; };
@@ -111,8 +111,7 @@
 		A251FB5727FF7DF3007649EF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A24EE55427FF17640005E3D1 /* RocketModel.swift */,
-				A251FB5B27FF7FC5007649EF /* MainPageModel.swift */,
+				A24EE55427FF17640005E3D1 /* Rocket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -120,7 +119,7 @@
 		A251FB5827FF7E00007649EF /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				A251FB5927FF7E62007649EF /* MainPresenter.swift */,
+				A251FB5927FF7E62007649EF /* BasePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -128,7 +127,8 @@
 		A251FB5D27FF8320007649EF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA2727FC22450020B02B /* MainModule */,
+				A275CA2727FC22450020B02B /* BaseModule */,
+				A264E8A82801F350005CF25C /* MainModule */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -139,6 +139,32 @@
 				A275CA2427FC1D060020B02B /* Storyboards */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		A264E8A82801F350005CF25C /* MainModule */ = {
+			isa = PBXGroup;
+			children = (
+				A264E8A928020576005CF25C /* Model */,
+				A264E8AA2802057E005CF25C /* View */,
+			);
+			path = MainModule;
+			sourceTree = "<group>";
+		};
+		A264E8A928020576005CF25C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A251FB5B27FF7FC5007649EF /* Page.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A264E8AA2802057E005CF25C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA2C27FC24040020B02B /* MainViewController.swift */,
+				A275CA3527FCAC1E0020B02B /* Subviews */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A275CA0227FC1C2F0020B02B = {
@@ -189,21 +215,20 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		A275CA2727FC22450020B02B /* MainModule */ = {
+		A275CA2727FC22450020B02B /* BaseModule */ = {
 			isa = PBXGroup;
 			children = (
 				A251FB5727FF7DF3007649EF /* Model */,
 				A275CA2827FC224B0020B02B /* View */,
 				A251FB5827FF7E00007649EF /* Presenter */,
 			);
-			path = MainModule;
+			path = BaseModule;
 			sourceTree = "<group>";
 		};
 		A275CA2827FC224B0020B02B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA2527FC21D20020B02B /* MainPageViewController.swift */,
-				A275CA3527FCAC1E0020B02B /* Subviews */,
+				A275CA2527FC21D20020B02B /* BasePageViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,8 +244,9 @@
 		A275CA3527FCAC1E0020B02B /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA2C27FC24040020B02B /* MainViewController.swift */,
-				A2DB9D0027FD86C200339D48 /* MainBottomSheetView */,
+				A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */,
+				A2DB9D0127FD86DF00339D48 /* TopView */,
+				A2852F8F27FE2253000CDA92 /* Cells and Headers */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -246,16 +272,6 @@
 				A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		A2DB9D0027FD86C200339D48 /* MainBottomSheetView */ = {
-			isa = PBXGroup;
-			children = (
-				A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */,
-				A2852F8F27FE2253000CDA92 /* Cells and Headers */,
-				A2DB9D0127FD86DF00339D48 /* TopView */,
-			);
-			path = MainBottomSheetView;
 			sourceTree = "<group>";
 		};
 		A2DB9D0127FD86DF00339D48 /* TopView */ = {
@@ -366,20 +382,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2DB9D0427FD882F00339D48 /* MainInfoSectionTableViewCell.swift in Sources */,
-				A275CA2627FC21D20020B02B /* MainPageViewController.swift in Sources */,
+				A275CA2627FC21D20020B02B /* BasePageViewController.swift in Sources */,
 				A2DB9D0827FD997C00339D48 /* Color.swift in Sources */,
 				A2852F8E27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift in Sources */,
 				A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */,
 				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
 				A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */,
-				A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */,
+				A24EE55527FF17640005E3D1 /* Rocket.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,
-				A251FB5A27FF7E62007649EF /* MainPresenter.swift in Sources */,
-				A251FB5C27FF7FC5007649EF /* MainPageModel.swift in Sources */,
+				A251FB5A27FF7E62007649EF /* BasePresenter.swift in Sources */,
+				A251FB5C27FF7FC5007649EF /* Page.swift in Sources */,
 				A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */,
 				A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */,
 				A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */,

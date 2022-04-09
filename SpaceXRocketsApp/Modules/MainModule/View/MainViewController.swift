@@ -1,5 +1,5 @@
 //
-//  MainPage.swift
+//  MainViewController.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 05.04.2022.

@@ -16,10 +16,10 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         
         let networkManager = NetworkManager.shared
         
-        let view = MainPageViewController(transitionStyle: .scroll,
+        let view = BasePageViewController(transitionStyle: .scroll,
                                           navigationOrientation: .horizontal,
                                           options: nil)
-        let presenter = MainPresenter(networkManager: networkManager, view: view)
+        let presenter = BasePresenter(networkManager: networkManager, view: view)
         
         presenter.view = view
         view.presenter = presenter

@@ -1,12 +1,12 @@
 //
-//  RocketModel.swift
+//  Rocket.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 07.04.2022.
 //
 
-// MARK: - RocketModel
-struct RocketModel: Codable {
+// MARK: - Rocket
+struct Rocket: Codable {
     let height, diameter: Diameter
     let mass: Mass
     let firstStage: FirstStage
