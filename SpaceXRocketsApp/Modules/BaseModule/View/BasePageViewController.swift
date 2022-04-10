@@ -8,15 +8,15 @@
 import UIKit
 
 protocol BaseViewProtocol: AnyObject {
-    func success()
+    func success(withTheNumber number: Int)
     func failure(error: Error)
 }
 
 final class BasePageViewController: UIPageViewController {
     
-    var viewControllersToDisplay: [UIViewController] = []
-    var presenter: BasePresenterProtocol!
     var router: Routing!
+    var presenter: BasePresenterProtocol!
+    var viewControllersToDisplay: [UIViewController] = []
     
     var startPageIndex = 0
     
@@ -71,15 +71,14 @@ final class BasePageViewController: UIPageViewController {
     }
 }
 
-// MARK: - MainViewProtocol
+// MARK: - BaseViewProtocol
 extension BasePageViewController: BaseViewProtocol {
     
     // setting up view controllers to display depending on the request result (success or failure)
     
-    func success() {
-        guard let pages = presenter.pages else { return }
-        for page in pages {
-            let vc = router.activateMainModule(with: page)
+    func success(withTheNumber number: Int) {
+        for serialNumber in 1...number {
+            let vc = router.activateMainModule(with: serialNumber)
             viewControllersToDisplay.append(vc)
         }
         setViewControllerToDisplay()

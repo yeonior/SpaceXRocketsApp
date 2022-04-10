@@ -8,8 +8,8 @@
 import Foundation
 
 protocol BasePresenterProtocol {
-    var pages: [Page]? { get set }
-    init(networkManager: NetworkManagerProtocol, view: BaseViewProtocol)
+//    var pages: [Page]? { get set }
+    init(view: BaseViewProtocol, networkManager: NetworkManagerProtocol)
     func fetchPages()
 }
 
@@ -17,9 +17,9 @@ final class BasePresenter: BasePresenterProtocol {
     
     weak var view: BaseViewProtocol!
     let networkManager: NetworkManagerProtocol!
-    var pages: [Page]?
+//    var pages: [Page]?
     
-    init(networkManager: NetworkManagerProtocol, view: BaseViewProtocol) {
+    init(view: BaseViewProtocol, networkManager: NetworkManagerProtocol) {
         self.networkManager = networkManager
         self.view = view
     }
@@ -29,12 +29,8 @@ final class BasePresenter: BasePresenterProtocol {
         networkManager.request(fromURL: url) { (result: Result<[Rocket], Error>) in
             switch result {
             case .success(let rockets):
-                var pages: [Page] = []
-                for rocket in rockets {
-                    pages.append(Page(rocket: rocket))
-                }
-                self.pages = pages
-                self.view.success()
+                DataManager.shared.setRockets(rockets: rockets)
+                self.view.success(withTheNumber: rockets.count)
             case .failure(let error):
                 self.view.failure(error: error)
             }

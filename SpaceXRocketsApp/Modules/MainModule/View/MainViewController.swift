@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewProtocol: AnyObject {
-    
+    func setBackgroundImage(with data: Data)
 }
 
 final class MainViewController: UIViewController {
@@ -16,7 +16,8 @@ final class MainViewController: UIViewController {
     // MARK: - Subviews
     
     lazy var backgroundImageView: UIImageView = {
-        $0.image = UIImage(named: "rocket")
+        $0.backgroundColor = Color.background.uiColor
+        $0.alpha = 0
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
         return $0
@@ -25,6 +26,10 @@ final class MainViewController: UIViewController {
     lazy var bottomSheetView = MainBottomSheetView()
     
     // MARK: - Properties
+    
+    var presenter: MainPresenterProtocol!
+    var router: Routing!
+    var serialNumber: Int!
     
     // container heights
     let minContainerHeight: CGFloat = 400.0
@@ -35,13 +40,8 @@ final class MainViewController: UIViewController {
     var containerViewHeightConstraint: NSLayoutConstraint?
     var containerViewBottomConstraint: NSLayoutConstraint?
     
-    var canSwipe = true
     var panGesture = UIGestureRecognizer()
-    
-    var presenter: MainPresenterProtocol!
-    var router: Routing!
-    // TEMPORARILY
-    var page: Page!
+    var canSwipe = true
     
     // MARK: - Lifecycle
     
@@ -50,6 +50,9 @@ final class MainViewController: UIViewController {
         
         configureUI()
         setupPanGesture()
+        DispatchQueue.global().async {
+            self.presenter.provideInfo(by: self.serialNumber)
+        }
     }
     
     // reseting the bottom sheet position to min
@@ -64,7 +67,7 @@ final class MainViewController: UIViewController {
         bottomSheetView.tableView.delegate = self
         
         // view
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = Color.background.uiColor
         view.addSubview(backgroundImageView)
         view.addSubview(bottomSheetView)
         
@@ -144,6 +147,18 @@ final class MainViewController: UIViewController {
     }
 }
 
+// MARK: - MainViewProtocol
+extension MainViewController: MainViewProtocol {
+    func setBackgroundImage(with data: Data) {
+        DispatchQueue.main.sync {
+            backgroundImageView.image = UIImage(data: data)
+            UIView.animate(withDuration: 1.0) { [unowned self] in
+                backgroundImageView.alpha = 1.0
+            }
+        }
+    }
+}
+
 // MARK: - UIGestureRecognizerDelegate
 extension MainViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -174,8 +189,8 @@ extension MainViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = MainInfoSectionTableViewCell()
-            cell.mainLabel.text = page.name
-            cell.detailsLabel.text = String(page.costPerLaunch)
+//            cell.mainLabel.text = page.name
+//            cell.detailsLabel.text = String(page.costPerLaunch)
             return cell
         case 3:
             return MainShowButtonTableViewCell()
@@ -235,8 +250,4 @@ extension MainViewController: UITableViewDelegate {
             return 0
         }
     }
-}
-
-extension MainViewController: MainViewProtocol {
-    
 }
