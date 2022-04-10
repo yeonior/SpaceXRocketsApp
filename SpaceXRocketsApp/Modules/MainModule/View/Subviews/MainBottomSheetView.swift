@@ -12,6 +12,8 @@ final class MainBottomSheetView: UIView {
     lazy var topView = MainTopView()
     lazy var tableView = UITableView()
     
+    var infoSection: InfoSectionPresentable = MainInfoSectionViewModel()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()

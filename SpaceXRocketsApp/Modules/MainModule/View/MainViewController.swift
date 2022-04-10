@@ -9,6 +9,7 @@ import UIKit
 
 protocol MainViewProtocol: AnyObject {
     func setBackgroundImage(with data: Data)
+    func setBottomSheetView(with infoSection: MainInfoSectionViewModel)
 }
 
 final class MainViewController: UIViewController {
@@ -31,12 +32,12 @@ final class MainViewController: UIViewController {
     var router: Routing!
     var serialNumber: Int!
     
-    // container heights
+    // bottomSheetView heights
     let minContainerHeight: CGFloat = 400.0
     let maxContainerHeight: CGFloat = UIScreen.main.bounds.height - 100.0
     var currentContainerHeight: CGFloat = 400.0
     
-    // dynamic container constraints
+    // bottomSheetView dynamic constraints
     var containerViewHeightConstraint: NSLayoutConstraint?
     var containerViewBottomConstraint: NSLayoutConstraint?
     
@@ -156,6 +157,10 @@ extension MainViewController: MainViewProtocol {
                 backgroundImageView.alpha = 1.0
             }
         }
+    }
+    
+    func setBottomSheetView(with infoSection: MainInfoSectionViewModel) {
+//        bottomSheetView.infoSection = infoSection
     }
 }
 

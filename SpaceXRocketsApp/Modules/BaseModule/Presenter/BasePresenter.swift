@@ -8,7 +8,6 @@
 import Foundation
 
 protocol BasePresenterProtocol {
-//    var pages: [Page]? { get set }
     init(view: BaseViewProtocol, networkManager: NetworkManagerProtocol)
     func fetchPages()
 }
@@ -17,7 +16,6 @@ final class BasePresenter: BasePresenterProtocol {
     
     weak var view: BaseViewProtocol!
     let networkManager: NetworkManagerProtocol!
-//    var pages: [Page]?
     
     init(view: BaseViewProtocol, networkManager: NetworkManagerProtocol) {
         self.networkManager = networkManager

@@ -9,6 +9,12 @@ import UIKit
 
 class MainInfoSectionTableViewCell: UITableViewCell {
     
+    var viewModel: CellIdentifiable? {
+        didSet {
+            updateLabels()
+        }
+    }
+    
     lazy var mainLabel: UILabel = {
         $0.font = Font.tableViewCellMainLabel.uiFont
         $0.textColor = Color.tableViewCellMainLabel.uiColor
@@ -42,6 +48,12 @@ class MainInfoSectionTableViewCell: UITableViewCell {
     private func setupView() {
         contentView.backgroundColor = Color.tableViewCellBackground.uiColor
         isUserInteractionEnabled = false
+    }
+    
+    private func updateLabels() {
+        guard let viewModel = viewModel as? MainInfoSectionCellViewModel else { return }
+        mainLabel.text = viewModel.mainTitle
+        detailsLabel.text = viewModel.detailsTitle
     }
     
     func setupLabels() {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A21FBC9A2802CAEE0095D4E4 /* MainInfoSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21FBC992802CAEE0095D4E4 /* MainInfoSectionViewModel.swift */; };
+		A21FBC9D2802CBDD0095D4E4 /* MainInfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21FBC9C2802CBDD0095D4E4 /* MainInfoCellViewModel.swift */; };
 		A24BBC7628004F0600EA5A87 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7528004F0600EA5A87 /* API.swift */; };
 		A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */; };
 		A24BBC7C2800543900EA5A87 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7B2800543900EA5A87 /* Router.swift */; };
@@ -30,6 +32,7 @@
 		A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */; };
 		A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA228028AD400B28901 /* MainPresenter.swift */; };
 		A2A19BA52802B1A500B28901 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA42802B1A500B28901 /* DataManager.swift */; };
+		A2A19BA72802C57C00B28901 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA62802C57C00B28901 /* Size.swift */; };
 		A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */; };
 		A2DB9CF927FD7F7000339D48 /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */; };
 		A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */; };
@@ -41,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A21FBC992802CAEE0095D4E4 /* MainInfoSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoSectionViewModel.swift; sourceTree = "<group>"; };
+		A21FBC9C2802CBDD0095D4E4 /* MainInfoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoCellViewModel.swift; sourceTree = "<group>"; };
 		A24BBC7528004F0600EA5A87 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilder.swift; sourceTree = "<group>"; };
 		A24BBC7B2800543900EA5A87 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -66,6 +71,7 @@
 		A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewSectionHeader.swift; sourceTree = "<group>"; };
 		A2A19BA228028AD400B28901 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		A2A19BA42802B1A500B28901 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A2A19BA62802C57C00B28901 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
 		A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
 		A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
@@ -87,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A21FBC9B2802CB2F0095D4E4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A21FBC992802CAEE0095D4E4 /* MainInfoSectionViewModel.swift */,
+				A21FBC9C2802CBDD0095D4E4 /* MainInfoCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		A24BBC7728004F9100EA5A87 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +279,7 @@
 				A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */,
 				A2852F8D27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift */,
 				A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */,
+				A21FBC9B2802CB2F0095D4E4 /* ViewModels */,
 			);
 			path = "Cells and Headers";
 			sourceTree = "<group>";
@@ -311,6 +327,7 @@
 				A275CA1727FC1C300020B02B /* Assets.xcassets */,
 				A2DB9D0727FD997C00339D48 /* Color.swift */,
 				A2DB9D0527FD88A700339D48 /* Font.swift */,
+				A2A19BA62802C57C00B28901 /* Size.swift */,
 				A24BBC7528004F0600EA5A87 /* API.swift */,
 				A251FB5F27FF8454007649EF /* Rockets.JSON */,
 				A2DB9CF327FD7F1600339D48 /* Fonts */,
@@ -402,9 +419,11 @@
 				A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */,
 				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
+				A2A19BA72802C57C00B28901 /* Size.swift in Sources */,
 				A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */,
 				A24EE55527FF17640005E3D1 /* Rocket.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */,
+				A21FBC9A2802CAEE0095D4E4 /* MainInfoSectionViewModel.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,
@@ -415,6 +434,7 @@
 				A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */,
 				A24BBC7628004F0600EA5A87 /* API.swift in Sources */,
 				A2A19BA52802B1A500B28901 /* DataManager.swift in Sources */,
+				A21FBC9D2802CBDD0095D4E4 /* MainInfoCellViewModel.swift in Sources */,
 				A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */,
 				A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */,
 			);
