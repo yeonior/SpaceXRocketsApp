@@ -71,6 +71,27 @@ final class BasePageViewController: UIPageViewController {
     }
 }
 
+// MARK: - MainViewProtocol
+extension BasePageViewController: BaseViewProtocol {
+    
+    // setting up view controllers to display depending on the request result (success or failure)
+    
+    func success() {
+        guard let pages = presenter.pages else { return }
+        for page in pages {
+            let vc = router.activateMainModule(with: page)
+            viewControllersToDisplay.append(vc)
+        }
+        setViewControllerToDisplay()
+    }
+    
+    func failure(error: Error) {
+        debugPrint(error.localizedDescription)
+        viewControllersToDisplay = [router.provideEmptyMainViewController()]
+        setViewControllerToDisplay()
+    }
+}
+
 // MARK: - UIPageViewControllerDataSource
 extension BasePageViewController: UIPageViewControllerDataSource {
     
@@ -161,25 +182,5 @@ extension BasePageViewController: UIScrollViewDelegate {
             scrollView.isScrollEnabled = false
             scrollView.isScrollEnabled = true
         }
-    }
-}
-
-// MARK: - MainViewProtocol
-extension BasePageViewController: BaseViewProtocol {
-    
-    // setting up view controllers to display depending on the request result (success or failure)
-    
-    func success() {
-        for page in presenter.pages {
-            let vc = router.activateMainModule(with: page)
-            viewControllersToDisplay.append(vc)
-        }
-        setViewControllerToDisplay()
-    }
-    
-    func failure(error: Error) {
-        debugPrint(error.localizedDescription)
-        viewControllersToDisplay = [router.provideEmptyMainViewController()]
-        setViewControllerToDisplay()
     }
 }
