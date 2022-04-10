@@ -16,7 +16,7 @@
 		A24EE55527FF17640005E3D1 /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55427FF17640005E3D1 /* Rocket.swift */; };
 		A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5527FF712E007649EF /* NetworkManager.swift */; };
 		A251FB5A27FF7E62007649EF /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5927FF7E62007649EF /* BasePresenter.swift */; };
-		A251FB5C27FF7FC5007649EF /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5B27FF7FC5007649EF /* Page.swift */; };
+		A251FB5C27FF7FC5007649EF /* RocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5B27FF7FC5007649EF /* RocketData.swift */; };
 		A251FB6027FF8454007649EF /* Rockets.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A251FB5F27FF8454007649EF /* Rockets.JSON */; };
 		A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */; };
 		A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */; };
@@ -53,7 +53,7 @@
 		A24EE55427FF17640005E3D1 /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
 		A251FB5527FF712E007649EF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A251FB5927FF7E62007649EF /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
-		A251FB5B27FF7FC5007649EF /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		A251FB5B27FF7FC5007649EF /* RocketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketData.swift; sourceTree = "<group>"; };
 		A251FB5F27FF8454007649EF /* Rockets.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Rockets.JSON; sourceTree = "<group>"; };
 		A275CA0B27FC1C2F0020B02B /* SpaceXRocketsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceXRocketsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +100,34 @@
 				A21FBC9C2802CBDD0095D4E4 /* MainInfoCellViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A21FBCA02802F6210095D4E4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A2DB9D0327FD882F00339D48 /* MainInfoSectionTableViewCell.swift */,
+				A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */,
+				A2852F8D27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift */,
+				A21FBC9B2802CB2F0095D4E4 /* ViewModels */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A21FBCA12802F62A0095D4E4 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		A21FBCA22802F67E0095D4E4 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				A21FBCA02802F6210095D4E4 /* Cells */,
+				A21FBCA12802F62A0095D4E4 /* Headers */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		A24BBC7728004F9100EA5A87 /* Assembly */ = {
@@ -173,7 +201,7 @@
 		A264E8A928020576005CF25C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A251FB5B27FF7FC5007649EF /* Page.swift */,
+				A251FB5B27FF7FC5007649EF /* RocketData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,23 +293,19 @@
 		A275CA3527FCAC1E0020B02B /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */,
-				A2DB9D0127FD86DF00339D48 /* TopView */,
-				A2852F8F27FE2253000CDA92 /* Cells and Headers */,
+				A2852F8F27FE2253000CDA92 /* BottomSheetView */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
 		};
-		A2852F8F27FE2253000CDA92 /* Cells and Headers */ = {
+		A2852F8F27FE2253000CDA92 /* BottomSheetView */ = {
 			isa = PBXGroup;
 			children = (
-				A2DB9D0327FD882F00339D48 /* MainInfoSectionTableViewCell.swift */,
-				A24EE55227FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift */,
-				A2852F8D27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift */,
-				A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */,
-				A21FBC9B2802CB2F0095D4E4 /* ViewModels */,
+				A275CA3127FC9E310020B02B /* MainBottomSheetView.swift */,
+				A2DB9D0127FD86DF00339D48 /* TopView */,
+				A21FBCA22802F67E0095D4E4 /* TableView */,
 			);
-			path = "Cells and Headers";
+			path = BottomSheetView;
 			sourceTree = "<group>";
 		};
 		A2A19BA128028AC000B28901 /* Presenter */ = {
@@ -428,7 +452,7 @@
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionTableViewCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,
 				A251FB5A27FF7E62007649EF /* BasePresenter.swift in Sources */,
-				A251FB5C27FF7FC5007649EF /* Page.swift in Sources */,
+				A251FB5C27FF7FC5007649EF /* RocketData.swift in Sources */,
 				A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */,
 				A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */,
 				A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */,

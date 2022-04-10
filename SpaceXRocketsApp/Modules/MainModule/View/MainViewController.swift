@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainViewProtocol: AnyObject {
     func setBackgroundImage(with data: Data)
-    func setBottomSheetView(with infoSection: MainInfoSectionViewModel)
+    func setInfoSection(with infoSection: MainInfoSectionViewModel)
 }
 
 final class MainViewController: UIViewController {
@@ -25,6 +25,7 @@ final class MainViewController: UIViewController {
     }(UIImageView())
     
     lazy var bottomSheetView = MainBottomSheetView()
+    var infoSection: InfoSectionPresentable = MainInfoSectionViewModel()
     
     // MARK: - Properties
     
@@ -159,8 +160,11 @@ extension MainViewController: MainViewProtocol {
         }
     }
     
-    func setBottomSheetView(with infoSection: MainInfoSectionViewModel) {
-//        bottomSheetView.infoSection = infoSection
+    func setInfoSection(with infoSection: MainInfoSectionViewModel) {
+        self.infoSection = infoSection
+        DispatchQueue.main.sync {
+            self.bottomSheetView.tableView.reloadData()
+        }
     }
 }
 
@@ -192,11 +196,17 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        indexPath.section == 3 ? MainShowButtonTableViewCell() : MainStageSectionTableViewCell()
         switch indexPath.section {
-        case 0:
-            let cell = MainInfoSectionTableViewCell()
-//            cell.mainLabel.text = page.name
-//            cell.detailsLabel.text = String(page.costPerLaunch)
-            return cell
+        case 0:            
+            guard !infoSection.rows.isEmpty else { return MainInfoSectionTableViewCell() }
+            let viewModel = infoSection.rows[indexPath.row]
+            
+            if let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellIdentifier, for: indexPath) as? MainInfoSectionTableViewCell {
+                
+                cell.viewModel = viewModel
+                
+                return cell
+            }
+            return MainInfoSectionTableViewCell()
         case 3:
             return MainShowButtonTableViewCell()
         default:

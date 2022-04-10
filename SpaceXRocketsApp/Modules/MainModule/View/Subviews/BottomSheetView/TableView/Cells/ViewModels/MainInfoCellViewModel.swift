@@ -13,7 +13,7 @@ protocol CellIdentifiable {
 }
 
 protocol InfoSectionCellPresentable: CellIdentifiable {
-    init(mainTitle: String, detailsTitle: String)
+    init(rocketData: RocketData)
 }
 
 final class MainInfoSectionCellViewModel: InfoSectionCellPresentable {
@@ -28,8 +28,9 @@ final class MainInfoSectionCellViewModel: InfoSectionCellPresentable {
         50
     }
     
-    init(mainTitle: String, detailsTitle: String) {
-        self.mainTitle = mainTitle
-        self.detailsTitle = detailsTitle
+    init(rocketData: RocketData) {
+        
+        mainTitle = "Date"
+        detailsTitle = rocketData.firstFlight
     }
 }

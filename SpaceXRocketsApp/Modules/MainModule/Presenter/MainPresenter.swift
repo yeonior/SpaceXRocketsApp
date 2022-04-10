@@ -16,7 +16,6 @@ final class MainPresenter: MainPresenterProtocol {
     
     weak var view: MainViewProtocol!
     let dataManager: DataManagerProtocol!
-    var page: Page?
     
     init(view: MainViewProtocol, dataManager: DataManagerProtocol) {
         self.view = view
@@ -27,8 +26,19 @@ final class MainPresenter: MainPresenterProtocol {
         let rockets = dataManager.getRockets()
         let index = serialNumber - 1
         let rocket = rockets[index]
-        let page = Page(rocket: rocket)
-        let imageData = dataManager.getData(from: page.backgroundImages.first!)
+        let imageData = dataManager.getData(from: rocket.flickrImages.first!)
         view.setBackgroundImage(with: imageData)
+        
+        let rocketData = RocketData(rocket: rocket)
+        let infoSection = MainInfoSectionViewModel()
+        rockets.forEach { rocket in
+            let viewModel = MainInfoSectionCellViewModel(rocketData: rocketData)
+            infoSection.rows.append(viewModel)
+        }
+        
+//        infoSection.rows.append(MainInfoSectionCellViewModel(mainTitle: "Страна", detailsTitle: rocket.country))
+//        infoSection.rows.append(MainInfoSectionCellViewModel(mainTitle: "Компания", detailsTitle: rocket.company))
+//        infoSection.rows.append(MainInfoSectionCellViewModel(mainTitle: "Первый полет", detailsTitle: rocket.firstFlight))
+        view.setInfoSection(with: infoSection)
     }
 }
