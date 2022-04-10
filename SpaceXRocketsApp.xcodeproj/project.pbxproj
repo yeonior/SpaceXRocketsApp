@@ -28,6 +28,7 @@
 		A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3627FCAC400020B02B /* MainTopView.swift */; };
 		A2852F8E27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F8D27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift */; };
 		A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */; };
+		A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA228028AD400B28901 /* MainPresenter.swift */; };
 		A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */; };
 		A2DB9CF927FD7F7000339D48 /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */; };
 		A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */; };
@@ -62,6 +63,7 @@
 		A275CA3627FCAC400020B02B /* MainTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTopView.swift; sourceTree = "<group>"; };
 		A2852F8D27FE1EBF000CDA92 /* MainShowButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainShowButtonTableViewCell.swift; sourceTree = "<group>"; };
 		A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewSectionHeader.swift; sourceTree = "<group>"; };
+		A2A19BA228028AD400B28901 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
 		A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
 		A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				A264E8A928020576005CF25C /* Model */,
 				A264E8AA2802057E005CF25C /* View */,
+				A2A19BA128028AC000B28901 /* Presenter */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -260,6 +263,14 @@
 				A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */,
 			);
 			path = "Cells and Headers";
+			sourceTree = "<group>";
+		};
+		A2A19BA128028AC000B28901 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A2A19BA228028AD400B28901 /* MainPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A2DB9CF327FD7F1600339D48 /* Fonts */ = {
@@ -400,6 +411,7 @@
 				A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */,
 				A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */,
 				A24BBC7628004F0600EA5A87 /* API.swift in Sources */,
+				A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */,
 				A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,8 +13,8 @@ protocol RouterProtocol {
 }
 
 protocol Routing: RouterProtocol {
-    func instantiateBaseModule()
-    func instantiateMainModule(with: Page)
+    func activateBaseModule()
+    func activateMainModule(with page: Page)
 }
 
 final class Router: Routing {
@@ -27,12 +27,13 @@ final class Router: Routing {
         self.assemblyBuilder = assemblyBuilder
     }
     
-    func instantiateBaseModule() {
-        guard let navigationController = navigationController, let initialViewController = assemblyBuilder?.buildMainModule(router: self) else { return }
-        navigationController.viewControllers = [initialViewController]
+    func activateBaseModule() {
+        guard let navigationController = navigationController, let viewController = assemblyBuilder?.buildBaseModule(router: self) else { return }
+        navigationController.viewControllers = [viewController]
     }
     
-    func instantiateMainModule(with: Page) {
-        
+    func activateMainModule(with page: Page) {
+        guard let navigationController = navigationController, let viewController = assemblyBuilder?.buildMainModule(with: page) else { return }
+        navigationController.viewControllers.append(viewController)
     }
 }

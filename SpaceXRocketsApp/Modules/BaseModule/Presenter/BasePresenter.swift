@@ -11,6 +11,7 @@ protocol BasePresenterProtocol {
     init(networkManager: NetworkManagerProtocol, view: BaseViewProtocol)
     var pages: [Page]? { get set }
     func fetchPages()
+//    func getPage(at: IndexPath)
 }
 
 final class BasePresenter: BasePresenterProtocol {

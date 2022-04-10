@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MainViewProtocol: AnyObject {
+    
+}
+
 final class MainViewController: UIViewController {
     
     // MARK: - Subviews
@@ -33,6 +37,11 @@ final class MainViewController: UIViewController {
     
     var canSwipe = true
     var panGesture = UIGestureRecognizer()
+    
+    var presenter: MainPresenterProtocol!
+    var router: Routing!
+    // TEMPORARILY
+    var page: Page!
     
     // MARK: - Lifecycle
     
@@ -164,7 +173,10 @@ extension MainViewController: UITableViewDataSource {
 //        indexPath.section == 3 ? MainShowButtonTableViewCell() : MainStageSectionTableViewCell()
         switch indexPath.section {
         case 0:
-            return MainInfoSectionTableViewCell()
+            let cell = MainInfoSectionTableViewCell()
+            cell.mainLabel.text = page.name
+            cell.detailsLabel.text = String(page.costPerLaunch)
+            return cell
         case 3:
             return MainShowButtonTableViewCell()
         default:
@@ -223,4 +235,8 @@ extension MainViewController: UITableViewDelegate {
             return 0
         }
     }
+}
+
+extension MainViewController: MainViewProtocol {
+    
 }

@@ -8,11 +8,12 @@
 import UIKit
 
 protocol AssemblyBuilderProtocol {
-    func buildMainModule(router: Routing) -> UIViewController
+    func buildBaseModule(router: Routing) -> UIViewController
+    func buildMainModule(with page: Page) -> UIViewController
 }
 
 final class AssemblyBuilder: AssemblyBuilderProtocol {
-    func buildMainModule(router: Routing) -> UIViewController {
+    func buildBaseModule(router: Routing) -> UIViewController {
         
         let networkManager = NetworkManager.shared
         
@@ -23,10 +24,19 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         
         presenter.view = view
         view.presenter = presenter
-        view.viewControllersToDisplay = [MainViewController(),
-                                         MainViewController(),
-                                         MainViewController(),
-                                         MainViewController()]
+        
+        return view
+    }
+    
+    func buildMainModule(with page: Page) -> UIViewController {
+        
+        let view = MainViewController()
+        let presenter = MainPresenter(view: view)
+        
+        presenter.view = view
+        view.presenter = presenter
+        // TEMP
+        view.page = page
         
         return view
     }

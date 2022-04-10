@@ -14,9 +14,11 @@ protocol BaseViewProtocol: AnyObject {
 
 final class BasePageViewController: UIPageViewController {
     
-    var viewControllersToDisplay: [MainViewController]!
+    var viewControllersToDisplay: [UIViewController] = []
     var presenter: BasePresenterProtocol!
     var router: Routing!
+    
+    var currentPageIndex = 0
     
     // MARK: - Lifecycle
     
@@ -40,7 +42,6 @@ final class BasePageViewController: UIPageViewController {
         dataSource = self
         additionalSafeAreaInsets.bottom = CGFloat(12)
         view.backgroundColor = Color.background.uiColor
-        setViewControllers([viewControllersToDisplay[0]], direction: .forward, animated: true, completion: nil)
     }
     
     private func configurePageControl() {
@@ -74,6 +75,7 @@ extension BasePageViewController: UIPageViewControllerDataSource {
         guard let vc = viewController as? MainViewController else { return nil }
         
         if let index = viewControllersToDisplay.firstIndex(of: vc) {
+            print(index)
             if index > 0 {
                 return viewControllersToDisplay[index - 1]
             } else {
@@ -106,7 +108,8 @@ extension BasePageViewController: UIPageViewControllerDataSource {
     
     // the current page index reflecting in the page control
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        0
+        print("OK")
+        return currentPageIndex
     }
 }
 
@@ -162,7 +165,16 @@ extension BasePageViewController: UIScrollViewDelegate {
 // MARK: - MainViewProtocol
 extension BasePageViewController: BaseViewProtocol {
     func success() {
-        print("DONE")
+        let builder = AssemblyBuilder()
+        guard let pages = presenter.pages else {
+            viewControllersToDisplay = [MainViewController()]
+            return
+        }
+        for page in pages {
+            let vc = builder.buildMainModule(with: page)
+            viewControllersToDisplay.append(vc)
+        }
+        setViewControllers([viewControllersToDisplay[currentPageIndex]], direction: .forward, animated: true, completion: nil)
     }
     
     func failure(error: Error) {

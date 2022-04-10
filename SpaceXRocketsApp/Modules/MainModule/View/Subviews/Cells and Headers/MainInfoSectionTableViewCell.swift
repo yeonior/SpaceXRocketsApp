@@ -9,7 +9,7 @@ import UIKit
 
 class MainInfoSectionTableViewCell: UITableViewCell {
     
-    let mainLabel: UILabel = {
+    lazy var mainLabel: UILabel = {
         $0.font = Font.tableViewCellMainLabel.uiFont
         $0.textColor = Color.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
@@ -19,7 +19,7 @@ class MainInfoSectionTableViewCell: UITableViewCell {
         return $0
     }(UILabel())
     
-    let detailsLabel: UILabel = {
+    lazy var detailsLabel: UILabel = {
         $0.font = Font.tableViewCellDetailsLabel.uiFont
         $0.textColor = Color.tableViewCellDetailsLabel.uiColor
         $0.textAlignment = .right
