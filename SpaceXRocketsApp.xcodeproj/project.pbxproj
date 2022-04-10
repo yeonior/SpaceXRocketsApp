@@ -202,8 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				A24BBC7A2800502100EA5A87 /* Delegates */,
-				A24BBC7728004F9100EA5A87 /* Assembly */,
 				A24BBC7D2800543C00EA5A87 /* Routing */,
+				A24BBC7728004F9100EA5A87 /* Assembly */,
 				A275CA1C27FC1C300020B02B /* Info.plist */,
 			);
 			path = Core;
