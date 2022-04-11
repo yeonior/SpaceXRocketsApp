@@ -9,16 +9,16 @@
 struct Rocket: Codable {
     let height, diameter: Diameter
     let mass: Mass
-        let firstStage: FirstStage
-        let secondStage: SecondStage
+    let firstStage: FirstStage
+    let secondStage: SecondStage
     let engines: Engines
     let landingLegs: LandingLegs
     let payloadWeights: [PayloadWeight]
     let flickrImages: [String]
-        let name, type: String
+    let name, type: String
     let active: Bool
     let stages, boosters, costPerLaunch, successRatePct: Int
-        let firstFlight, country, company: String
+    let firstFlight, country, company: String
     let wikipedia: String
     let rocketModelDescription, id: String
 

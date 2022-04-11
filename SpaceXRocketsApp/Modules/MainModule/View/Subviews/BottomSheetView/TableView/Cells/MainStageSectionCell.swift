@@ -1,5 +1,5 @@
 //
-//  MainStageSectionTableViewCell.swift
+//  MainStageSectionCell.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 07.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainStageSectionTableViewCell: MainInfoSectionTableViewCell {
+final class MainStageSectionCell: MainInfoSectionCell {
     
     let unitLabel: UILabel = {
         $0.font = Font.tableViewCellUnitLabel.uiFont
@@ -63,5 +63,12 @@ final class MainStageSectionTableViewCell: MainInfoSectionTableViewCell {
             detailsLabelConstraint,
             subStackViewConstraint
         ])
+    }
+    
+    override func updateLabels() {
+        guard let _ = item as? MainInfoViewModelItem else { return }
+        mainLabel.text = "Something"
+        detailsLabel.text = "100"
+        unitLabel.text = "kg"
     }
 }

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class MainInfoSectionTableViewCell: UITableViewCell {
+class MainInfoSectionCell: UITableViewCell {
     
-    var viewModel: CellIdentifiable? {
+    var item: MainViewModelItem? {
         didSet {
             updateLabels()
         }
@@ -50,12 +50,6 @@ class MainInfoSectionTableViewCell: UITableViewCell {
         isUserInteractionEnabled = false
     }
     
-    private func updateLabels() {
-        guard let viewModel = viewModel as? MainInfoSectionCellViewModel else { return }
-        mainLabel.text = viewModel.mainTitle
-        detailsLabel.text = viewModel.detailsTitle
-    }
-    
     func setupLabels() {
         
         let stackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
@@ -72,5 +66,11 @@ class MainInfoSectionTableViewCell: UITableViewCell {
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ])
+    }
+    
+    func updateLabels() {
+        guard let item = item as? MainInfoViewModelItem else { return }
+        mainLabel.text = item.country
+        detailsLabel.text = item.company
     }
 }

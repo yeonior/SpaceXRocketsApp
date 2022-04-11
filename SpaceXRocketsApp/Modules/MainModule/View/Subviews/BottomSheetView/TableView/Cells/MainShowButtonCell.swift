@@ -1,5 +1,5 @@
 //
-//  MainShowButtonTableViewCell.swift
+//  MainShowButtonCell.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 07.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainShowButtonTableViewCell: UITableViewCell {
+final class MainShowButtonCell: UITableViewCell {
     
     let showButton = UIButton()
     let baseView = UIView()

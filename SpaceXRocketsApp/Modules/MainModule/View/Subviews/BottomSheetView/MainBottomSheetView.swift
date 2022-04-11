@@ -30,10 +30,10 @@ final class MainBottomSheetView: UIView {
         
         // tableView
         tableView = UITableView(frame: bounds, style: .grouped)
-        tableView.register(MainInfoSectionTableViewCell.self, forCellReuseIdentifier: "mainInfoCell")
-        tableView.register(MainShowButtonTableViewCell.self, forCellReuseIdentifier: "buttonCell")
+        tableView.register(MainInfoSectionCell.self, forCellReuseIdentifier: "infoCell")
+        tableView.register(MainShowButtonCell.self, forCellReuseIdentifier: "buttonCell")
         tableView.register(MainTableViewSectionHeader.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
-        tableView.register(MainStageSectionTableViewCell.self, forCellReuseIdentifier: "stageCell")
+        tableView.register(MainStageSectionCell.self, forCellReuseIdentifier: "stageCell")
         tableView.backgroundColor = Color.bottomSheetViewBackground.uiColor
         tableView.separatorColor = .clear
         tableView.bounces = true
