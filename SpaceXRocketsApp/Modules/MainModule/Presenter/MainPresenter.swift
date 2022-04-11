@@ -38,6 +38,7 @@ final class MainPresenter: MainPresenterProtocol {
             company: rocket.company,
             flickrImages: rocket.flickrImages
         )
+        
         self.rocketData = rocketData
         
         let imageData = dataManager.getData(from: rocketData.flickrImages.first!)
@@ -47,17 +48,3 @@ final class MainPresenter: MainPresenterProtocol {
         view.setViewModel(viewModel: viewModel)
     }
 }
-
-//RocketData(
-//    firstStage: RocketData.FirstStage(
-//        engines: RocketData.Engines(value: rocket.firstStage.engines),
-//        fuelAmountTons: RocketData.FuelAmountTons(value: rocket.firstStage.fuelAmountTons),
-//        burnTimeSEC: RocketData.BurnTimeSEC(value: rocket.firstStage.burnTimeSEC)),
-//    secondStage: RocketData.SecondStage(
-//        engines: RocketData.Engines(value: rocket.secondStage.engines),
-//        fuelAmountTons: RocketData.FuelAmountTons(value: rocket.secondStage.fuelAmountTons),
-//        burnTimeSEC: RocketData.BurnTimeSEC(value: rocket.secondStage.burnTimeSEC)),
-//    firstFlight: RocketData.FirstFlight(value: rocket.firstFlight),
-//    country: RocketData.Country(value: rocket.country),
-//    company: RocketData.Company(value: rocket.company),
-//    flickrImages: rocket.flickrImages

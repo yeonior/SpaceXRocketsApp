@@ -19,13 +19,15 @@ final class MainViewModel: NSObject, MainItemViewModel {
                                    company: data.company,
                                    firstFlight: data.firstFlight)
         
-        let firstStage = MainFirstStageSectionViewModel(engines: data.firstStage.engines,
-                                               fuelAmountTons: data.firstStage.fuelAmountTons,
-                                               burnTimeSEC: data.firstStage.burnTimeSEC)
+        let firstStage = MainStageSectionViewModel(sectionName: .firstStage,
+                                                        engines: data.firstStage.engines,
+                                                        fuelAmountTons: data.firstStage.fuelAmountTons,
+                                                        burnTimeSEC: data.firstStage.burnTimeSEC)
         
-        let secondStage = MainSecondStageSectionViewModel(engines: data.secondStage.engines,
-                                                fuelAmountTons: data.secondStage.fuelAmountTons,
-                                                burnTimeSEC: data.secondStage.burnTimeSEC)
+        let secondStage = MainStageSectionViewModel(sectionName: .secondStage,
+                                                         engines: data.secondStage.engines,
+                                                         fuelAmountTons: data.secondStage.fuelAmountTons,
+                                                         burnTimeSEC: data.secondStage.burnTimeSEC)
         
         sections.append(info)
         sections.append(firstStage)

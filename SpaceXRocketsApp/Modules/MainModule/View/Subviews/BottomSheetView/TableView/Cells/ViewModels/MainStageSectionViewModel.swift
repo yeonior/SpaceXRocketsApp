@@ -1,18 +1,20 @@
 //
-//  MainSecondStageSectionViewModel.swift
+//  MainStageSectionViewModel.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 11.04.2022.
 //
 
-final class MainSecondStageSectionViewModel: MainSectionViewModelProtocol {
-    var sectionName: MainSectionType {
-        .secondStage
-    }
+final class MainStageSectionViewModel: MainSectionViewModelProtocol {
     
+    var sectionName: MainSectionType
     var cells: [MainCellViewModelProtocol]
     
-    init(engines: Int, fuelAmountTons: Double, burnTimeSEC: Int?) {
+    init(sectionName: MainSectionType,
+         engines: Int,
+         fuelAmountTons: Double,
+         burnTimeSEC: Int?) {
+        
         let enginesCell = MainCellViewModel(text: .engines, detailText: String(engines))
         let fuelAmountCell = MainCellViewModel(text: .fuelAmountTons, detailText: String(fuelAmountTons), unit: "ton")
         var cells = [enginesCell, fuelAmountCell]
@@ -20,6 +22,8 @@ final class MainSecondStageSectionViewModel: MainSectionViewModelProtocol {
             let burnTimeCell = MainCellViewModel(text: .burnTimeSEC, detailText: String(burnTimeSEC))
             cells.append(burnTimeCell)
         }
+        
+        self.sectionName = sectionName
         self.cells = cells
     }
 }

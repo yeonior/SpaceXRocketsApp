@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainCellProtocol {
-    var cellViewModel: MainCellViewModelProtocol? { get set }
+    var cellViewModel: MainCellViewModelProtocol? { get }
 }
 
 class MainInfoSectionCell: UITableViewCell, MainCellProtocol {

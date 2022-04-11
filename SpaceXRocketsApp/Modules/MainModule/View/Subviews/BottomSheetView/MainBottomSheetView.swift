@@ -39,7 +39,6 @@ final class MainBottomSheetView: UIView {
         tableView.bounces = true
         tableView.isScrollEnabled = false
         tableView.showsVerticalScrollIndicator = false
-//        tableView.estimatedSectionHeaderHeight = 20.0
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -6, right: 0)
 //        tableView.contentInset.bottom = 100
         

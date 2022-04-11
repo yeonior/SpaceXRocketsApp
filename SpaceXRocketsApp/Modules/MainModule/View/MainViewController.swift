@@ -42,13 +42,13 @@ final class MainViewController: UIViewController {
     var serialNumber: Int!
     
     // bottomSheetView heights
-    let minContainerHeight: CGFloat = 400.0
-    let maxContainerHeight: CGFloat = UIScreen.main.bounds.height - 100.0
-    var currentContainerHeight: CGFloat = 400.0
+    let minBottomSheetViewHeight: CGFloat = 400.0
+    let maxBottomSheetViewHeight: CGFloat = UIScreen.main.bounds.height - 100.0
+    var currentBottomSheetViewHeight: CGFloat = 400.0
     
     // bottomSheetView dynamic constraints
-    var containerViewHeightConstraint: NSLayoutConstraint?
-    var containerViewBottomConstraint: NSLayoutConstraint?
+    var BottomSheetViewHeightConstraint: NSLayoutConstraint?
+    var BottomSheetViewBottomConstraint: NSLayoutConstraint?
     
     var panGesture = UIGestureRecognizer()
     var canSwipe = true
@@ -67,7 +67,7 @@ final class MainViewController: UIViewController {
     
     // reseting the bottom sheet position to min
     override func viewDidDisappear(_ animated: Bool) {
-        animateContainerHeight(minContainerHeight)
+        animateContainerHeight(minBottomSheetViewHeight)
     }
     
     // MARK: - Private methods
@@ -90,12 +90,12 @@ final class MainViewController: UIViewController {
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
 
-        containerViewHeightConstraint = bottomSheetView.heightAnchor.constraint(equalToConstant: minContainerHeight)
-        containerViewBottomConstraint = bottomSheetView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40.0)
+        BottomSheetViewHeightConstraint = bottomSheetView.heightAnchor.constraint(equalToConstant: minBottomSheetViewHeight)
+        BottomSheetViewBottomConstraint = bottomSheetView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40.0)
         bottomSheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         bottomSheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        containerViewHeightConstraint?.isActive = true
-        containerViewBottomConstraint?.isActive = true
+        BottomSheetViewHeightConstraint?.isActive = true
+        BottomSheetViewBottomConstraint?.isActive = true
     }
     
     private func setupPanGesture() {
@@ -113,24 +113,24 @@ final class MainViewController: UIViewController {
         let translation = gesture.translation(in: view)
         let isDraggingDown = translation.y > 0
         let transitionHeight = translation.y.magnitude > 100.0
-        let newHeight = currentContainerHeight - translation.y
+        let newHeight = currentBottomSheetViewHeight - translation.y
 
         switch gesture.state {
         case .began:
             canSwipe = false
         case .changed:
-            if newHeight < maxContainerHeight && newHeight >= minContainerHeight {
-                containerViewHeightConstraint?.constant = newHeight
+            if newHeight < maxBottomSheetViewHeight && newHeight >= minBottomSheetViewHeight {
+                BottomSheetViewHeightConstraint?.constant = newHeight
                 view.layoutIfNeeded()
             }
         case .ended:
-            if newHeight < maxContainerHeight && newHeight > minContainerHeight && isDraggingDown {
+            if newHeight < maxBottomSheetViewHeight && newHeight > minBottomSheetViewHeight && isDraggingDown {
                 // if new height is below max and going down, set to default height
-                transitionHeight ? animateContainerHeight(minContainerHeight) : animateContainerHeight(maxContainerHeight)
+                transitionHeight ? animateContainerHeight(minBottomSheetViewHeight) : animateContainerHeight(maxBottomSheetViewHeight)
             }
-            else if newHeight > minContainerHeight && newHeight < maxContainerHeight && !isDraggingDown {
+            else if newHeight > minBottomSheetViewHeight && newHeight < maxBottomSheetViewHeight && !isDraggingDown {
                 // if new height is below max and going up, set to max height at top
-                transitionHeight ? animateContainerHeight(maxContainerHeight) : animateContainerHeight(minContainerHeight)
+                transitionHeight ? animateContainerHeight(maxBottomSheetViewHeight) : animateContainerHeight(minBottomSheetViewHeight)
             }
         default:
             break
@@ -139,17 +139,17 @@ final class MainViewController: UIViewController {
     
     private func animateContainerHeight(_ height: CGFloat) {
         UIView.animate(withDuration: 0.5) {
-            self.containerViewHeightConstraint?.constant = height
+            self.BottomSheetViewHeightConstraint?.constant = height
             self.view.layoutIfNeeded()
         } completion: { [unowned self] _ in
-            self.currentContainerHeight = height
+            self.currentBottomSheetViewHeight = height
             self.canSwipe = true
             scrollTableToTop()
         }
     }
     
     private func scrollTableToTop() {
-        if currentContainerHeight == minContainerHeight {
+        if currentBottomSheetViewHeight == minBottomSheetViewHeight {
             bottomSheetView.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
         }
     }
@@ -175,7 +175,7 @@ extension MainViewController: MainViewProtocol {
 extension MainViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
-        if currentContainerHeight == maxContainerHeight {
+        if currentBottomSheetViewHeight == maxBottomSheetViewHeight {
             bottomSheetView.tableView.isScrollEnabled = true
             return false
         }

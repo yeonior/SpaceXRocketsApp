@@ -6,6 +6,7 @@
 //
 
 final class MainInfoSectionViewModel: MainSectionViewModelProtocol {
+    
     var sectionName: MainSectionType {
         .info
     }
