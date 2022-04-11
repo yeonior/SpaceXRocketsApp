@@ -70,7 +70,7 @@ class MainInfoSectionCell: UITableViewCell {
     
     func updateLabels() {
         guard let item = item as? MainInfoViewModelItem else { return }
-        mainLabel.text = item.country
-        detailsLabel.text = item.company
+        mainLabel.text = item.company.keys.first
+        detailsLabel.text = item.company.values.first
     }
 }

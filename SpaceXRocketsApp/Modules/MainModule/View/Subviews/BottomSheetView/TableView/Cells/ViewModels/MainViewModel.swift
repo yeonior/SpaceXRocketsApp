@@ -12,9 +12,9 @@ final class MainViewModel: NSObject {
     
     init(data: RocketData) {
         let info = MainInfoViewModelItem(
-            company: data.company,
-            country: data.country,
-            firstFlight: data.firstFlight
+            company: [data.company.key: data.company.value],
+            country: [data.country.key: data.country.value],
+            firstFlight: [data.firstFlight.key: data.firstFlight.value]
         )
         
         let firstStage = MainFirstStageViewModelItem(
@@ -66,6 +66,7 @@ extension MainViewModel: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MainViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         indexPath.section == 3 ? 60 : 50

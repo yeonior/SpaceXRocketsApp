@@ -35,9 +35,9 @@ final class MainPresenter: MainPresenterProtocol {
                 engines: RocketData.Engines(value: rocket.secondStage.engines),
                 fuelAmountTons: RocketData.FuelAmountTons(value: rocket.secondStage.fuelAmountTons),
                 burnTimeSEC: RocketData.BurnTimeSEC(value: rocket.secondStage.burnTimeSEC)),
-            firstFlight: rocket.firstFlight,
-            country: rocket.country,
-            company: rocket.company,
+            firstFlight: RocketData.FirstFlight(value: rocket.firstFlight),
+            country: RocketData.Country(value: rocket.country),
+            company: RocketData.Company(value: rocket.company),
             flickrImages: rocket.flickrImages
         )
         self.rocketData = rocketData

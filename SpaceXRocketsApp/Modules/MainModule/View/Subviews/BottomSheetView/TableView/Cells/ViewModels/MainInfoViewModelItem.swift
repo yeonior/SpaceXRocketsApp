@@ -6,9 +6,9 @@
 //
 
 protocol MainInfoViewModelItemProtocol {
-    var company: String { get }
-    var country: String { get }
-    var firstFlight: String { get }
+    var company: [String:String] { get }
+    var country: [String:String] { get }
+    var firstFlight: [String:String] { get }
 }
 
 final class MainInfoViewModelItem: MainViewModelItem, MainInfoViewModelItemProtocol {
@@ -17,11 +17,11 @@ final class MainInfoViewModelItem: MainViewModelItem, MainInfoViewModelItemProto
         .info
     }
     
-    var company: String
-    var country: String
-    var firstFlight: String
+    var company: [String:String]
+    var country: [String:String]
+    var firstFlight: [String:String]
     
-    init(company: String, country: String, firstFlight: String) {
+    init(company: [String:String], country: [String:String], firstFlight: [String:String]) {
         self.company = company
         self.country = country
         self.firstFlight = firstFlight

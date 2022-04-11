@@ -8,7 +8,9 @@
 struct RocketData {
     let firstStage: FirstStage
     let secondStage: SecondStage
-    let firstFlight, country, company: String
+    let firstFlight: FirstFlight
+    let country: Country
+    let company: Company
     let flickrImages: [String]
     
     struct FirstStage {
@@ -36,6 +38,21 @@ struct RocketData {
     struct BurnTimeSEC {
         let key: String = "Время сгорания"
         let value: Int?
+    }
+    
+    struct FirstFlight {
+        let key: String = "Первый полет"
+        let value: String
+    }
+    
+    struct Country {
+        let key: String = "Страна"
+        let value: String
+    }
+    
+    struct Company {
+        let key: String = "Компания"
+        let value: String
     }
 }
 //class FakeRocketInfoData: UIViewController {
