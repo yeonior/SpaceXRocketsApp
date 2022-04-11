@@ -7,57 +7,55 @@
 
 import UIKit
 
-final class MainViewModel: NSObject {
-    var items = [MainViewModelItem]()
+protocol MainItemViewModel {
+    var sections: [MainSectionViewModelProtocol] { get }
+}
+
+final class MainViewModel: NSObject, MainItemViewModel {
+    var sections = [MainSectionViewModelProtocol]()
     
     init(data: RocketData) {
-        let info = MainInfoViewModelItem(
-            company: [data.company.key: data.company.value],
-            country: [data.country.key: data.country.value],
-            firstFlight: [data.firstFlight.key: data.firstFlight.value]
-        )
+        let info = MainInfoSectionViewModel(country: data.country,
+                                   company: data.company,
+                                   firstFlight: data.firstFlight)
         
-        let firstStage = MainFirstStageViewModelItem(
-            engines: data.firstStage.engines.value,
-            fuelAmountTons: data.firstStage.fuelAmountTons.value,
-            burnTimeSEC: data.firstStage.burnTimeSEC.value
-        )
+        let firstStage = MainFirstStageSectionViewModel(engines: data.firstStage.engines,
+                                               fuelAmountTons: data.firstStage.fuelAmountTons,
+                                               burnTimeSEC: data.firstStage.burnTimeSEC)
         
-        let secondStage = MainSecondStageViewModelItem(
-            engines: data.secondStage.engines.value,
-            fuelAmountTons: data.secondStage.fuelAmountTons.value,
-            burnTimeSEC: data.secondStage.burnTimeSEC.value
-        )
+        let secondStage = MainSecondStageSectionViewModel(engines: data.secondStage.engines,
+                                                fuelAmountTons: data.secondStage.fuelAmountTons,
+                                                burnTimeSEC: data.secondStage.burnTimeSEC)
         
-        items.append(info)
-        items.append(firstStage)
-        items.append(secondStage)
+        sections.append(info)
+        sections.append(firstStage)
+        sections.append(secondStage)
     }
 }
 
 // MARK: - UITableViewDataSource
 extension MainViewModel: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        items.count
+        sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items[section].rows
+        sections[section].cells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let item = items[indexPath.section]
+        let section = sections[indexPath.section]
         
-        switch item.sectionType {
+        switch section.sectionName {
         case .info:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as? MainInfoSectionCell {
-                cell.item = item
+                cell.cellViewModel = section.cells[indexPath.row]
                 return cell
             }
         case .firstStage, .secondStage:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "stageCell", for: indexPath) as? MainStageSectionCell {
-                cell.item = item
+                cell.cellViewModel = section.cells[indexPath.row]
                 return cell
             }
         }
@@ -78,7 +76,7 @@ extension MainViewModel: UITableViewDelegate {
             return nil
         default:
             let header = MainTableViewSectionHeader()
-            header.titleLabel.text = items[section].sectionType.rawValue
+            header.titleLabel.text = sections[section].sectionName.rawValue
             return header
         }
     }

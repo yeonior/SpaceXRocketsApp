@@ -27,17 +27,15 @@ final class MainPresenter: MainPresenterProtocol {
         let rockets = dataManager.getRockets()
         let rocket = rockets[serialNumber - 1]
         let rocketData = RocketData(
-            firstStage: RocketData.FirstStage(
-                engines: RocketData.Engines(value: rocket.firstStage.engines),
-                fuelAmountTons: RocketData.FuelAmountTons(value: rocket.firstStage.fuelAmountTons),
-                burnTimeSEC: RocketData.BurnTimeSEC(value: rocket.firstStage.burnTimeSEC)),
-            secondStage: RocketData.SecondStage(
-                engines: RocketData.Engines(value: rocket.secondStage.engines),
-                fuelAmountTons: RocketData.FuelAmountTons(value: rocket.secondStage.fuelAmountTons),
-                burnTimeSEC: RocketData.BurnTimeSEC(value: rocket.secondStage.burnTimeSEC)),
-            firstFlight: RocketData.FirstFlight(value: rocket.firstFlight),
-            country: RocketData.Country(value: rocket.country),
-            company: RocketData.Company(value: rocket.company),
+            firstStage: RocketData.FirstStage(engines: rocket.firstStage.engines,
+                                              fuelAmountTons: rocket.firstStage.fuelAmountTons,
+                                              burnTimeSEC: rocket.firstStage.burnTimeSEC),
+            secondStage: RocketData.SecondStage(engines: rocket.secondStage.engines,
+                                                fuelAmountTons: rocket.secondStage.fuelAmountTons,
+                                                burnTimeSEC: rocket.secondStage.burnTimeSEC),
+            firstFlight: rocket.firstFlight,
+            country: rocket.country,
+            company: rocket.company,
             flickrImages: rocket.flickrImages
         )
         self.rocketData = rocketData
@@ -49,3 +47,17 @@ final class MainPresenter: MainPresenterProtocol {
         view.setViewModel(viewModel: viewModel)
     }
 }
+
+//RocketData(
+//    firstStage: RocketData.FirstStage(
+//        engines: RocketData.Engines(value: rocket.firstStage.engines),
+//        fuelAmountTons: RocketData.FuelAmountTons(value: rocket.firstStage.fuelAmountTons),
+//        burnTimeSEC: RocketData.BurnTimeSEC(value: rocket.firstStage.burnTimeSEC)),
+//    secondStage: RocketData.SecondStage(
+//        engines: RocketData.Engines(value: rocket.secondStage.engines),
+//        fuelAmountTons: RocketData.FuelAmountTons(value: rocket.secondStage.fuelAmountTons),
+//        burnTimeSEC: RocketData.BurnTimeSEC(value: rocket.secondStage.burnTimeSEC)),
+//    firstFlight: RocketData.FirstFlight(value: rocket.firstFlight),
+//    country: RocketData.Country(value: rocket.country),
+//    company: RocketData.Company(value: rocket.company),
+//    flickrImages: rocket.flickrImages

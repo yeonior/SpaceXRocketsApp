@@ -7,9 +7,13 @@
 
 import UIKit
 
-class MainInfoSectionCell: UITableViewCell {
+protocol MainCellProtocol {
+    var cellViewModel: MainCellViewModelProtocol? { get set }
+}
+
+class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     
-    var item: MainViewModelItem? {
+    var cellViewModel: MainCellViewModelProtocol? {
         didSet {
             updateLabels()
         }
@@ -69,8 +73,8 @@ class MainInfoSectionCell: UITableViewCell {
     }
     
     func updateLabels() {
-        guard let item = item as? MainInfoViewModelItem else { return }
-        mainLabel.text = item.company.keys.first
-        detailsLabel.text = item.company.values.first
+        guard let viewModel = cellViewModel else { return }
+        mainLabel.text = viewModel.text.rawValue
+        detailsLabel.text = viewModel.detailText
     }
 }

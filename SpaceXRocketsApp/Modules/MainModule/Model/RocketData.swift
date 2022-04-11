@@ -8,52 +8,71 @@
 struct RocketData {
     let firstStage: FirstStage
     let secondStage: SecondStage
-    let firstFlight: FirstFlight
-    let country: Country
-    let company: Company
+    let firstFlight: String
+    let country: String
+    let company: String
     let flickrImages: [String]
     
     struct FirstStage {
-        let engines: Engines
-        let fuelAmountTons: FuelAmountTons
-        let burnTimeSEC: BurnTimeSEC
+        let engines: Int
+        let fuelAmountTons: Double
+        let burnTimeSEC: Int?
     }
     
     struct SecondStage {
-        let engines: Engines
-        let fuelAmountTons: FuelAmountTons
-        let burnTimeSEC: BurnTimeSEC
+        let engines: Int
+        let fuelAmountTons: Double
+        let burnTimeSEC: Int?
     }
     
-    struct Engines {
-        let key: String = "Количество двигателей"
-        let value: Int
-    }
-    
-    struct FuelAmountTons {
-        let key: String = "Количество топлива"
-        let value: Double
-    }
-    
-    struct BurnTimeSEC {
-        let key: String = "Время сгорания"
-        let value: Int?
-    }
-    
-    struct FirstFlight {
-        let key: String = "Первый полет"
-        let value: String
-    }
-    
-    struct Country {
-        let key: String = "Страна"
-        let value: String
-    }
-    
-    struct Company {
-        let key: String = "Компания"
-        let value: String
-    }
+//    let firstStage: FirstStage
+//    let secondStage: SecondStage
+//    let firstFlight: FirstFlight
+//    let country: Country
+//    let company: Company
+//    let flickrImages: [String]
+//
+//    struct FirstStage {
+//        let engines: Engines
+//        let fuelAmountTons: FuelAmountTons
+//        let burnTimeSEC: BurnTimeSEC
+//    }
+//
+//    struct SecondStage {
+//        let engines: Engines
+//        let fuelAmountTons: FuelAmountTons
+//        let burnTimeSEC: BurnTimeSEC
+//    }
+//
+//    struct Engines {
+//        let key: String = "Количество двигателей"
+//        let value: Int
+//    }
+//
+//    struct FuelAmountTons {
+//        let key: String = "Количество топлива"
+//        let value: Double
+//    }
+//
+//    struct BurnTimeSEC {
+//        let key: String = "Время сгорания"
+//        let value: Int?
+//    }
+//
+//    struct FirstFlight {
+//        let key: String = "Первый полет"
+//        let value: String
+//    }
+//
+//    struct Country {
+//        let key: String = "Страна"
+//        let value: String
+//    }
+//
+//    struct Company {
+//        let key: String = "Компания"
+//        let value: String
+//    }
 }
 //class FakeRocketInfoData: UIViewController {
 //

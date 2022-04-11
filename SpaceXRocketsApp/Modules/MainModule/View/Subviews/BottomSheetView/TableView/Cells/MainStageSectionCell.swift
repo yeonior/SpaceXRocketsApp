@@ -66,9 +66,8 @@ final class MainStageSectionCell: MainInfoSectionCell {
     }
     
     override func updateLabels() {
-        guard let _ = item as? MainInfoViewModelItem else { return }
-        mainLabel.text = "Something"
-        detailsLabel.text = "100"
-        unitLabel.text = "kg"
+        super.updateLabels()
+        guard let viewModel = cellViewModel else { return }
+        unitLabel.text = viewModel.unit
     }
 }
