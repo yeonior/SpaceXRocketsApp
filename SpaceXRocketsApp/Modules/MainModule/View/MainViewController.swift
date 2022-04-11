@@ -15,16 +15,6 @@ protocol MainViewProtocol: AnyObject {
 
 final class MainViewController: UIViewController {
     
-    var viewModel: MainViewModel? {
-        didSet {
-            DispatchQueue.main.sync {
-                bottomSheetView.tableView.dataSource = viewModel
-                bottomSheetView.tableView.delegate = viewModel
-                bottomSheetView.tableView.reloadData()
-            }
-        }
-    }
-    
     // MARK: - Subviews
     
     lazy var backgroundImageView: UIImageView = {
@@ -42,6 +32,16 @@ final class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol!
     var router: Routing!
     var serialNumber: Int!
+    
+    var viewModel: MainViewModel? {
+        didSet {
+            DispatchQueue.main.sync {
+                bottomSheetView.tableView.dataSource = viewModel
+                bottomSheetView.tableView.delegate = viewModel
+                bottomSheetView.tableView.reloadData()
+            }
+        }
+    }
     
     // bottomSheetView heights
     let minBottomSheetViewHeight: CGFloat = 400.0
@@ -63,7 +63,10 @@ final class MainViewController: UIViewController {
         configureUI()
         setupPanGesture()
         DispatchQueue.global().async {
-            self.presenter.provideData(by: self.serialNumber)
+            self.presenter.fetchData(by: self.serialNumber)
+            self.presenter.provideBackgroundImage()
+            self.presenter.provideRocketName()
+            self.presenter.provideViewModel()
         }
     }
     

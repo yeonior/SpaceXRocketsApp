@@ -9,7 +9,10 @@ import Foundation
 
 protocol MainPresenterProtocol {
     init(view: MainViewProtocol, dataManager: DataManagerProtocol)
-    func provideData(by serialNumber: Int)
+    func fetchData(by serialNumber: Int)
+    func provideBackgroundImage()
+    func provideRocketName()
+    func provideViewModel()
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -23,7 +26,7 @@ final class MainPresenter: MainPresenterProtocol {
         self.dataManager = dataManager
     }
     
-    func provideData(by serialNumber: Int) {
+    func fetchData(by serialNumber: Int) {
         let rockets = dataManager.getRockets()
         let rocket = rockets[serialNumber - 1]
         let rocketData = RocketData(
@@ -41,13 +44,22 @@ final class MainPresenter: MainPresenterProtocol {
         )
         
         self.rocketData = rocketData
-        
+    }
+    
+    func provideBackgroundImage() {
+        guard let rocketData = rocketData else { return }
         let imageData = dataManager.getData(from: rocketData.flickrImages.first!)
         view.setBackgroundImage(with: imageData)
-        
+    }
+    
+    func provideRocketName() {
+        guard let rocketData = rocketData else { return }
         let name = rocketData.name
         view.setName(name)
-        
+    }
+    
+    func provideViewModel() {
+        guard let rocketData = rocketData else { return }
         let viewModel = MainViewModel(data: rocketData)
         view.setViewModel(viewModel: viewModel)
     }
