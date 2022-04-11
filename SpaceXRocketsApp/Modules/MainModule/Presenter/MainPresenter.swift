@@ -27,6 +27,7 @@ final class MainPresenter: MainPresenterProtocol {
         let rockets = dataManager.getRockets()
         let rocket = rockets[serialNumber - 1]
         let rocketData = RocketData(
+            name: rocket.name,
             firstStage: RocketData.FirstStage(engines: rocket.firstStage.engines,
                                               fuelAmountTons: rocket.firstStage.fuelAmountTons,
                                               burnTimeSEC: rocket.firstStage.burnTimeSEC),
@@ -43,6 +44,9 @@ final class MainPresenter: MainPresenterProtocol {
         
         let imageData = dataManager.getData(from: rocketData.flickrImages.first!)
         view.setBackgroundImage(with: imageData)
+        
+        let name = rocketData.name
+        view.setName(name)
         
         let viewModel = MainViewModel(data: rocketData)
         view.setViewModel(viewModel: viewModel)

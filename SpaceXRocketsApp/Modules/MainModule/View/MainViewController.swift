@@ -9,10 +9,21 @@ import UIKit
 
 protocol MainViewProtocol: AnyObject {
     func setBackgroundImage(with data: Data)
+    func setName(_ name: String)
     func setViewModel(viewModel: MainViewModel)
 }
 
 final class MainViewController: UIViewController {
+    
+    var viewModel: MainViewModel? {
+        didSet {
+            DispatchQueue.main.sync {
+                bottomSheetView.tableView.dataSource = viewModel
+                bottomSheetView.tableView.delegate = viewModel
+                bottomSheetView.tableView.reloadData()
+            }
+        }
+    }
     
     // MARK: - Subviews
     
@@ -25,15 +36,6 @@ final class MainViewController: UIViewController {
     }(UIImageView())
     
     lazy var bottomSheetView = MainBottomSheetView()
-    var viewModel: MainViewModel? {
-        didSet {
-            DispatchQueue.main.sync {
-                bottomSheetView.tableView.dataSource = viewModel
-                bottomSheetView.tableView.delegate = viewModel
-                bottomSheetView.tableView.reloadData()
-            }
-        }
-    }
     
     // MARK: - Properties
     
@@ -163,6 +165,12 @@ extension MainViewController: MainViewProtocol {
             UIView.animate(withDuration: 1.0) { [unowned self] in
                 backgroundImageView.alpha = 1.0
             }
+        }
+    }
+    
+    func setName(_ name: String) {
+        DispatchQueue.main.sync {
+            bottomSheetView.topView.titleLabel.text = name
         }
     }
     

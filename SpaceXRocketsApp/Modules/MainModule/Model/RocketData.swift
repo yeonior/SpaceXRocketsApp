@@ -6,6 +6,7 @@
 //
 
 struct RocketData {
+    let name: String
     let firstStage: FirstStage
     let secondStage: SecondStage
     let firstFlight: String
