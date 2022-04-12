@@ -6,13 +6,13 @@
 //
 
 struct RocketData {
+    let flickrImages: [String]
     let name: String
-    let firstStage: Stage
-    let secondStage: Stage
     let firstFlight: String
     let country: String
-    let company: String
-    let flickrImages: [String]
+    let costPerLaunch: Int
+    let firstStage: Stage
+    let secondStage: Stage
     
     struct Stage {
         let engines: Int

@@ -30,17 +30,17 @@ final class MainPresenter: MainPresenterProtocol {
         let rockets = dataManager.getRockets()
         let rocket = rockets[serialNumber - 1]
         let rocketData = RocketData(
+            flickrImages: rocket.flickrImages,
             name: rocket.name,
+            firstFlight: rocket.firstFlight,
+            country: rocket.country,
+            costPerLaunch: rocket.costPerLaunch,
             firstStage: RocketData.Stage(engines: rocket.firstStage.engines,
                                               fuelAmountTons: rocket.firstStage.fuelAmountTons,
                                               burnTimeSEC: rocket.firstStage.burnTimeSEC),
             secondStage: RocketData.Stage(engines: rocket.secondStage.engines,
                                                 fuelAmountTons: rocket.secondStage.fuelAmountTons,
-                                                burnTimeSEC: rocket.secondStage.burnTimeSEC),
-            firstFlight: rocket.firstFlight,
-            country: rocket.country,
-            company: rocket.company,
-            flickrImages: rocket.flickrImages
+                                                burnTimeSEC: rocket.secondStage.burnTimeSEC)
         )
         
         self.rocketData = rocketData

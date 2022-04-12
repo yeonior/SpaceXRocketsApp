@@ -15,9 +15,9 @@ final class MainViewModel: NSObject, MainItemViewModel {
     var sections = [MainSectionViewModelProtocol]()
     
     init(data: RocketData) {
-        let info = MainInfoSectionViewModel(country: data.country,
-                                   company: data.company,
-                                   firstFlight: data.firstFlight)
+        let info = MainInfoSectionViewModel(firstFlight: data.firstFlight,
+                                            country: data.country,
+                                            costPerLaunch: data.costPerLaunch)
         
         let firstStage = MainStageSectionViewModel(sectionName: .firstStage,
                                                         engines: data.firstStage.engines,

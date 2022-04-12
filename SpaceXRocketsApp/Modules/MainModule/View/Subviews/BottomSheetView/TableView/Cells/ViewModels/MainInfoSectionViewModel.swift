@@ -5,6 +5,8 @@
 //  Created by Ruslan on 11.04.2022.
 //
 
+import Foundation
+
 final class MainInfoSectionViewModel: MainSectionViewModelProtocol {
     
     var name: MainSectionType {
@@ -13,12 +15,16 @@ final class MainInfoSectionViewModel: MainSectionViewModelProtocol {
     
     var cells: [MainCellViewModelProtocol]
     
-    init(country: String, company: String, firstFlight: String) {
+    init(firstFlight: String, country: String, costPerLaunch: Int) {
         
-        let countryCell = MainCellViewModel(text: .country, detailText: country)
-        let companyCell = MainCellViewModel(text: .company, detailText: company)
-        let firstLaunchCell = MainCellViewModel(text: .firstFlight, detailText: firstFlight)
-        let cells = [countryCell, companyCell, firstLaunchCell]
+        let firstLaunchCell = MainCellViewModel(text: .firstFlight,
+                                                detailText: TextFormatter.convertDateFormat(from: firstFlight))
+        let countryCell = MainCellViewModel(text: .country,
+                                            detailText: country)
+        let costPerLaunch = MainCellViewModel(text: .costPerLaunch,
+                                              detailText: TextFormatter.roundNumberWithUnit(costPerLaunch))
+        
+        let cells = [firstLaunchCell, countryCell, costPerLaunch]
         
         self.cells = cells
     }

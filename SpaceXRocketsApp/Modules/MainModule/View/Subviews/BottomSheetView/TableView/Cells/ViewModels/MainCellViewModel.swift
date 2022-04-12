@@ -6,9 +6,9 @@
 //
 
 enum MainTextCellTextType: String {
-    case company        = "Company"
-    case country        = "Country"
     case firstFlight    = "First flight"
+    case country        = "Country"
+    case costPerLaunch  = "Cost per launch"
     case engines        = "Engines"
     case fuelAmountTons = "Fuel amount"
     case burnTimeSEC    = "Burn time"

@@ -28,7 +28,6 @@ final class MainTableViewSectionHeader: UITableViewHeaderFooterView {
         titleLabel.textColor = Color.tableViewStageSectionHeader.uiColor
         titleLabel.textAlignment = .left
         titleLabel.clipsToBounds = true
-        titleLabel.text = "ПЕРВАЯ СТУПЕНЬ"
         
         contentView.addSubview(titleLabel)
         

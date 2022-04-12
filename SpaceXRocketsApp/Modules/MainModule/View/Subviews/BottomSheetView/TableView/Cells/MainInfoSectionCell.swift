@@ -72,7 +72,7 @@ class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            mainLabel.widthAnchor.constraint(equalToConstant: 104),
+            mainLabel.widthAnchor.constraint(equalToConstant: 110),
             detailsLabelContraint
         ])
     }

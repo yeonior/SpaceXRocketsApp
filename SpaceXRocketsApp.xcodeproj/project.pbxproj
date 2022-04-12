@@ -39,6 +39,7 @@
 		A2D383AA2805831C007F22C3 /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383A92805831C007F22C3 /* LaunchModel.swift */; };
 		A2D383AC280587A5007F22C3 /* DetailsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AB280587A5007F22C3 /* DetailsCollectionViewController.swift */; };
 		A2D383AE280587DD007F22C3 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AD280587DD007F22C3 /* DetailsPresenter.swift */; };
+		A2D383B02805BE6A007F22C3 /* TextFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AF2805BE6A007F22C3 /* TextFormatter.swift */; };
 		A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */; };
 		A2DB9CF927FD7F7000339D48 /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */; };
 		A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */; };
@@ -84,6 +85,7 @@
 		A2D383A92805831C007F22C3 /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
 		A2D383AB280587A5007F22C3 /* DetailsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewController.swift; sourceTree = "<group>"; };
 		A2D383AD280587DD007F22C3 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
+		A2D383AF2805BE6A007F22C3 /* TextFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatter.swift; sourceTree = "<group>"; };
 		A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
 		A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
 		A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				A251FB5D27FF8320007649EF /* Modules */,
 				A275CA3027FC850D0020B02B /* Services */,
 				A2DB9D0927FD9BE600339D48 /* Supporting Files */,
+				A2D383B22805C243007F22C3 /* Resources */,
 				A251FB5E27FF835E007649EF /* Other */,
 			);
 			path = SpaceXRocketsApp;
@@ -366,6 +369,26 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		A2D383B12805C141007F22C3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A2DB9D0727FD997C00339D48 /* Color.swift */,
+				A2DB9D0527FD88A700339D48 /* Font.swift */,
+				A2A19BA62802C57C00B28901 /* Size.swift */,
+				A24BBC7528004F0600EA5A87 /* API.swift */,
+				A2D383AF2805BE6A007F22C3 /* TextFormatter.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A2D383B22805C243007F22C3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA1727FC1C300020B02B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A2DB9CF327FD7F1600339D48 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,11 +421,7 @@
 		A2DB9D0927FD9BE600339D48 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A275CA1727FC1C300020B02B /* Assets.xcassets */,
-				A2DB9D0727FD997C00339D48 /* Color.swift */,
-				A2DB9D0527FD88A700339D48 /* Font.swift */,
-				A2A19BA62802C57C00B28901 /* Size.swift */,
-				A24BBC7528004F0600EA5A87 /* API.swift */,
+				A2D383B12805C141007F22C3 /* Helpers */,
 				A251FB5F27FF8454007649EF /* Rockets.JSON */,
 				A2DB9CF327FD7F1600339D48 /* Fonts */,
 			);
@@ -504,6 +523,7 @@
 				A2D383AC280587A5007F22C3 /* DetailsCollectionViewController.swift in Sources */,
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,
+				A2D383B02805BE6A007F22C3 /* TextFormatter.swift in Sources */,
 				A25BB6C32804AC0700FCDF02 /* MainInfoSectionViewModel.swift in Sources */,
 				A251FB5A27FF7E62007649EF /* BasePresenter.swift in Sources */,
 				A251FB5C27FF7FC5007649EF /* RocketData.swift in Sources */,
