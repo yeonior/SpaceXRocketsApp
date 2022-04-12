@@ -11,7 +11,7 @@
 		A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */; };
 		A24BBC7C2800543900EA5A87 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7B2800543900EA5A87 /* Router.swift */; };
 		A24EE55327FEEE6E0005E3D1 /* MainStageSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55227FEEE6E0005E3D1 /* MainStageSectionCell.swift */; };
-		A24EE55527FF17640005E3D1 /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55427FF17640005E3D1 /* Rocket.swift */; };
+		A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE55427FF17640005E3D1 /* RocketModel.swift */; };
 		A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5527FF712E007649EF /* NetworkManager.swift */; };
 		A251FB5A27FF7E62007649EF /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5927FF7E62007649EF /* BasePresenter.swift */; };
 		A251FB5C27FF7FC5007649EF /* RocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A251FB5B27FF7FC5007649EF /* RocketData.swift */; };
@@ -36,6 +36,9 @@
 		A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA228028AD400B28901 /* MainPresenter.swift */; };
 		A2A19BA52802B1A500B28901 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA42802B1A500B28901 /* DataManager.swift */; };
 		A2A19BA72802C57C00B28901 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA62802C57C00B28901 /* Size.swift */; };
+		A2D383AA2805831C007F22C3 /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383A92805831C007F22C3 /* LaunchModel.swift */; };
+		A2D383AC280587A5007F22C3 /* DetailsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AB280587A5007F22C3 /* DetailsCollectionViewController.swift */; };
+		A2D383AE280587DD007F22C3 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AD280587DD007F22C3 /* DetailsPresenter.swift */; };
 		A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */; };
 		A2DB9CF927FD7F7000339D48 /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */; };
 		A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */; };
@@ -51,7 +54,7 @@
 		A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilder.swift; sourceTree = "<group>"; };
 		A24BBC7B2800543900EA5A87 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A24EE55227FEEE6E0005E3D1 /* MainStageSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStageSectionCell.swift; sourceTree = "<group>"; };
-		A24EE55427FF17640005E3D1 /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
+		A24EE55427FF17640005E3D1 /* RocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModel.swift; sourceTree = "<group>"; };
 		A251FB5527FF712E007649EF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A251FB5927FF7E62007649EF /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		A251FB5B27FF7FC5007649EF /* RocketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketData.swift; sourceTree = "<group>"; };
@@ -78,6 +81,9 @@
 		A2A19BA228028AD400B28901 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		A2A19BA42802B1A500B28901 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A2A19BA62802C57C00B28901 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		A2D383A92805831C007F22C3 /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
+		A2D383AB280587A5007F22C3 /* DetailsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewController.swift; sourceTree = "<group>"; };
+		A2D383AD280587DD007F22C3 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
 		A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
 		A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
 		A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
@@ -167,7 +173,7 @@
 		A251FB5727FF7DF3007649EF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A24EE55427FF17640005E3D1 /* Rocket.swift */,
+				A24EE55427FF17640005E3D1 /* RocketModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +191,7 @@
 			children = (
 				A275CA2727FC22450020B02B /* BaseModule */,
 				A264E8A82801F350005CF25C /* MainModule */,
+				A2D383A52805828F007F22C3 /* DetailsModule */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -325,6 +332,40 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		A2D383A52805828F007F22C3 /* DetailsModule */ = {
+			isa = PBXGroup;
+			children = (
+				A2D383A6280582E6007F22C3 /* Model */,
+				A2D383A7280582F1007F22C3 /* View */,
+				A2D383A8280582F5007F22C3 /* Presenter */,
+			);
+			path = DetailsModule;
+			sourceTree = "<group>";
+		};
+		A2D383A6280582E6007F22C3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A2D383A92805831C007F22C3 /* LaunchModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A2D383A7280582F1007F22C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A2D383AB280587A5007F22C3 /* DetailsCollectionViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2D383A8280582F5007F22C3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A2D383AD280587DD007F22C3 /* DetailsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		A2DB9CF327FD7F1600339D48 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,9 +498,10 @@
 				A2A19BA72802C57C00B28901 /* Size.swift in Sources */,
 				A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */,
 				A25FCF2B2803E83700A34EBA /* MainCellViewModel.swift in Sources */,
-				A24EE55527FF17640005E3D1 /* Rocket.swift in Sources */,
+				A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
+				A2D383AC280587A5007F22C3 /* DetailsCollectionViewController.swift in Sources */,
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,
 				A25BB6C32804AC0700FCDF02 /* MainInfoSectionViewModel.swift in Sources */,
@@ -472,6 +514,8 @@
 				A24BBC7628004F0600EA5A87 /* API.swift in Sources */,
 				A2A19BA52802B1A500B28901 /* DataManager.swift in Sources */,
 				A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */,
+				A2D383AA2805831C007F22C3 /* LaunchModel.swift in Sources */,
+				A2D383AE280587DD007F22C3 /* DetailsPresenter.swift in Sources */,
 				A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

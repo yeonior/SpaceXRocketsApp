@@ -24,7 +24,7 @@ final class BasePresenter: BasePresenterProtocol {
     
     func fetchPages() {
         let url = API.rockets.url
-        networkManager.request(fromURL: url) { (result: Result<[Rocket], Error>) in
+        networkManager.request(fromURL: url) { (result: Result<[RocketModel], Error>) in
             switch result {
             case .success(let rockets):
                 DataManager.shared.setRockets(rockets: rockets)

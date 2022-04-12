@@ -32,7 +32,7 @@ final class MainShowButtonCell: UITableViewCell {
         showButton.backgroundColor = Color.showButton.uiColor
         showButton.titleLabel?.font = Font.showButton.uiFont
         showButton.titleLabel?.textColor = .white
-        showButton.setTitle("Посмотреть запуски", for: .normal)
+        showButton.setTitle("Show the launches", for: .normal)
         showButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
         contentView.addSubview(baseView)

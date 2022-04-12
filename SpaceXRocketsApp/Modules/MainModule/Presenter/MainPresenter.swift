@@ -48,7 +48,7 @@ final class MainPresenter: MainPresenterProtocol {
     
     func provideBackgroundImage() {
         guard let rocketData = rocketData else { return }
-        let imageData = dataManager.getData(from: rocketData.flickrImages.first!)
+        let imageData = dataManager.getData(from: rocketData.flickrImages.randomElement()!)
         view.setBackgroundImage(with: imageData)
     }
     

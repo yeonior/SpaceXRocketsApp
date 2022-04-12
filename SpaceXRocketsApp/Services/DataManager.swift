@@ -8,20 +8,20 @@
 import Foundation
 
 protocol DataManagerProtocol {
-    func setRockets(rockets: [Rocket])
-    func getRockets() -> [Rocket]
+    func setRockets(rockets: [RocketModel])
+    func getRockets() -> [RocketModel]
     func getData(from stringURL: String) -> Data
 }
 
 final class DataManager: DataManagerProtocol {
     static let shared = DataManager()
-    var rockets: [Rocket]?
+    var rockets: [RocketModel]?
     
-    func setRockets(rockets: [Rocket]) {
+    func setRockets(rockets: [RocketModel]) {
         self.rockets = rockets
     }
     
-    func getRockets() -> [Rocket] {
+    func getRockets() -> [RocketModel] {
         guard let rockets = rockets else {
             return []
         }

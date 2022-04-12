@@ -6,19 +6,19 @@
 //
 
 enum MainTextCellTextType: String {
-    case company        = "Компания"
-    case country        = "Страна"
-    case firstFlight    = "Первый полет"
-    case engines        = "Количество двигателей"
-    case fuelAmountTons = "Количество топлива"
-    case burnTimeSEC    = "Время сгорания"
+    case company        = "Company"
+    case country        = "Country"
+    case firstFlight    = "First flight"
+    case engines        = "Engines"
+    case fuelAmountTons = "Fuel amount"
+    case burnTimeSEC    = "Burn time"
 
 }
 
 enum MainSectionType: String {
     case info
-    case firstStage     = "ПЕРВАЯ СТУПЕНЬ"
-    case secondStage    = "ВТОРАЯ СТУПЕНЬ"
+    case firstStage     = "FIRST STAGE"
+    case secondStage    = "SECOND STAGE"
     case button
 }
 
