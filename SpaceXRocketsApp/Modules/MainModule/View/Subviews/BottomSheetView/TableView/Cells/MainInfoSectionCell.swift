@@ -24,7 +24,6 @@ class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
         $0.textColor = Color.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
         $0.clipsToBounds = true
-        $0.text = "Первый запуск"
         
         return $0
     }(UILabel())
@@ -34,7 +33,8 @@ class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
         $0.textColor = Color.tableViewCellDetailsLabel.uiColor
         $0.textAlignment = .right
         $0.clipsToBounds = true
-        $0.text = "7 февраля 2018"
+        $0.adjustsFontSizeToFitWidth = true
+        $0.minimumScaleFactor = 0.5
         
         return $0
     }(UILabel())
@@ -58,17 +58,22 @@ class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
         
         let stackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         stackView.spacing = 0
         
         contentView.addSubview(stackView)
+        
+        let detailsLabelContraint = detailsLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 230)
+        detailsLabelContraint.priority = UILayoutPriority(751)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.heightAnchor.constraint(equalToConstant: 24),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            mainLabel.widthAnchor.constraint(equalToConstant: 104),
+            detailsLabelContraint
         ])
     }
     

@@ -14,7 +14,6 @@ final class MainStageSectionCell: MainInfoSectionCell {
         $0.textColor = Color.tableViewCellUnitLabel.uiColor
         $0.textAlignment = .right
         $0.clipsToBounds = true
-        $0.text = "ton"
         
         return $0
     }(UILabel())
@@ -29,13 +28,11 @@ final class MainStageSectionCell: MainInfoSectionCell {
     }
     
     override func setupLabels() {
-        mainLabel.text = "Количество топлива"
-        detailsLabel.text = "308,6"
         
         let subStackView = UIStackView(arrangedSubviews: [detailsLabel, unitLabel])
         subStackView.axis = .horizontal
         subStackView.distribution = .fill
-        subStackView.spacing = 8
+        subStackView.spacing = 4
         
         let stackView = UIStackView(arrangedSubviews: [mainLabel, subStackView])
         stackView.axis = .horizontal
@@ -57,7 +54,7 @@ final class MainStageSectionCell: MainInfoSectionCell {
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            mainLabel.widthAnchor.constraint(equalToConstant: (Size.screenWidth.floatValue - 32) / 2),
+            mainLabel.widthAnchor.constraint(equalToConstant: (Size.screenWidth.floatValue) / 2),
             mainLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             unitLabelConstraint,
             detailsLabelConstraint,

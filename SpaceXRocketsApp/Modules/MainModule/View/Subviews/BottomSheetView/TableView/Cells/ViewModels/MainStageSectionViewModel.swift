@@ -19,7 +19,7 @@ final class MainStageSectionViewModel: MainSectionViewModelProtocol {
         let fuelAmountCell = MainCellViewModel(text: .fuelAmountTons, detailText: String(fuelAmountTons), unit: "ton")
         var cells = [enginesCell, fuelAmountCell]
         if let burnTimeSEC = burnTimeSEC {
-            let burnTimeCell = MainCellViewModel(text: .burnTimeSEC, detailText: String(burnTimeSEC))
+            let burnTimeCell = MainCellViewModel(text: .burnTimeSEC, detailText: String(burnTimeSEC), unit: "sec")
             cells.append(burnTimeCell)
         }
         

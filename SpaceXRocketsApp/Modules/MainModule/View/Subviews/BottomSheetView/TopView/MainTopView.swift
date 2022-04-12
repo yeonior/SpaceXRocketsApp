@@ -44,7 +44,6 @@ final class MainTopView: UIView {
         titleLabel.backgroundColor = .clear
         titleLabel.font = Font.bottomSheetViewHeader.uiFont
         titleLabel.textColor = Color.bottomSheetViewHeader.uiColor
-        titleLabel.text = "Falcon Heavy"
         
         addSubview(titleLabel)
         
