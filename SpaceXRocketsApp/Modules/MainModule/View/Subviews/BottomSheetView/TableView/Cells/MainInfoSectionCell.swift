@@ -74,7 +74,7 @@ class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     
     func updateLabels() {
         guard let viewModel = cellViewModel else { return }
-        mainLabel.text = viewModel.text.rawValue
+        mainLabel.text = viewModel.text?.rawValue
         detailsLabel.text = viewModel.detailText
     }
 }

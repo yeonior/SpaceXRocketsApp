@@ -29,9 +29,12 @@ final class MainViewModel: NSObject, MainItemViewModel {
                                                          fuelAmountTons: data.secondStage.fuelAmountTons,
                                                          burnTimeSEC: data.secondStage.burnTimeSEC)
         
+        let button = MainButtonSectionViewModel()
+        
         sections.append(info)
         sections.append(firstStage)
         sections.append(secondStage)
+        sections.append(button)
     }
 }
 
@@ -49,7 +52,7 @@ extension MainViewModel: UITableViewDataSource {
         
         let section = sections[indexPath.section]
         
-        switch section.sectionName {
+        switch section.name {
         case .info:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as? MainInfoSectionCell {
                 cell.cellViewModel = section.cells[indexPath.row]
@@ -58,6 +61,10 @@ extension MainViewModel: UITableViewDataSource {
         case .firstStage, .secondStage:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "stageCell", for: indexPath) as? MainStageSectionCell {
                 cell.cellViewModel = section.cells[indexPath.row]
+                return cell
+            }
+        case .button:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "buttonCell", for: indexPath) as? MainShowButtonCell {
                 return cell
             }
         }
@@ -77,9 +84,11 @@ extension MainViewModel: UITableViewDelegate {
         case 0, 3:
             return nil
         default:
-            let header = MainTableViewSectionHeader()
-            header.titleLabel.text = sections[section].sectionName.rawValue
-            return header
+            if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as? MainTableViewSectionHeader {
+                header.titleLabel.text = sections[section].name.rawValue
+                return header
+            }
+            return UITableViewHeaderFooterView()
         }
     }
 

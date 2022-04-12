@@ -7,7 +7,7 @@
 
 final class MainStageSectionViewModel: MainSectionViewModelProtocol {
     
-    var sectionName: MainSectionType
+    var name: MainSectionType
     var cells: [MainCellViewModelProtocol]
     
     init(sectionName: MainSectionType,
@@ -23,7 +23,7 @@ final class MainStageSectionViewModel: MainSectionViewModelProtocol {
             cells.append(burnTimeCell)
         }
         
-        self.sectionName = sectionName
+        self.name = sectionName
         self.cells = cells
     }
 }
