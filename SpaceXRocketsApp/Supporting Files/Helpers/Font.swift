@@ -21,12 +21,14 @@ enum Font {
     case tableViewCellUnitLabel
     case tableViewStageSectionHeader
     case showButton
+    case collectionCellMainLabel
+    case collectionCellDetailLabel
 
     var uiFont: UIFont {
         switch self {
         case .bottomSheetViewHeader:
             return UIFont(name: "LabGrotesque-\(Style.regular.rawValue)", size: 32)!
-        case .tableViewCellMainLabel:
+        case .tableViewCellMainLabel, .collectionCellDetailLabel:
             return UIFont(name: "LabGrotesque-\(Style.regular.rawValue)", size: 16)!
         case .tableViewCellDetailsLabel:
             return UIFont(name: "LabGrotesque-\(Style.medium.rawValue)", size: 16)!
@@ -34,6 +36,8 @@ enum Font {
             return UIFont(name: "LabGrotesque-\(Style.bold.rawValue)", size: 16)!
         case .showButton:
             return UIFont(name: "LabGrotesque-\(Style.bold.rawValue)", size: 18)!
+        case .collectionCellMainLabel:
+            return UIFont(name: "LabGrotesque-\(Style.regular.rawValue)", size: 20)!
         }
     }
 }

@@ -68,6 +68,7 @@ final class MainViewController: UIViewController {
             self.presenter.provideRocketName()
             self.presenter.provideViewModel()
         }
+        
     }
     
     // reseting the bottom sheet position to min
@@ -158,6 +159,10 @@ final class MainViewController: UIViewController {
             bottomSheetView.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
         }
     }
+    
+    private func showLaunches() {
+        router.showDetailsModule()
+    }
 }
 
 // MARK: - MainViewProtocol
@@ -179,6 +184,7 @@ extension MainViewController: MainViewProtocol {
     
     func setViewModel(viewModel: MainViewModel) {
         self.viewModel = viewModel
+        self.viewModel?.buttonTapCallback = showLaunches
     }
 }
 
@@ -186,7 +192,7 @@ extension MainViewController: MainViewProtocol {
 extension MainViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
-        if currentBottomSheetViewHeight == maxBottomSheetViewHeight {
+        if currentBottomSheetViewHeight > maxBottomSheetViewHeight - 10 {
             bottomSheetView.tableView.isScrollEnabled = true
             return false
         }

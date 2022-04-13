@@ -21,23 +21,35 @@ enum Color {
     case currentPageIndicator
     case pageIndicator
     case tableViewCellBackground
+    case collectionCellBackground
+    case collectionCellMainLabel
+    case collectionCellDetailsLabel
+    case collectionCellImageView
+    case lauchesPageBackground
+    case successStatus
+    case failureStatus
+    case circleBackground
     
     var uiColor: UIColor {
         switch self {
-        case .bottomSheetViewBackground, .tableViewCellBackground:
+        case .bottomSheetViewBackground, .tableViewCellBackground, .lauchesPageBackground:
             return hexStringToUIColor(hex: "#000000")
-        case .showButton:
+        case .showButton, .collectionCellBackground:
             return hexStringToUIColor(hex: "#212121")
         case .tableViewCellMainLabel:
             return hexStringToUIColor(hex: "#CACACA")
         case .tableViewCellDetailsLabel, .bottomSheetViewHeader, .tableViewStageSectionHeader:
             return hexStringToUIColor(hex: "#F6F6F6")
-        case .dragIndicator, .pageIndicator, .tableViewCellUnitLabel:
+        case .dragIndicator, .pageIndicator, .tableViewCellUnitLabel, .collectionCellDetailsLabel, .collectionCellImageView:
             return hexStringToUIColor(hex: "#8E8E8F")
         case .background, .dragIndicatorBackground:
             return hexStringToUIColor(hex: "#121212")
-        case .currentPageIndicator:
+        case .currentPageIndicator, .collectionCellMainLabel, .circleBackground:
             return hexStringToUIColor(hex: "#FFFFFF")
+        case .successStatus:
+            return hexStringToUIColor(hex: "#5F9C20")
+        case .failureStatus:
+            return hexStringToUIColor(hex: "#DD473B")
         }
     }
 }

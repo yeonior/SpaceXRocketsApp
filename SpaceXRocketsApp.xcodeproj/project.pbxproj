@@ -33,13 +33,15 @@
 		A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3627FCAC400020B02B /* MainTopView.swift */; };
 		A2852F8E27FE1EBF000CDA92 /* MainShowButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F8D27FE1EBF000CDA92 /* MainShowButtonCell.swift */; };
 		A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */; };
+		A299754E2806ACC80015FB9A /* Launches.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A299754D2806ACC80015FB9A /* Launches.JSON */; };
 		A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA228028AD400B28901 /* MainPresenter.swift */; };
 		A2A19BA52802B1A500B28901 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA42802B1A500B28901 /* DataManager.swift */; };
 		A2A19BA72802C57C00B28901 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA62802C57C00B28901 /* Size.swift */; };
 		A2D383AA2805831C007F22C3 /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383A92805831C007F22C3 /* LaunchModel.swift */; };
-		A2D383AC280587A5007F22C3 /* DetailsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AB280587A5007F22C3 /* DetailsCollectionViewController.swift */; };
+		A2D383AC280587A5007F22C3 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AB280587A5007F22C3 /* DetailsViewController.swift */; };
 		A2D383AE280587DD007F22C3 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AD280587DD007F22C3 /* DetailsPresenter.swift */; };
 		A2D383B02805BE6A007F22C3 /* TextFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AF2805BE6A007F22C3 /* TextFormatter.swift */; };
+		A2D383B52805E0AE007F22C3 /* DetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383B42805E0AE007F22C3 /* DetailsCell.swift */; };
 		A2DB9CF827FD7F7000339D48 /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */; };
 		A2DB9CF927FD7F7000339D48 /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */; };
 		A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */; };
@@ -79,13 +81,15 @@
 		A275CA3627FCAC400020B02B /* MainTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTopView.swift; sourceTree = "<group>"; };
 		A2852F8D27FE1EBF000CDA92 /* MainShowButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainShowButtonCell.swift; sourceTree = "<group>"; };
 		A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewSectionHeader.swift; sourceTree = "<group>"; };
+		A299754D2806ACC80015FB9A /* Launches.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Launches.JSON; sourceTree = "<group>"; };
 		A2A19BA228028AD400B28901 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		A2A19BA42802B1A500B28901 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A2A19BA62802C57C00B28901 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		A2D383A92805831C007F22C3 /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
-		A2D383AB280587A5007F22C3 /* DetailsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewController.swift; sourceTree = "<group>"; };
+		A2D383AB280587A5007F22C3 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A2D383AD280587DD007F22C3 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
 		A2D383AF2805BE6A007F22C3 /* TextFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatter.swift; sourceTree = "<group>"; };
+		A2D383B42805E0AE007F22C3 /* DetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCell.swift; sourceTree = "<group>"; };
 		A2DB9CF427FD7F6F00339D48 /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
 		A2DB9CF527FD7F7000339D48 /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
 		A2DB9CF627FD7F7000339D48 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
@@ -356,7 +360,8 @@
 		A2D383A7280582F1007F22C3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A2D383AB280587A5007F22C3 /* DetailsCollectionViewController.swift */,
+				A2D383AB280587A5007F22C3 /* DetailsViewController.swift */,
+				A2D383B32805DACD007F22C3 /* Subviews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,6 +392,14 @@
 				A275CA1727FC1C300020B02B /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A2D383B32805DACD007F22C3 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A2D383B42805E0AE007F22C3 /* DetailsCell.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		A2DB9CF327FD7F1600339D48 /* Fonts */ = {
@@ -422,8 +435,9 @@
 			isa = PBXGroup;
 			children = (
 				A2D383B12805C141007F22C3 /* Helpers */,
-				A251FB5F27FF8454007649EF /* Rockets.JSON */,
 				A2DB9CF327FD7F1600339D48 /* Fonts */,
+				A251FB5F27FF8454007649EF /* Rockets.JSON */,
+				A299754D2806ACC80015FB9A /* Launches.JSON */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -494,6 +508,7 @@
 				A2DB9CFD27FD806200339D48 /* FontNames in Resources */,
 				A275CA1827FC1C300020B02B /* Assets.xcassets in Resources */,
 				A275CA1627FC1C2F0020B02B /* Main.storyboard in Resources */,
+				A299754E2806ACC80015FB9A /* Launches.JSON in Resources */,
 				A2DB9CFA27FD7F7000339D48 /* LabGrotesque-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +526,7 @@
 				A2852F8E27FE1EBF000CDA92 /* MainShowButtonCell.swift in Sources */,
 				A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */,
 				A25BB6C52804AC1E00FCDF02 /* MainStageSectionViewModel.swift in Sources */,
+				A2D383B52805E0AE007F22C3 /* DetailsCell.swift in Sources */,
 				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
 				A25FCF312803EFD900A34EBA /* MainViewModel.swift in Sources */,
@@ -520,7 +536,7 @@
 				A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
-				A2D383AC280587A5007F22C3 /* DetailsCollectionViewController.swift in Sources */,
+				A2D383AC280587A5007F22C3 /* DetailsViewController.swift in Sources */,
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,
 				A2D383B02805BE6A007F22C3 /* TextFormatter.swift in Sources */,

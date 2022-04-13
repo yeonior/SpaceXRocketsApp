@@ -13,6 +13,7 @@ protocol MainItemViewModel {
 
 final class MainViewModel: NSObject, MainItemViewModel {
     var sections = [MainSectionViewModelProtocol]()
+    var buttonTapCallback: (() -> ())?
     
     init(data: RocketData) {
         let info = MainInfoSectionViewModel(firstFlight: data.firstFlight,
@@ -65,6 +66,7 @@ extension MainViewModel: UITableViewDataSource {
             }
         case .button:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "buttonCell", for: indexPath) as? MainShowButtonCell {
+                cell.buttonTapCallback = buttonTapCallback
                 return cell
             }
         }

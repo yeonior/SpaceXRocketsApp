@@ -11,9 +11,7 @@ final class MainShowButtonCell: UITableViewCell {
     
     let showButton = UIButton()
     let baseView = UIView()
-    var buttonTapCallback: () -> () = {
-        print("button tapped")
-    }
+    var buttonTapCallback: (() -> ())?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -57,6 +55,6 @@ final class MainShowButtonCell: UITableViewCell {
     
     @objc
     private func didTapButton() {
-        buttonTapCallback()
+        buttonTapCallback?()
     }
 }

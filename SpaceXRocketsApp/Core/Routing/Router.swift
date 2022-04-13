@@ -8,14 +8,15 @@
 import UIKit
 
 protocol RouterProtocol {
-    var navigationController: UINavigationController? { get set }
-    var assemblyBuilder: AssemblyBuilderProtocol! { get set }
+    var navigationController: UINavigationController? { get }
+    var assemblyBuilder: AssemblyBuilderProtocol! { get }
 }
 
 protocol Routing: RouterProtocol {
     func activateBaseModule()
     func activateMainModule(with serialNumber: Int) -> MainViewController
     func provideEmptyMainViewController() -> MainViewController
+    func showDetailsModule()
 }
 
 final class Router: Routing {
@@ -36,10 +37,17 @@ final class Router: Routing {
     }
     
     func activateMainModule(with serialNumber: Int) -> MainViewController {
-        assemblyBuilder.buildMainModule(with: serialNumber)
+        assemblyBuilder.buildMainModule(with: serialNumber, router: self)
     }
     
     func provideEmptyMainViewController() -> MainViewController {
         MainViewController()
+    }
+    
+    func showDetailsModule(){
+        guard let navigationController = navigationController else { return }
+        
+        let viewController = assemblyBuilder.buildDetailsModule(router: self)
+        navigationController.present(viewController, animated: true, completion: nil)
     }
 }
