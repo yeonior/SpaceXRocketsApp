@@ -10,7 +10,7 @@ import UIKit
 protocol AssemblyBuilderProtocol {
     func buildBaseModule(router: Routing) -> UIViewController
     func buildMainModule(with serialNumber: Int, router: Routing) -> MainViewController
-    func buildDetailsModule(router: Routing) -> DetailsViewController
+    func buildDetailsModule(with serialNumber: Int, router: Routing) -> DetailsViewController
 }
 
 final class AssemblyBuilder: AssemblyBuilderProtocol {
@@ -23,7 +23,9 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         let view = BasePageViewController(transitionStyle: .scroll,
                                           navigationOrientation: .horizontal,
                                           options: nil)
-        let presenter = BasePresenter(view: view, networkManager: networkManager)
+        let presenter = BasePresenter(view: view,
+                                      networkManager: networkManager,
+                                      dataManager: dataManager)
         
         view.router = router
         view.presenter = presenter
@@ -45,7 +47,7 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func buildDetailsModule(router: Routing) -> DetailsViewController {
+    func buildDetailsModule(with serialNumber: Int, router: Routing) -> DetailsViewController {
         
         let view = DetailsViewController()
         let presenter = DetailsPresenter(view: view,
@@ -54,6 +56,7 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         
         view.router = router
         view.presenter = presenter
+        view.serialNumber = serialNumber
         presenter.view = view
         
         return view

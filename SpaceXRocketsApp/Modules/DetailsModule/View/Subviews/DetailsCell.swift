@@ -20,7 +20,7 @@ final class DetailsCell: UICollectionViewCell {
     static let identifier = "MainCell"
     
     // MARK: - Subviews
-    private let mainLabel: UILabel = {
+    lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "FalconSat"
         label.font = Font.collectionCellMainLabel.uiFont
@@ -34,7 +34,7 @@ final class DetailsCell: UICollectionViewCell {
         return label
     }()
     
-    private let detailsLabel: UILabel = {
+    lazy var detailsLabel: UILabel = {
         let label = UILabel()
         label.text = "02/04/2022"
         label.font = Font.collectionCellDetailLabel.uiFont
@@ -48,7 +48,7 @@ final class DetailsCell: UICollectionViewCell {
         return label
     }()
     
-    private let imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "arrow.up.forward")
         imageView.tintColor = Color.collectionCellImageView.uiColor
@@ -68,7 +68,7 @@ final class DetailsCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let statusImageView: UIImageView = {
+    lazy var statusImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "checkmark.circle.fill")
         imageView.tintColor = Color.successStatus.uiColor

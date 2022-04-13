@@ -6,6 +6,7 @@
 //
 
 struct RocketData {
+    let id: String
     let flickrImages: [String]
     let name: String
     let firstFlight: String

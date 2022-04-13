@@ -7,7 +7,8 @@
 
 protocol DetailsPresenterProtocol {
     init(view: DetailsViewProtocol, networkManager: NetworkManagerProtocol, dataManager: DataManagerProtocol)
-    func fetchLaunches()
+    func fetchAllLaunches()
+    func provideLaucnhesForRocket(with serialNumber: Int)
 }
 
 final class DetailsPresenter: DetailsPresenterProtocol {
@@ -22,15 +23,31 @@ final class DetailsPresenter: DetailsPresenterProtocol {
         self.dataManager = dataManager
     }
     
-    func fetchLaunches() {
+    func fetchAllLaunches() {
         let url = API.launches.url
         networkManager.request(fromURL: url) { (result: Result<[LaunchModel], Error>) in
             switch result {
-            case .success(_):
+            case .success(let launches):
+                self.dataManager.setLaunches(launches: launches)
                 self.view.success()
             case .failure(let error):
                 self.view.failure(error: error)
             }
         }
+    }
+    
+    func provideLaucnhesForRocket(with serialNumber: Int) {
+        let rockets = dataManager.getRockets()
+        let index = serialNumber - 1
+        let rocket = rockets[index]
+        let rocketId = rocket.id
+        let launches = dataManager.getLaunches()
+        for launch in launches {
+            var laucnhesForRocket: [LaunchModel] = []
+            if launch.rocketId == rocketId {
+                laucnhesForRocket.append(launch)
+            }
+        }
+        view.showLaunches(with: launches)
     }
 }

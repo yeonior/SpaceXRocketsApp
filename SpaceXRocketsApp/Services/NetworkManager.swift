@@ -32,7 +32,6 @@ final class NetworkManager: NetworkManagerProtocol {
             
             // checking the error
             if let error = error {
-                print("1")
                 completionOnMain(.failure(error))
                 return
             }
@@ -40,11 +39,9 @@ final class NetworkManager: NetworkManagerProtocol {
             // trying to get the data
             guard let data = data else { return }
             do {
-                print(data)
                 let elements = try JSONDecoder().decode(T.self, from: data)
                 completionOnMain(.success(elements))
             } catch {
-                print("2")
                 debugPrint("Could not translate the data to the requested type.")
                 completionOnMain(.failure(error))
             }

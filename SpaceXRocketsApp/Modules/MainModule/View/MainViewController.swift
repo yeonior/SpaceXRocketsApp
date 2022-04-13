@@ -161,7 +161,7 @@ final class MainViewController: UIViewController {
     }
     
     private func showLaunches() {
-        router.showDetailsModule()
+        router.showDetailsModule(with: serialNumber)
     }
 }
 

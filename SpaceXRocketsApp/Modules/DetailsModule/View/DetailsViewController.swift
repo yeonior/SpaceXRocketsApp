@@ -10,6 +10,8 @@ import UIKit
 protocol DetailsViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
+    // MARK: - TEMPORARILY
+    func showLaunches(with launches: [LaunchModel])
 }
 
 final class DetailsViewController: UIViewController {
@@ -17,15 +19,23 @@ final class DetailsViewController: UIViewController {
     var collectionView: UICollectionView?
     var router: Routing!
     var presenter: DetailsPresenterProtocol!
+    var serialNumber: Int!
+    // MARK: - TEMPORARILY
+    var launches: [LaunchModel]! {
+        didSet {
+            collectionView?.reloadData()
+        }
+    }
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
-        presenter.fetchLaunches()
+        presenter.fetchAllLaunches()
     }
     
+    // MARK: - Private methods
     private func configureUI() {
         
         // layout
@@ -69,16 +79,24 @@ final class DetailsViewController: UIViewController {
     }
 }
 
+// MARK: - DetailsViewProtocol
 extension DetailsViewController: DetailsViewProtocol {
     func success() {
         print("success")
+        presenter.provideLaucnhesForRocket(with: serialNumber)
     }
     
     func failure(error: Error) {
         debugPrint(error.localizedDescription)
     }
+    
+    // MARK: - TEMPORARILY
+    func showLaunches(with launches: [LaunchModel]) {
+        self.launches = launches
+    }
 }
 
+// MARK: - UICollectionViewDataSource
 extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         10
@@ -87,9 +105,12 @@ extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCell.identifier, for: indexPath) as? DetailsCell {
-
-//            cell.backgroundView?.backgroundColor = .green
-
+            // MARK: - TEMPORARILY
+            if let l = launches {
+                cell.mainLabel.text = l[indexPath.row].name
+                cell.detailsLabel.text = l[indexPath.row].dateLocal
+            }
+            
             return cell
         }
         
@@ -97,10 +118,12 @@ extension DetailsViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension DetailsViewController: UICollectionViewDelegate {
     
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension DetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
