@@ -150,20 +150,34 @@
 		A21FBCA22802F67E0095D4E4 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				A25FCF302803EFD900A34EBA /* MainViewModel.swift */,
 				A21FBCA02802F6210095D4E4 /* Cells */,
 				A21FBCA12802F62A0095D4E4 /* Headers */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
 		};
-		A245027528087ABE005FF06C /* ViewModels */ = {
+		A245027528087ABE005FF06C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A245027628087ADC005FF06C /* DetailsCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A245027C2808A51C005FF06C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				A24502782808836C005FF06C /* DetailsViewModel.swift */,
-				A245027628087ADC005FF06C /* DetailsCellViewModel.swift */,
 			);
-			path = ViewModels;
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A245027D2808A550005FF06C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A25FCF302803EFD900A34EBA /* MainViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A24BBC7728004F9100EA5A87 /* Assembly */ = {
@@ -247,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				A275CA2C27FC24040020B02B /* MainViewController.swift */,
+				A245027D2808A550005FF06C /* ViewModel */,
 				A275CA3527FCAC1E0020B02B /* Subviews */,
 			);
 			path = View;
@@ -376,7 +391,8 @@
 			isa = PBXGroup;
 			children = (
 				A2D383AB280587A5007F22C3 /* DetailsViewController.swift */,
-				A2D383B32805DACD007F22C3 /* Subviews */,
+				A245027C2808A51C005FF06C /* ViewModel */,
+				A2D383B32805DACD007F22C3 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -410,13 +426,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		A2D383B32805DACD007F22C3 /* Subviews */ = {
+		A2D383B32805DACD007F22C3 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				A2D383B42805E0AE007F22C3 /* DetailsCell.swift */,
-				A245027528087ABE005FF06C /* ViewModels */,
+				A245027528087ABE005FF06C /* ViewModel */,
 			);
-			path = Subviews;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		A2DB9CF327FD7F1600339D48 /* Fonts */ = {

@@ -5,6 +5,8 @@
 //  Created by Ruslan on 12.04.2022.
 //
 
+import Foundation
+
 protocol DetailsPresenterProtocol {
     init(view: DetailsViewProtocol, networkManager: NetworkManagerProtocol, dataManager: DataManagerProtocol)
     func fetchData()
@@ -37,19 +39,27 @@ final class DetailsPresenter: DetailsPresenterProtocol {
     }
     
     func provideViewModel(with serialNumber: Int) {
-        let rockets = dataManager.getRockets()
-        let index = serialNumber - 1
-        let rocket = rockets[index]
-        let rocketId = rocket.id
-        let launches = dataManager.getLaunches()
         
-        var laucnhesForRocket: [LaunchModel] = []
+        // getting data
+        let rockets = dataManager.getRockets()
+        let launches = dataManager.getLaunches()
+        let rocket = rockets[serialNumber - 1]
+        
+        // extracting launches by serial number
+        var array: [LaunchModel] = []
         for launch in launches {
-            if launch.rocketId == rocketId {
-                laucnhesForRocket.append(launch)
+            if launch.rocketId == rocket.id {
+                array.append(launch)
             }
         }
-        let viewModel = DetailsViewModel(data: laucnhesForRocket)
+        
+        // sorting laucnhes by date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormat.yyyyMMddTHHmmssZ.rawValue
+        array.sort { dateFormatter.date(from: $0.dateLocal)! > dateFormatter.date(from: $1.dateLocal)! }
+        
+        // viewModel
+        let viewModel = DetailsViewModel(data: array)
         view.setViewModel(viewModel)
     }
 }
