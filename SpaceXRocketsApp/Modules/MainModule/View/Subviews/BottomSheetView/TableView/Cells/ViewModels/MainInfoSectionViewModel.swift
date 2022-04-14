@@ -18,7 +18,10 @@ final class MainInfoSectionViewModel: MainSectionViewModelProtocol {
     init(firstFlight: String, country: String, costPerLaunch: Int) {
         
         let firstLaunchCell = MainCellViewModel(text: .firstFlight,
-                                                detailText: TextFormatter.convertDateFormat(from: firstFlight))
+                                                detailText: TextFormatter.convertDateFormat(
+                                                    date: firstFlight,
+                                                    from: .yyyyMMdd,
+                                                    to: .MMddyyyy))
         let countryCell = MainCellViewModel(text: .country,
                                             detailText: country)
         let costPerLaunch = MainCellViewModel(text: .costPerLaunch,

@@ -42,12 +42,12 @@ final class DetailsPresenter: DetailsPresenterProtocol {
         let rocket = rockets[index]
         let rocketId = rocket.id
         let launches = dataManager.getLaunches()
+        var laucnhesForRocket: [LaunchModel] = []
         for launch in launches {
-            var laucnhesForRocket: [LaunchModel] = []
             if launch.rocketId == rocketId {
                 laucnhesForRocket.append(launch)
             }
         }
-        view.showLaunches(with: launches)
+        view.showLaunches(with: laucnhesForRocket)
     }
 }

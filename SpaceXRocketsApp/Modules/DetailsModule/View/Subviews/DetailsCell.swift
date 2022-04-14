@@ -27,7 +27,7 @@ final class DetailsCell: UICollectionViewCell {
         label.textAlignment = .left
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.7
+        label.minimumScaleFactor = 0.8
         label.clipsToBounds = true
         label.textColor = Color.collectionCellMainLabel.uiColor
         
@@ -116,6 +116,7 @@ final class DetailsCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             labelStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            labelStackView.trailingAnchor.constraint(equalTo: imageView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),

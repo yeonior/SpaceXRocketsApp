@@ -21,7 +21,7 @@ final class DetailsViewController: UIViewController {
     var presenter: DetailsPresenterProtocol!
     var serialNumber: Int!
     // MARK: - TEMPORARILY
-    var launches: [LaunchModel]! {
+    var launches: [LaunchModel]? {
         didSet {
             collectionView?.reloadData()
         }
@@ -82,7 +82,6 @@ final class DetailsViewController: UIViewController {
 // MARK: - DetailsViewProtocol
 extension DetailsViewController: DetailsViewProtocol {
     func success() {
-        print("success")
         presenter.provideLaucnhesForRocket(with: serialNumber)
     }
     
@@ -99,7 +98,7 @@ extension DetailsViewController: DetailsViewProtocol {
 // MARK: - UICollectionViewDataSource
 extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        launches?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -108,7 +107,9 @@ extension DetailsViewController: UICollectionViewDataSource {
             // MARK: - TEMPORARILY
             if let l = launches {
                 cell.mainLabel.text = l[indexPath.row].name
-                cell.detailsLabel.text = l[indexPath.row].dateLocal
+                cell.detailsLabel.text = TextFormatter.convertDateFormat(date: l[indexPath.row].dateLocal,
+                                                                         from: .yyyyMMddTHHmmssZ,
+                                                                         to: .MMMMdyyyy)
             }
             
             return cell

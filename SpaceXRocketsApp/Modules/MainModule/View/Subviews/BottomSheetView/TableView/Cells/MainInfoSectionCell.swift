@@ -34,7 +34,7 @@ class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
         $0.textAlignment = .right
         $0.clipsToBounds = true
         $0.adjustsFontSizeToFitWidth = true
-        $0.minimumScaleFactor = 0.5
+        $0.minimumScaleFactor = 0.8
         
         return $0
     }(UILabel())
