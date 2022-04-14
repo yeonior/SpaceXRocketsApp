@@ -41,25 +41,25 @@ final class DetailsPresenter: DetailsPresenterProtocol {
     func provideViewModel(with serialNumber: Int) {
         
         // getting data
-        let rockets = dataManager.getRockets()
-        let launches = dataManager.getLaunches()
-        let rocket = rockets[serialNumber - 1]
+        let rocket = dataManager.getRockets()[serialNumber - 1]
         
-        // extracting launches by serial number
-        var array: [LaunchModel] = []
-        for launch in launches {
-            if launch.rocketId == rocket.id {
-                array.append(launch)
-            }
-        }
-        
-        // sorting laucnhes by date
+        // getting the current date
+        let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = DateFormat.yyyyMMddTHHmmssZ.rawValue
-        array.sort { dateFormatter.date(from: $0.dateLocal)! > dateFormatter.date(from: $1.dateLocal)! }
+        let stringDate = dateFormatter.string(from: currentDate)
+        
+        // filtering all launches by serial number
+        let laucnhes = dataManager.getLaunches().filter { $0.rocketId == rocket.id }
+        
+        // filtering the launches till current date
+        let filteredLaucnhes = laucnhes.filter { stringDate > $0.dateLocal }
+        
+        // sorting the laucnhes by date
+        let sortedLaunches = filteredLaucnhes.sorted { dateFormatter.date(from: $0.dateLocal)! > dateFormatter.date(from: $1.dateLocal)! }
         
         // viewModel
-        let viewModel = DetailsViewModel(data: array)
+        let viewModel = DetailsViewModel(data: sortedLaunches)
         view.setViewModel(viewModel)
     }
 }
