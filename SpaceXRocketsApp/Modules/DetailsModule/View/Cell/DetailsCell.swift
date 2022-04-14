@@ -20,7 +20,7 @@ struct DetailsCellSizeConstants {
 
 final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     
-    static let identifier = "MainCell"
+    static let identifier = "DetailsCell"
     
     var successSign: Bool?
     var cellViewModel: DetailsCellViewModelProtocol? {

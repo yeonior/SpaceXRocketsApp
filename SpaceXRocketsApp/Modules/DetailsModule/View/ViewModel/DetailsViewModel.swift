@@ -31,12 +31,23 @@ final class DetailsViewModel: NSObject, DetailsSectionViewModelProtocol {
 // MARK: - UICollectionViewDataSource
 extension DetailsViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        cells.count
+        if cells.count == 0 {
+            return 1
+        }
+        return cells.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCell.identifier, for: indexPath) as? DetailsCell {
+            
+            if cells.count == 0 {
+                cell.mainLabel.text = "No information available"
+                cell.imageView.image = UIImage(systemName: "xmark.circle.fill")
+                cell.imageView.tintColor = Color.failureStatus.uiColor
+                
+                return cell
+            }
             
             cell.cellViewModel = cells[indexPath.row]
             
