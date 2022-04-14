@@ -32,7 +32,6 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     // MARK: - Subviews
     lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "FalconSat"
         label.font = Font.collectionCellMainLabel.uiFont
         label.textAlignment = .left
         label.numberOfLines = 1
@@ -46,7 +45,6 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     
     lazy var detailsLabel: UILabel = {
         let label = UILabel()
-        label.text = "02/04/2022"
         label.font = Font.collectionCellDetailLabel.uiFont
         label.textAlignment = .left
         label.numberOfLines = 1
@@ -68,7 +66,6 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     
     private let circleImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "circle.fill")
         imageView.tintColor = Color.circleBackground.uiColor
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -139,17 +136,21 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     }
     
     private func updateLabels() {
+        
         guard let viewModel = cellViewModel else { return }
         mainLabel.text = viewModel.text
         detailsLabel.text = viewModel.detailText
+        
         guard let success = viewModel.sign else {
             imageView.image = UIImage(systemName: "questionmark.circle.fill")
-            imageView.tintColor = Color.unknownStatus.uiColor
+            imageView.tintColor = Color.collectionCellImageView.uiColor
             statusImageView.image = nil
             circleImageView.image = nil
             return
         }
+        
         imageView.image = success ? UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor) : UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor).flipDiagonally()
+        circleImageView.image = UIImage(systemName: "circle.fill")
         statusImageView.image = success ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "xmark.circle.fill")
         statusImageView.tintColor = success ? Color.successStatus.uiColor : Color.failureStatus.uiColor
     }
