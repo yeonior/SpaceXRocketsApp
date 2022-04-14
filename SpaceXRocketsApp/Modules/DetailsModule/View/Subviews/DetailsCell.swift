@@ -7,17 +7,27 @@
 
 import UIKit
 
+protocol DetailsCellProtocol {
+    var cellViewModel: DetailsCellViewModelProtocol? { get }
+}
+
 // MARK: Cell size constants
-struct MainCellSizeConstants {
+struct DetailsCellSizeConstants {
     static let distanceToBorder: CGFloat = UIScreen.main.bounds.width * 0.08
     static let minimumLineSpacing: CGFloat = UIScreen.main.bounds.width * 0.05
     static let itemWidth: CGFloat = UIScreen.main.bounds.width - 64
-//    (UIScreen.main.bounds.width - distanceToBorder * 2 - minimumLineSpacing) / 1.3
 }
 
-final class DetailsCell: UICollectionViewCell {
+final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     
     static let identifier = "MainCell"
+    
+    var successSign: Bool?
+    var cellViewModel: DetailsCellViewModelProtocol? {
+        didSet {
+            updateLabels()
+        }
+    }
     
     // MARK: - Subviews
     lazy var mainLabel: UILabel = {
@@ -50,8 +60,6 @@ final class DetailsCell: UICollectionViewCell {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "arrow.up.forward")
-        imageView.tintColor = Color.collectionCellImageView.uiColor
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         
@@ -70,8 +78,6 @@ final class DetailsCell: UICollectionViewCell {
     
     lazy var statusImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "checkmark.circle.fill")
-        imageView.tintColor = Color.successStatus.uiColor
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         
@@ -81,7 +87,6 @@ final class DetailsCell: UICollectionViewCell {
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupLabels()
     }
     
@@ -89,7 +94,8 @@ final class DetailsCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupLabels() {
+    // MARK: - Private methods
+    private func setupLabels() {
         
         let labelStackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
         labelStackView.distribution = .fill
@@ -116,13 +122,13 @@ final class DetailsCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             labelStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            labelStackView.trailingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            labelStackView.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -10),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
+            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            circleImageView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -4),
-            circleImageView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -4),
+            circleImageView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            circleImageView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
             circleImageView.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.3),
             circleImageView.widthAnchor.constraint(equalTo: statusImageView.heightAnchor),
             statusImageView.leadingAnchor.constraint(equalTo: circleImageView.leadingAnchor, constant: -2),
@@ -132,8 +138,19 @@ final class DetailsCell: UICollectionViewCell {
         ])
     }
     
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//    
-//    }
+    private func updateLabels() {
+        guard let viewModel = cellViewModel else { return }
+        mainLabel.text = viewModel.text
+        detailsLabel.text = viewModel.detailText
+        guard let success = viewModel.sign else {
+            imageView.image = UIImage(systemName: "questionmark.circle.fill")
+            imageView.tintColor = Color.unknownStatus.uiColor
+            statusImageView.image = nil
+            circleImageView.image = nil
+            return
+        }
+        imageView.image = success ? UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor) : UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor).flipDiagonally()
+        statusImageView.image = success ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "xmark.circle.fill")
+        statusImageView.tintColor = success ? Color.successStatus.uiColor : Color.failureStatus.uiColor
+    }
 }

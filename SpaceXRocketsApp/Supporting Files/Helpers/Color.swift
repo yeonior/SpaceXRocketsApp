@@ -28,6 +28,7 @@ enum Color {
     case lauchesPageBackground
     case successStatus
     case failureStatus
+    case unknownStatus
     case circleBackground
     
     var uiColor: UIColor {
@@ -50,6 +51,8 @@ enum Color {
             return hexStringToUIColor(hex: "#5F9C20")
         case .failureStatus:
             return hexStringToUIColor(hex: "#DD473B")
+        case .unknownStatus:
+            return hexStringToUIColor(hex: "#555555")
         }
     }
 }

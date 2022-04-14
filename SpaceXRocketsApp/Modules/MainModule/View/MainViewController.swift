@@ -10,7 +10,7 @@ import UIKit
 protocol MainViewProtocol: AnyObject {
     func setBackgroundImage(with data: Data)
     func setName(_ name: String)
-    func setViewModel(viewModel: MainViewModel)
+    func setViewModel(_ viewModel: MainViewModel)
 }
 
 final class MainViewController: UIViewController {
@@ -182,7 +182,7 @@ extension MainViewController: MainViewProtocol {
         }
     }
     
-    func setViewModel(viewModel: MainViewModel) {
+    func setViewModel(_ viewModel: MainViewModel) {
         self.viewModel = viewModel
         self.viewModel?.buttonTapCallback = showLaunches
     }

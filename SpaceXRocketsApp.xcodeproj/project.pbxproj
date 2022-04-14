@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A245027728087ADC005FF06C /* DetailsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245027628087ADC005FF06C /* DetailsCellViewModel.swift */; };
+		A24502792808836D005FF06C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24502782808836C005FF06C /* DetailsViewModel.swift */; };
+		A245027B2808A355005FF06C /* UIImage + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245027A2808A355005FF06C /* UIImage + extension.swift */; };
 		A24BBC7628004F0600EA5A87 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7528004F0600EA5A87 /* API.swift */; };
 		A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */; };
 		A24BBC7C2800543900EA5A87 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BBC7B2800543900EA5A87 /* Router.swift */; };
@@ -53,6 +56,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A245027628087ADC005FF06C /* DetailsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCellViewModel.swift; sourceTree = "<group>"; };
+		A24502782808836C005FF06C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		A245027A2808A355005FF06C /* UIImage + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + extension.swift"; sourceTree = "<group>"; };
 		A24BBC7528004F0600EA5A87 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A24BBC7828004FAD00EA5A87 /* AssemblyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyBuilder.swift; sourceTree = "<group>"; };
 		A24BBC7B2800543900EA5A87 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -149,6 +155,15 @@
 				A21FBCA12802F62A0095D4E4 /* Headers */,
 			);
 			path = TableView;
+			sourceTree = "<group>";
+		};
+		A245027528087ABE005FF06C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A24502782808836C005FF06C /* DetailsViewModel.swift */,
+				A245027628087ADC005FF06C /* DetailsCellViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		A24BBC7728004F9100EA5A87 /* Assembly */ = {
@@ -382,6 +397,7 @@
 				A2A19BA62802C57C00B28901 /* Size.swift */,
 				A24BBC7528004F0600EA5A87 /* API.swift */,
 				A2D383AF2805BE6A007F22C3 /* TextFormatter.swift */,
+				A245027A2808A355005FF06C /* UIImage + extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -398,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				A2D383B42805E0AE007F22C3 /* DetailsCell.swift */,
+				A245027528087ABE005FF06C /* ViewModels */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -535,6 +552,7 @@
 				A25FCF2B2803E83700A34EBA /* MainCellViewModel.swift in Sources */,
 				A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainBottomSheetView.swift in Sources */,
+				A245027728087ADC005FF06C /* DetailsCellViewModel.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
 				A2D383AC280587A5007F22C3 /* DetailsViewController.swift in Sources */,
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionCell.swift in Sources */,
@@ -548,9 +566,11 @@
 				A26298C428056002005F2798 /* MainButtonSectionViewModel.swift in Sources */,
 				A275CA3727FCAC400020B02B /* MainTopView.swift in Sources */,
 				A24BBC7628004F0600EA5A87 /* API.swift in Sources */,
+				A245027B2808A355005FF06C /* UIImage + extension.swift in Sources */,
 				A2A19BA52802B1A500B28901 /* DataManager.swift in Sources */,
 				A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */,
 				A2D383AA2805831C007F22C3 /* LaunchModel.swift in Sources */,
+				A24502792808836D005FF06C /* DetailsViewModel.swift in Sources */,
 				A2D383AE280587DD007F22C3 /* DetailsPresenter.swift in Sources */,
 				A275CA3427FCAB530020B02B /* MainDragView.swift in Sources */,
 			);

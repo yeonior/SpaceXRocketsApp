@@ -10,8 +10,7 @@ import UIKit
 protocol DetailsViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
-    // MARK: - TEMPORARILY
-    func showLaunches(with launches: [LaunchModel])
+    func setViewModel(_ viewModel: DetailsViewModel)
 }
 
 final class DetailsViewController: UIViewController {
@@ -20,9 +19,11 @@ final class DetailsViewController: UIViewController {
     var router: Routing!
     var presenter: DetailsPresenterProtocol!
     var serialNumber: Int!
-    // MARK: - TEMPORARILY
-    var launches: [LaunchModel]? {
+    
+    var viewModel: DetailsViewModel? {
         didSet {
+            collectionView?.dataSource = viewModel
+            collectionView?.delegate = viewModel
             collectionView?.reloadData()
         }
     }
@@ -32,7 +33,9 @@ final class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
-        presenter.fetchAllLaunches()
+        DispatchQueue.global().async {
+            self.presenter.fetchData()
+        }
     }
     
     // MARK: - Private methods
@@ -55,8 +58,8 @@ final class DetailsViewController: UIViewController {
         collectionView.register(DetailsCell.self, forCellWithReuseIdentifier: DetailsCell.identifier)
         
         // protocols
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        collectionView.dataSource = viewModel
+        collectionView.delegate = viewModel
         
         // attributes
         collectionView.showsVerticalScrollIndicator = true
@@ -82,52 +85,14 @@ final class DetailsViewController: UIViewController {
 // MARK: - DetailsViewProtocol
 extension DetailsViewController: DetailsViewProtocol {
     func success() {
-        presenter.provideLaucnhesForRocket(with: serialNumber)
+        presenter.provideViewModel(with: serialNumber)
     }
-    
+
     func failure(error: Error) {
         debugPrint(error.localizedDescription)
     }
     
-    // MARK: - TEMPORARILY
-    func showLaunches(with launches: [LaunchModel]) {
-        self.launches = launches
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension DetailsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        launches?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCell.identifier, for: indexPath) as? DetailsCell {
-            // MARK: - TEMPORARILY
-            if let l = launches {
-                cell.mainLabel.text = l[indexPath.row].name
-                cell.detailsLabel.text = TextFormatter.convertDateFormat(date: l[indexPath.row].dateLocal,
-                                                                         from: .yyyyMMddTHHmmssZ,
-                                                                         to: .MMMMdyyyy)
-            }
-            
-            return cell
-        }
-        
-        return UICollectionViewCell()
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension DetailsViewController: UICollectionViewDelegate {
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension DetailsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: 311, height: 100)
+    func setViewModel(_ viewModel: DetailsViewModel) {
+        self.viewModel = viewModel
     }
 }

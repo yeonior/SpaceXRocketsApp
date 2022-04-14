@@ -11,7 +11,7 @@ final class MainButtonSectionViewModel: MainSectionViewModelProtocol {
         .button
     }
     
-    // one empty cell
+    // an empty cell
     var cells: [MainCellViewModelProtocol] {
         [MainCellViewModel()]
     }

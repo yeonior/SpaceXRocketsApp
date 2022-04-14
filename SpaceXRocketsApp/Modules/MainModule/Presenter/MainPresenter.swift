@@ -62,6 +62,6 @@ final class MainPresenter: MainPresenterProtocol {
     func provideViewModel() {
         guard let rocketData = rocketData else { return }
         let viewModel = MainViewModel(data: rocketData)
-        view.setViewModel(viewModel: viewModel)
+        view.setViewModel(viewModel)
     }
 }
