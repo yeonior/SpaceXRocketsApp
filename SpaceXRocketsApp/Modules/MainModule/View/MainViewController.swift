@@ -43,14 +43,25 @@ final class MainViewController: UIViewController {
         }
     }
     
+    // hiding the navigation bar
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        super.viewWillDisappear(animated)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     // bottomSheetView heights
     let minBottomSheetViewHeight: CGFloat = 400.0
-    let maxBottomSheetViewHeight: CGFloat = UIScreen.main.bounds.height - 100.0
+    let maxBottomSheetViewHeight: CGFloat = UIScreen.main.bounds.height - 150.0
     var currentBottomSheetViewHeight: CGFloat = 400.0
     
     // bottomSheetView dynamic constraints
-    var BottomSheetViewHeightConstraint: NSLayoutConstraint?
-    var BottomSheetViewBottomConstraint: NSLayoutConstraint?
+    var bottomSheetViewHeightConstraint: NSLayoutConstraint?
+    var bottomSheetViewBottomConstraint: NSLayoutConstraint?
     
     var panGesture = UIGestureRecognizer()
     var canSwipe = true
@@ -90,18 +101,18 @@ final class MainViewController: UIViewController {
         bottomSheetView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            backgroundImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            backgroundImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            backgroundImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
-            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor)
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomSheetView.topAnchor, constant: 32)
         ])
-
-        BottomSheetViewHeightConstraint = bottomSheetView.heightAnchor.constraint(equalToConstant: minBottomSheetViewHeight)
-        BottomSheetViewBottomConstraint = bottomSheetView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40.0)
+        
+        bottomSheetViewHeightConstraint = bottomSheetView.heightAnchor.constraint(equalToConstant: minBottomSheetViewHeight)
+        bottomSheetViewBottomConstraint = bottomSheetView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 32.0)
         bottomSheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         bottomSheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        BottomSheetViewHeightConstraint?.isActive = true
-        BottomSheetViewBottomConstraint?.isActive = true
+        bottomSheetViewHeightConstraint?.isActive = true
+        bottomSheetViewBottomConstraint?.isActive = true
     }
     
     private func setupPanGesture() {
@@ -126,7 +137,7 @@ final class MainViewController: UIViewController {
             canSwipe = false
         case .changed:
             if newHeight < maxBottomSheetViewHeight && newHeight >= minBottomSheetViewHeight {
-                BottomSheetViewHeightConstraint?.constant = newHeight
+                bottomSheetViewHeightConstraint?.constant = newHeight
                 view.layoutIfNeeded()
             }
         case .ended:
@@ -145,7 +156,7 @@ final class MainViewController: UIViewController {
     
     private func animateContainerHeight(_ height: CGFloat) {
         UIView.animate(withDuration: 0.5) {
-            self.BottomSheetViewHeightConstraint?.constant = height
+            self.bottomSheetViewHeightConstraint?.constant = height
             self.view.layoutIfNeeded()
         } completion: { [unowned self] _ in
             self.currentBottomSheetViewHeight = height
