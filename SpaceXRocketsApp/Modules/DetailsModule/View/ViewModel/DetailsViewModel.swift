@@ -31,10 +31,7 @@ final class DetailsViewModel: NSObject, DetailsSectionViewModelProtocol {
 // MARK: - UICollectionViewDataSource
 extension DetailsViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if cells.count == 0 {
-            return 1
-        }
-        return cells.count
+        cells.count == 0 ? 1 : cells.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

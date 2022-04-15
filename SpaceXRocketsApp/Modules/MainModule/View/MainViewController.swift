@@ -161,7 +161,7 @@ final class MainViewController: UIViewController {
     }
     
     private func showLaunches() {
-        router.showDetailsModule(with: serialNumber)
+        router.showDetailsModule(with: serialNumber, and: title ?? "")
     }
 }
 
@@ -178,6 +178,7 @@ extension MainViewController: MainViewProtocol {
     
     func setName(_ name: String) {
         DispatchQueue.main.sync {
+            title = name
             bottomSheetView.topView.titleLabel.text = name
         }
     }

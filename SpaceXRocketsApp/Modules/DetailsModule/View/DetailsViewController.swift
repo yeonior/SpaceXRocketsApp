@@ -31,7 +31,6 @@ final class DetailsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
         DispatchQueue.global().async {
             self.presenter.fetchData()
@@ -40,6 +39,8 @@ final class DetailsViewController: UIViewController {
     
     // MARK: - Private methods
     private func configureUI() {
+        
+        view.backgroundColor = Color.background.uiColor
         
         // layout
         let layout = UICollectionViewFlowLayout()
@@ -69,16 +70,6 @@ final class DetailsViewController: UIViewController {
         
         // adding
         view.addSubview(collectionView)
-//        guard let backgroundView = collectionView.backgroundView else { return }
-
-        // backgroundView constraints
-//        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-//            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//        ])
     }
 }
 

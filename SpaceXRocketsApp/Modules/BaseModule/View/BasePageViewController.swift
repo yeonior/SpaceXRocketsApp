@@ -53,7 +53,6 @@ final class BasePageViewController: UIPageViewController {
         pageControl.currentPageIndicatorTintColor = Color.currentPageIndicator.uiColor
         pageControl.pageIndicatorTintColor = Color.pageIndicator.uiColor
         pageControl.backgroundColor = .clear
-        pageControl.center = view.center
         pageControl.isUserInteractionEnabled = false
     }
     
@@ -61,6 +60,7 @@ final class BasePageViewController: UIPageViewController {
         for view in self.view.subviews{
             if view is UIPageControl {
                 view.frame.origin.y = self.view.frame.size.height - 56
+                view.setNeedsLayout()
             }
         }
     }
