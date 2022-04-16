@@ -9,7 +9,7 @@ import UIKit.UIView
 
 final class MainTopView: UIView {
     
-    lazy var dragView = MainDragView()
+    lazy var indicatorView = UIView()
     lazy var titleLabel = UILabel()
     
     let dragViewHeight: CGFloat = 20
@@ -28,16 +28,9 @@ final class MainTopView: UIView {
         // view
         backgroundColor = Color.bottomSheetViewBackground.uiColor
         
-        // dragView
-        addSubview(dragView)
-        
-        dragView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            dragView.topAnchor.constraint(equalTo: topAnchor),
-            dragView.heightAnchor.constraint(equalToConstant: dragViewHeight),
-            dragView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            dragView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+        // indicatorView
+        indicatorView.backgroundColor = Color.dragIndicator.uiColor
+        indicatorView.layer.cornerRadius = 2
         
         // titleLabel
         titleLabel.textAlignment = .left
@@ -45,7 +38,16 @@ final class MainTopView: UIView {
         titleLabel.font = Font.bottomSheetViewHeader.uiFont
         titleLabel.textColor = Color.bottomSheetViewHeader.uiColor
         
+        addSubview(indicatorView)
         addSubview(titleLabel)
+        
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            indicatorView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            indicatorView.heightAnchor.constraint(equalToConstant: 4),
+            indicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            indicatorView.widthAnchor.constraint(equalToConstant: 50)
+        ])
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

@@ -44,14 +44,9 @@ final class MainViewController: UIViewController {
     }
     
     // hiding the navigation bar
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated);
-        super.viewWillDisappear(animated)
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        hideNavigationBar()
     }
     
     // bottomSheetView heights
@@ -155,7 +150,7 @@ final class MainViewController: UIViewController {
     }
     
     private func animateContainerHeight(_ height: CGFloat) {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.4) {
             self.bottomSheetViewHeightConstraint?.constant = height
             self.view.layoutIfNeeded()
         } completion: { [unowned self] _ in
@@ -171,7 +166,16 @@ final class MainViewController: UIViewController {
         }
     }
     
+    private func hideNavigationBar() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    private func showNavigationBar() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     private func showLaunches() {
+        showNavigationBar()
         router.showDetailsModule(with: serialNumber, and: title ?? "")
     }
 }
