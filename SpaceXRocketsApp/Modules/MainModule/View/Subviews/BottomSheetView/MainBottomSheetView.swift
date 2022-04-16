@@ -39,6 +39,7 @@ final class MainBottomSheetView: UIView {
         tableView.bounces = true
         tableView.isScrollEnabled = false
         tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -6, right: 0)
 //        tableView.contentInset.bottom = 100
         
@@ -57,15 +58,8 @@ final class MainBottomSheetView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: topView.bottomAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
-    }
-}
-
-extension MainBottomSheetView {
-    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        false
     }
 }

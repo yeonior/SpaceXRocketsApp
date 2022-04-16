@@ -68,13 +68,12 @@ final class MainViewController: UIViewController {
         
         configureUI()
         setupPanGesture()
-        DispatchQueue.global().async {
-            self.presenter.fetchData(by: self.serialNumber)
-            self.presenter.provideBackgroundImage()
-            self.presenter.provideRocketName()
-            self.presenter.provideViewModel()
-        }
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard viewModel == nil else { return }
+        fetchData()
     }
     
     // reseting the bottom sheet position to min
@@ -95,19 +94,30 @@ final class MainViewController: UIViewController {
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         bottomSheetView.translatesAutoresizingMaskIntoConstraints = false
         
+        
         NSLayoutConstraint.activate([
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: bottomSheetView.topAnchor, constant: 32)
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomSheetView.topAnchor, constant: 32),
+            bottomSheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomSheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomSheetView.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         bottomSheetViewHeightConstraint = bottomSheetView.heightAnchor.constraint(equalToConstant: minBottomSheetViewHeight)
         bottomSheetViewBottomConstraint = bottomSheetView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 32.0)
-        bottomSheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        bottomSheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         bottomSheetViewHeightConstraint?.isActive = true
         bottomSheetViewBottomConstraint?.isActive = true
+    }
+    
+    private func fetchData() {
+        DispatchQueue.global().async {
+            self.presenter.fetchData(by: self.serialNumber)
+            self.presenter.provideBackgroundImage()
+            self.presenter.provideRocketName()
+            self.presenter.provideViewModel()
+        }
     }
     
     private func setupPanGesture() {
@@ -161,6 +171,7 @@ final class MainViewController: UIViewController {
     }
     
     private func scrollTableToTop() {
+        guard viewModel != nil else { return }
         if currentBottomSheetViewHeight == minBottomSheetViewHeight {
             bottomSheetView.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
         }

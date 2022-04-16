@@ -63,6 +63,7 @@ final class DetailsViewController: UIViewController {
         collectionView.delegate = viewModel
         
         // attributes
+        collectionView.alwaysBounceVertical = true
         collectionView.showsVerticalScrollIndicator = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundView = UIView()

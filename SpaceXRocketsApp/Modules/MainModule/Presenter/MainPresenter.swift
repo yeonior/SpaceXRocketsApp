@@ -37,11 +37,11 @@ final class MainPresenter: MainPresenterProtocol {
             country: rocket.country,
             costPerLaunch: rocket.costPerLaunch,
             firstStage: RocketData.Stage(engines: rocket.firstStage.engines,
-                                              fuelAmountTons: rocket.firstStage.fuelAmountTons,
-                                              burnTimeSEC: rocket.firstStage.burnTimeSEC),
+                                         fuelAmountTons: rocket.firstStage.fuelAmountTons,
+                                         burnTimeSEC: rocket.firstStage.burnTimeSEC),
             secondStage: RocketData.Stage(engines: rocket.secondStage.engines,
-                                                fuelAmountTons: rocket.secondStage.fuelAmountTons,
-                                                burnTimeSEC: rocket.secondStage.burnTimeSEC)
+                                          fuelAmountTons: rocket.secondStage.fuelAmountTons,
+                                          burnTimeSEC: rocket.secondStage.burnTimeSEC)
         )
         
         self.rocketData = rocketData
