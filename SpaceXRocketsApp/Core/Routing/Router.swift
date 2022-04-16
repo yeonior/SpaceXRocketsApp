@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RouterProtocol {
-    var navigationController: UINavigationController? { get }
+    var navigationController: UINavigationController! { get }
     var assemblyBuilder: AssemblyBuilderProtocol! { get }
 }
 
@@ -21,17 +21,18 @@ protocol Routing: RouterProtocol {
 
 final class Router: Routing {
     
-    var navigationController: UINavigationController?
-    var assemblyBuilder: AssemblyBuilderProtocol!
+    // MARK: - Properties
+    let navigationController: UINavigationController!
+    let assemblyBuilder: AssemblyBuilderProtocol!
     
+    // MARK: - Init
     init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }
     
+    // MARK: - Methods
     func activateBaseModule() {
-        guard let navigationController = navigationController else { return }
-                
         let viewController = assemblyBuilder.buildBaseModule(router: self)
         navigationController.viewControllers = [viewController]
     }
@@ -45,10 +46,7 @@ final class Router: Routing {
     }
     
     func showDetailsModule(with serialNumber: Int, and name: String) {
-        guard let navigationController = navigationController else { return }
-        
         let viewController = assemblyBuilder.buildDetailsModule(with: serialNumber, router: self)
-        viewController.modalPresentationStyle = .automatic
         viewController.title = name
         navigationController.pushViewController(viewController, animated: true)
     }

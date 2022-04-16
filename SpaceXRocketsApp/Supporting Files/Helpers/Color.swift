@@ -11,6 +11,7 @@ enum Color {
     case background
     case bottomSheetViewBackground
     case showButton
+    case showButtonText
     case tableViewCellMainLabel
     case tableViewCellDetailsLabel
     case tableViewCellUnitLabel
@@ -51,7 +52,8 @@ enum Color {
         case
                 .tableViewCellDetailsLabel,
                 .bottomSheetViewHeader,
-                .tableViewStageSectionHeader:
+                .tableViewStageSectionHeader,
+                .showButtonText:
             return hexStringToUIColor(hex: "#F6F6F6")
             
         case

@@ -15,9 +15,11 @@ protocol AssemblyBuilderProtocol {
 
 final class AssemblyBuilder: AssemblyBuilderProtocol {
     
+    // MARK: - Properties
     let dataManager = DataManager.shared
     let networkManager = NetworkManager.shared
     
+    // MARK: - Methods
     func buildBaseModule(router: Routing) -> UIViewController {
         
         let view = BasePageViewController(transitionStyle: .scroll,
@@ -62,4 +64,3 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         return view
     }
 }
-    
