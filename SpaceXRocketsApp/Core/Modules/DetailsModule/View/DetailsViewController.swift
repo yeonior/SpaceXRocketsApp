@@ -15,12 +15,15 @@ protocol DetailsViewProtocol: AnyObject {
 
 final class DetailsViewController: UIViewController {
     
+    // MARK: - Subviews
     var collectionView: UICollectionView?
+    
+    // MARK: - Properties
     var router: Routing!
     var presenter: DetailsPresenterProtocol!
     var serialNumber: Int!
     
-    var viewModel: DetailsViewModel? {
+    private var viewModel: DetailsViewModel? {
         didSet {
             collectionView?.dataSource = viewModel
             collectionView?.delegate = viewModel
@@ -32,8 +35,8 @@ final class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        DispatchQueue.global().async {
-            self.presenter.fetchData()
+        DispatchQueue.global().async { [unowned self] in
+            presenter.fetchData()
         }
     }
     
@@ -42,14 +45,13 @@ final class DetailsViewController: UIViewController {
         
         view.backgroundColor = Color.background.uiColor
         
-        // layout
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
 //        layout.minimumInteritemSpacing = 50
         layout.minimumLineSpacing = 16
         
-        // init and insets
-        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: view.frame,
+                                          collectionViewLayout: layout)
         collectionView?.contentInset = UIEdgeInsets(top: 40,
                                                     left: 0,
                                                     bottom: 0,
@@ -58,11 +60,7 @@ final class DetailsViewController: UIViewController {
         guard let collectionView = collectionView else { return }
         collectionView.register(DetailsCell.self, forCellWithReuseIdentifier: DetailsCell.identifier)
         
-        // protocols
         collectionView.dataSource = viewModel
-        collectionView.delegate = viewModel
-        
-        // attributes
         collectionView.alwaysBounceVertical = true
         collectionView.showsVerticalScrollIndicator = true
         collectionView.showsHorizontalScrollIndicator = false
@@ -70,7 +68,6 @@ final class DetailsViewController: UIViewController {
         collectionView.backgroundView?.backgroundColor = Color.lauchesPageBackground.uiColor
         collectionView.backgroundColor = Color.lauchesPageBackground.uiColor
         
-        // adding
         view.addSubview(collectionView)
     }
 }

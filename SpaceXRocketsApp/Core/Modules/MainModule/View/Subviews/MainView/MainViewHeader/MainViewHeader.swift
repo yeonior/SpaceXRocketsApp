@@ -1,5 +1,5 @@
 //
-//  MainHeaderView.swift
+//  MainViewHeader.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 05.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainHeaderView: UIView {
+final class MainViewHeader: UIView {
     
     // MARK: - Subviews
 //    lazy var indicatorView: UIView = {
@@ -19,8 +19,8 @@ final class MainHeaderView: UIView {
     lazy var titleLabel: UILabel = {
         $0.textAlignment = .left
         $0.backgroundColor = .clear
-        $0.font = Font.bottomSheetViewHeader.uiFont
-        $0.textColor = Color.bottomSheetViewHeader.uiColor
+        $0.font = Font.mainViewHeader.uiFont
+        $0.textColor = Color.mainViewHeader.uiColor
         return $0
     }(UILabel())
     
@@ -37,7 +37,7 @@ final class MainHeaderView: UIView {
     // MARK: - Private methods
     private func setup() {
         
-        backgroundColor = Color.bottomSheetViewBackground.uiColor
+        backgroundColor = Color.mainViewHeaderBackground.uiColor
         
 //        indicatorView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

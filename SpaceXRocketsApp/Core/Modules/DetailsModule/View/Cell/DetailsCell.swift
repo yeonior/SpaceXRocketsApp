@@ -20,66 +20,57 @@ struct DetailsCellSizeConstants {
 
 final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     
-    static let identifier = "DetailsCell"
+    // MARK: - Properties
+    static let identifier = "detailsCell"
     
-    var successSign: Bool?
     var cellViewModel: DetailsCellViewModelProtocol? {
         didSet {
             updateLabels()
         }
     }
+    private var successSign: Bool?
     
     // MARK: - Subviews
     lazy var mainLabel: UILabel = {
-        let label = UILabel()
-        label.font = Font.collectionCellMainLabel.uiFont
-        label.textAlignment = .left
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.8
-        label.clipsToBounds = true
-        label.textColor = Color.collectionCellMainLabel.uiColor
-        
-        return label
-    }()
+        $0.font = Font.collectionCellMainLabel.uiFont
+        $0.textColor = Color.collectionCellMainLabel.uiColor
+        $0.textAlignment = .left
+        $0.numberOfLines = 1
+        $0.adjustsFontSizeToFitWidth = true
+        $0.minimumScaleFactor = 0.8
+        $0.clipsToBounds = true
+        return $0
+    }(UILabel())
     
     lazy var detailsLabel: UILabel = {
-        let label = UILabel()
-        label.font = Font.collectionCellDetailLabel.uiFont
-        label.textAlignment = .left
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.7
-        label.clipsToBounds = true
-        label.textColor = Color.collectionCellDetailsLabel.uiColor
-        
-        return label
-    }()
+        $0.font = Font.collectionCellDetailLabel.uiFont
+        $0.textColor = Color.collectionCellDetailsLabel.uiColor
+        $0.textAlignment = .left
+        $0.numberOfLines = 1
+        $0.adjustsFontSizeToFitWidth = true
+        $0.minimumScaleFactor = 0.7
+        $0.clipsToBounds = true
+        return $0
+    }(UILabel())
     
     lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        
-        return imageView
-    }()
+        $0.contentMode = .scaleAspectFit
+        $0.clipsToBounds = true
+        return $0
+    }(UIImageView())
     
-    private let circleImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.tintColor = Color.circleBackground.uiColor
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        
-        return imageView
-    }()
+    private lazy var circleImageView: UIImageView = {
+        $0.tintColor = Color.collectionViewCellCircleBackground.uiColor
+        $0.contentMode = .scaleAspectFit
+        $0.clipsToBounds = true
+        return $0
+    }(UIImageView())
     
     lazy var statusImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        
-        return imageView
-    }()
+        $0.contentMode = .scaleAspectFit
+        $0.clipsToBounds = true
+        return $0
+    }(UIImageView())
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -98,12 +89,16 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
         labelStackView.distribution = .fill
         labelStackView.axis = .vertical
         
-        // attributes
         contentView.backgroundColor = Color.collectionCellBackground.uiColor
         contentView.layer.cornerRadius = 24
 //        contentView.layer.shadowRadius = 7
 //        contentView.layer.shadowOpacity = 0.3
 //        contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        
+        labelStackView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        circleImageView.translatesAutoresizingMaskIntoConstraints = false
+        statusImageView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(labelStackView)
         contentView.addSubview(imageView)
@@ -111,11 +106,6 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
         contentView.addSubview(statusImageView)
         
         // constraints
-        labelStackView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        circleImageView.translatesAutoresizingMaskIntoConstraints = false
-        statusImageView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             labelStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
@@ -149,9 +139,15 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
             return
         }
         
-        imageView.image = success ? UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor) : UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor).flipDiagonally()
+        imageView.image = success
+                          ? UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor)
+                          : UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor).flipDiagonally()
         circleImageView.image = UIImage(systemName: "circle.fill")
-        statusImageView.image = success ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "xmark.circle.fill")
-        statusImageView.tintColor = success ? Color.successStatus.uiColor : Color.failureStatus.uiColor
+        statusImageView.image = success
+                                ? UIImage(systemName: "checkmark.circle.fill")
+                                : UIImage(systemName: "xmark.circle.fill")
+        statusImageView.tintColor = success
+                                    ? Color.successStatus.uiColor
+                                    : Color.failureStatus.uiColor
     }
 }

@@ -33,7 +33,6 @@ final class TextFormatter {
         let symbol = "$"
         let units = ["K", "M", "B", "T"]
         
-        
         let num = Double(number)
         if (num < 1000.0) {
             return "\(symbol)\(num)"

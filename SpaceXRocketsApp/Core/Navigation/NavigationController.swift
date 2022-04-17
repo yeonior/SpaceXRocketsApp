@@ -12,9 +12,9 @@ final class NavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let textAttributes = [NSAttributedString.Key.foregroundColor: Color.bottomSheetViewHeader.uiColor]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: Color.mainViewHeader.uiColor]
         navigationBar.titleTextAttributes = textAttributes
         navigationBar.barTintColor = Color.background.uiColor
-        navigationBar.tintColor = Color.bottomSheetViewHeader.uiColor
+        navigationBar.tintColor = Color.mainViewHeader.uiColor
     }
 }

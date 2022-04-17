@@ -17,15 +17,18 @@ protocol MainPresenterProtocol {
 
 final class MainPresenter: MainPresenterProtocol {
     
+    // MARK: - Properties
     weak var view: MainViewProtocol!
     let dataManager: DataManagerProtocol!
     var rocketData: RocketData?
     
+    // MARK: - Init
     init(view: MainViewProtocol, dataManager: DataManagerProtocol) {
         self.view = view
         self.dataManager = dataManager
     }
     
+    // MARK: - Methods
     func fetchData(by serialNumber: Int) {
         let rockets = dataManager.getRockets()
         let rocket = rockets[serialNumber - 1]
@@ -49,6 +52,7 @@ final class MainPresenter: MainPresenterProtocol {
     
     func provideBackgroundImage() {
         guard let rocketData = rocketData else { return }
+        // providing a random image
         let imageData = dataManager.getData(from: rocketData.flickrImages.randomElement()!)
         view.setBackgroundImage(with: imageData)
     }

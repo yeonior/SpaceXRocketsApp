@@ -8,35 +8,45 @@
 import UIKit.UIFont
 
 enum Font {
-    enum Style: String {
+    private enum Style: String {
         case thin = "Thin"
         case regular = "Regular"
         case medium = "Medium"
         case bold = "Bold"
     }
 
-    case bottomSheetViewHeader
+    case mainViewHeader
+    
+    case tableViewStageSectionHeader
     case tableViewCellMainLabel
     case tableViewCellDetailsLabel
     case tableViewCellUnitLabel
-    case tableViewStageSectionHeader
+    
     case showButton
+    
     case collectionCellMainLabel
     case collectionCellDetailLabel
 
     var uiFont: UIFont {
         switch self {
-        case .bottomSheetViewHeader:
+        case    .mainViewHeader:
             return UIFont(name: "LabGrotesque-\(Style.regular.rawValue)", size: 32)!
-        case .tableViewCellMainLabel, .collectionCellDetailLabel:
+            
+        case    .tableViewCellMainLabel,
+                .collectionCellDetailLabel:
             return UIFont(name: "LabGrotesque-\(Style.regular.rawValue)", size: 16)!
-        case .tableViewCellDetailsLabel:
+            
+        case    .tableViewCellDetailsLabel:
             return UIFont(name: "LabGrotesque-\(Style.medium.rawValue)", size: 16)!
-        case .tableViewStageSectionHeader, .tableViewCellUnitLabel:
+            
+        case    .tableViewStageSectionHeader,
+                .tableViewCellUnitLabel:
             return UIFont(name: "LabGrotesque-\(Style.bold.rawValue)", size: 16)!
-        case .showButton:
+            
+        case    .showButton:
             return UIFont(name: "LabGrotesque-\(Style.bold.rawValue)", size: 18)!
-        case .collectionCellMainLabel:
+            
+        case    .collectionCellMainLabel:
             return UIFont(name: "LabGrotesque-\(Style.regular.rawValue)", size: 20)!
         }
     }

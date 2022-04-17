@@ -8,51 +8,48 @@
 import Foundation
 
 protocol DataManagerProtocol {
-    func setRockets(rockets: [RocketModel])
-    func getRockets() -> [RocketModel]
     func getData(from stringURL: String) -> Data
-    func setLaunches(launches: [LaunchModel])
+    func setRockets(_ rockets: [RocketModel])
+    func getRockets() -> [RocketModel]
+    func setLaunches(_ launches: [LaunchModel])
     func getLaunches() -> [LaunchModel]
 }
 
 final class DataManager: DataManagerProtocol {
+    
+    // MARK: - Properties
     static let shared = DataManager()
-    var rockets: [RocketModel]?
-    var launches: [LaunchModel]?
+    private var rockets: [RocketModel]?
+    private var launches: [LaunchModel]?
     
-    func setRockets(rockets: [RocketModel]) {
-        self.rockets = rockets
-    }
+    // MARK: - Init
+    private init() {}
     
-    func getRockets() -> [RocketModel] {
-        guard let rockets = rockets else {
-            return []
-        }
-        return rockets
-    }
-    
-//    func getRocket(by number: Int) -> RocketModel {
-//        let index = number - 1
-//        if let rocket = rockets?[index] {
-//            return rocket
-//        }
-//        return RocketModel
-//    }
-    
+    // MARK: - Methods
     func getData(from stringURL: String) -> Data {
-        guard let url = URL(string: stringURL), let data = try? Data(contentsOf: url) else { return Data()}
+        guard let url = URL(string: stringURL),
+              let data = try? Data(contentsOf: url) else { return Data() }
         
         return data
     }
     
-    func setLaunches(launches: [LaunchModel]) {
+    func setRockets(_ rockets: [RocketModel]) {
+        self.rockets = rockets
+    }
+    
+    func getRockets() -> [RocketModel] {
+        guard let rockets = rockets else { return [] }
+        
+        return rockets
+    }
+    
+    func setLaunches(_ launches: [LaunchModel]) {
         self.launches = launches
     }
     
     func getLaunches() -> [LaunchModel] {
-        guard let launches = launches else {
-            return []
-        }
+        guard let launches = launches else { return [] }
+        
         return launches
     }
 }

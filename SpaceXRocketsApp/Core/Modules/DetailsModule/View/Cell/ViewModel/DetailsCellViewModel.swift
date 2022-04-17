@@ -12,10 +12,13 @@ protocol DetailsCellViewModelProtocol {
 }
 
 final class DetailsCellViewModel: DetailsCellViewModelProtocol {
+    
+    // MARK: - Properties
     var text: String?
     var detailText: String?
     var sign: Bool?
     
+    // MARK: - Init
     init() {
         self.text = nil
         self.detailText = nil

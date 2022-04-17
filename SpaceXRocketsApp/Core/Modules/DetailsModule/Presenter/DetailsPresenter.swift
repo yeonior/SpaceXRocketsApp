@@ -15,25 +15,30 @@ protocol DetailsPresenterProtocol {
 
 final class DetailsPresenter: DetailsPresenterProtocol {
     
+    // MARK: - Properties
     weak var view: DetailsViewProtocol!
     let networkManager: NetworkManagerProtocol!
     let dataManager: DataManagerProtocol!
     
-    init(view: DetailsViewProtocol, networkManager: NetworkManagerProtocol, dataManager: DataManagerProtocol) {
+    // MARK: - Init
+    init(view: DetailsViewProtocol,
+         networkManager: NetworkManagerProtocol,
+         dataManager: DataManagerProtocol) {
         self.view = view
         self.networkManager = networkManager
         self.dataManager = dataManager
     }
     
+    // MARK: - Methods
     func fetchData() {
         let url = API.launches.url
-        networkManager.request(fromURL: url) { (result: Result<[LaunchModel], Error>) in
+        networkManager.request(fromURL: url) { [unowned self] (result: Result<[LaunchModel], Error>) in
             switch result {
             case .success(let launches):
-                self.dataManager.setLaunches(launches: launches)
-                self.view.success()
+                dataManager.setLaunches(launches)
+                view.success()
             case .failure(let error):
-                self.view.failure(error: error)
+                view.failure(error: error)
             }
         }
     }

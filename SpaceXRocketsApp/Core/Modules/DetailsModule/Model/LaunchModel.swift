@@ -7,10 +7,8 @@
 
 import Foundation
 
-struct LaunchModel: Codable {
-    let rocketId: String
-    let name: String
-    let dateLocal: String
+struct LaunchModel: Decodable {
+    let rocketId, name, dateLocal: String
     let success: Bool?
     
     enum CodingKeys: String, CodingKey {

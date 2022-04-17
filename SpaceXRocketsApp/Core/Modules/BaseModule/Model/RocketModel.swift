@@ -6,7 +6,7 @@
 //
 
 // MARK: - RocketModel
-struct RocketModel: Codable {
+struct RocketModel: Decodable {
     let height, diameter: Diameter
     let mass: Mass
     let firstStage: FirstStage
@@ -41,12 +41,12 @@ struct RocketModel: Codable {
 }
 
 // MARK: - Diameter
-struct Diameter: Codable {
+struct Diameter: Decodable {
     let meters, feet: Double?
 }
 
 // MARK: - Engines
-struct Engines: Codable {
+struct Engines: Decodable {
     let isp: ISP
     let thrustSeaLevel, thrustVacuum: Thrust
     let number: Int
@@ -69,7 +69,7 @@ struct Engines: Codable {
 }
 
 // MARK: - ISP
-struct ISP: Codable {
+struct ISP: Decodable {
     let seaLevel, vacuum: Int
 
     enum CodingKeys: String, CodingKey {
@@ -79,12 +79,12 @@ struct ISP: Codable {
 }
 
 // MARK: - Thrust
-struct Thrust: Codable {
+struct Thrust: Decodable {
     let kN, lbf: Int
 }
 
 // MARK: - FirstStage
-struct FirstStage: Codable {
+struct FirstStage: Decodable {
     let thrustSeaLevel, thrustVacuum: Thrust
     let reusable: Bool
     let engines: Int
@@ -101,24 +101,24 @@ struct FirstStage: Codable {
 }
 
 // MARK: - LandingLegs
-struct LandingLegs: Codable {
+struct LandingLegs: Decodable {
     let number: Int
     let material: String?
 }
 
 // MARK: - Mass
-struct Mass: Codable {
+struct Mass: Decodable {
     let kg, lb: Int
 }
 
 // MARK: - PayloadWeight
-struct PayloadWeight: Codable {
+struct PayloadWeight: Decodable {
     let id, name: String
     let kg, lb: Int
 }
 
 // MARK: - SecondStage
-struct SecondStage: Codable {
+struct SecondStage: Decodable {
     let thrust: Thrust
     let payloads: Payloads
     let reusable: Bool
@@ -134,7 +134,7 @@ struct SecondStage: Codable {
 }
 
 // MARK: - Payloads
-struct Payloads: Codable {
+struct Payloads: Decodable {
     let compositeFairing: CompositeFairing
     let option1: String
 
@@ -145,6 +145,6 @@ struct Payloads: Codable {
 }
 
 // MARK: - CompositeFairing
-struct CompositeFairing: Codable {
+struct CompositeFairing: Decodable {
     let height, diameter: Diameter
 }

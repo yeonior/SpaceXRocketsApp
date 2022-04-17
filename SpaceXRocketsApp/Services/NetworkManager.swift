@@ -9,16 +9,18 @@ import Foundation
 
 protocol NetworkManagerProtocol {
     func request<T: Decodable>(fromURL url: URL, completion: @escaping (Result<T, Error>) -> Void)
-    func getData(from stringURL: String) -> Data
 }
 
 final class NetworkManager: NetworkManagerProtocol {
     
+    // MARK: - Properties
     static let shared = NetworkManager()
     private let sessionConfiguration = URLSessionConfiguration.default
     
+    // MARK: - Init
     private init() {}
     
+    // MARK: - Methods
     func request<T: Decodable>(fromURL url: URL, completion: @escaping (Result<T, Error>) -> Void) {
         
         let request = URLRequest(url: url)
@@ -46,11 +48,5 @@ final class NetworkManager: NetworkManagerProtocol {
                 completionOnMain(.failure(error))
             }
         }.resume()
-    }
-    
-    func getData(from stringURL: String) -> Data {
-        guard let url = URL(string: stringURL), let data = try? Data(contentsOf: url) else { return Data()}
-        
-        return data
     }
 }

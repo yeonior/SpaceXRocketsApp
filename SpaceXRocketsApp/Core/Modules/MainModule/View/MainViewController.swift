@@ -51,12 +51,7 @@ final class MainViewController: UIViewController {
         }
     }
     
-    // bottomSheetView dynamic constraints
-    private var bottomSheetViewHeightConstraint: NSLayoutConstraint?
-    private var bottomSheetViewBottomConstraint: NSLayoutConstraint?
-    
-    // gesture
-    var panGesture = UIGestureRecognizer()
+    private var mainViewHeightConstraint: NSLayoutConstraint?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -87,7 +82,7 @@ final class MainViewController: UIViewController {
             if object is UITableView {
                 if let newvalue = change?[.newKey] {
                     let newsize  = newvalue as! CGSize
-                    bottomSheetViewHeightConstraint?.constant = newsize.height + 112 + 64
+                    mainViewHeightConstraint?.constant = newsize.height + 112 + 64
                 }
             }
         }
@@ -126,18 +121,15 @@ final class MainViewController: UIViewController {
             backgroundImageView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
             backgroundImageView.heightAnchor.constraint(equalToConstant: 400),
-//            backgroundImageView.bottomAnchor.constraint(equalTo: bottomSheetView.topAnchor, constant: 32),
             mainView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -32),
             mainView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
             mainView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
-//            bottomSheetView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor),
+            mainView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor, constant: 32.0),
             mainView.tableView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor)
         ])
         
-        bottomSheetViewHeightConstraint = mainView.heightAnchor.constraint(equalToConstant: 400)
-        bottomSheetViewBottomConstraint = mainView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor, constant: 32.0)
-        bottomSheetViewHeightConstraint?.isActive = true
-        bottomSheetViewBottomConstraint?.isActive = true
+        mainViewHeightConstraint = mainView.heightAnchor.constraint(equalToConstant: 400)
+        mainViewHeightConstraint?.isActive = true
     }
     
     private func fetchData() {
@@ -163,7 +155,7 @@ final class MainViewController: UIViewController {
     }
     
     private func getToTheTop() {
-        scrollView.setContentOffset(CGPoint.zero, animated: false)
+        scrollView.setContentOffset(CGPoint.zero, animated: true)
     }
 }
 
@@ -181,7 +173,7 @@ extension MainViewController: MainViewProtocol {
     func setName(_ name: String) {
         DispatchQueue.main.sync {
             title = name
-            mainView.headerView.titleLabel.text = name
+            mainView.header.titleLabel.text = name
         }
     }
     

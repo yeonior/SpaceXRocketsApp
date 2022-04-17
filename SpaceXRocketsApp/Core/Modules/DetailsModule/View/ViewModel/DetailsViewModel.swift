@@ -12,8 +12,11 @@ protocol DetailsSectionViewModelProtocol {
 }
 
 final class DetailsViewModel: NSObject, DetailsSectionViewModelProtocol {
+    
+    // MARK: - Properties
     var cells: [DetailsCellViewModelProtocol]
     
+    // MARK: - Init
     init(data: [LaunchModel]) {
         var cells = [DetailsCellViewModelProtocol]()
         for launch in data {
@@ -24,6 +27,7 @@ final class DetailsViewModel: NSObject, DetailsSectionViewModelProtocol {
                                             sign: launch.success)
             cells.append(cell)
         }
+        
         self.cells = cells
     }
 }
@@ -31,6 +35,7 @@ final class DetailsViewModel: NSObject, DetailsSectionViewModelProtocol {
 // MARK: - UICollectionViewDataSource
 extension DetailsViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // "1" for rockets with no lauches to show an information cell
         cells.count == 0 ? 1 : cells.count
     }
     
@@ -38,6 +43,7 @@ extension DetailsViewModel: UICollectionViewDataSource {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCell.identifier, for: indexPath) as? DetailsCell {
             
+            // an information cell for rockets with no lauches
             if cells.count == 0 {
                 cell.mainLabel.text = "No information available"
                 cell.imageView.image = UIImage(systemName: "xmark.circle.fill")
@@ -53,11 +59,6 @@ extension DetailsViewModel: UICollectionViewDataSource {
         
         return UICollectionViewCell()
     }
-}
-
-// MARK: - UICollectionViewDelegate
-extension DetailsViewModel: UICollectionViewDelegate {
-    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

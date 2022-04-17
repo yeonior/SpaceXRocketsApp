@@ -34,7 +34,7 @@ final class BasePresenter: BasePresenterProtocol {
         networkManager.request(fromURL: url) { [unowned self] (result: Result<[RocketModel], Error>) in
             switch result {
             case .success(let rockets):
-                dataManager.setRockets(rockets: rockets)
+                dataManager.setRockets(rockets)
                 view.success(withTheNumber: rockets.count)
             case .failure(let error):
                 view.failure(error: error)

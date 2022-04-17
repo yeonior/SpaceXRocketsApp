@@ -9,72 +9,71 @@ import UIKit.UIColor
 
 enum Color {
     case background
-    case bottomSheetViewBackground
-    case showButton
-    case showButtonText
+    case mainBackground
+    case lauchesPageBackground
+    
+    case pageIndicator
+    case currentPageIndicator
+    
+    case mainViewHeader
+    case mainViewHeaderBackground
+    
+    case dragIndicator
+    case dragIndicatorBackground
+    
+    case tableViewStageSectionHeader
     case tableViewCellMainLabel
     case tableViewCellDetailsLabel
     case tableViewCellUnitLabel
-    case bottomSheetViewHeader
-    case tableViewStageSectionHeader
-    case dragIndicator
-    case dragIndicatorBackground
-    case currentPageIndicator
-    case pageIndicator
     case tableViewCellBackground
-    case collectionCellBackground
+    
+    case showButton
+    case showButtonText
+    
     case collectionCellMainLabel
     case collectionCellDetailsLabel
     case collectionCellImageView
-    case lauchesPageBackground
+    case collectionCellBackground
+    case collectionViewCellCircleBackground
+    
     case successStatus
     case failureStatus
-    case unknownStatus
-    case circleBackground
-    case mainBackground
     
     var uiColor: UIColor {
         switch self {
-        case
-                .bottomSheetViewBackground,
-                .tableViewCellBackground,
+        case    .mainBackground,
                 .lauchesPageBackground,
-                .mainBackground:
+                .mainViewHeaderBackground,
+                .tableViewCellBackground:
             return hexStringToUIColor(hex: "#000000")
             
-        case
-                .showButton,
+        case    .showButton,
                 .collectionCellBackground:
             return hexStringToUIColor(hex: "#212121")
             
-        case
-                .tableViewCellMainLabel:
+        case    .tableViewCellMainLabel:
             return hexStringToUIColor(hex: "#CACACA")
             
-        case
-                .tableViewCellDetailsLabel,
-                .bottomSheetViewHeader,
+        case    .mainViewHeader,
                 .tableViewStageSectionHeader,
+                .tableViewCellDetailsLabel,
                 .showButtonText:
             return hexStringToUIColor(hex: "#F6F6F6")
             
-        case
+        case    .pageIndicator,
                 .dragIndicator,
-                .pageIndicator,
                 .tableViewCellUnitLabel,
                 .collectionCellDetailsLabel,
                 .collectionCellImageView:
             return hexStringToUIColor(hex: "#8E8E8F")
             
-        case
-                .background,
+        case    .background,
                 .dragIndicatorBackground:
             return hexStringToUIColor(hex: "#121212")
             
-        case
-                .currentPageIndicator,
+        case    .currentPageIndicator,
                 .collectionCellMainLabel,
-                .circleBackground:
+                .collectionViewCellCircleBackground:
             return hexStringToUIColor(hex: "#FFFFFF")
             
         case .successStatus:
@@ -82,9 +81,6 @@ enum Color {
             
         case .failureStatus:
             return hexStringToUIColor(hex: "#DD473B")
-            
-        case .unknownStatus:
-            return hexStringToUIColor(hex: "#555555")
         }
     }
 }
