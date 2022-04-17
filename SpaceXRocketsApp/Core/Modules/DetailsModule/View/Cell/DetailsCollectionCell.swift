@@ -1,5 +1,5 @@
 //
-//  DetailsCell.swift
+//  DetailsCollectionCell.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 12.04.2022.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol DetailsCellProtocol {
-    var cellViewModel: DetailsCellViewModelProtocol? { get }
+protocol DetailsCollectionCellProtocol {
+    var cellViewModel: DetailsCollectionCellViewModelProtocol? { get }
 }
 
 private struct DetailsCellSizeConstants {
@@ -18,12 +18,12 @@ private struct DetailsCellSizeConstants {
     static let imageViewRightPadding: CGFloat = 24.0
 }
 
-final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
+final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellProtocol {
     
     // MARK: - Properties
     static let identifier = "detailsCell"
     
-    var cellViewModel: DetailsCellViewModelProtocol? {
+    var cellViewModel: DetailsCollectionCellViewModelProtocol? {
         didSet {
             updateLabels()
         }
@@ -32,8 +32,8 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     
     // MARK: - Subviews
     lazy var mainLabel: UILabel = {
-        $0.font = Font.collectionCellMainLabel.uiFont
-        $0.textColor = Color.collectionCellMainLabel.uiColor
+        $0.font = Font.detailsCollectionCellMainLabel.uiFont
+        $0.textColor = Color.detailsCollectionCellMainLabel.uiColor
         $0.textAlignment = .left
         $0.numberOfLines = 1
         $0.adjustsFontSizeToFitWidth = true
@@ -43,8 +43,8 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     }(UILabel())
     
     lazy var detailsLabel: UILabel = {
-        $0.font = Font.collectionCellDetailLabel.uiFont
-        $0.textColor = Color.collectionCellDetailsLabel.uiColor
+        $0.font = Font.detailsCollectionCellDetailLabel.uiFont
+        $0.textColor = Color.detailsCollectionCellDetailsLabel.uiColor
         $0.textAlignment = .left
         $0.numberOfLines = 1
         $0.adjustsFontSizeToFitWidth = true
@@ -60,7 +60,7 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     }(UIImageView())
     
     private lazy var circleImageView: UIImageView = {
-        $0.tintColor = Color.collectionViewCellCircleBackground.uiColor
+        $0.tintColor = Color.detailsCollectionViewCellCircleBackground.uiColor
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         return $0
@@ -89,7 +89,7 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
         labelsStackView.distribution = .fill
         labelsStackView.axis = .vertical
         
-        contentView.backgroundColor = Color.collectionCellBackground.uiColor
+        contentView.backgroundColor = Color.detailsCollectionCellBackground.uiColor
         contentView.layer.cornerRadius = DetailsCellSizeConstants.cornerRadius
 //        contentView.layer.shadowRadius = 7
 //        contentView.layer.shadowOpacity = 0.3
@@ -135,15 +135,15 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
         
         guard let success = viewModel.sign else {
             imageView.image = UIImage(systemName: "questionmark.circle.fill")
-            imageView.tintColor = Color.collectionCellImageView.uiColor
+            imageView.tintColor = Color.detailsCollectionCellImageView.uiColor
             statusImageView.image = nil
             circleImageView.image = nil
             return
         }
         
         imageView.image = success
-                          ? UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor)
-                          : UIImage(named: "spaceRocket")?.withTintColor(Color.collectionCellImageView.uiColor).flipDiagonally()
+                          ? UIImage(named: "spaceRocket")?.withTintColor(Color.detailsCollectionCellImageView.uiColor)
+                          : UIImage(named: "spaceRocket")?.withTintColor(Color.detailsCollectionCellImageView.uiColor).flipDiagonally()
         circleImageView.image = UIImage(systemName: "circle.fill")
         statusImageView.image = success
                                 ? UIImage(systemName: "checkmark.circle.fill")

@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  MainTableViewModel.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 11.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MainItemViewModel {
+protocol MainTableViewModelProtocol {
     var sections: [MainSectionViewModelProtocol] { get }
 }
 
@@ -20,7 +20,7 @@ private struct MainTableViewSizeConstants {
     static let secondHalfSectionFooterHeight: CGFloat = 32.0
 }
 
-final class MainViewModel: NSObject, MainItemViewModel {
+final class MainTableViewModel: NSObject, MainTableViewModelProtocol {
     
     // MARK: - Properties
     var sections = [MainSectionViewModelProtocol]()
@@ -52,7 +52,7 @@ final class MainViewModel: NSObject, MainItemViewModel {
 }
 
 // MARK: - UITableViewDataSource
-extension MainViewModel: UITableViewDataSource {
+extension MainTableViewModel: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
     }
@@ -88,7 +88,7 @@ extension MainViewModel: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension MainViewModel: UITableViewDelegate {
+extension MainTableViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = sections[indexPath.section]
         switch section.name {

@@ -1,5 +1,5 @@
 //
-//  DetailsViewModel.swift
+//  DetailsCollectionViewModel.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 14.04.2022.
@@ -7,20 +7,20 @@
 
 import UIKit
 
-protocol DetailsSectionViewModelProtocol {
-    var cells: [DetailsCellViewModelProtocol] { get }
+protocol DetailsCollectionViewModelProtocol {
+    var cells: [DetailsCollectionCellViewModelProtocol] { get }
 }
 
-final class DetailsViewModel: NSObject, DetailsSectionViewModelProtocol {
+final class DetailsCollectionViewModel: NSObject, DetailsCollectionViewModelProtocol {
     
     // MARK: - Properties
-    var cells: [DetailsCellViewModelProtocol]
+    var cells: [DetailsCollectionCellViewModelProtocol]
     
     // MARK: - Init
     init(data: [LaunchModel]) {
-        var cells = [DetailsCellViewModelProtocol]()
+        var cells = [DetailsCollectionCellViewModelProtocol]()
         for launch in data {
-            let cell = DetailsCellViewModel(text: launch.name,
+            let cell = DetailsCollectionCellViewModel(text: launch.name,
                                             detailText: TextFormatter.convertDateFormat(date: launch.dateLocal,
                                                                                         from: .yyyyMMddTHHmmssZ,
                                                                                         to: .MMMMdyyyy),
@@ -33,7 +33,7 @@ final class DetailsViewModel: NSObject, DetailsSectionViewModelProtocol {
 }
 
 // MARK: - UICollectionViewDataSource
-extension DetailsViewModel: UICollectionViewDataSource {
+extension DetailsCollectionViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // "1" for rockets with no lauches to show an information cell
         cells.count == 0 ? 1 : cells.count
@@ -41,7 +41,7 @@ extension DetailsViewModel: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCell.identifier, for: indexPath) as? DetailsCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCollectionCell.identifier, for: indexPath) as? DetailsCollectionCell {
             
             // an information cell for rockets with no lauches
             if cells.count == 0 {
@@ -62,7 +62,7 @@ extension DetailsViewModel: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension DetailsViewModel: UICollectionViewDelegateFlowLayout {
+extension DetailsCollectionViewModel: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: DetailsViewSizeConstants.collectionViewItemWidth,

@@ -13,6 +13,7 @@ protocol MainPresenterProtocol {
     func provideBackgroundImage()
     func provideRocketName()
     func provideViewModel()
+    func provideCollectionViewModel()
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -36,6 +37,10 @@ final class MainPresenter: MainPresenterProtocol {
             id: rocket.id,
             flickrImages: rocket.flickrImages,
             name: rocket.name,
+            height: rocket.height,
+            diameter: rocket.diameter,
+            mass: rocket.mass,
+            payloadWeights: rocket.payloadWeights,
             firstFlight: rocket.firstFlight,
             country: rocket.country,
             costPerLaunch: rocket.costPerLaunch,
@@ -65,7 +70,13 @@ final class MainPresenter: MainPresenterProtocol {
     
     func provideViewModel() {
         guard let rocketData = rocketData else { return }
-        let viewModel = MainViewModel(data: rocketData)
-        view.setViewModel(viewModel)
+        let viewModel = MainTableViewModel(data: rocketData)
+        view.setTableViewModel(viewModel)
+    }
+    
+    func provideCollectionViewModel() {
+        guard let rocketData = rocketData else { return }
+        let viewModel = MainCollectionViewModel(data: [rocketData])
+        view.setCollectionViewModel(viewModel)
     }
 }

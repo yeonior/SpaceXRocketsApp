@@ -64,7 +64,7 @@ final class DetailsPresenter: DetailsPresenterProtocol {
         let sortedLaunches = filteredLaucnhes.sorted { dateFormatter.date(from: $0.dateLocal)! > dateFormatter.date(from: $1.dateLocal)! }
         
         // viewModel
-        let viewModel = DetailsViewModel(data: sortedLaunches)
+        let viewModel = DetailsCollectionViewModel(data: sortedLaunches)
         view.setViewModel(viewModel)
     }
 }

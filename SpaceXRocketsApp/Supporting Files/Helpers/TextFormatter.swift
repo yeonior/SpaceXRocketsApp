@@ -43,4 +43,10 @@ final class TextFormatter {
         
         return "\(symbol)\(roundedNum) \(units[exp-1])"
     }
+    
+    static func numberWithCommas(_ number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(from: NSNumber(value: number))!
+    }
 }

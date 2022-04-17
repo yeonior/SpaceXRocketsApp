@@ -10,7 +10,8 @@ import UIKit
 protocol MainViewProtocol: AnyObject {
     func setBackgroundImage(with data: Data)
     func setName(_ name: String)
-    func setViewModel(_ viewModel: MainViewModel)
+    func setTableViewModel(_ viewModel: MainTableViewModel)
+    func setCollectionViewModel(_ viewModel: MainCollectionViewModel)
 }
 
 struct MainViewSizeConstants {
@@ -18,7 +19,7 @@ struct MainViewSizeConstants {
     static let height: CGFloat = Size.screenHeight.floatValue / 2
     static let headerHeight: CGFloat = 112.0
     static let navigationBarHeight: CGFloat = 64.0
-    static let additionalHeight: CGFloat = headerHeight + navigationBarHeight
+    static let additionalHeight: CGFloat = headerHeight + navigationBarHeight + 96
     static let backgroundImageViewHeight: CGFloat = Size.screenHeight.floatValue / 2
 }
 
@@ -50,12 +51,21 @@ final class MainViewController: UIViewController {
     var router: Routing!
     var serialNumber: Int!
     
-    private var viewModel: MainViewModel? {
+    private var tableViewModel: MainTableViewModel? {
         didSet {
             DispatchQueue.main.sync {
-                mainView.tableView.dataSource = viewModel
-                mainView.tableView.delegate = viewModel
+                mainView.tableView.dataSource = tableViewModel
+                mainView.tableView.delegate = tableViewModel
                 mainView.tableView.reloadData()
+            }
+        }
+    }
+    private var collectionViewModel: MainCollectionViewModel? {
+        didSet {
+            DispatchQueue.main.sync {
+                mainView.collectionView?.dataSource = collectionViewModel
+                mainView.collectionView?.delegate = collectionViewModel
+                mainView.collectionView?.reloadData()
             }
         }
     }
@@ -71,14 +81,15 @@ final class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getToTheTop()
+        resetViewState()
         mainView.tableView.addObserver(self, forKeyPath: observerKeyPath, options: .new, context: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         hideNavigationBar()
-        guard viewModel == nil else { return }
+        // requesting data if it didn't received earlier
+        guard tableViewModel == nil || collectionViewModel == nil else { return }
         fetchData()
     }
     
@@ -151,6 +162,7 @@ final class MainViewController: UIViewController {
             presenter.provideBackgroundImage()
             presenter.provideRocketName()
             presenter.provideViewModel()
+            presenter.provideCollectionViewModel()
         }
     }
     
@@ -167,8 +179,9 @@ final class MainViewController: UIViewController {
         router.showDetailsModule(with: serialNumber, and: title ?? "")
     }
     
-    private func getToTheTop() {
-        scrollView.setContentOffset(CGPoint.zero, animated: true)
+    private func resetViewState() {
+        scrollView.scrollToTop(animated: true)
+        mainView.collectionView?.scrollToLeft(animated: true)
     }
 }
 
@@ -190,8 +203,12 @@ extension MainViewController: MainViewProtocol {
         }
     }
     
-    func setViewModel(_ viewModel: MainViewModel) {
-        self.viewModel = viewModel
-        self.viewModel?.buttonTapCallback = showLaunches
+    func setTableViewModel(_ viewModel: MainTableViewModel) {
+        self.tableViewModel = viewModel
+        self.tableViewModel?.buttonTapCallback = showLaunches
+    }
+    
+    func setCollectionViewModel(_ viewModel: MainCollectionViewModel) {
+        self.collectionViewModel = viewModel
     }
 }

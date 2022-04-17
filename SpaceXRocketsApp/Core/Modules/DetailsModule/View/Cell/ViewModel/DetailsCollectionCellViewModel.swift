@@ -1,17 +1,17 @@
 //
-//  DetailsCellViewModel.swift
+//  DetailsCollectionCellViewModel.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 14.04.2022.
 //
 
-protocol DetailsCellViewModelProtocol {
+protocol DetailsCollectionCellViewModelProtocol {
     var text: String? { get }
     var detailText: String? { get }
     var sign: Bool? { get }
 }
 
-final class DetailsCellViewModel: DetailsCellViewModelProtocol {
+final class DetailsCollectionCellViewModel: DetailsCollectionCellViewModelProtocol {
     
     // MARK: - Properties
     var text: String?

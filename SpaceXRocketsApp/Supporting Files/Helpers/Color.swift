@@ -21,6 +21,9 @@ enum Color {
     case dragIndicator
     case dragIndicatorBackground
     
+    case mainCollectionCellMainLabel
+    case mainCollectionCellDetailsLabel
+    
     case tableViewStageSectionHeader
     case tableViewCellMainLabel
     case tableViewCellDetailsLabel
@@ -30,11 +33,11 @@ enum Color {
     case showButton
     case showButtonText
     
-    case collectionCellMainLabel
-    case collectionCellDetailsLabel
-    case collectionCellImageView
-    case collectionCellBackground
-    case collectionViewCellCircleBackground
+    case detailsCollectionCellMainLabel
+    case detailsCollectionCellDetailsLabel
+    case detailsCollectionCellImageView
+    case detailsCollectionCellBackground
+    case detailsCollectionViewCellCircleBackground
     
     case successStatus
     case failureStatus
@@ -48,7 +51,7 @@ enum Color {
             return hexStringToUIColor(hex: "#000000")
             
         case    .showButton,
-                .collectionCellBackground:
+                .detailsCollectionCellBackground:
             return hexStringToUIColor(hex: "#212121")
             
         case    .tableViewCellMainLabel:
@@ -62,9 +65,10 @@ enum Color {
             
         case    .pageIndicator,
                 .dragIndicator,
+                .mainCollectionCellDetailsLabel,
                 .tableViewCellUnitLabel,
-                .collectionCellDetailsLabel,
-                .collectionCellImageView:
+                .detailsCollectionCellDetailsLabel,
+                .detailsCollectionCellImageView:
             return hexStringToUIColor(hex: "#8E8E8F")
             
         case    .background,
@@ -72,8 +76,9 @@ enum Color {
             return hexStringToUIColor(hex: "#121212")
             
         case    .currentPageIndicator,
-                .collectionCellMainLabel,
-                .collectionViewCellCircleBackground:
+                .mainCollectionCellMainLabel,
+                .detailsCollectionCellMainLabel,
+                .detailsCollectionViewCellCircleBackground:
             return hexStringToUIColor(hex: "#FFFFFF")
             
         case .successStatus:

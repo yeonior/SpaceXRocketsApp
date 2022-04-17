@@ -10,7 +10,7 @@ import UIKit
 protocol DetailsViewProtocol: AnyObject {
     func success()
     func failure(error: Error)
-    func setViewModel(_ viewModel: DetailsViewModel)
+    func setViewModel(_ viewModel: DetailsCollectionViewModel)
 }
 
 struct DetailsViewSizeConstants {
@@ -31,7 +31,7 @@ final class DetailsViewController: UIViewController {
     var presenter: DetailsPresenterProtocol!
     var serialNumber: Int!
     
-    private var viewModel: DetailsViewModel? {
+    private var viewModel: DetailsCollectionViewModel? {
         didSet {
             collectionView?.dataSource = viewModel
             collectionView?.delegate = viewModel
@@ -66,7 +66,7 @@ final class DetailsViewController: UIViewController {
                                                     right: 0)
         
         guard let collectionView = collectionView else { return }
-        collectionView.register(DetailsCell.self, forCellWithReuseIdentifier: DetailsCell.identifier)
+        collectionView.register(DetailsCollectionCell.self, forCellWithReuseIdentifier: DetailsCollectionCell.identifier)
         
         collectionView.dataSource = viewModel
         collectionView.alwaysBounceVertical = true
@@ -90,7 +90,7 @@ extension DetailsViewController: DetailsViewProtocol {
         debugPrint(error.localizedDescription)
     }
     
-    func setViewModel(_ viewModel: DetailsViewModel) {
+    func setViewModel(_ viewModel: DetailsCollectionViewModel) {
         self.viewModel = viewModel
     }
 }
