@@ -11,6 +11,11 @@ protocol MainCollectionViewModelProtocol {
     var cells: [MainCollectionCellViewModelProtocol] { get }
 }
 
+private struct MainCollectionViewSizeConstants {
+    static let cellWidth: CGFloat = 96.0
+    static let cellHeight: CGFloat = 96.0
+}
+
 final class MainCollectionViewModel: NSObject, MainCollectionViewModelProtocol {
     
     // MARK: - Properties
@@ -84,7 +89,7 @@ extension MainCollectionViewModel: UICollectionViewDataSource {
 extension MainCollectionViewModel: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 96,
-                      height: 96)
+        return CGSize(width: MainCollectionViewSizeConstants.cellWidth,
+                      height: MainCollectionViewSizeConstants.cellHeight)
     }
 }

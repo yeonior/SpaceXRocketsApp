@@ -11,6 +11,14 @@ protocol MainCollectionCellProtocol {
     var cellViewModel: MainCollectionCellViewModelProtocol? { get }
 }
 
+private struct MainCollectionCellSizeConstants {
+    static let cornerRadius: CGFloat = 32.0
+    static let labelsTopPadding: CGFloat = 28.0
+    static let labelsBottomPadding: CGFloat = 24.0
+    static let labelsLeftPadding: CGFloat = 8.0
+    static let labelsRightPadding: CGFloat = 8.0
+}
+
 final class MainCollectionCell: UICollectionViewCell, MainCollectionCellProtocol {
     
     // MARK: - Properties
@@ -59,7 +67,7 @@ final class MainCollectionCell: UICollectionViewCell, MainCollectionCellProtocol
     private func setupLabels() {
         
         contentView.backgroundColor = Color.detailsCollectionCellBackground.uiColor
-        contentView.layer.cornerRadius = 32
+        contentView.layer.cornerRadius = MainCollectionCellSizeConstants.cornerRadius
         
         mainLabel.translatesAutoresizingMaskIntoConstraints = false
         detailsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -69,12 +77,18 @@ final class MainCollectionCell: UICollectionViewCell, MainCollectionCellProtocol
         
         // constraints
         NSLayoutConstraint.activate([
-            mainLabel.topAnchor.constraint(equalTo: topAnchor, constant: 28),
-            mainLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            mainLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            detailsLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
-            detailsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            detailsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            mainLabel.topAnchor.constraint(equalTo: topAnchor,
+                                           constant: MainCollectionCellSizeConstants.labelsTopPadding),
+            mainLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                               constant: MainCollectionCellSizeConstants.labelsLeftPadding),
+            mainLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                constant: -MainCollectionCellSizeConstants.labelsRightPadding),
+            detailsLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                 constant: -MainCollectionCellSizeConstants.labelsBottomPadding),
+            detailsLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                  constant: MainCollectionCellSizeConstants.labelsLeftPadding),
+            detailsLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                   constant: -MainCollectionCellSizeConstants.labelsRightPadding)
         ])
     }
     

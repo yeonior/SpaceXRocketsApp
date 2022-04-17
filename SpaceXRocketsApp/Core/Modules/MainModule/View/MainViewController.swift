@@ -45,6 +45,7 @@ final class MainViewController: UIViewController {
     }(UIImageView())
     
     lazy var mainView = MainView()
+    lazy var activityIndicatorView = UIActivityIndicatorView()
     
     // MARK: - Properties
     var presenter: MainPresenterProtocol!
@@ -89,7 +90,7 @@ final class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         hideNavigationBar()
         // requesting data if it didn't received earlier
-        guard tableViewModel == nil || collectionViewModel == nil else { return }
+        guard tableViewModel == nil || collectionViewModel == nil || backgroundImageView.image == nil else { return }
         fetchData()
     }
     
@@ -115,6 +116,10 @@ final class MainViewController: UIViewController {
         
         view.backgroundColor = Color.mainBackground.uiColor
         
+        activityIndicatorView.style = .large
+        activityIndicatorView.center = view.center
+        activityIndicatorView.startAnimating()
+        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         baseView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,6 +129,7 @@ final class MainViewController: UIViewController {
         scrollView.addSubview(baseView)
         baseView.addSubview(backgroundImageView)
         baseView.addSubview(mainView)
+        view.addSubview(activityIndicatorView)
         
         // constraints
         let baseViewHeightConstraint = baseView.heightAnchor.constraint(equalTo: view.heightAnchor)
@@ -200,6 +206,7 @@ extension MainViewController: MainViewProtocol {
         DispatchQueue.main.sync {
             title = name
             mainView.header.titleLabel.text = name
+            activityIndicatorView.stopAnimating()
         }
     }
     
