@@ -8,10 +8,10 @@
 import Foundation
 
 enum DateFormat: String {
-    case yyyyMMdd = "yyyy-MM-dd"
-    case MMddyyyy = "MM/dd/yyyy"
-    case yyyyMMddTHHmmssZ = "yyyy-MM-dd'T'HH:mm:ssZ"
-    case MMMMdyyyy = "MMMM d, yyyy"
+    case yyyyMMdd           = "yyyy-MM-dd"
+    case MMddyyyy           = "MM/dd/yyyy"
+    case yyyyMMddTHHmmssZ   = "yyyy-MM-dd'T'HH:mm:ssZ"
+    case MMMMdyyyy          = "MMMM d, yyyy"
 }
 
 final class TextFormatter {

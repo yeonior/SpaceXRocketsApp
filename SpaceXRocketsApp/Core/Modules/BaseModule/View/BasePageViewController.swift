@@ -12,6 +12,11 @@ protocol BaseViewProtocol: AnyObject {
     func failure(error: Error)
 }
 
+private struct BasePageViewSizeConstants {
+    static let additionalPageViewControllerSaveAreaAtTheBottom: CGFloat = 12.0
+    static let additionalPageControlHeight: CGFloat = 56.0
+}
+
 final class BasePageViewController: UIPageViewController {
     
     // MARK: - Properties
@@ -37,9 +42,8 @@ final class BasePageViewController: UIPageViewController {
     
     // MARK: - Private methods
     private func configurePageViewController() {
-        delegate = self
         dataSource = self
-        additionalSafeAreaInsets.bottom = CGFloat(12)
+        additionalSafeAreaInsets.bottom = BasePageViewSizeConstants.additionalPageViewControllerSaveAreaAtTheBottom
         view.backgroundColor = Color.background.uiColor
     }
     
@@ -61,7 +65,7 @@ final class BasePageViewController: UIPageViewController {
     private func configurePageControlHeight() {
         for view in self.view.subviews{
             if view is UIPageControl {
-                view.frame.origin.y = self.view.frame.size.height - 56
+                view.frame.origin.y = self.view.frame.size.height - BasePageViewSizeConstants.additionalPageControlHeight
                 view.setNeedsLayout()
             }
         }
@@ -80,8 +84,8 @@ extension BasePageViewController: BaseViewProtocol {
     
     func success(withTheNumber number: Int) {
         for serialNumber in 1...number {
-            let vc = router.activateMainModule(with: serialNumber)
-            viewControllersToDisplay.append(vc)
+            let viewController = router.activateMainModule(with: serialNumber)
+            viewControllersToDisplay.append(viewController)
         }
         setViewControllerToDisplay()
     }
@@ -98,9 +102,9 @@ extension BasePageViewController: UIPageViewControllerDataSource {
     
     // the view controller before the given one
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let vc = viewController as? MainViewController else { return nil }
+        guard let viewController = viewController as? MainViewController else { return nil }
         
-        if let index = viewControllersToDisplay.firstIndex(of: vc) {
+        if let index = viewControllersToDisplay.firstIndex(of: viewController) {
             if index > 0 {
                 return viewControllersToDisplay[index - 1]
             } else {
@@ -113,9 +117,9 @@ extension BasePageViewController: UIPageViewControllerDataSource {
     
     // the view controller after the given one
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let vc = viewController as? MainViewController else { return nil }
+        guard let viewController = viewController as? MainViewController else { return nil }
         
-        if let index = viewControllersToDisplay.firstIndex(of: vc) {
+        if let index = viewControllersToDisplay.firstIndex(of: viewController) {
             if index < viewControllersToDisplay.count - 1 {
                 return viewControllersToDisplay[index + 1]
             } else {
@@ -137,28 +141,10 @@ extension BasePageViewController: UIPageViewControllerDataSource {
     }
 }
 
-// MARK: - UIPageViewControllerDelegate
-extension BasePageViewController: UIPageViewControllerDelegate {
-    
-//    // blocking the pan gesture to prevent simultaneous recognizing
-//    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-//        guard let vc = viewControllers?.first as? MainViewController else { return }
-//        vc.canSwipe = false
-//        vc.panGesture.isEnabled = false
-//    }
-//    
-//    // unblocking the pan gesture
-//    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-//        guard let vc = previousViewControllers.first as? MainViewController else { return }
-//        vc.canSwipe = true
-//        vc.panGesture.isEnabled = true
-//    }
-}
-
 // MARK: - UIScrollViewDelegate
 extension BasePageViewController: UIScrollViewDelegate {
     
-    // disabling the page view controller's bounce
+    // disabling the page view controller bounces
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard viewControllersToDisplay.count > 1 else {
             scrollView.isScrollEnabled = false

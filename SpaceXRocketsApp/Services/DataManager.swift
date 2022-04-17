@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DataManagerProtocol {
+protocol DataManagerProtocol: AnyObject {
     func getData(from stringURL: String) -> Data
     func setRockets(_ rockets: [RocketModel])
     func getRockets() -> [RocketModel]

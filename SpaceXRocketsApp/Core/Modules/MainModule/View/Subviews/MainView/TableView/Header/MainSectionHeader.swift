@@ -1,5 +1,5 @@
 //
-//  MainTableViewSectionHeader.swift
+//  MainSectionHeader.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 07.04.2022.
@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class MainTableViewSectionHeader: UITableViewHeaderFooterView {
+private struct MainSectionHeaderSizeConstants {
+    static let titleLabelLeftPadding: CGFloat = 32.0
+    static let titleLabelRightPadding: CGFloat = 32.0
+}
+
+final class MainSectionHeader: UITableViewHeaderFooterView {
     
     // MARK: - Properties
     static let identifier = "sectionHeader"
@@ -43,7 +48,10 @@ final class MainTableViewSectionHeader: UITableViewHeaderFooterView {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32)
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                constant: MainSectionHeaderSizeConstants.titleLabelLeftPadding),
+            titleLabel.trailingAnchor.constraint(greaterThanOrEqualTo: contentView.trailingAnchor,
+                                                constant: -MainSectionHeaderSizeConstants.titleLabelRightPadding)
         ])
     }
 }

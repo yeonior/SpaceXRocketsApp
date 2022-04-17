@@ -11,6 +11,15 @@ protocol MainItemViewModel {
     var sections: [MainSectionViewModelProtocol] { get }
 }
 
+private struct MainTableViewSizeConstants {
+    static let cellHeight: CGFloat = 50.0
+    static let buttonCellHeight: CGFloat = 60.0
+    static let sectionHeaderHeight: CGFloat = 0.0
+    static let stageSectionHeaderHeight: CGFloat = 40.0
+    static let firstHalfSectionFooterHeight: CGFloat = 20.0
+    static let secondHalfSectionFooterHeight: CGFloat = 32.0
+}
+
 final class MainViewModel: NSObject, MainItemViewModel {
     
     // MARK: - Properties
@@ -84,16 +93,16 @@ extension MainViewModel: UITableViewDelegate {
         let section = sections[indexPath.section]
         switch section.name {
         case .button:
-            return 60
+            return MainTableViewSizeConstants.buttonCellHeight
         default:
-            return 50
+            return MainTableViewSizeConstants.cellHeight
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch sections[section].name {
         case .firstStage, .secondStage:
-            if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MainTableViewSectionHeader.identifier) as? MainTableViewSectionHeader {
+            if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MainSectionHeader.identifier) as? MainSectionHeader {
                 header.titleLabel.text = sections[section].name.rawValue
                 return header
             }
@@ -106,9 +115,9 @@ extension MainViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch sections[section].name {
         case .firstStage, .secondStage:
-            return 40
+            return MainTableViewSizeConstants.stageSectionHeaderHeight
         default:
-            return 0
+            return MainTableViewSizeConstants.sectionHeaderHeight
         }
     }
     
@@ -119,9 +128,9 @@ extension MainViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch sections[section].name {
         case .info, .firstStage:
-            return 20
+            return MainTableViewSizeConstants.firstHalfSectionFooterHeight
         case .secondStage, .button:
-            return 32
+            return MainTableViewSizeConstants.secondHalfSectionFooterHeight
         }
     }
 }

@@ -11,11 +11,11 @@ protocol DetailsCellProtocol {
     var cellViewModel: DetailsCellViewModelProtocol? { get }
 }
 
-// MARK: Cell size constants
-struct DetailsCellSizeConstants {
-    static let distanceToBorder: CGFloat = UIScreen.main.bounds.width * 0.08
-    static let minimumLineSpacing: CGFloat = UIScreen.main.bounds.width * 0.05
-    static let itemWidth: CGFloat = UIScreen.main.bounds.width - 64
+private struct DetailsCellSizeConstants {
+    static let cornerRadius: CGFloat = 24.0
+    static let labelsLeftPadding: CGFloat = 24.0
+    static let labelsRightPadding: CGFloat = 10.0
+    static let imageViewRightPadding: CGFloat = 24.0
 }
 
 final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
@@ -85,32 +85,34 @@ final class DetailsCell: UICollectionViewCell, DetailsCellProtocol {
     // MARK: - Private methods
     private func setupLabels() {
         
-        let labelStackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
-        labelStackView.distribution = .fill
-        labelStackView.axis = .vertical
+        let labelsStackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
+        labelsStackView.distribution = .fill
+        labelsStackView.axis = .vertical
         
         contentView.backgroundColor = Color.collectionCellBackground.uiColor
-        contentView.layer.cornerRadius = 24
+        contentView.layer.cornerRadius = DetailsCellSizeConstants.cornerRadius
 //        contentView.layer.shadowRadius = 7
 //        contentView.layer.shadowOpacity = 0.3
 //        contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
         
-        labelStackView.translatesAutoresizingMaskIntoConstraints = false
+        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         circleImageView.translatesAutoresizingMaskIntoConstraints = false
         statusImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        contentView.addSubview(labelStackView)
+        contentView.addSubview(labelsStackView)
         contentView.addSubview(imageView)
         contentView.addSubview(circleImageView)
         contentView.addSubview(statusImageView)
         
         // constraints
         NSLayoutConstraint.activate([
-            labelStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            labelStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            labelStackView.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -10),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            labelsStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            labelsStackView.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                     constant: DetailsCellSizeConstants.labelsLeftPadding),
+            labelsStackView.trailingAnchor.constraint(equalTo: imageView.leadingAnchor,
+                                                      constant: -DetailsCellSizeConstants.labelsRightPadding),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DetailsCellSizeConstants.imageViewRightPadding),
             imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),

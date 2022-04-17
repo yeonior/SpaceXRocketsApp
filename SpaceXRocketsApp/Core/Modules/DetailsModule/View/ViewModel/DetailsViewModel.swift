@@ -65,6 +65,7 @@ extension DetailsViewModel: UICollectionViewDataSource {
 extension DetailsViewModel: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 311, height: 100)
+        return CGSize(width: DetailsViewSizeConstants.collectionViewItemWidth,
+                      height: DetailsViewSizeConstants.collectionViewItemHeight)
     }
 }

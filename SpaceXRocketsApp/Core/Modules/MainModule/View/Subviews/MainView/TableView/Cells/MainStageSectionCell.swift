@@ -7,6 +7,17 @@
 
 import UIKit
 
+private struct MainStageSectionSizeConstants {
+    static let labelsLeftPadding: CGFloat = 32.0
+    static let labelsRightPadding: CGFloat = 32.0
+    static let mainLabelWidth: CGFloat = (Size.screenWidth.floatValue - labelsLeftPadding - labelsRightPadding) / 1.7
+    static let detailsLabelWidth: CGFloat = 80.0
+    static let unitLabelWidth: CGFloat = 28.0
+    static let labelsHeight: CGFloat = 24.0
+    static let spacingBetweenMainAndDetailsLabels: CGFloat = 8.0
+    static let spacingBetweenDetailsAndUnitLabels: CGFloat = 4.0
+}
+
 final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
     
     // MARK: - Properties
@@ -24,6 +35,8 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
         $0.textColor = Color.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
         $0.clipsToBounds = true
+        $0.adjustsFontSizeToFitWidth = true
+        $0.minimumScaleFactor = 0.8
         return $0
     }(UILabel())
     
@@ -67,30 +80,32 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
         let subStackView = UIStackView(arrangedSubviews: [detailsLabel, unitLabel])
         subStackView.axis = .horizontal
         subStackView.distribution = .fill
-        subStackView.spacing = 4
+        subStackView.spacing = MainStageSectionSizeConstants.spacingBetweenDetailsAndUnitLabels
         
         let stackView = UIStackView(arrangedSubviews: [mainLabel, subStackView])
         stackView.axis = .horizontal
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = MainStageSectionSizeConstants.spacingBetweenMainAndDetailsLabels
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(stackView)
         
-        let unitLabelConstraint = unitLabel.widthAnchor.constraint(equalToConstant: 28)
+        let unitLabelConstraint = unitLabel.widthAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.unitLabelWidth)
         unitLabelConstraint.priority = UILayoutPriority(753)
-        let detailsLabelConstraint = detailsLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80)
+        let detailsLabelConstraint = detailsLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: MainStageSectionSizeConstants.detailsLabelWidth)
         detailsLabelConstraint.priority = UILayoutPriority(752)
         let subStackViewConstraint = subStackView.widthAnchor.constraint(greaterThanOrEqualTo: stackView.widthAnchor, multiplier: 0.3)
         subStackViewConstraint.priority = UILayoutPriority(751)
         
         NSLayoutConstraint.activate([
-            stackView.heightAnchor.constraint(equalToConstant: 24),
+            stackView.heightAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.labelsHeight),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            mainLabel.widthAnchor.constraint(equalToConstant: (Size.screenWidth.floatValue) / 2),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                               constant: MainStageSectionSizeConstants.labelsLeftPadding),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                constant: -MainStageSectionSizeConstants.labelsRightPadding),
+            mainLabel.widthAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.mainLabelWidth),
             mainLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             unitLabelConstraint,
             detailsLabelConstraint,

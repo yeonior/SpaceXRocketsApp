@@ -17,7 +17,7 @@ final class BasePresenter: BasePresenterProtocol {
     // MARK: - Properties
     weak var view: BaseViewProtocol!
     let networkManager: NetworkManagerProtocol!
-    let dataManager: DataManagerProtocol!
+    unowned let dataManager: DataManagerProtocol!
     
     // MARK: - Init
     init(view: BaseViewProtocol,
@@ -31,13 +31,13 @@ final class BasePresenter: BasePresenterProtocol {
     // MARK: - Methods
     func fetchPages() {
         let url = API.rockets.url
-        networkManager.request(fromURL: url) { [unowned self] (result: Result<[RocketModel], Error>) in
+        networkManager.request(fromURL: url) { (result: Result<[RocketModel], Error>) in
             switch result {
             case .success(let rockets):
-                dataManager.setRockets(rockets)
-                view.success(withTheNumber: rockets.count)
+                self.dataManager.setRockets(rockets)
+                self.view.success(withTheNumber: rockets.count)
             case .failure(let error):
-                view.failure(error: error)
+                self.view.failure(error: error)
             }
         }
     }

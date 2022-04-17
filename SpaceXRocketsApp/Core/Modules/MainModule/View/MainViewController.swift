@@ -13,6 +13,15 @@ protocol MainViewProtocol: AnyObject {
     func setViewModel(_ viewModel: MainViewModel)
 }
 
+struct MainViewSizeConstants {
+    static let cornerRadius: CGFloat = 32.0
+    static let height: CGFloat = Size.screenHeight.floatValue / 2
+    static let headerHeight: CGFloat = 112.0
+    static let navigationBarHeight: CGFloat = 64.0
+    static let additionalHeight: CGFloat = headerHeight + navigationBarHeight
+    static let backgroundImageViewHeight: CGFloat = Size.screenHeight.floatValue / 2
+}
+
 final class MainViewController: UIViewController {
     
     // MARK: - Subviews
@@ -51,6 +60,7 @@ final class MainViewController: UIViewController {
         }
     }
     
+    private let observerKeyPath = "contentSize"
     private var mainViewHeightConstraint: NSLayoutConstraint?
     
     // MARK: - Lifecycle
@@ -62,7 +72,7 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getToTheTop()
-        mainView.tableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+        mainView.tableView.addObserver(self, forKeyPath: observerKeyPath, options: .new, context: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,16 +83,17 @@ final class MainViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        mainView.tableView.removeObserver(self, forKeyPath: "contentSize")
+        mainView.tableView.removeObserver(self, forKeyPath: observerKeyPath)
         super.viewWillDisappear(animated)
     }
     
+    // observing the table view to get height
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "contentSize" {
+        if keyPath == observerKeyPath {
             if object is UITableView {
                 if let newvalue = change?[.newKey] {
                     let newsize  = newvalue as! CGSize
-                    mainViewHeightConstraint?.constant = newsize.height + 112 + 64
+                    mainViewHeightConstraint?.constant = newsize.height + MainViewSizeConstants.additionalHeight
                 }
             }
         }
@@ -104,8 +115,8 @@ final class MainViewController: UIViewController {
         baseView.addSubview(mainView)
         
         // constraints
-        let constraint = baseView.heightAnchor.constraint(equalTo: view.heightAnchor)
-        constraint.priority = UILayoutPriority(250)
+        let baseViewHeightConstraint = baseView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        baseViewHeightConstraint.priority = UILayoutPriority(250)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -116,19 +127,21 @@ final class MainViewController: UIViewController {
             baseView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             baseView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             baseView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            constraint,
+            baseViewHeightConstraint,
             backgroundImageView.topAnchor.constraint(equalTo: baseView.topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
-            backgroundImageView.heightAnchor.constraint(equalToConstant: 400),
-            mainView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -32),
+            backgroundImageView.heightAnchor.constraint(equalToConstant: MainViewSizeConstants.backgroundImageViewHeight),
+            mainView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor,
+                                          constant: -MainViewSizeConstants.cornerRadius),
             mainView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
             mainView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
-            mainView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor, constant: 32.0),
+            mainView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor,
+                                             constant: MainViewSizeConstants.cornerRadius),
             mainView.tableView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor)
         ])
         
-        mainViewHeightConstraint = mainView.heightAnchor.constraint(equalToConstant: 400)
+        mainViewHeightConstraint = mainView.heightAnchor.constraint(equalToConstant: MainViewSizeConstants.height)
         mainViewHeightConstraint?.isActive = true
     }
     

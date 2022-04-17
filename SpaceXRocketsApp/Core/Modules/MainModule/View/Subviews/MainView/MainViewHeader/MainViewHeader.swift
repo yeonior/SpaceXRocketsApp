@@ -7,6 +7,13 @@
 
 import UIKit
 
+private struct MainViewHeaderSizeConstants {
+    static let titleLabelHeight: CGFloat = 32.0
+    static let titleLabelLeftPadding: CGFloat = 32.0
+    static let titleLabelRightPadding: CGFloat = 32.0
+    static let titleLabelYOffset: CGFloat = 8.0
+}
+
 final class MainViewHeader: UIView {
     
     // MARK: - Subviews
@@ -51,10 +58,13 @@ final class MainViewHeader: UIView {
 //            indicatorView.heightAnchor.constraint(equalToConstant: 4),
 //            indicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
 //            indicatorView.widthAnchor.constraint(equalToConstant: 50),
-            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 8),
-            titleLabel.heightAnchor.constraint(equalToConstant: 32),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32)
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor,
+                                                constant: MainViewHeaderSizeConstants.titleLabelYOffset),
+            titleLabel.heightAnchor.constraint(equalToConstant: MainViewHeaderSizeConstants.titleLabelHeight),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                constant: MainViewHeaderSizeConstants.titleLabelLeftPadding),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                 constant: -MainViewHeaderSizeConstants.titleLabelRightPadding)
         ])
     }
 }

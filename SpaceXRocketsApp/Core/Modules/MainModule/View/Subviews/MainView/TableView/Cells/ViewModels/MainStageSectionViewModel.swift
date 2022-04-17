@@ -5,6 +5,11 @@
 //  Created by Ruslan on 11.04.2022.
 //
 
+private enum UnitType: String {
+    case ton = "ton"
+    case sec = "sec"
+}
+
 final class MainStageSectionViewModel: MainSectionViewModelProtocol {
     
     // MARK: - Properties
@@ -21,13 +26,13 @@ final class MainStageSectionViewModel: MainSectionViewModelProtocol {
                                             detailText: String(engines))
         let fuelAmountCell = MainCellViewModel(text: .fuelAmountTons,
                                                detailText: String(fuelAmountTons),
-                                               unit: "ton")
+                                               unit: UnitType.ton.rawValue)
         var cells = [enginesCell, fuelAmountCell]
         
         if let burnTimeSEC = burnTimeSEC {
             let burnTimeCell = MainCellViewModel(text: .burnTimeSEC,
                                                  detailText: String(burnTimeSEC),
-                                                 unit: "sec")
+                                                 unit: UnitType.sec.rawValue)
             cells.append(burnTimeCell)
         }
         

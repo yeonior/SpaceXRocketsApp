@@ -11,6 +11,14 @@ protocol MainCellProtocol {
     var cellViewModel: MainCellViewModelProtocol? { get }
 }
 
+private struct MainInfoSectionSizeConstants {
+    static let labelsLeftPadding: CGFloat = 32.0
+    static let labelsRightPadding: CGFloat = 32.0
+    static let mainLabelWidth: CGFloat = (Size.screenWidth.floatValue - labelsLeftPadding - labelsRightPadding) * 1.1 / 3.0
+    static let detailsLabelWidth: CGFloat = Size.screenWidth.floatValue * 1.9 / 3.0
+    static let labelsHeight: CGFloat = 24.0
+}
+
 final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     
     // MARK: - Properties
@@ -28,6 +36,8 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
         $0.textColor = Color.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
         $0.clipsToBounds = true
+        $0.adjustsFontSizeToFitWidth = true
+        $0.minimumScaleFactor = 0.8
         return $0
     }(UILabel())
     
@@ -69,15 +79,15 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
         
         contentView.addSubview(stackView)
         
-        let detailsLabelContraint = detailsLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 230)
-        detailsLabelContraint.priority = UILayoutPriority(751)
+        let detailsLabelContraint = detailsLabel.widthAnchor.constraint(lessThanOrEqualToConstant: MainInfoSectionSizeConstants.detailsLabelWidth)
+        detailsLabelContraint.priority = UILayoutPriority(1000)
         
         NSLayoutConstraint.activate([
-            stackView.heightAnchor.constraint(equalToConstant: 24),
+            stackView.heightAnchor.constraint(equalToConstant: MainInfoSectionSizeConstants.labelsHeight),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            mainLabel.widthAnchor.constraint(equalToConstant: 110),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: MainInfoSectionSizeConstants.labelsLeftPadding),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -MainInfoSectionSizeConstants.labelsRightPadding),
+            mainLabel.widthAnchor.constraint(equalToConstant: MainInfoSectionSizeConstants.mainLabelWidth),
             detailsLabelContraint
         ])
     }

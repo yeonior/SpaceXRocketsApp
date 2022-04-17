@@ -18,7 +18,7 @@ final class DetailsPresenter: DetailsPresenterProtocol {
     // MARK: - Properties
     weak var view: DetailsViewProtocol!
     let networkManager: NetworkManagerProtocol!
-    let dataManager: DataManagerProtocol!
+    unowned let dataManager: DataManagerProtocol!
     
     // MARK: - Init
     init(view: DetailsViewProtocol,
@@ -32,13 +32,13 @@ final class DetailsPresenter: DetailsPresenterProtocol {
     // MARK: - Methods
     func fetchData() {
         let url = API.launches.url
-        networkManager.request(fromURL: url) { [unowned self] (result: Result<[LaunchModel], Error>) in
+        networkManager.request(fromURL: url) { (result: Result<[LaunchModel], Error>) in
             switch result {
             case .success(let launches):
-                dataManager.setLaunches(launches)
-                view.success()
+                self.dataManager.setLaunches(launches)
+                self.view.success()
             case .failure(let error):
-                view.failure(error: error)
+                self.view.failure(error: error)
             }
         }
     }

@@ -9,10 +9,10 @@ import UIKit.UIFont
 
 enum Font {
     private enum Style: String {
-        case thin = "Thin"
-        case regular = "Regular"
-        case medium = "Medium"
-        case bold = "Bold"
+        case thin       = "Thin"
+        case regular    = "Regular"
+        case medium     = "Medium"
+        case bold       = "Bold"
     }
 
     case mainViewHeader

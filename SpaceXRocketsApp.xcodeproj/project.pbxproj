@@ -35,7 +35,7 @@
 		A275CA3227FC9E310020B02B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3127FC9E310020B02B /* MainView.swift */; };
 		A275CA3727FCAC400020B02B /* MainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3627FCAC400020B02B /* MainViewHeader.swift */; };
 		A2852F8E27FE1EBF000CDA92 /* MainShowButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F8D27FE1EBF000CDA92 /* MainShowButtonCell.swift */; };
-		A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */; };
+		A2852F9127FE3B12000CDA92 /* MainSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F9027FE3B12000CDA92 /* MainSectionHeader.swift */; };
 		A299754E2806ACC80015FB9A /* Launches.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A299754D2806ACC80015FB9A /* Launches.JSON */; };
 		A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA228028AD400B28901 /* MainPresenter.swift */; };
 		A2A19BA52802B1A500B28901 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA42802B1A500B28901 /* DataManager.swift */; };
@@ -86,7 +86,7 @@
 		A275CA3127FC9E310020B02B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A275CA3627FCAC400020B02B /* MainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewHeader.swift; sourceTree = "<group>"; };
 		A2852F8D27FE1EBF000CDA92 /* MainShowButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainShowButtonCell.swift; sourceTree = "<group>"; };
-		A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewSectionHeader.swift; sourceTree = "<group>"; };
+		A2852F9027FE3B12000CDA92 /* MainSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeader.swift; sourceTree = "<group>"; };
 		A299754D2806ACC80015FB9A /* Launches.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Launches.JSON; sourceTree = "<group>"; };
 		A2A19BA228028AD400B28901 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		A2A19BA42802B1A500B28901 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -139,19 +139,19 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		A21FBCA12802F62A0095D4E4 /* Headers */ = {
+		A21FBCA12802F62A0095D4E4 /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				A2852F9027FE3B12000CDA92 /* MainTableViewSectionHeader.swift */,
+				A2852F9027FE3B12000CDA92 /* MainSectionHeader.swift */,
 			);
-			path = Headers;
+			path = Header;
 			sourceTree = "<group>";
 		};
 		A21FBCA22802F67E0095D4E4 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
 				A21FBCA02802F6210095D4E4 /* Cells */,
-				A21FBCA12802F62A0095D4E4 /* Headers */,
+				A21FBCA12802F62A0095D4E4 /* Header */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -572,7 +572,7 @@
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
 				A25FCF312803EFD900A34EBA /* MainViewModel.swift in Sources */,
 				A2A19BA72802C57C00B28901 /* Size.swift in Sources */,
-				A2852F9127FE3B12000CDA92 /* MainTableViewSectionHeader.swift in Sources */,
+				A2852F9127FE3B12000CDA92 /* MainSectionHeader.swift in Sources */,
 				A25FCF2B2803E83700A34EBA /* MainCellViewModel.swift in Sources */,
 				A2516722280B15F800FFFB56 /* NavigationController.swift in Sources */,
 				A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */,

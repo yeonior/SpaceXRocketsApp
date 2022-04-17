@@ -27,7 +27,7 @@ final class MainView: UIView {
     private func setup() {
         
         // view
-        layer.cornerRadius = 32.0
+        layer.cornerRadius = MainViewSizeConstants.cornerRadius
         clipsToBounds = true
         
         // tableView
@@ -40,10 +40,14 @@ final class MainView: UIView {
                                                          y: 0,
                                                          width: self.tableView.bounds.size.width,
                                                          height: .leastNonzeroMagnitude))
-        tableView.register(MainInfoSectionCell.self, forCellReuseIdentifier: MainInfoSectionCell.identifier)
-        tableView.register(MainShowButtonCell.self, forCellReuseIdentifier: MainShowButtonCell.identifier)
-        tableView.register(MainTableViewSectionHeader.self, forHeaderFooterViewReuseIdentifier: MainTableViewSectionHeader.identifier)
-        tableView.register(MainStageSectionCell.self, forCellReuseIdentifier: MainStageSectionCell.identifier)
+        tableView.register(MainInfoSectionCell.self,
+                           forCellReuseIdentifier: MainInfoSectionCell.identifier)
+        tableView.register(MainStageSectionCell.self,
+                           forCellReuseIdentifier: MainStageSectionCell.identifier)
+        tableView.register(MainShowButtonCell.self,
+                           forCellReuseIdentifier: MainShowButtonCell.identifier)
+        tableView.register(MainSectionHeader.self,
+                           forHeaderFooterViewReuseIdentifier: MainSectionHeader.identifier)
         tableView.backgroundColor = Color.mainViewHeaderBackground.uiColor
         tableView.separatorColor = .clear
         tableView.bounces = true
@@ -63,7 +67,7 @@ final class MainView: UIView {
         // constraints
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: topAnchor),
-            header.heightAnchor.constraint(equalToConstant: 112),
+            header.heightAnchor.constraint(equalToConstant: MainViewSizeConstants.headerHeight),
             header.leadingAnchor.constraint(equalTo: leadingAnchor),
             header.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.topAnchor.constraint(equalTo: header.bottomAnchor),

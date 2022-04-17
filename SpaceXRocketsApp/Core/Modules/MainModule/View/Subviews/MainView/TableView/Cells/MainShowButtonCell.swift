@@ -7,6 +7,12 @@
 
 import UIKit
 
+private struct MainShowButtonSizeConstants {
+    static let cornerRadius: CGFloat = 14.0
+    static let leftPadding: CGFloat = 32.0
+    static let rightPadding: CGFloat = 32.0
+}
+
 final class MainShowButtonCell: UITableViewCell {
     
     // MARK: - Properties
@@ -14,7 +20,7 @@ final class MainShowButtonCell: UITableViewCell {
     
     // MARK: - Subviews
     let showButton: UIButton = {
-        $0.layer.cornerRadius = 14
+        $0.layer.cornerRadius = MainShowButtonSizeConstants.cornerRadius
         $0.backgroundColor = Color.showButton.uiColor
         $0.titleLabel?.textColor = Color.showButtonText.uiColor
         $0.titleLabel?.font = Font.showButton.uiFont
@@ -57,8 +63,10 @@ final class MainShowButtonCell: UITableViewCell {
             baseView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             showButton.topAnchor.constraint(equalTo: baseView.topAnchor),
             showButton.bottomAnchor.constraint(equalTo: baseView.bottomAnchor),
-            showButton.leadingAnchor.constraint(equalTo: baseView.leadingAnchor, constant: 32),
-            showButton.trailingAnchor.constraint(equalTo: baseView.trailingAnchor, constant: -32)
+            showButton.leadingAnchor.constraint(equalTo: baseView.leadingAnchor,
+                                                constant: MainShowButtonSizeConstants.leftPadding),
+            showButton.trailingAnchor.constraint(equalTo: baseView.trailingAnchor,
+                                                 constant: -MainShowButtonSizeConstants.rightPadding)
         ])
     }
     
