@@ -1,5 +1,5 @@
 //
-//  MainBottomSheetView.swift
+//  MainView.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 05.04.2022.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class MainBottomSheetView: UIView {
+final class MainView: UIView {
     
     // MARK: - Subviews
-    lazy var topView = MainBottomSheetTopView()
+    lazy var headerView = MainHeaderView()
     lazy var tableView = UITableView()
     
     // MARK: - Init
@@ -49,24 +49,24 @@ final class MainBottomSheetView: UIView {
         tableView.bounces = true
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
+        tableView.isScrollEnabled = false
 //        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 //        tableView.contentInsetAdjustmentBehavior = .never
-//        tableView.isScrollEnabled = false
 //        tableView.contentInset.bottom = 100
         
-        topView.translatesAutoresizingMaskIntoConstraints = false
+        headerView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(topView)
+        addSubview(headerView)
         addSubview(tableView)
         
         // constraints
         NSLayoutConstraint.activate([
-            topView.topAnchor.constraint(equalTo: topAnchor),
-            topView.heightAnchor.constraint(equalToConstant: 112),
-            topView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            topView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: topView.bottomAnchor),
+            headerView.topAnchor.constraint(equalTo: topAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 112),
+            headerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])

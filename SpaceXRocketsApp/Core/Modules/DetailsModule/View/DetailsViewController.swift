@@ -68,6 +68,7 @@ final class DetailsViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundView = UIView()
         collectionView.backgroundView?.backgroundColor = Color.lauchesPageBackground.uiColor
+        collectionView.backgroundColor = Color.lauchesPageBackground.uiColor
         
         // adding
         view.addSubview(collectionView)

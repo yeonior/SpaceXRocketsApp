@@ -16,6 +16,16 @@ protocol MainViewProtocol: AnyObject {
 final class MainViewController: UIViewController {
     
     // MARK: - Subviews
+    lazy var scrollView: UIScrollView = {
+        $0.bounces = false
+        $0.showsHorizontalScrollIndicator = false
+        $0.showsVerticalScrollIndicator = false
+        $0.contentInsetAdjustmentBehavior = .never
+        return $0
+    }(UIScrollView())
+    
+    lazy var baseView = UIView()
+    
     lazy var backgroundImageView: UIImageView = {
         $0.backgroundColor = Color.background.uiColor
         $0.alpha = 0
@@ -24,7 +34,7 @@ final class MainViewController: UIViewController {
         return $0
     }(UIImageView())
     
-    lazy var bottomSheetView = MainBottomSheetView()
+    lazy var mainView = MainView()
     
     // MARK: - Properties
     var presenter: MainPresenterProtocol!
@@ -34,30 +44,30 @@ final class MainViewController: UIViewController {
     private var viewModel: MainViewModel? {
         didSet {
             DispatchQueue.main.sync {
-                bottomSheetView.tableView.dataSource = viewModel
-                bottomSheetView.tableView.delegate = viewModel
-                bottomSheetView.tableView.reloadData()
+                mainView.tableView.dataSource = viewModel
+                mainView.tableView.delegate = viewModel
+                mainView.tableView.reloadData()
             }
         }
     }
-    
-    // bottomSheetView heights
-    private let minBottomSheetViewHeight: CGFloat = 400.0
-    private let maxBottomSheetViewHeight: CGFloat = UIScreen.main.bounds.height - 150.0
-    private var currentBottomSheetViewHeight: CGFloat = 400.0
     
     // bottomSheetView dynamic constraints
     private var bottomSheetViewHeightConstraint: NSLayoutConstraint?
     private var bottomSheetViewBottomConstraint: NSLayoutConstraint?
     
+    // gesture
     var panGesture = UIGestureRecognizer()
-    var canSwipe = true
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        setupPanGesture()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getToTheTop()
+        mainView.tableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,30 +77,65 @@ final class MainViewController: UIViewController {
         fetchData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        mainView.tableView.removeObserver(self, forKeyPath: "contentSize")
+        super.viewWillDisappear(animated)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+            if object is UITableView {
+                if let newvalue = change?[.newKey] {
+                    let newsize  = newvalue as! CGSize
+                    bottomSheetViewHeightConstraint?.constant = newsize.height + 112 + 64
+                }
+            }
+        }
+    }
+    
     // MARK: - Private methods
     private func configureUI() {
         
-        view.backgroundColor = Color.background.uiColor
+        view.backgroundColor = Color.mainBackground.uiColor
         
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        baseView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        bottomSheetView.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(backgroundImageView)
-        view.addSubview(bottomSheetView)
+        mainView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(baseView)
+        baseView.addSubview(backgroundImageView)
+        baseView.addSubview(mainView)
         
         // constraints
+        let constraint = baseView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        constraint.priority = UILayoutPriority(250)
         NSLayoutConstraint.activate([
-            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: bottomSheetView.topAnchor, constant: 32),
-            bottomSheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bottomSheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bottomSheetView.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            baseView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            baseView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            baseView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            baseView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            baseView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            constraint,
+            backgroundImageView.topAnchor.constraint(equalTo: baseView.topAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
+            backgroundImageView.heightAnchor.constraint(equalToConstant: 400),
+//            backgroundImageView.bottomAnchor.constraint(equalTo: bottomSheetView.topAnchor, constant: 32),
+            mainView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -32),
+            mainView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
+            mainView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
+//            bottomSheetView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor),
+            mainView.tableView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor)
         ])
         
-        bottomSheetViewHeightConstraint = bottomSheetView.heightAnchor.constraint(equalToConstant: minBottomSheetViewHeight)
-        bottomSheetViewBottomConstraint = bottomSheetView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 32.0)
+        bottomSheetViewHeightConstraint = mainView.heightAnchor.constraint(equalToConstant: 400)
+        bottomSheetViewBottomConstraint = mainView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor, constant: 32.0)
         bottomSheetViewHeightConstraint?.isActive = true
         bottomSheetViewBottomConstraint?.isActive = true
     }
@@ -101,75 +146,6 @@ final class MainViewController: UIViewController {
             presenter.provideBackgroundImage()
             presenter.provideRocketName()
             presenter.provideViewModel()
-        }
-    }
-    
-    private func setupPanGesture() {
-        panGesture = UIPanGestureRecognizer(target: self,
-                                            action: #selector(handlePanGesture(_:)))
-        panGesture.delegate = self
-        // changing to false to immediately listen on gesture movement
-//        panGesture.delaysTouchesBegan = true
-//        panGesture.delaysTouchesEnded = true
-        view.addGestureRecognizer(panGesture)
-    }
-
-    @objc
-    private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
-
-        let translation = gesture.translation(in: view)
-        let isDraggingDown = translation.y > 0
-        let transitionHeight = translation.y.magnitude > 100.0
-        let newHeight = currentBottomSheetViewHeight - translation.y
-
-        switch gesture.state {
-        case .began:
-            canSwipe = false
-        case .changed:
-            if newHeight < maxBottomSheetViewHeight && newHeight >= minBottomSheetViewHeight {
-                bottomSheetViewHeightConstraint?.constant = newHeight
-                view.layoutIfNeeded()
-            }
-        case .ended:
-            if newHeight < maxBottomSheetViewHeight
-                && newHeight > minBottomSheetViewHeight
-                && isDraggingDown {
-                // if new height is below max and going down, set to default height
-                transitionHeight
-                ? animateContainerHeight(minBottomSheetViewHeight)
-                : animateContainerHeight(maxBottomSheetViewHeight)
-            } else
-            if newHeight > minBottomSheetViewHeight
-                && newHeight < maxBottomSheetViewHeight
-                && !isDraggingDown {
-                // if new height is below max and going up, set to max height at top
-                transitionHeight
-                ? animateContainerHeight(maxBottomSheetViewHeight)
-                : animateContainerHeight(minBottomSheetViewHeight)
-            }
-        case .cancelled:
-            // reseting the bottom sheet position to min
-            animateContainerHeight(minBottomSheetViewHeight)
-        default:
-            break
-        }
-    }
-    
-    private func animateContainerHeight(_ height: CGFloat) {
-        UIView.animate(withDuration: 0.4) {
-            self.bottomSheetViewHeightConstraint?.constant = height
-            self.view.layoutIfNeeded()
-        } completion: { [unowned self] _ in
-            currentBottomSheetViewHeight = height
-            canSwipe = true
-            scrollTableViewAtTop()
-        }
-    }
-    
-    private func scrollTableViewAtTop() {
-        guard viewModel != nil else { return }
-        if currentBottomSheetViewHeight == minBottomSheetViewHeight {
-            bottomSheetView.tableView.scrollToRow(at: [0,0], at: .top, animated: true)
         }
     }
     
@@ -184,6 +160,10 @@ final class MainViewController: UIViewController {
     private func showLaunches() {
         showNavigationBar()
         router.showDetailsModule(with: serialNumber, and: title ?? "")
+    }
+    
+    private func getToTheTop() {
+        scrollView.setContentOffset(CGPoint.zero, animated: false)
     }
 }
 
@@ -201,25 +181,12 @@ extension MainViewController: MainViewProtocol {
     func setName(_ name: String) {
         DispatchQueue.main.sync {
             title = name
-            bottomSheetView.topView.titleLabel.text = name
+            mainView.headerView.titleLabel.text = name
         }
     }
     
     func setViewModel(_ viewModel: MainViewModel) {
         self.viewModel = viewModel
         self.viewModel?.buttonTapCallback = showLaunches
-    }
-}
-
-// MARK: - UIGestureRecognizerDelegate
-extension MainViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        if currentBottomSheetViewHeight > maxBottomSheetViewHeight - 10 {
-            bottomSheetView.tableView.isScrollEnabled = true
-            return false
-        }
-        bottomSheetView.tableView.isScrollEnabled = false
-        return canSwipe
     }
 }

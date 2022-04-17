@@ -1,5 +1,5 @@
 //
-//  MainBottomSheetTopView.swift
+//  MainHeaderView.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 05.04.2022.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-final class MainBottomSheetTopView: UIView {
+final class MainHeaderView: UIView {
     
     // MARK: - Subviews
-    lazy var indicatorView: UIView = {
-        $0.backgroundColor = Color.dragIndicator.uiColor
-        $0.layer.cornerRadius = 2
-        return $0
-    }(UIView())
+//    lazy var indicatorView: UIView = {
+//        $0.backgroundColor = Color.dragIndicator.uiColor
+//        $0.layer.cornerRadius = 2
+//        return $0
+//    }(UIView())
     
     lazy var titleLabel: UILabel = {
         $0.textAlignment = .left
@@ -39,18 +39,18 @@ final class MainBottomSheetTopView: UIView {
         
         backgroundColor = Color.bottomSheetViewBackground.uiColor
         
-        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+//        indicatorView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(indicatorView)
+//        addSubview(indicatorView)
         addSubview(titleLabel)
         
         // constraints
         NSLayoutConstraint.activate([
-            indicatorView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            indicatorView.heightAnchor.constraint(equalToConstant: 4),
-            indicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            indicatorView.widthAnchor.constraint(equalToConstant: 50),
+//            indicatorView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+//            indicatorView.heightAnchor.constraint(equalToConstant: 4),
+//            indicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            indicatorView.widthAnchor.constraint(equalToConstant: 50),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 8),
             titleLabel.heightAnchor.constraint(equalToConstant: 32),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),

@@ -31,13 +31,15 @@ enum Color {
     case failureStatus
     case unknownStatus
     case circleBackground
+    case mainBackground
     
     var uiColor: UIColor {
         switch self {
         case
                 .bottomSheetViewBackground,
                 .tableViewCellBackground,
-                .lauchesPageBackground:
+                .lauchesPageBackground,
+                .mainBackground:
             return hexStringToUIColor(hex: "#000000")
             
         case

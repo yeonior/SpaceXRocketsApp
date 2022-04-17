@@ -140,19 +140,19 @@ extension BasePageViewController: UIPageViewControllerDataSource {
 // MARK: - UIPageViewControllerDelegate
 extension BasePageViewController: UIPageViewControllerDelegate {
     
-    // blocking the pan gesture to prevent simultaneous recognizing
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        guard let vc = viewControllers?.first as? MainViewController else { return }
-        vc.canSwipe = false
-        vc.panGesture.isEnabled = false
-    }
-    
-    // unblocking the pan gesture
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard let vc = previousViewControllers.first as? MainViewController else { return }
-        vc.canSwipe = true
-        vc.panGesture.isEnabled = true
-    }
+//    // blocking the pan gesture to prevent simultaneous recognizing
+//    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+//        guard let vc = viewControllers?.first as? MainViewController else { return }
+//        vc.canSwipe = false
+//        vc.panGesture.isEnabled = false
+//    }
+//    
+//    // unblocking the pan gesture
+//    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+//        guard let vc = previousViewControllers.first as? MainViewController else { return }
+//        vc.canSwipe = true
+//        vc.panGesture.isEnabled = true
+//    }
 }
 
 // MARK: - UIScrollViewDelegate
