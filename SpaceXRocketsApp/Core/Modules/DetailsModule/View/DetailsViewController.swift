@@ -25,6 +25,7 @@ final class DetailsViewController: UIViewController {
     
     // MARK: - Subviews
     var collectionView: UICollectionView?
+    lazy var activityIndicatorView = UIActivityIndicatorView()
     
     // MARK: - Properties
     var router: Routing!
@@ -53,6 +54,10 @@ final class DetailsViewController: UIViewController {
         
         view.backgroundColor = Color.background.uiColor
         
+        activityIndicatorView.style = .large
+        activityIndicatorView.center = view.center
+        activityIndicatorView.startAnimating()
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = DetailsViewSizeConstants.collectionViewMinimumInteritemSpacing
@@ -77,6 +82,7 @@ final class DetailsViewController: UIViewController {
         collectionView.backgroundColor = Color.lauchesPageBackground.uiColor
         
         view.addSubview(collectionView)
+        view.addSubview(activityIndicatorView)
     }
 }
 
@@ -92,5 +98,6 @@ extension DetailsViewController: DetailsViewProtocol {
     
     func setViewModel(_ viewModel: DetailsCollectionViewModel) {
         self.viewModel = viewModel
+        activityIndicatorView.stopAnimating()
     }
 }

@@ -199,6 +199,7 @@ extension MainViewController: MainViewProtocol {
             UIView.animate(withDuration: 0.5) { [unowned self] in
                 backgroundImageView.alpha = 1.0
             }
+            activityIndicatorView.stopAnimating()
         }
     }
     
@@ -213,9 +214,15 @@ extension MainViewController: MainViewProtocol {
     func setTableViewModel(_ viewModel: MainTableViewModel) {
         self.tableViewModel = viewModel
         self.tableViewModel?.buttonTapCallback = showLaunches
+        DispatchQueue.main.sync {
+            activityIndicatorView.stopAnimating()
+        }
     }
     
     func setCollectionViewModel(_ viewModel: MainCollectionViewModel) {
         self.collectionViewModel = viewModel
+        DispatchQueue.main.sync {
+            activityIndicatorView.stopAnimating()
+        }
     }
 }

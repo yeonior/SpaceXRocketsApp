@@ -14,7 +14,7 @@ protocol BaseViewProtocol: AnyObject {
 
 private struct BasePageViewSizeConstants {
     static let additionalPageViewControllerSaveAreaAtTheBottom: CGFloat = 12.0
-    static let additionalPageControlHeight: CGFloat = 56.0
+    static let additionalPageControlHeight: CGFloat = 26.0
 }
 
 final class BasePageViewController: UIPageViewController {
@@ -38,6 +38,7 @@ final class BasePageViewController: UIPageViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configurePageControlHeight()
+        print(bottomSafeAreaHeight)
     }
     
     // MARK: - Private methods
@@ -65,7 +66,7 @@ final class BasePageViewController: UIPageViewController {
     private func configurePageControlHeight() {
         for view in self.view.subviews{
             if view is UIPageControl {
-                view.frame.origin.y = self.view.frame.size.height - BasePageViewSizeConstants.additionalPageControlHeight
+                view.frame.origin.y = self.view.frame.size.height - BasePageViewSizeConstants.additionalPageControlHeight - bottomSafeAreaHeight
                 view.setNeedsLayout()
             }
         }
