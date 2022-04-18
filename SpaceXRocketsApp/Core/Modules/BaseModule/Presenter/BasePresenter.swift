@@ -8,7 +8,9 @@
 import Foundation
 
 protocol BasePresenterProtocol {
-    init(view: BaseViewProtocol, networkManager: NetworkManagerProtocol, dataManager: DataManagerProtocol)
+    init(view: BaseViewProtocol,
+         networkManager: NetworkManagerProtocol,
+         dataManager: DataManagerProtocol)
     func fetchPages()
 }
 
@@ -35,7 +37,7 @@ final class BasePresenter: BasePresenterProtocol {
             switch result {
             case .success(let rockets):
                 self.dataManager.setRockets(rockets)
-                self.view.success(withTheNumber: rockets.count)
+                self.view.success(withNumber: rockets.count)
             case .failure(let error):
                 self.view.failure(error: error)
             }

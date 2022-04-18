@@ -55,10 +55,10 @@ final class MainView: UIView {
         
         // tableView
         tableView = UITableView(frame: bounds, style: .grouped)
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0,
-                                                         y: 0,
-                                                         width: self.tableView.bounds.size.width,
-                                                         height: .leastNonzeroMagnitude))
+//        tableView.tableFooterView = UIView(frame: CGRect(x: 0,
+//                                                         y: 0,
+//                                                         width: self.tableView.bounds.size.width,
+//                                                         height: .leastNonzeroMagnitude))
         tableView.register(MainInfoSectionCell.self,
                            forCellReuseIdentifier: MainInfoSectionCell.identifier)
         tableView.register(MainStageSectionCell.self,
@@ -94,7 +94,7 @@ final class MainView: UIView {
             collectionView.topAnchor.constraint(equalTo: header.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 96),
+            collectionView.heightAnchor.constraint(equalToConstant: MainCollectionViewSizeConstants.cellHeight),
             tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)

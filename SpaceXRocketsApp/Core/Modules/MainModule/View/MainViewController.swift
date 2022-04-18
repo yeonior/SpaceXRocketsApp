@@ -18,8 +18,7 @@ struct MainViewSizeConstants {
     static let cornerRadius: CGFloat = 32.0
     static let height: CGFloat = Size.screenHeight.floatValue / 2
     static let headerHeight: CGFloat = 112.0
-    static let navigationBarHeight: CGFloat = 64.0
-    static let additionalHeight: CGFloat = headerHeight + navigationBarHeight + 96
+    static let additionalHeight: CGFloat = headerHeight + MainCollectionViewSizeConstants.cellHeight
     static let backgroundImageViewHeight: CGFloat = Size.screenHeight.floatValue / 2
 }
 
@@ -45,7 +44,14 @@ final class MainViewController: UIViewController {
     }(UIImageView())
     
     lazy var mainView = MainView()
-    lazy var activityIndicatorView = UIActivityIndicatorView()
+    
+    lazy var activityIndicatorView: UIActivityIndicatorView = {
+        $0.style = .large
+        $0.center = view.center
+        $0.startAnimating()
+        $0.color = Color.activityIndicatorView.uiColor
+        return $0
+    }(UIActivityIndicatorView())
     
     // MARK: - Properties
     var presenter: MainPresenterProtocol!
@@ -90,7 +96,9 @@ final class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         hideNavigationBar()
         // requesting data if it didn't received earlier
-        guard tableViewModel == nil || collectionViewModel == nil || backgroundImageView.image == nil else { return }
+        guard tableViewModel == nil
+           || collectionViewModel == nil
+           || backgroundImageView.image == nil else { return }
         fetchData()
     }
     
@@ -105,7 +113,7 @@ final class MainViewController: UIViewController {
             if object is UITableView {
                 if let newvalue = change?[.newKey] {
                     let newsize  = newvalue as! CGSize
-                    mainViewHeightConstraint?.constant = newsize.height + MainViewSizeConstants.additionalHeight
+                    mainViewHeightConstraint?.constant = newsize.height + MainViewSizeConstants.additionalHeight + navigationBarHeight
                 }
             }
         }
@@ -115,10 +123,6 @@ final class MainViewController: UIViewController {
     private func configureUI() {
         
         view.backgroundColor = Color.mainBackground.uiColor
-        
-        activityIndicatorView.style = .large
-        activityIndicatorView.center = view.center
-        activityIndicatorView.startAnimating()
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         baseView.translatesAutoresizingMaskIntoConstraints = false
@@ -167,7 +171,7 @@ final class MainViewController: UIViewController {
             presenter.fetchData(by: serialNumber)
             presenter.provideBackgroundImage()
             presenter.provideRocketName()
-            presenter.provideViewModel()
+            presenter.provideTableViewModel()
             presenter.provideCollectionViewModel()
         }
     }
@@ -213,7 +217,7 @@ extension MainViewController: MainViewProtocol {
     
     func setTableViewModel(_ viewModel: MainTableViewModel) {
         self.tableViewModel = viewModel
-        self.tableViewModel?.buttonTapCallback = showLaunches
+        self.tableViewModel?.buttonAction = showLaunches
         DispatchQueue.main.sync {
             activityIndicatorView.stopAnimating()
         }

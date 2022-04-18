@@ -54,7 +54,7 @@ final class MainCollectionCell: UICollectionViewCell, MainCollectionCellProtocol
     }(UILabel())
     
     // MARK: - Lifecycle
-    override init(frame: CGRect) {
+    private override init(frame: CGRect) {
         super.init(frame: frame)
         setupLabels()
     }

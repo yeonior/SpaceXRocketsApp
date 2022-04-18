@@ -52,7 +52,7 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     }(UILabel())
     
     // MARK: - Init
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
         setupLabels()

@@ -32,11 +32,10 @@ final class MainShowButtonCell: UITableViewCell {
         return $0
     }(UIView())
     
-    // MARK: - Button action
-    var buttonTapCallback: (() -> ())?
+    var buttonAction: Callback?
     
     // MARK: - Init
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
     }
@@ -72,6 +71,6 @@ final class MainShowButtonCell: UITableViewCell {
     
     @objc
     private func didTapButton() {
-        buttonTapCallback?()
+        buttonAction?()
     }
 }

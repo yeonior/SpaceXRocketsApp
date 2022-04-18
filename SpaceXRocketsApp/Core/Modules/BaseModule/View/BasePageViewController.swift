@@ -8,12 +8,12 @@
 import UIKit
 
 protocol BaseViewProtocol: AnyObject {
-    func success(withTheNumber number: Int)
+    func success(withNumber number: Int)
     func failure(error: Error)
 }
 
 private struct BasePageViewSizeConstants {
-    static let additionalPageViewControllerSaveAreaAtTheBottom: CGFloat = 12.0
+    static let additionalPageViewSaveAreaAtTheBottom: CGFloat = 12.0
     static let additionalPageControlHeight: CGFloat = 26.0
 }
 
@@ -38,13 +38,12 @@ final class BasePageViewController: UIPageViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configurePageControlHeight()
-        print(bottomSafeAreaHeight)
     }
     
     // MARK: - Private methods
     private func configurePageViewController() {
         dataSource = self
-        additionalSafeAreaInsets.bottom = BasePageViewSizeConstants.additionalPageViewControllerSaveAreaAtTheBottom
+        additionalSafeAreaInsets.bottom = BasePageViewSizeConstants.additionalPageViewSaveAreaAtTheBottom
         view.backgroundColor = Color.background.uiColor
     }
     
@@ -81,9 +80,10 @@ final class BasePageViewController: UIPageViewController {
 // MARK: - BaseViewProtocol
 extension BasePageViewController: BaseViewProtocol {
     
-    // setting up view controllers to display depending on the request result (success or failure)
+    // setting up view controllers to display
+    // depending on the request result (success or failure)
     
-    func success(withTheNumber number: Int) {
+    func success(withNumber number: Int) {
         for serialNumber in 1...number {
             let viewController = router.activateMainModule(with: serialNumber)
             viewControllersToDisplay.append(viewController)

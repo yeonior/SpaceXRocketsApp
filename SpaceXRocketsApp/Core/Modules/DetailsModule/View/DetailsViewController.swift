@@ -25,7 +25,13 @@ final class DetailsViewController: UIViewController {
     
     // MARK: - Subviews
     var collectionView: UICollectionView?
-    lazy var activityIndicatorView = UIActivityIndicatorView()
+    lazy var activityIndicatorView: UIActivityIndicatorView = {
+        $0.style = .large
+        $0.center = view.center
+        $0.startAnimating()
+        $0.color = Color.activityIndicatorView.uiColor
+        return $0
+    }(UIActivityIndicatorView())
     
     // MARK: - Properties
     var router: Routing!
@@ -44,8 +50,8 @@ final class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        DispatchQueue.global().async { [unowned self] in
-            presenter.fetchData()
+        DispatchQueue.global().async {
+            self.presenter.fetchData()
         }
     }
     
@@ -80,6 +86,7 @@ final class DetailsViewController: UIViewController {
         collectionView.backgroundView = UIView()
         collectionView.backgroundView?.backgroundColor = Color.lauchesPageBackground.uiColor
         collectionView.backgroundColor = Color.lauchesPageBackground.uiColor
+        collectionView.indicatorStyle = .white
         
         view.addSubview(collectionView)
         view.addSubview(activityIndicatorView)

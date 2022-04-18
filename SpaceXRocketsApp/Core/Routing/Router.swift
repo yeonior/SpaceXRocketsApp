@@ -26,7 +26,8 @@ final class Router: Routing {
     let assemblyBuilder: AssemblyBuilderProtocol!
     
     // MARK: - Init
-    init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
+    init(navigationController: UINavigationController,
+         assemblyBuilder: AssemblyBuilderProtocol) {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }

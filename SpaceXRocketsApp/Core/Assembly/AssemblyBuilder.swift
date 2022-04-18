@@ -39,7 +39,8 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
     func buildMainModule(with serialNumber: Int, router: Routing) -> MainViewController {
         
         let view = MainViewController()
-        let presenter = MainPresenter(view: view, dataManager: dataManager)
+        let presenter = MainPresenter(view: view,
+                                      dataManager: dataManager)
         
         view.router = router
         view.presenter = presenter

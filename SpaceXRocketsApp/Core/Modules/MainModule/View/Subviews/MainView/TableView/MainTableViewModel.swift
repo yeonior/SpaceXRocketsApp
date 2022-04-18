@@ -20,11 +20,13 @@ private struct MainTableViewSizeConstants {
     static let secondHalfSectionFooterHeight: CGFloat = 32.0
 }
 
+typealias Callback = () -> Void
+
 final class MainTableViewModel: NSObject, MainTableViewModelProtocol {
     
     // MARK: - Properties
     var sections = [MainSectionViewModelProtocol]()
-    var buttonTapCallback: (() -> ())?
+    var buttonAction: Callback?
     
     // MARK: - Init
     init(data: RocketData) {
@@ -78,7 +80,7 @@ extension MainTableViewModel: UITableViewDataSource {
             }
         case .button:
             if let cell = tableView.dequeueReusableCell(withIdentifier: MainShowButtonCell.identifier, for: indexPath) as? MainShowButtonCell {
-                cell.buttonTapCallback = buttonTapCallback
+                cell.buttonAction = buttonAction
                 return cell
             }
         }

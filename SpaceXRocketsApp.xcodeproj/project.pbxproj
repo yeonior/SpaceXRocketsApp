@@ -243,12 +243,12 @@
 			path = Routing;
 			sourceTree = "<group>";
 		};
-		A2516723280B17BA00FFFB56 /* Navigation */ = {
+		A2516723280B17BA00FFFB56 /* Root */ = {
 			isa = PBXGroup;
 			children = (
 				A2516721280B15F800FFFB56 /* NavigationController.swift */,
 			);
-			path = Navigation;
+			path = Root;
 			sourceTree = "<group>";
 		};
 		A251FB5727FF7DF3007649EF /* Model */ = {
@@ -344,11 +344,11 @@
 			isa = PBXGroup;
 			children = (
 				A24BBC7A2800502100EA5A87 /* Delegates */,
-				A2516723280B17BA00FFFB56 /* Navigation */,
+				A2516723280B17BA00FFFB56 /* Root */,
 				A24BBC7D2800543C00EA5A87 /* Routing */,
 				A24BBC7728004F9100EA5A87 /* Assembly */,
 				A251FB5D27FF8320007649EF /* Modules */,
-				A275CA1C27FC1C300020B02B /* Info.plist */,
+				A2CCC238280DA2B000D4C6E2 /* PropertyList */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -414,6 +414,14 @@
 				A2A19BA228028AD400B28901 /* MainPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A2CCC238280DA2B000D4C6E2 /* PropertyList */ = {
+			isa = PBXGroup;
+			children = (
+				A275CA1C27FC1C300020B02B /* Info.plist */,
+			);
+			path = PropertyList;
 			sourceTree = "<group>";
 		};
 		A2D383A52805828F007F22C3 /* DetailsModule */ = {

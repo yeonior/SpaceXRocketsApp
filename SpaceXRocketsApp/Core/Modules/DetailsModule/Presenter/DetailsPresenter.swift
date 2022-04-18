@@ -8,7 +8,9 @@
 import Foundation
 
 protocol DetailsPresenterProtocol {
-    init(view: DetailsViewProtocol, networkManager: NetworkManagerProtocol, dataManager: DataManagerProtocol)
+    init(view: DetailsViewProtocol,
+         networkManager: NetworkManagerProtocol,
+         dataManager: DataManagerProtocol)
     func fetchData()
     func provideViewModel(with serialNumber: Int)
 }
@@ -63,7 +65,7 @@ final class DetailsPresenter: DetailsPresenterProtocol {
         // sorting the laucnhes by date
         let sortedLaunches = filteredLaucnhes.sorted { dateFormatter.date(from: $0.dateLocal)! > dateFormatter.date(from: $1.dateLocal)! }
         
-        // viewModel
+        // view model
         let viewModel = DetailsCollectionViewModel(data: sortedLaunches)
         view.setViewModel(viewModel)
     }

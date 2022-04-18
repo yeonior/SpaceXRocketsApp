@@ -11,7 +11,7 @@ protocol MainCollectionViewModelProtocol {
     var cells: [MainCollectionCellViewModelProtocol] { get }
 }
 
-private struct MainCollectionViewSizeConstants {
+struct MainCollectionViewSizeConstants {
     static let cellWidth: CGFloat = 96.0
     static let cellHeight: CGFloat = 96.0
 }
@@ -49,13 +49,14 @@ final class MainCollectionViewModel: NSObject, MainCollectionViewModelProtocol {
             }
             
             let heightCell = MainCollectionCellViewModel(text: heightText,
-                                                   detailText: "Height, ft")
+                                                         detailText: "Height, ft")
             let diameterCell = MainCollectionCellViewModel(text: diameterText,
-                                                   detailText: "Diameter, ft")
+                                                           detailText: "Diameter, ft")
             let massCell = MainCollectionCellViewModel(text: TextFormatter.numberWithCommas(rocket.mass.lb),
-                                                   detailText: "Mass, lb")
+                                                       detailText: "Mass, lb")
             let payloadCell = MainCollectionCellViewModel(text: payloadText,
-                                                   detailText: "Payload, lb")
+                                                          detailText: "Payload, lb")
+            
             cells.append(heightCell)
             cells.append(diameterCell)
             cells.append(massCell)

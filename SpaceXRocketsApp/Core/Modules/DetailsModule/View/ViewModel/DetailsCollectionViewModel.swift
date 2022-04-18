@@ -21,10 +21,10 @@ final class DetailsCollectionViewModel: NSObject, DetailsCollectionViewModelProt
         var cells = [DetailsCollectionCellViewModelProtocol]()
         for launch in data {
             let cell = DetailsCollectionCellViewModel(text: launch.name,
-                                            detailText: TextFormatter.convertDateFormat(date: launch.dateLocal,
-                                                                                        from: .yyyyMMddTHHmmssZ,
-                                                                                        to: .MMMMdyyyy),
-                                            sign: launch.success)
+                                                      detailText: TextFormatter.convertDateFormat(date: launch.dateLocal,
+                                                                                                  from: .yyyyMMddTHHmmssZ,
+                                                                                                  to: .MMMMdyyyy),
+                                                      sign: launch.success)
             cells.append(cell)
         }
         
@@ -43,7 +43,7 @@ extension DetailsCollectionViewModel: UICollectionViewDataSource {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCollectionCell.identifier, for: indexPath) as? DetailsCollectionCell {
             
-            // an information cell for rockets with no lauches
+            // the information cell for rockets with no lauches
             if cells.count == 0 {
                 cell.mainLabel.text = "No information available"
                 cell.imageView.image = UIImage(systemName: "xmark.circle.fill")

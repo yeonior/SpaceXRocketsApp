@@ -27,7 +27,7 @@ final class MainSectionHeader: UITableViewHeaderFooterView {
     }(UILabel())
     
     // MARK: - Init
-    override init(reuseIdentifier: String?) {
+    private override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setup()
     }

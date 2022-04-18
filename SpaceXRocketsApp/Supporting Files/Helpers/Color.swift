@@ -42,6 +42,8 @@ enum Color {
     case successStatus
     case failureStatus
     
+    case activityIndicatorView
+    
     var uiColor: UIColor {
         switch self {
         case    .mainBackground,
@@ -78,7 +80,8 @@ enum Color {
         case    .currentPageIndicator,
                 .mainCollectionCellMainLabel,
                 .detailsCollectionCellMainLabel,
-                .detailsCollectionViewCellCircleBackground:
+                .detailsCollectionViewCellCircleBackground,
+                .activityIndicatorView:
             return hexStringToUIColor(hex: "#FFFFFF")
             
         case .successStatus:

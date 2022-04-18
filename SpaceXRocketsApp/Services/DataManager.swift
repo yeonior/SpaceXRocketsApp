@@ -38,9 +38,10 @@ final class DataManager: DataManagerProtocol {
     }
     
     func getRockets() -> [RocketModel] {
-        guard let rockets = rockets else { return [] }
+        var safeRockets = [RocketModel]()
+        safeRockets = rockets ?? []
         
-        return rockets
+        return safeRockets
     }
     
     func setLaunches(_ launches: [LaunchModel]) {
@@ -48,8 +49,9 @@ final class DataManager: DataManagerProtocol {
     }
     
     func getLaunches() -> [LaunchModel] {
-        guard let launches = launches else { return [] }
+        var safeLaunches = [LaunchModel]()
+        safeLaunches = launches ?? []
         
-        return launches
+        return safeLaunches
     }
 }
