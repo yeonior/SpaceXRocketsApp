@@ -95,7 +95,7 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         hideNavigationBar()
-        // requesting data if it didn't received earlier
+        // requesting data
         guard tableViewModel == nil
            || collectionViewModel == nil
            || backgroundImageView.image == nil else { return }
@@ -167,12 +167,12 @@ final class MainViewController: UIViewController {
     }
     
     private func fetchData() {
-        DispatchQueue.global().async { [unowned self] in
-            presenter.fetchData(by: serialNumber)
-            presenter.provideBackgroundImage()
-            presenter.provideRocketName()
-            presenter.provideTableViewModel()
-            presenter.provideCollectionViewModel()
+        DispatchQueue.global().async {
+            self.presenter.fetchData(by: self.serialNumber)
+            self.presenter.provideBackgroundImage()
+            self.presenter.provideRocketName()
+            self.presenter.provideTableViewModel()
+            self.presenter.provideCollectionViewModel()
         }
     }
     

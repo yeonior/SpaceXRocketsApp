@@ -44,6 +44,10 @@ enum Color {
     
     case activityIndicatorView
     
+    case navigationBarColor
+    case navigationBarButtonColor
+    case navigationBarTitleColor
+    
     var uiColor: UIColor {
         switch self {
         case    .mainBackground,
@@ -62,7 +66,9 @@ enum Color {
         case    .mainViewHeader,
                 .tableViewStageSectionHeader,
                 .tableViewCellDetailsLabel,
-                .showButtonText:
+                .showButtonText,
+                .navigationBarTitleColor,
+                .navigationBarButtonColor:
             return hexStringToUIColor(hex: "#F6F6F6")
             
         case    .pageIndicator,
@@ -74,7 +80,8 @@ enum Color {
             return hexStringToUIColor(hex: "#8E8E8F")
             
         case    .background,
-                .dragIndicatorBackground:
+                .dragIndicatorBackground,
+                .navigationBarColor:
             return hexStringToUIColor(hex: "#121212")
             
         case    .currentPageIndicator,
