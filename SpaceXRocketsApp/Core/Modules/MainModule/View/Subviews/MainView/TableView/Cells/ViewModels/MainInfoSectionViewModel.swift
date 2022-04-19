@@ -14,19 +14,19 @@ final class MainInfoSectionViewModel: MainSectionViewModelProtocol {
         .info
     }
     
-    var cells: [MainCellViewModelProtocol]
+    var cells: [MainTableViewCellViewModelProtocol]
     
     // MARK: - Init
     init(firstFlight: String, country: String, costPerLaunch: Int) {
         
-        let firstLaunchCell = MainCellViewModel(text: .firstFlight,
+        let firstLaunchCell = MainTableViewCellViewModel(text: .firstFlight,
                                                 detailText: TextFormatter.convertDateFormat(
                                                     date: firstFlight,
                                                     from: .yyyyMMdd,
                                                     to: .MMddyyyy))
-        let countryCell = MainCellViewModel(text: .country,
+        let countryCell = MainTableViewCellViewModel(text: .country,
                                             detailText: country)
-        let costPerLaunch = MainCellViewModel(text: .costPerLaunch,
+        let costPerLaunch = MainTableViewCellViewModel(text: .costPerLaunch,
                                               detailText: TextFormatter.roundNumberWithUnit(costPerLaunch))
         
         let cells = [firstLaunchCell, countryCell, costPerLaunch]

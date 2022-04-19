@@ -1,5 +1,5 @@
 //
-//  MainCollectionCell.swift
+//  MainCollectionViewCell.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 17.04.2022.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol MainCollectionCellProtocol {
-    var cellViewModel: MainCollectionCellViewModelProtocol? { get }
+protocol MainCollectionViewCellProtocol {
+    var cellViewModel: MainCollectionViewCellViewModelProtocol? { get }
 }
 
 private struct MainCollectionCellSizeConstants {
@@ -19,12 +19,12 @@ private struct MainCollectionCellSizeConstants {
     static let labelsRightPadding: CGFloat = 8.0
 }
 
-final class MainCollectionCell: UICollectionViewCell, MainCollectionCellProtocol {
+final class MainCollectionViewCell: UICollectionViewCell, MainCollectionViewCellProtocol {
     
     // MARK: - Properties
     static let identifier = "mainCollectionViewCell"
     
-    var cellViewModel: MainCollectionCellViewModelProtocol? {
+    var cellViewModel: MainCollectionViewCellViewModelProtocol? {
         didSet {
             updateLabels()
         }

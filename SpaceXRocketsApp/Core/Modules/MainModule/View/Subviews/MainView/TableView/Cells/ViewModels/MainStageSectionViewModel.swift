@@ -14,7 +14,7 @@ final class MainStageSectionViewModel: MainSectionViewModelProtocol {
     
     // MARK: - Properties
     var name: MainSectionType
-    var cells: [MainCellViewModelProtocol]
+    var cells: [MainTableViewCellViewModelProtocol]
     
     // MARK: - Init
     init(sectionName: MainSectionType,
@@ -22,15 +22,15 @@ final class MainStageSectionViewModel: MainSectionViewModelProtocol {
          fuelAmountTons: Double,
          burnTimeSEC: Int?) {
         
-        let enginesCell = MainCellViewModel(text: .engines,
+        let enginesCell = MainTableViewCellViewModel(text: .engines,
                                             detailText: String(engines))
-        let fuelAmountCell = MainCellViewModel(text: .fuelAmountTons,
+        let fuelAmountCell = MainTableViewCellViewModel(text: .fuelAmountTons,
                                                detailText: String(fuelAmountTons),
                                                unit: UnitType.ton.rawValue)
         var cells = [enginesCell, fuelAmountCell]
         
         if let burnTimeSEC = burnTimeSEC {
-            let burnTimeCell = MainCellViewModel(text: .burnTimeSEC,
+            let burnTimeCell = MainTableViewCellViewModel(text: .burnTimeSEC,
                                                  detailText: String(burnTimeSEC),
                                                  unit: UnitType.sec.rawValue)
             cells.append(burnTimeCell)

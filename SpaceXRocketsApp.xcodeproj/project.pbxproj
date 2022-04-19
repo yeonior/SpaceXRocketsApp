@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A237D23F280C314E007655BD /* MainCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237D23E280C314E007655BD /* MainCollectionCell.swift */; };
-		A237D241280C3321007655BD /* MainCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237D240280C3321007655BD /* MainCollectionCellViewModel.swift */; };
-		A237D244280C358D007655BD /* MainCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237D243280C358D007655BD /* MainCollectionViewModel.swift */; };
+		A237D23F280C314E007655BD /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237D23E280C314E007655BD /* MainCollectionViewCell.swift */; };
+		A237D241280C3321007655BD /* MainCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237D240280C3321007655BD /* MainCollectionViewCellViewModel.swift */; };
+		A237D244280C358D007655BD /* MainCollectionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237D243280C358D007655BD /* MainCollectionViewViewModel.swift */; };
 		A237D246280C59C8007655BD /* UIScrollView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237D245280C59C8007655BD /* UIScrollView + extension.swift */; };
 		A237D248280C6A53007655BD /* UIViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237D247280C6A53007655BD /* UIViewController + extension.swift */; };
 		A245027728087ADC005FF06C /* DetailsCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245027628087ADC005FF06C /* DetailsCollectionCellViewModel.swift */; };
@@ -27,8 +27,8 @@
 		A251FB6027FF8454007649EF /* Rockets.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A251FB5F27FF8454007649EF /* Rockets.JSON */; };
 		A25BB6C32804AC0700FCDF02 /* MainInfoSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BB6C22804AC0700FCDF02 /* MainInfoSectionViewModel.swift */; };
 		A25BB6C52804AC1E00FCDF02 /* MainStageSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BB6C42804AC1E00FCDF02 /* MainStageSectionViewModel.swift */; };
-		A25FCF2B2803E83700A34EBA /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25FCF2A2803E83700A34EBA /* MainCellViewModel.swift */; };
-		A25FCF312803EFD900A34EBA /* MainTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25FCF302803EFD900A34EBA /* MainTableViewModel.swift */; };
+		A25FCF2B2803E83700A34EBA /* MainTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25FCF2A2803E83700A34EBA /* MainTableViewCellViewModel.swift */; };
+		A25FCF312803EFD900A34EBA /* MainTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25FCF302803EFD900A34EBA /* MainTableViewViewModel.swift */; };
 		A26298C428056002005F2798 /* MainButtonSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26298C328056002005F2798 /* MainButtonSectionViewModel.swift */; };
 		A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */; };
 		A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA1027FC1C2F0020B02B /* SceneDelegate.swift */; };
@@ -61,9 +61,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A237D23E280C314E007655BD /* MainCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionCell.swift; sourceTree = "<group>"; };
-		A237D240280C3321007655BD /* MainCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewModel.swift; sourceTree = "<group>"; };
-		A237D243280C358D007655BD /* MainCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewModel.swift; sourceTree = "<group>"; };
+		A237D23E280C314E007655BD /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		A237D240280C3321007655BD /* MainCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		A237D243280C358D007655BD /* MainCollectionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewViewModel.swift; sourceTree = "<group>"; };
 		A237D245280C59C8007655BD /* UIScrollView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + extension.swift"; sourceTree = "<group>"; };
 		A237D247280C6A53007655BD /* UIViewController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + extension.swift"; sourceTree = "<group>"; };
 		A245027628087ADC005FF06C /* DetailsCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionCellViewModel.swift; sourceTree = "<group>"; };
@@ -81,8 +81,8 @@
 		A251FB5F27FF8454007649EF /* Rockets.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Rockets.JSON; sourceTree = "<group>"; };
 		A25BB6C22804AC0700FCDF02 /* MainInfoSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoSectionViewModel.swift; sourceTree = "<group>"; };
 		A25BB6C42804AC1E00FCDF02 /* MainStageSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStageSectionViewModel.swift; sourceTree = "<group>"; };
-		A25FCF2A2803E83700A34EBA /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
-		A25FCF302803EFD900A34EBA /* MainTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewModel.swift; sourceTree = "<group>"; };
+		A25FCF2A2803E83700A34EBA /* MainTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		A25FCF302803EFD900A34EBA /* MainTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewViewModel.swift; sourceTree = "<group>"; };
 		A26298C328056002005F2798 /* MainButtonSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonSectionViewModel.swift; sourceTree = "<group>"; };
 		A275CA0B27FC1C2F0020B02B /* SpaceXRocketsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceXRocketsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A275CA0E27FC1C2F0020B02B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		A21FBC9B2802CB2F0095D4E4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A25FCF2A2803E83700A34EBA /* MainCellViewModel.swift */,
+				A25FCF2A2803E83700A34EBA /* MainTableViewCellViewModel.swift */,
 				A25BB6C22804AC0700FCDF02 /* MainInfoSectionViewModel.swift */,
 				A25BB6C42804AC1E00FCDF02 /* MainStageSectionViewModel.swift */,
 				A26298C328056002005F2798 /* MainButtonSectionViewModel.swift */,
@@ -160,7 +160,7 @@
 		A21FBCA22802F67E0095D4E4 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				A25FCF302803EFD900A34EBA /* MainTableViewModel.swift */,
+				A25FCF302803EFD900A34EBA /* MainTableViewViewModel.swift */,
 				A21FBCA02802F6210095D4E4 /* Cells */,
 				A21FBCA12802F62A0095D4E4 /* Header */,
 			);
@@ -179,7 +179,7 @@
 		A237D23C280C2EF2007655BD /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				A237D243280C358D007655BD /* MainCollectionViewModel.swift */,
+				A237D243280C358D007655BD /* MainCollectionViewViewModel.swift */,
 				A237D23D280C30EB007655BD /* Cell */,
 			);
 			path = CollectionView;
@@ -188,7 +188,7 @@
 		A237D23D280C30EB007655BD /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				A237D23E280C314E007655BD /* MainCollectionCell.swift */,
+				A237D23E280C314E007655BD /* MainCollectionViewCell.swift */,
 				A237D242280C3323007655BD /* ViewModel */,
 			);
 			path = Cell;
@@ -197,7 +197,7 @@
 		A237D242280C3323007655BD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A237D240280C3321007655BD /* MainCollectionCellViewModel.swift */,
+				A237D240280C3321007655BD /* MainCollectionViewCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -609,10 +609,10 @@
 				A2D383B52805E0AE007F22C3 /* DetailsCollectionCell.swift in Sources */,
 				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
-				A25FCF312803EFD900A34EBA /* MainTableViewModel.swift in Sources */,
+				A25FCF312803EFD900A34EBA /* MainTableViewViewModel.swift in Sources */,
 				A2A19BA72802C57C00B28901 /* Size.swift in Sources */,
 				A2852F9127FE3B12000CDA92 /* MainSectionHeader.swift in Sources */,
-				A25FCF2B2803E83700A34EBA /* MainCellViewModel.swift in Sources */,
+				A25FCF2B2803E83700A34EBA /* MainTableViewCellViewModel.swift in Sources */,
 				A2516722280B15F800FFFB56 /* NavigationController.swift in Sources */,
 				A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainView.swift in Sources */,
@@ -621,10 +621,10 @@
 				A2D383AC280587A5007F22C3 /* DetailsViewController.swift in Sources */,
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionCell.swift in Sources */,
 				A237D248280C6A53007655BD /* UIViewController + extension.swift in Sources */,
-				A237D23F280C314E007655BD /* MainCollectionCell.swift in Sources */,
+				A237D23F280C314E007655BD /* MainCollectionViewCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,
 				A2D383B02805BE6A007F22C3 /* TextFormatter.swift in Sources */,
-				A237D241280C3321007655BD /* MainCollectionCellViewModel.swift in Sources */,
+				A237D241280C3321007655BD /* MainCollectionViewCellViewModel.swift in Sources */,
 				A25BB6C32804AC0700FCDF02 /* MainInfoSectionViewModel.swift in Sources */,
 				A237D246280C59C8007655BD /* UIScrollView + extension.swift in Sources */,
 				A251FB5A27FF7E62007649EF /* BasePresenter.swift in Sources */,
@@ -632,7 +632,7 @@
 				A275CA1127FC1C2F0020B02B /* SceneDelegate.swift in Sources */,
 				A251FB5627FF712E007649EF /* NetworkManager.swift in Sources */,
 				A26298C428056002005F2798 /* MainButtonSectionViewModel.swift in Sources */,
-				A237D244280C358D007655BD /* MainCollectionViewModel.swift in Sources */,
+				A237D244280C358D007655BD /* MainCollectionViewViewModel.swift in Sources */,
 				A275CA3727FCAC400020B02B /* MainViewHeader.swift in Sources */,
 				A24BBC7628004F0600EA5A87 /* API.swift in Sources */,
 				A245027B2808A355005FF06C /* UIImage + extension.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  MainCollectionCellViewModel.swift
+//  MainCollectionViewCellViewModel.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 17.04.2022.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol MainCollectionCellViewModelProtocol {
+protocol MainCollectionViewCellViewModelProtocol {
     var text: String? { get }
     var detailText: String? { get }
 }
 
-final class MainCollectionCellViewModel: MainCollectionCellViewModelProtocol {
+final class MainCollectionViewCellViewModel: MainCollectionViewCellViewModelProtocol {
     
     // MARK: - Properties
     var text: String?

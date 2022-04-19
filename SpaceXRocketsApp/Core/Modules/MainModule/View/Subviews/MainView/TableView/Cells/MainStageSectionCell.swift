@@ -23,7 +23,7 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
     // MARK: - Properties
     static let identifier = "stageCell"
     
-    var cellViewModel: MainCellViewModelProtocol? {
+    var cellViewModel: MainTableViewCellViewModelProtocol? {
         didSet {
             updateLabels()
         }

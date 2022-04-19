@@ -1,5 +1,5 @@
 //
-//  MainCellViewModel.swift
+//  MainTableViewCellViewModel.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 11.04.2022.
@@ -24,7 +24,7 @@ enum MainSectionType: String {
 }
 
 // MARK: - Protocols
-protocol MainCellViewModelProtocol {
+protocol MainTableViewCellViewModelProtocol {
     var text: MainTextCellTextType? { get }
     var detailText: String? { get }
     var unit: String? { get }
@@ -32,11 +32,11 @@ protocol MainCellViewModelProtocol {
 
 protocol MainSectionViewModelProtocol {
     var name: MainSectionType { get }
-    var cells: [MainCellViewModelProtocol] { get }
+    var cells: [MainTableViewCellViewModelProtocol] { get }
 }
 
 // MARK: - Class
-final class MainCellViewModel: MainCellViewModelProtocol {
+final class MainTableViewCellViewModel: MainTableViewCellViewModelProtocol {
     
     // MARK: - Properties
     var text: MainTextCellTextType?

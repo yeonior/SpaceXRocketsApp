@@ -1,5 +1,5 @@
 //
-//  MainCollectionViewModel.swift
+//  MainCollectionViewViewModel.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 17.04.2022.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol MainCollectionViewModelProtocol {
-    var cells: [MainCollectionCellViewModelProtocol] { get }
+protocol MainCollectionViewViewModelProtocol {
+    var cells: [MainCollectionViewCellViewModelProtocol] { get }
 }
 
 struct MainCollectionViewSizeConstants {
@@ -16,14 +16,14 @@ struct MainCollectionViewSizeConstants {
     static let cellHeight: CGFloat = 96.0
 }
 
-final class MainCollectionViewModel: NSObject, MainCollectionViewModelProtocol {
+final class MainCollectionViewViewModel: NSObject, MainCollectionViewViewModelProtocol {
     
     // MARK: - Properties
-    var cells: [MainCollectionCellViewModelProtocol]
+    var cells: [MainCollectionViewCellViewModelProtocol]
     
     // MARK: - Init
     init(data: [RocketData]) {
-        var cells = [MainCollectionCellViewModelProtocol]()
+        var cells = [MainCollectionViewCellViewModelProtocol]()
         for rocket in data {
             
             var heightText = ""
@@ -48,13 +48,13 @@ final class MainCollectionViewModel: NSObject, MainCollectionViewModelProtocol {
                 payloadText = "N/A"
             }
             
-            let heightCell = MainCollectionCellViewModel(text: heightText,
+            let heightCell = MainCollectionViewCellViewModel(text: heightText,
                                                          detailText: "Height, ft")
-            let diameterCell = MainCollectionCellViewModel(text: diameterText,
+            let diameterCell = MainCollectionViewCellViewModel(text: diameterText,
                                                            detailText: "Diameter, ft")
-            let massCell = MainCollectionCellViewModel(text: TextFormatter.numberWithCommas(rocket.mass.lb),
+            let massCell = MainCollectionViewCellViewModel(text: TextFormatter.numberWithCommas(rocket.mass.lb),
                                                        detailText: "Mass, lb")
-            let payloadCell = MainCollectionCellViewModel(text: payloadText,
+            let payloadCell = MainCollectionViewCellViewModel(text: payloadText,
                                                           detailText: "Payload, lb")
             
             cells.append(heightCell)
@@ -68,14 +68,14 @@ final class MainCollectionViewModel: NSObject, MainCollectionViewModelProtocol {
 }
 
 // MARK: - UICollectionViewDataSource
-extension MainCollectionViewModel: UICollectionViewDataSource {
+extension MainCollectionViewViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         cells.count == 0 ? 1 : cells.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionCell.identifier, for: indexPath) as? MainCollectionCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell {
             
             cell.cellViewModel = cells[indexPath.row]
             
@@ -87,7 +87,7 @@ extension MainCollectionViewModel: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension MainCollectionViewModel: UICollectionViewDelegateFlowLayout {
+extension MainCollectionViewViewModel: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: MainCollectionViewSizeConstants.cellWidth,

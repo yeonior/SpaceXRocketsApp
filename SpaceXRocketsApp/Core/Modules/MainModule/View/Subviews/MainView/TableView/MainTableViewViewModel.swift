@@ -1,5 +1,5 @@
 //
-//  MainTableViewModel.swift
+//  MainTableViewViewModel.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 11.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MainTableViewModelProtocol {
+protocol MainTableViewViewModelProtocol {
     var sections: [MainSectionViewModelProtocol] { get }
 }
 
@@ -22,7 +22,7 @@ private struct MainTableViewSizeConstants {
 
 typealias Callback = () -> Void
 
-final class MainTableViewModel: NSObject, MainTableViewModelProtocol {
+final class MainTableViewViewModel: NSObject, MainTableViewViewModelProtocol {
     
     // MARK: - Properties
     var sections = [MainSectionViewModelProtocol]()
@@ -54,7 +54,7 @@ final class MainTableViewModel: NSObject, MainTableViewModelProtocol {
 }
 
 // MARK: - UITableViewDataSource
-extension MainTableViewModel: UITableViewDataSource {
+extension MainTableViewViewModel: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
     }
@@ -90,7 +90,7 @@ extension MainTableViewModel: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension MainTableViewModel: UITableViewDelegate {
+extension MainTableViewViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = sections[indexPath.section]
         switch section.name {

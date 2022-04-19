@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainCellProtocol {
-    var cellViewModel: MainCellViewModelProtocol? { get }
+    var cellViewModel: MainTableViewCellViewModelProtocol? { get }
 }
 
 private struct MainInfoSectionSizeConstants {
@@ -24,7 +24,7 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     // MARK: - Properties
     static let identifier = "infoCell"
     
-    var cellViewModel: MainCellViewModelProtocol? {
+    var cellViewModel: MainTableViewCellViewModelProtocol? {
         didSet {
             updateLabels()
         }

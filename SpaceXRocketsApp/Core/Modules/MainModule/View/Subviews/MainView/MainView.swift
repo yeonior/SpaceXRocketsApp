@@ -44,8 +44,8 @@ final class MainView: UIView {
                                                     right: 32)
         
         guard let collectionView = collectionView else { return }
-        collectionView.register(MainCollectionCell.self,
-                                forCellWithReuseIdentifier: MainCollectionCell.identifier)
+        collectionView.register(MainCollectionViewCell.self,
+                                forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
         collectionView.alwaysBounceHorizontal = true
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false

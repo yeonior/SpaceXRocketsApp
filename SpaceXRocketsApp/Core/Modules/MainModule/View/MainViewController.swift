@@ -10,8 +10,8 @@ import UIKit
 protocol MainViewProtocol: AnyObject {
     func setBackgroundImage(with data: Data)
     func setName(_ name: String)
-    func setTableViewModel(_ viewModel: MainTableViewModel)
-    func setCollectionViewModel(_ viewModel: MainCollectionViewModel)
+    func setTableViewViewModel(_ viewModel: MainTableViewViewModel)
+    func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel)
 }
 
 struct MainViewSizeConstants {
@@ -58,20 +58,20 @@ final class MainViewController: UIViewController {
     var router: Routing!
     var serialNumber: Int!
     
-    private var tableViewModel: MainTableViewModel? {
+    private var tableViewViewModel: MainTableViewViewModel? {
         didSet {
             DispatchQueue.main.sync {
-                mainView.tableView.dataSource = tableViewModel
-                mainView.tableView.delegate = tableViewModel
+                mainView.tableView.dataSource = tableViewViewModel
+                mainView.tableView.delegate = tableViewViewModel
                 mainView.tableView.reloadData()
             }
         }
     }
-    private var collectionViewModel: MainCollectionViewModel? {
+    private var collectionViewViewModel: MainCollectionViewViewModel? {
         didSet {
             DispatchQueue.main.sync {
-                mainView.collectionView?.dataSource = collectionViewModel
-                mainView.collectionView?.delegate = collectionViewModel
+                mainView.collectionView?.dataSource = collectionViewViewModel
+                mainView.collectionView?.delegate = collectionViewViewModel
                 mainView.collectionView?.reloadData()
             }
         }
@@ -96,8 +96,8 @@ final class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         hideNavigationBar()
         // requesting data
-        guard tableViewModel == nil
-           || collectionViewModel == nil
+        guard tableViewViewModel == nil
+           || collectionViewViewModel == nil
            || backgroundImageView.image == nil else { return }
         fetchData()
     }
@@ -171,8 +171,8 @@ final class MainViewController: UIViewController {
             self.presenter.fetchData(by: self.serialNumber)
             self.presenter.provideBackgroundImage()
             self.presenter.provideRocketName()
-            self.presenter.provideTableViewModel()
-            self.presenter.provideCollectionViewModel()
+            self.presenter.provideTableViewViewModel()
+            self.presenter.provideCollectionViewViewModel()
         }
     }
     
@@ -215,16 +215,16 @@ extension MainViewController: MainViewProtocol {
         }
     }
     
-    func setTableViewModel(_ viewModel: MainTableViewModel) {
-        self.tableViewModel = viewModel
-        self.tableViewModel?.buttonAction = showLaunches
+    func setTableViewViewModel(_ viewModel: MainTableViewViewModel) {
+        self.tableViewViewModel = viewModel
+        self.tableViewViewModel?.buttonAction = showLaunches
         DispatchQueue.main.sync {
             activityIndicatorView.stopAnimating()
         }
     }
     
-    func setCollectionViewModel(_ viewModel: MainCollectionViewModel) {
-        self.collectionViewModel = viewModel
+    func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel) {
+        self.collectionViewViewModel = viewModel
         DispatchQueue.main.sync {
             activityIndicatorView.stopAnimating()
         }

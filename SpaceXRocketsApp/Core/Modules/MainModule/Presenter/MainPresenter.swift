@@ -12,8 +12,8 @@ protocol MainPresenterProtocol {
     func fetchData(by serialNumber: Int)
     func provideBackgroundImage()
     func provideRocketName()
-    func provideTableViewModel()
-    func provideCollectionViewModel()
+    func provideTableViewViewModel()
+    func provideCollectionViewViewModel()
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -68,15 +68,15 @@ final class MainPresenter: MainPresenterProtocol {
         view.setName(name)
     }
     
-    func provideTableViewModel() {
+    func provideTableViewViewModel() {
         guard let rocketData = rocketData else { return }
-        let viewModel = MainTableViewModel(data: rocketData)
-        view.setTableViewModel(viewModel)
+        let viewModel = MainTableViewViewModel(data: rocketData)
+        view.setTableViewViewModel(viewModel)
     }
     
-    func provideCollectionViewModel() {
+    func provideCollectionViewViewModel() {
         guard let rocketData = rocketData else { return }
-        let viewModel = MainCollectionViewModel(data: [rocketData])
-        view.setCollectionViewModel(viewModel)
+        let viewModel = MainCollectionViewViewModel(data: [rocketData])
+        view.setCollectionViewViewModel(viewModel)
     }
 }

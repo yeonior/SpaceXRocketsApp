@@ -13,7 +13,7 @@ final class MainButtonSectionViewModel: MainSectionViewModelProtocol {
     }
     
     // an empty cell
-    var cells: [MainCellViewModelProtocol] {
-        [MainCellViewModel()]
+    var cells: [MainTableViewCellViewModelProtocol] {
+        [MainTableViewCellViewModel()]
     }
 }
