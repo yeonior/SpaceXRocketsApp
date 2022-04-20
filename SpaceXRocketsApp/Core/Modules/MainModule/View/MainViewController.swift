@@ -20,6 +20,8 @@ struct MainViewSizeConstants {
     static let headerHeight: CGFloat = 112.0
     static let additionalHeight: CGFloat = headerHeight + MainCollectionViewSizeConstants.cellHeight
     static let backgroundImageViewHeight: CGFloat = Size.screenHeight.floatValue / 2
+    static let leftPadding: CGFloat = 32.0
+    static let rightPadding: CGFloat = 32.0
 }
 
 final class MainViewController: UIViewController {

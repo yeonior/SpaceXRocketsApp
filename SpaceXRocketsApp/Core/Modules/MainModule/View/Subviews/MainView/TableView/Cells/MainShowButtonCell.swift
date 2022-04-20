@@ -9,8 +9,6 @@ import UIKit
 
 private struct MainShowButtonSizeConstants {
     static let cornerRadius: CGFloat = 14.0
-    static let leftPadding: CGFloat = 32.0
-    static let rightPadding: CGFloat = 32.0
 }
 
 final class MainShowButtonCell: UITableViewCell {
@@ -63,9 +61,9 @@ final class MainShowButtonCell: UITableViewCell {
             showButton.topAnchor.constraint(equalTo: baseView.topAnchor),
             showButton.bottomAnchor.constraint(equalTo: baseView.bottomAnchor),
             showButton.leadingAnchor.constraint(equalTo: baseView.leadingAnchor,
-                                                constant: MainShowButtonSizeConstants.leftPadding),
+                                                constant: MainViewSizeConstants.leftPadding),
             showButton.trailingAnchor.constraint(equalTo: baseView.trailingAnchor,
-                                                 constant: -MainShowButtonSizeConstants.rightPadding)
+                                                 constant: -MainViewSizeConstants.rightPadding)
         ])
     }
     

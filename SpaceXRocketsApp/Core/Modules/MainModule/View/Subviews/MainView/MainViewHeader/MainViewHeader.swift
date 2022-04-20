@@ -9,8 +9,6 @@ import UIKit
 
 private struct MainViewHeaderSizeConstants {
     static let titleLabelHeight: CGFloat = 32.0
-    static let titleLabelLeftPadding: CGFloat = 32.0
-    static let titleLabelRightPadding: CGFloat = 32.0
     static let titleLabelYOffset: CGFloat = 8.0
 }
 
@@ -62,9 +60,9 @@ final class MainViewHeader: UIView {
                                                 constant: MainViewHeaderSizeConstants.titleLabelYOffset),
             titleLabel.heightAnchor.constraint(equalToConstant: MainViewHeaderSizeConstants.titleLabelHeight),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                constant: MainViewHeaderSizeConstants.titleLabelLeftPadding),
+                                                constant: MainViewSizeConstants.leftPadding),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                 constant: -MainViewHeaderSizeConstants.titleLabelRightPadding)
+                                                 constant: -MainViewSizeConstants.rightPadding)
         ])
     }
 }

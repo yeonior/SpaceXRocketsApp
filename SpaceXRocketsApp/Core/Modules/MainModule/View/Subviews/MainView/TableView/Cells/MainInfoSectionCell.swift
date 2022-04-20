@@ -12,9 +12,7 @@ protocol MainCellProtocol {
 }
 
 private struct MainInfoSectionSizeConstants {
-    static let labelsLeftPadding: CGFloat = 32.0
-    static let labelsRightPadding: CGFloat = 32.0
-    static let mainLabelWidth: CGFloat = (Size.screenWidth.floatValue - labelsLeftPadding - labelsRightPadding) * 1.1 / 3.0
+    static let mainLabelWidth: CGFloat = (Size.screenWidth.floatValue - MainViewSizeConstants.leftPadding - MainViewSizeConstants.rightPadding) * 1.1 / 3.0
     static let detailsLabelWidth: CGFloat = Size.screenWidth.floatValue * 1.9 / 3.0
     static let labelsHeight: CGFloat = 24.0
 }
@@ -85,8 +83,8 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
         NSLayoutConstraint.activate([
             stackView.heightAnchor.constraint(equalToConstant: MainInfoSectionSizeConstants.labelsHeight),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: MainInfoSectionSizeConstants.labelsLeftPadding),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -MainInfoSectionSizeConstants.labelsRightPadding),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: MainViewSizeConstants.leftPadding),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -MainViewSizeConstants.rightPadding),
             mainLabel.widthAnchor.constraint(equalToConstant: MainInfoSectionSizeConstants.mainLabelWidth),
             detailsLabelContraint
         ])

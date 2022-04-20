@@ -7,11 +7,6 @@
 
 import UIKit
 
-private struct MainSectionHeaderSizeConstants {
-    static let titleLabelLeftPadding: CGFloat = 32.0
-    static let titleLabelRightPadding: CGFloat = 32.0
-}
-
 final class MainSectionHeader: UITableViewHeaderFooterView {
     
     // MARK: - Properties
@@ -49,9 +44,9 @@ final class MainSectionHeader: UITableViewHeaderFooterView {
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                constant: MainSectionHeaderSizeConstants.titleLabelLeftPadding),
+                                                constant: MainViewSizeConstants.leftPadding),
             titleLabel.trailingAnchor.constraint(greaterThanOrEqualTo: contentView.trailingAnchor,
-                                                constant: -MainSectionHeaderSizeConstants.titleLabelRightPadding)
+                                                constant: -MainViewSizeConstants.rightPadding)
         ])
     }
 }

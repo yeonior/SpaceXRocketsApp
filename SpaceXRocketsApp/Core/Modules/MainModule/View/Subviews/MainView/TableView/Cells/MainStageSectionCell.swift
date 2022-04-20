@@ -8,9 +8,7 @@
 import UIKit
 
 private struct MainStageSectionSizeConstants {
-    static let labelsLeftPadding: CGFloat = 32.0
-    static let labelsRightPadding: CGFloat = 32.0
-    static let mainLabelWidth: CGFloat = (Size.screenWidth.floatValue - labelsLeftPadding - labelsRightPadding) / 1.7
+    static let mainLabelWidth: CGFloat = (Size.screenWidth.floatValue - MainViewSizeConstants.leftPadding - MainViewSizeConstants.rightPadding) / 1.7
     static let detailsLabelWidth: CGFloat = 80.0
     static let unitLabelWidth: CGFloat = 28.0
     static let labelsHeight: CGFloat = 24.0
@@ -102,9 +100,9 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
             stackView.heightAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.labelsHeight),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                               constant: MainStageSectionSizeConstants.labelsLeftPadding),
+                                               constant: MainViewSizeConstants.leftPadding),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                constant: -MainStageSectionSizeConstants.labelsRightPadding),
+                                                constant: -MainViewSizeConstants.rightPadding),
             mainLabel.widthAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.mainLabelWidth),
             mainLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             unitLabelConstraint,
