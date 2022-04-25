@@ -11,5 +11,11 @@ protocol SettingPresenterProtocol {
 
 final class SettingsPresenter: SettingPresenterProtocol {
     
-    weak var view: SettingsViewController!
+    // MARK: - Properties
+    weak var view: SettingsViewProtocol!
+    
+    // MARK: - Init
+    init(view: SettingsViewProtocol) {
+        self.view = view
+    }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SettingsViewProtocol {
+protocol SettingsViewProtocol: AnyObject {
     
 }
 

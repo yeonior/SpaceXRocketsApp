@@ -11,6 +11,7 @@ protocol AssemblyBuilderProtocol {
     func buildBaseModule(router: Routing) -> UIViewController
     func buildMainModule(with serialNumber: Int, router: Routing) -> MainViewController
     func buildDetailsModule(with serialNumber: Int, router: Routing) -> DetailsViewController
+    func buildSettingModule(router: Routing) -> SettingsViewController
 }
 
 final class AssemblyBuilder: AssemblyBuilderProtocol {
@@ -60,6 +61,18 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         view.router = router
         view.presenter = presenter
         view.serialNumber = serialNumber
+        presenter.view = view
+        
+        return view
+    }
+    
+    func buildSettingModule(router: Routing) -> SettingsViewController {
+        
+        let view = SettingsViewController()
+        let presenter = SettingsPresenter(view: view)
+        
+        view.router = router
+        view.presenter = presenter
         presenter.view = view
         
         return view
