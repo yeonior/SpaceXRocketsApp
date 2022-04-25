@@ -27,6 +27,8 @@
 		A251FB6027FF8454007649EF /* Rockets.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A251FB5F27FF8454007649EF /* Rockets.JSON */; };
 		A25BB6C32804AC0700FCDF02 /* MainInfoSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BB6C22804AC0700FCDF02 /* MainInfoSectionViewModel.swift */; };
 		A25BB6C52804AC1E00FCDF02 /* MainStageSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BB6C42804AC1E00FCDF02 /* MainStageSectionViewModel.swift */; };
+		A25FBF4C28171C1B003F9280 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25FBF4B28171C1B003F9280 /* SettingsViewController.swift */; };
+		A25FBF4E28171C58003F9280 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25FBF4D28171C58003F9280 /* SettingsPresenter.swift */; };
 		A25FCF2B2803E83700A34EBA /* MainTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25FCF2A2803E83700A34EBA /* MainTableViewCellViewModel.swift */; };
 		A25FCF312803EFD900A34EBA /* MainTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25FCF302803EFD900A34EBA /* MainTableViewViewModel.swift */; };
 		A26298C428056002005F2798 /* MainButtonSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26298C328056002005F2798 /* MainButtonSectionViewModel.swift */; };
@@ -81,6 +83,8 @@
 		A251FB5F27FF8454007649EF /* Rockets.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Rockets.JSON; sourceTree = "<group>"; };
 		A25BB6C22804AC0700FCDF02 /* MainInfoSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoSectionViewModel.swift; sourceTree = "<group>"; };
 		A25BB6C42804AC1E00FCDF02 /* MainStageSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStageSectionViewModel.swift; sourceTree = "<group>"; };
+		A25FBF4B28171C1B003F9280 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A25FBF4D28171C58003F9280 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		A25FCF2A2803E83700A34EBA /* MainTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		A25FCF302803EFD900A34EBA /* MainTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewViewModel.swift; sourceTree = "<group>"; };
 		A26298C328056002005F2798 /* MainButtonSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonSectionViewModel.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				A275CA2727FC22450020B02B /* BaseModule */,
 				A264E8A82801F350005CF25C /* MainModule */,
 				A2D383A52805828F007F22C3 /* DetailsModule */,
+				A25FBF4828171BBC003F9280 /* SettingsModule */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -283,6 +288,31 @@
 				A275CA2427FC1D060020B02B /* Storyboards */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		A25FBF4828171BBC003F9280 /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				A25FBF4928171BE9003F9280 /* View */,
+				A25FBF4A28171BEE003F9280 /* Presenter */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
+		A25FBF4928171BE9003F9280 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A25FBF4B28171C1B003F9280 /* SettingsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A25FBF4A28171BEE003F9280 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A25FBF4D28171C58003F9280 /* SettingsPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A264E8A82801F350005CF25C /* MainModule */ = {
@@ -616,6 +646,7 @@
 				A2516722280B15F800FFFB56 /* NavigationController.swift in Sources */,
 				A24EE55527FF17640005E3D1 /* RocketModel.swift in Sources */,
 				A275CA3227FC9E310020B02B /* MainView.swift in Sources */,
+				A25FBF4E28171C58003F9280 /* SettingsPresenter.swift in Sources */,
 				A245027728087ADC005FF06C /* DetailsCollectionCellViewModel.swift in Sources */,
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
 				A2D383AC280587A5007F22C3 /* DetailsViewController.swift in Sources */,
@@ -623,6 +654,7 @@
 				A237D248280C6A53007655BD /* UIViewController + extension.swift in Sources */,
 				A237D23F280C314E007655BD /* MainCollectionViewCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,
+				A25FBF4C28171C1B003F9280 /* SettingsViewController.swift in Sources */,
 				A2D383B02805BE6A007F22C3 /* TextFormatter.swift in Sources */,
 				A237D241280C3321007655BD /* MainCollectionViewCellViewModel.swift in Sources */,
 				A25BB6C32804AC0700FCDF02 /* MainInfoSectionViewModel.swift in Sources */,
