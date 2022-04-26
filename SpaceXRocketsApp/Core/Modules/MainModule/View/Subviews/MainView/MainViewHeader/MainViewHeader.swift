@@ -29,6 +29,14 @@ final class MainViewHeader: UIView {
         return $0
     }(UILabel())
     
+    lazy var settingsButton: UIButton = {
+        $0.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        $0.imageView?.tintColor = .white
+        $0.contentVerticalAlignment = .fill
+        $0.contentHorizontalAlignment = .fill
+        return $0
+    }(UIButton())
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,9 +54,11 @@ final class MainViewHeader: UIView {
         
 //        indicatorView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
         
 //        addSubview(indicatorView)
         addSubview(titleLabel)
+        addSubview(settingsButton)
         
         // constraints
         NSLayoutConstraint.activate([
@@ -61,8 +71,12 @@ final class MainViewHeader: UIView {
             titleLabel.heightAnchor.constraint(equalToConstant: MainViewHeaderSizeConstants.titleLabelHeight),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                 constant: MainViewSizeConstants.leftPadding),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                 constant: -MainViewSizeConstants.rightPadding)
+            titleLabel.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor, constant: 8),
+            settingsButton.heightAnchor.constraint(equalTo: titleLabel.heightAnchor),
+            settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor),
+            settingsButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            settingsButton.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                     constant: -MainViewSizeConstants.rightPadding)
         ])
     }
 }
