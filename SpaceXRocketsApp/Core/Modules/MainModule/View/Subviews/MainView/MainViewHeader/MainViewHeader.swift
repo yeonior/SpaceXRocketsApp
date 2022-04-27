@@ -30,7 +30,6 @@ final class MainViewHeader: UIView {
     }(UILabel())
     
     lazy var settingsButton: UIButton = {
-        $0.setImage(UIImage(systemName: "gearshape"), for: .normal)
         $0.imageView?.tintColor = .white
         $0.contentVerticalAlignment = .fill
         $0.contentHorizontalAlignment = .fill
@@ -47,7 +46,7 @@ final class MainViewHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private methods
+    // MARK: - Methods
     private func setup() {
         
         backgroundColor = Color.mainViewHeaderBackground.uiColor
@@ -78,5 +77,9 @@ final class MainViewHeader: UIView {
             settingsButton.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                      constant: -MainViewSizeConstants.rightPadding)
         ])
+    }
+    
+    func setSettingButtonImage() {
+        settingsButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
     }
 }

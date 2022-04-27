@@ -213,6 +213,7 @@ extension MainViewController: MainViewProtocol {
         DispatchQueue.main.sync {
             title = name
             mainView.header.titleLabel.text = name
+            mainView.header.setSettingButtonImage()
             activityIndicatorView.stopAnimating()
         }
     }
