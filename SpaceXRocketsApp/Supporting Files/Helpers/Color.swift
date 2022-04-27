@@ -11,6 +11,7 @@ enum Color {
     case background
     case mainBackground
     case lauchesPageBackground
+    case settingsBackground
     
     case pageIndicator
     case currentPageIndicator
@@ -53,7 +54,8 @@ enum Color {
         case    .mainBackground,
                 .lauchesPageBackground,
                 .mainViewHeaderBackground,
-                .tableViewCellBackground:
+                .tableViewCellBackground,
+                .settingsBackground:
             return hexStringToUIColor(hex: "#000000")
             
         case    .showButton,

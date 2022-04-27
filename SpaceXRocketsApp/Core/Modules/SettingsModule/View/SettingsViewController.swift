@@ -13,6 +13,8 @@ protocol SettingsViewProtocol: AnyObject {
 
 final class SettingsViewController: UIViewController {
     
+    // MARK: - Subviews
+    
     // MARK: - Properties
     var presenter: SettingsPresenter!
     var router: Routing!
@@ -20,7 +22,14 @@ final class SettingsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureUI()
+    }
+    
+    // MARK: - Private methods
+    private func configureUI() {
+        title = "Settings"
+        view.backgroundColor = Color.settingsBackground.uiColor
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
     }
 }
 

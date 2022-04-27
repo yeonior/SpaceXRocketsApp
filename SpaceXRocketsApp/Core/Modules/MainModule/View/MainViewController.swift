@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainViewProtocol: AnyObject {
     func setBackgroundImage(with data: Data)
-    func setName(_ name: String)
+    func setHeaderWithName(_ name: String)
     func setTableViewViewModel(_ viewModel: MainTableViewViewModel)
     func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel)
 }
@@ -125,6 +125,7 @@ final class MainViewController: UIViewController {
     private func configureUI() {
         
         view.backgroundColor = Color.mainBackground.uiColor
+        mainView.header.buttonAction = showSettings
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         baseView.translatesAutoresizingMaskIntoConstraints = false
@@ -195,6 +196,13 @@ final class MainViewController: UIViewController {
         scrollView.scrollToTop(animated: true)
         mainView.collectionView?.scrollToLeft(animated: true)
     }
+    
+    private func showSettings() {
+        // MARK: - TEMP
+        let settingsVC = SettingsViewController()
+        let navController = UINavigationController(rootViewController: settingsVC)
+        navigationController?.present(navController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - MainViewProtocol
@@ -209,11 +217,11 @@ extension MainViewController: MainViewProtocol {
         }
     }
     
-    func setName(_ name: String) {
+    func setHeaderWithName(_ name: String) {
         DispatchQueue.main.sync {
             title = name
             mainView.header.titleLabel.text = name
-            mainView.header.setSettingButtonImage()
+            mainView.header.activateButton()
             activityIndicatorView.stopAnimating()
         }
     }

@@ -16,6 +16,8 @@ final class MainShowButtonCell: UITableViewCell {
     // MARK: - Properties
     static let identifier = "buttonCell"
     
+    var buttonAction: Callback?
+    
     // MARK: - Subviews
     let showButton: UIButton = {
         $0.layer.cornerRadius = MainShowButtonSizeConstants.cornerRadius
@@ -25,12 +27,11 @@ final class MainShowButtonCell: UITableViewCell {
         $0.setTitle("Show the launches", for: .normal)
         return $0
     }(UIButton())
+    
     let baseView: UIView = {
         $0.backgroundColor = Color.tableViewCellBackground.uiColor
         return $0
     }(UIView())
-    
-    var buttonAction: Callback?
     
     // MARK: - Init
     private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

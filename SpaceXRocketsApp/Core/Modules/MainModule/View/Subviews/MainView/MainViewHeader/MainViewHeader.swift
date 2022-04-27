@@ -14,6 +14,9 @@ private struct MainViewHeaderSizeConstants {
 
 final class MainViewHeader: UIView {
     
+    // MARK: - Properties
+    var buttonAction: Callback?
+    
     // MARK: - Subviews
 //    lazy var indicatorView: UIView = {
 //        $0.backgroundColor = Color.dragIndicator.uiColor
@@ -33,6 +36,7 @@ final class MainViewHeader: UIView {
         $0.imageView?.tintColor = .white
         $0.contentVerticalAlignment = .fill
         $0.contentHorizontalAlignment = .fill
+        $0.isUserInteractionEnabled = false
         return $0
     }(UIButton())
     
@@ -50,6 +54,7 @@ final class MainViewHeader: UIView {
     private func setup() {
         
         backgroundColor = Color.mainViewHeaderBackground.uiColor
+        settingsButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
 //        indicatorView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +84,13 @@ final class MainViewHeader: UIView {
         ])
     }
     
-    func setSettingButtonImage() {
+    func activateButton() {
         settingsButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        settingsButton.isUserInteractionEnabled = true
+    }
+    
+    @objc
+    private func didTapButton() {
+        buttonAction?()
     }
 }
