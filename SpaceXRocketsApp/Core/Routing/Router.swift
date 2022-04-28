@@ -17,6 +17,7 @@ protocol Routing: RouterProtocol {
     func activateMainModule(with serialNumber: Int) -> MainViewController
     func provideEmptyMainViewController() -> MainViewController
     func showDetailsModule(with serialNumber: Int, and name: String)
+    func showSettingsModule()
 }
 
 final class Router: Routing {
@@ -50,5 +51,11 @@ final class Router: Routing {
         let viewController = assemblyBuilder.buildDetailsModule(with: serialNumber, router: self)
         viewController.title = name
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showSettingsModule() {
+        let viewController = SettingsViewController()
+        let navController = UINavigationController(rootViewController: viewController)
+        navigationController?.present(navController, animated: true, completion: nil)
     }
 }

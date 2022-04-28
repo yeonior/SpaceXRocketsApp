@@ -198,10 +198,7 @@ final class MainViewController: UIViewController {
     }
     
     private func showSettings() {
-        // MARK: - TEMP
-        let settingsVC = SettingsViewController()
-        let navController = UINavigationController(rootViewController: settingsVC)
-        navigationController?.present(navController, animated: true, completion: nil)
+        router.showSettingsModule()
     }
 }
 
