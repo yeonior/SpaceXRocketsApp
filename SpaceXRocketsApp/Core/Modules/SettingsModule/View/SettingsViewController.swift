@@ -28,8 +28,19 @@ final class SettingsViewController: UIViewController {
     // MARK: - Private methods
     private func configureUI() {
         title = "Settings"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(closeView))
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Color.navigationBarTitleColor.uiColor]
         view.backgroundColor = Color.settingsBackground.uiColor
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
+        navigationItem.rightBarButtonItem?.tintColor = Color.navigationBarButtonColor.uiColor
+    }
+    
+    @objc
+    private func closeView() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
