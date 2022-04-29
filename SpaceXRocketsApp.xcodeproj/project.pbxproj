@@ -41,6 +41,8 @@
 		A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA2C27FC24040020B02B /* MainViewController.swift */; };
 		A275CA3227FC9E310020B02B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3127FC9E310020B02B /* MainView.swift */; };
 		A275CA3727FCAC400020B02B /* MainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275CA3627FCAC400020B02B /* MainViewHeader.swift */; };
+		A2768140281C013000C0172F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A276813F281C013000C0172F /* SettingsView.swift */; };
+		A2768143281C0D9C00C0172F /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2768142281C0D9C00C0172F /* SettingsItemView.swift */; };
 		A2852F8E27FE1EBF000CDA92 /* MainShowButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F8D27FE1EBF000CDA92 /* MainShowButtonCell.swift */; };
 		A2852F9127FE3B12000CDA92 /* MainSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F9027FE3B12000CDA92 /* MainSectionHeader.swift */; };
 		A299754E2806ACC80015FB9A /* Launches.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A299754D2806ACC80015FB9A /* Launches.JSON */; };
@@ -99,6 +101,8 @@
 		A275CA2C27FC24040020B02B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A275CA3127FC9E310020B02B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A275CA3627FCAC400020B02B /* MainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewHeader.swift; sourceTree = "<group>"; };
+		A276813F281C013000C0172F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A2768142281C0D9C00C0172F /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
 		A2852F8D27FE1EBF000CDA92 /* MainShowButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainShowButtonCell.swift; sourceTree = "<group>"; };
 		A2852F9027FE3B12000CDA92 /* MainSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeader.swift; sourceTree = "<group>"; };
 		A299754D2806ACC80015FB9A /* Launches.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Launches.JSON; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				A25FBF4B28171C1B003F9280 /* SettingsViewController.swift */,
+				A2768141281C013500C0172F /* Subviews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -423,6 +428,15 @@
 			isa = PBXGroup;
 			children = (
 				A2852F8F27FE2253000CDA92 /* MainView */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A2768141281C013500C0172F /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A276813F281C013000C0172F /* SettingsView.swift */,
+				A2768142281C0D9C00C0172F /* SettingsItemView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -636,6 +650,7 @@
 				A2852F8E27FE1EBF000CDA92 /* MainShowButtonCell.swift in Sources */,
 				A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */,
 				A25BB6C52804AC1E00FCDF02 /* MainStageSectionViewModel.swift in Sources */,
+				A2768143281C0D9C00C0172F /* SettingsItemView.swift in Sources */,
 				A2D383B52805E0AE007F22C3 /* DetailsCollectionCell.swift in Sources */,
 				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
@@ -651,6 +666,7 @@
 				A275CA0F27FC1C2F0020B02B /* AppDelegate.swift in Sources */,
 				A2D383AC280587A5007F22C3 /* DetailsViewController.swift in Sources */,
 				A24EE55327FEEE6E0005E3D1 /* MainStageSectionCell.swift in Sources */,
+				A2768140281C013000C0172F /* SettingsView.swift in Sources */,
 				A237D248280C6A53007655BD /* UIViewController + extension.swift in Sources */,
 				A237D23F280C314E007655BD /* MainCollectionViewCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,

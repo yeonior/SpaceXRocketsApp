@@ -1,0 +1,60 @@
+//
+//  SettingsItemView.swift
+//  SpaceXRocketsApp
+//
+//  Created by Ruslan on 29.04.2022.
+//
+
+import UIKit
+
+final class SettingsItemView: UIView {
+
+    // MARK: - Subviews
+    lazy var titleLabel: UILabel = {
+        // MARK: - TEMP
+        $0.text = "Height"
+        $0.font = Font.tableViewCellMainLabel.uiFont
+        $0.textColor = Color.tableViewCellMainLabel.uiColor
+        $0.textAlignment = .left
+        $0.clipsToBounds = true
+        $0.adjustsFontSizeToFitWidth = true
+        $0.minimumScaleFactor = 0.8
+        return $0
+    }(UILabel())
+    
+    lazy var unitSegmentedControl = UISegmentedControl()
+    
+    // MARK: - Init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private methods
+    private func setup() {
+        
+        // MARK: - TEMP
+        let itemsArray = ["m", "ft"]
+        unitSegmentedControl = UISegmentedControl(items: itemsArray)
+        unitSegmentedControl.selectedSegmentIndex = 0
+        
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, unitSegmentedControl])
+        stackView.axis = .horizontal
+        stackView.spacing = 28
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            unitSegmentedControl.widthAnchor.constraint(equalToConstant: 115),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
+            stackView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+}
