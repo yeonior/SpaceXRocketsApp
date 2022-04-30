@@ -41,6 +41,10 @@ final class SettingsItemView: UIView {
         let itemsArray = ["m", "ft"]
         unitSegmentedControl = UISegmentedControl(items: itemsArray)
         unitSegmentedControl.selectedSegmentIndex = 0
+        unitSegmentedControl.backgroundColor = Color.segmentedControlBackground.uiColor
+        unitSegmentedControl.selectedSegmentTintColor = Color.segmentedControlSelectedSegmentTintColor.uiColor
+        unitSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Color.segmentedControlNormalText.uiColor], for: .normal)
+        unitSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Color.segmentedControlSelectedText.uiColor], for: .selected)
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, unitSegmentedControl])
         stackView.axis = .horizontal
@@ -54,7 +58,8 @@ final class SettingsItemView: UIView {
             unitSegmentedControl.widthAnchor.constraint(equalToConstant: 115),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
-            stackView.heightAnchor.constraint(equalToConstant: 40)
+            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

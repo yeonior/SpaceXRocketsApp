@@ -49,17 +49,22 @@ enum Color {
     case navigationBarButtonColor
     case navigationBarTitleColor
     
+    case segmentedControlBackground
+    case segmentedControlSelectedSegmentTintColor
+    case segmentedControlNormalText
+    case segmentedControlSelectedText
+    
     var uiColor: UIColor {
         switch self {
         case    .mainBackground,
                 .lauchesPageBackground,
                 .mainViewHeaderBackground,
-                .tableViewCellBackground,
-                .settingsBackground:
+                .tableViewCellBackground:
             return hexStringToUIColor(hex: "#000000")
             
         case    .showButton,
-                .detailsCollectionCellBackground:
+                .detailsCollectionCellBackground,
+                .segmentedControlBackground:
             return hexStringToUIColor(hex: "#212121")
             
         case    .tableViewCellMainLabel:
@@ -78,19 +83,23 @@ enum Color {
                 .mainCollectionCellDetailsLabel,
                 .tableViewCellUnitLabel,
                 .detailsCollectionCellDetailsLabel,
-                .detailsCollectionCellImageView:
+                .detailsCollectionCellImageView,
+                .segmentedControlNormalText:
             return hexStringToUIColor(hex: "#8E8E8F")
             
         case    .background,
                 .dragIndicatorBackground,
-                .navigationBarColor:
+                .navigationBarColor,
+                .settingsBackground,
+                .segmentedControlSelectedText:
             return hexStringToUIColor(hex: "#121212")
             
         case    .currentPageIndicator,
                 .mainCollectionCellMainLabel,
                 .detailsCollectionCellMainLabel,
                 .detailsCollectionViewCellCircleBackground,
-                .activityIndicatorView:
+                .activityIndicatorView,
+                .segmentedControlSelectedSegmentTintColor:
             return hexStringToUIColor(hex: "#FFFFFF")
             
         case .successStatus:
