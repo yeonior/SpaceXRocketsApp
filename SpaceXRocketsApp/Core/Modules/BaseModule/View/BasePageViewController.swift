@@ -93,7 +93,7 @@ extension BasePageViewController: BaseViewProtocol {
     
     func failure(error: Error) {
         debugPrint(error.localizedDescription)
-        viewControllersToDisplay = [router.provideEmptyMainViewController()]
+        viewControllersToDisplay = [router.activateEmptyMainViewController()]
         setViewControllerToDisplay()
     }
 }

@@ -12,15 +12,15 @@ protocol RouterProtocol {
     var assemblyBuilder: AssemblyBuilderProtocol! { get }
 }
 
-protocol Routing: RouterProtocol {
+protocol Routing {
     func activateBaseModule()
     func activateMainModule(with serialNumber: Int) -> MainViewController
-    func provideEmptyMainViewController() -> MainViewController
+    func activateEmptyMainViewController() -> MainViewController
     func showDetailsModule(with serialNumber: Int, and name: String)
     func showSettingsModule()
 }
 
-final class Router: Routing {
+final class Router: RouterProtocol, Routing {
     
     // MARK: - Properties
     let navigationController: UINavigationController!
@@ -43,7 +43,7 @@ final class Router: Routing {
         assemblyBuilder.buildMainModule(with: serialNumber, router: self)
     }
     
-    func provideEmptyMainViewController() -> MainViewController {
+    func activateEmptyMainViewController() -> MainViewController {
         MainViewController()
     }
     
