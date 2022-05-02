@@ -8,7 +8,8 @@
 import UIKit
 
 protocol SettingsViewProtocol: AnyObject {
-    
+    func setLabelTitles(with titles: [String])
+    func setSegmentedControlTitles(with titles: [[Int: String]])
 }
 
 final class SettingsViewController: UIViewController {
@@ -17,13 +18,24 @@ final class SettingsViewController: UIViewController {
     lazy var settingsView = SettingsView()
     
     // MARK: - Properties
+    static let shared = SettingsViewController()
     var presenter: SettingsPresenter!
     var router: Routing!
     
     // MARK: - Lifecycle
+    private override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        presenter.provideTitles()
+        presenter.provideSegmentedControlTitles()
     }
     
     // MARK: - Private methods
@@ -59,5 +71,18 @@ final class SettingsViewController: UIViewController {
 
 // MARK: - SettingsViewProtocol
 extension SettingsViewController: SettingsViewProtocol {
+    func setLabelTitles(with titles: [String]) {
+        for (index, view) in settingsView.stackView.arrangedSubviews.enumerated() {
+            guard let view = view as? SettingsItemView else { return }
+            view.titleLabel.text = titles[index]
+        }
+    }
     
+    func setSegmentedControlTitles(with titles: [[Int: String]]) {
+        for (index, view) in settingsView.stackView.arrangedSubviews.enumerated() {
+            guard let view = view as? SettingsItemView else { return }
+            view.unitSegmentedControl.setTitle((titles[index])[0], forSegmentAt: 0)
+            view.unitSegmentedControl.setTitle((titles[index])[1], forSegmentAt: 1)
+        }
+    }
 }

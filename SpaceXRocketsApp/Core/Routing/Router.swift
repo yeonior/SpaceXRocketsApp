@@ -54,7 +54,7 @@ final class Router: RouterProtocol, Routing {
     }
     
     func showSettingsModule() {
-        let viewController = SettingsViewController()
+        let viewController = assemblyBuilder.buildSettingsModule(router: self)
         let navController = UINavigationController(rootViewController: viewController)
         navigationController?.present(navController, animated: true, completion: nil)
     }

@@ -11,8 +11,6 @@ final class SettingsItemView: UIView {
 
     // MARK: - Subviews
     lazy var titleLabel: UILabel = {
-        // MARK: - TEMP
-        $0.text = "Height"
         $0.font = Font.tableViewCellMainLabel.uiFont
         $0.textColor = Color.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
@@ -38,7 +36,7 @@ final class SettingsItemView: UIView {
     private func setup() {
         
         // MARK: - TEMP
-        let itemsArray = ["m", "ft"]
+        let itemsArray = ["", ""]
         unitSegmentedControl = UISegmentedControl(items: itemsArray)
         unitSegmentedControl.selectedSegmentIndex = 0
         unitSegmentedControl.backgroundColor = Color.segmentedControlBackground.uiColor

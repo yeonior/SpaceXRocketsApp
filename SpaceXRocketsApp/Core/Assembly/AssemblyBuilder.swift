@@ -69,7 +69,7 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
     func buildSettingsModule(router: Routing) -> SettingsViewController {
         
         let view = SettingsViewController()
-        let presenter = SettingsPresenter(view: view)
+        let presenter = SettingsPresenter(view: view, dataManager: dataManager)
         
         view.router = router
         view.presenter = presenter
