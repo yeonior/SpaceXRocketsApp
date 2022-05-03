@@ -5,12 +5,14 @@
 //  Created by Ruslan on 25.04.2022.
 //
 
-protocol SettingPresenterProtocol {
-    func provideTitles()
+protocol SettingsPresenterProtocol {
+    func provideTitle()
+    func provideBarButtonTitle()
+    func provideLabelTitles()
     func provideSegmentedControlTitles()
 }
 
-final class SettingsPresenter: SettingPresenterProtocol {
+final class SettingsPresenter: SettingsPresenterProtocol {
     
     // MARK: - Properties
     weak var view: SettingsViewProtocol!
@@ -22,7 +24,15 @@ final class SettingsPresenter: SettingPresenterProtocol {
         self.dataManager = dataManager
     }
     
-    func provideTitles() {
+    func provideTitle() {
+        view.setTitle(with: "Settings")
+    }
+    
+    func provideBarButtonTitle() {
+        view.setBarButtonTitle(with: "Close")
+    }
+    
+    func provideLabelTitles() {
         let array = ["Height", "Diameter", "Mass", "Payload"]
         view.setLabelTitles(with: array)
     }

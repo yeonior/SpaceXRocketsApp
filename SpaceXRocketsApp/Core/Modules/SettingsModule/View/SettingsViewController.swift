@@ -8,6 +8,8 @@
 import UIKit
 
 protocol SettingsViewProtocol: AnyObject {
+    func setTitle(with title: String)
+    func setBarButtonTitle(with title: String)
     func setLabelTitles(with titles: [String])
     func setSegmentedControlTitles(with titles: [[Int: String]])
 }
@@ -18,30 +20,22 @@ final class SettingsViewController: UIViewController {
     lazy var settingsView = SettingsView()
     
     // MARK: - Properties
-    static let shared = SettingsViewController()
     var presenter: SettingsPresenter!
     var router: Routing!
     
     // MARK: - Lifecycle
-    private override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        presenter.provideTitles()
+        presenter.provideTitle()
+        presenter.provideBarButtonTitle()
+        presenter.provideLabelTitles()
         presenter.provideSegmentedControlTitles()
     }
     
     // MARK: - Private methods
     private func configureUI() {
-        title = "Settings"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil,
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(closeView))
@@ -71,6 +65,14 @@ final class SettingsViewController: UIViewController {
 
 // MARK: - SettingsViewProtocol
 extension SettingsViewController: SettingsViewProtocol {
+    func setTitle(with title: String) {
+        self.title = title
+    }
+    
+    func setBarButtonTitle(with title: String) {
+        navigationItem.rightBarButtonItem?.title = title
+    }
+    
     func setLabelTitles(with titles: [String]) {
         for (index, view) in settingsView.stackView.arrangedSubviews.enumerated() {
             guard let view = view as? SettingsItemView else { return }
