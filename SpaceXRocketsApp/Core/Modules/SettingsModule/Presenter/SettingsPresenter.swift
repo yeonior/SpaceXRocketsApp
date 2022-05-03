@@ -10,6 +10,19 @@ protocol SettingsPresenterProtocol {
     func provideBarButtonTitle()
     func provideLabelTitles()
     func provideSegmentedControlTitles()
+    func provideHeightUnitType()
+    func updateHeightType(with index: Int)
+}
+
+// MARK: - Enums
+enum lengthUnitType: String {
+    case meters = "m"
+    case feet   = "ft"
+}
+
+enum massUnitType: String {
+    case kilos  = "kg"
+    case pounds = "lbs"
 }
 
 final class SettingsPresenter: SettingsPresenterProtocol {
@@ -17,6 +30,14 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     // MARK: - Properties
     weak var view: SettingsViewProtocol!
     let dataManager: DataManagerProtocol!
+    
+    var heightUnit: lengthUnitType {
+        get {
+            DataManager.shared.getLengthUnit(for: #function)
+        } set {
+            DataManager.shared.setLengthUnit(for: #function, with: newValue)
+        }
+    }
     
     // MARK: - Init
     init(view: SettingsViewProtocol, dataManager: DataManagerProtocol) {
@@ -43,5 +64,20 @@ final class SettingsPresenter: SettingsPresenterProtocol {
                     [0: "kg", 1: "lb"],
                     [0: "kg", 1: "lb"]]
         view.setSegmentedControlTitles(with: dict)
+    }
+    
+    func provideHeightUnitType() {
+        view.setHeightUnit(with: heightUnit)
+    }
+    
+    func updateHeightType(with index: Int) {
+        switch index {
+        case 0:
+            heightUnit = .meters
+        case 1:
+            heightUnit = .feet
+        default:
+            break
+        }
     }
 }

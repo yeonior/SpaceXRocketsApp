@@ -8,17 +8,23 @@
 import Foundation
 
 protocol DataManagerProtocol: AnyObject {
+    func getFirstLaunchStatus() -> Bool
+    func changeFirstLauchStatus()
     func getData(from stringURL: String) -> Data
     func setRockets(_ rockets: [RocketModel])
     func getRockets() -> [RocketModel]
     func setLaunches(_ launches: [LaunchModel])
     func getLaunches() -> [LaunchModel]
+    func setDefaultUnits()
+    func setLengthUnit(for name: String, with unit: lengthUnitType)
+    func getLengthUnit(for name: String) -> lengthUnitType
 }
 
 final class DataManager: DataManagerProtocol {
     
     // MARK: - Properties
     static let shared = DataManager()
+    private let userDefaults = UserDefaults.standard
     private var rockets: [RocketModel]?
     private var launches: [LaunchModel]?
     
@@ -26,6 +32,14 @@ final class DataManager: DataManagerProtocol {
     private init() {}
     
     // MARK: - Methods
+    func getFirstLaunchStatus() -> Bool {
+        userDefaults.bool(forKey: "launchedBefore")
+    }
+    
+    func changeFirstLauchStatus() {
+        userDefaults.set(true, forKey: "launchedBefore")
+    }
+    
     func getData(from stringURL: String) -> Data {
         guard let url = URL(string: stringURL),
               let data = try? Data(contentsOf: url) else { return Data() }
@@ -53,5 +67,19 @@ final class DataManager: DataManagerProtocol {
         safeLaunches = launches ?? []
         
         return safeLaunches
+    }
+    
+    func setDefaultUnits() {
+        setLengthUnit(for: "heightUnit", with: .feet)
+    }
+    
+    func setLengthUnit(for name: String, with unit: lengthUnitType) {
+        userDefaults.set(unit.rawValue, forKey: name)
+    }
+    
+    func getLengthUnit(for name: String) -> lengthUnitType {
+        let rawValue = userDefaults.string(forKey: name)!
+        let lengthUnitType = lengthUnitType(rawValue: rawValue)!
+        return lengthUnitType
     }
 }

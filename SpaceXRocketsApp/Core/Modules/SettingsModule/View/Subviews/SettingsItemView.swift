@@ -8,6 +8,11 @@
 import UIKit
 
 final class SettingsItemView: UIView {
+    
+    // MARK: - Properties
+    var segmentedControlAction: Callback? = {
+        print("value changed")
+    }
 
     // MARK: - Subviews
     lazy var titleLabel: UILabel = {
@@ -39,6 +44,8 @@ final class SettingsItemView: UIView {
         let itemsArray = ["", ""]
         unitSegmentedControl = UISegmentedControl(items: itemsArray)
         unitSegmentedControl.selectedSegmentIndex = 0
+        unitSegmentedControl.addTarget(nil, action: #selector(segmentDidChange(_:)), for: .valueChanged)
+        
         unitSegmentedControl.backgroundColor = Color.segmentedControlBackground.uiColor
         unitSegmentedControl.selectedSegmentTintColor = Color.segmentedControlSelectedSegmentTintColor.uiColor
         unitSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Color.segmentedControlNormalText.uiColor], for: .normal)
@@ -59,5 +66,10 @@ final class SettingsItemView: UIView {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    @objc
+    private func segmentDidChange(_ sender: UISegmentedControl) {
+        segmentedControlAction?()
     }
 }

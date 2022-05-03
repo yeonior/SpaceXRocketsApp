@@ -12,6 +12,7 @@ protocol SettingsViewProtocol: AnyObject {
     func setBarButtonTitle(with title: String)
     func setLabelTitles(with titles: [String])
     func setSegmentedControlTitles(with titles: [[Int: String]])
+    func setHeightUnit(with unitType: lengthUnitType)
 }
 
 final class SettingsViewController: UIViewController {
@@ -31,6 +32,8 @@ final class SettingsViewController: UIViewController {
         presenter.provideBarButtonTitle()
         presenter.provideLabelTitles()
         presenter.provideSegmentedControlTitles()
+        presenter.provideHeightUnitType()
+        setHeightUnitAction()
     }
     
     // MARK: - Private methods
@@ -61,6 +64,20 @@ final class SettingsViewController: UIViewController {
     private func closeView() {
         dismiss(animated: true, completion: nil)
     }
+    
+    private func setHeightUnitAction() {
+        guard let view = settingsView.stackView.arrangedSubviews.first as? SettingsItemView else { return }
+        view.segmentedControlAction = {
+            switch view.unitSegmentedControl.selectedSegmentIndex {
+            case let index where index == 0:
+                self.presenter.updateHeightType(with: index)
+            case let index where index == 1:
+                self.presenter.updateHeightType(with: index)
+            default:
+                break
+            }
+        }
+    }
 }
 
 // MARK: - SettingsViewProtocol
@@ -85,6 +102,16 @@ extension SettingsViewController: SettingsViewProtocol {
             guard let view = view as? SettingsItemView else { return }
             view.unitSegmentedControl.setTitle((titles[index])[0], forSegmentAt: 0)
             view.unitSegmentedControl.setTitle((titles[index])[1], forSegmentAt: 1)
+        }
+    }
+    
+    func setHeightUnit(with unitType: lengthUnitType) {
+        guard let view = settingsView.stackView.arrangedSubviews.first as? SettingsItemView else { return }
+        switch unitType {
+        case .meters:
+            view.unitSegmentedControl.selectedSegmentIndex = 0
+        case .feet:
+            view.unitSegmentedControl.selectedSegmentIndex = 1
         }
     }
 }

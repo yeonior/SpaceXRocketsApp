@@ -10,7 +10,15 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    let dataManager = DataManager.shared
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        if !dataManager.getFirstLaunchStatus() {
+            dataManager.changeFirstLauchStatus()
+            dataManager.setDefaultUnits()
+        }
+        
         return true
     }
     
