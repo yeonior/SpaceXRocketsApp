@@ -13,6 +13,7 @@ protocol SettingsViewProtocol: AnyObject {
     func setLabelTitles(with titles: [String])
     func setSegmentedControlTitles(with titles: [[Int: String]])
     func setHeightUnit(with unitType: lengthUnitType)
+    func setDiameterUnit(with unitType: lengthUnitType)
 }
 
 final class SettingsViewController: UIViewController {
@@ -32,8 +33,10 @@ final class SettingsViewController: UIViewController {
         presenter.provideBarButtonTitle()
         presenter.provideLabelTitles()
         presenter.provideSegmentedControlTitles()
-        presenter.provideHeightUnitType()
         setHeightUnitAction()
+        setDiameterUnitAction()
+        presenter.provideHeightUnitType()
+        presenter.provideDiameterUnitType()
     }
     
     // MARK: - Private methods
@@ -66,13 +69,27 @@ final class SettingsViewController: UIViewController {
     }
     
     private func setHeightUnitAction() {
-        guard let view = settingsView.stackView.arrangedSubviews.first as? SettingsItemView else { return }
+        guard let view = settingsView.stackView.arrangedSubviews[0] as? SettingsItemView else { return }
         view.segmentedControlAction = {
             switch view.unitSegmentedControl.selectedSegmentIndex {
             case let index where index == 0:
                 self.presenter.updateHeightType(with: index)
             case let index where index == 1:
                 self.presenter.updateHeightType(with: index)
+            default:
+                break
+            }
+        }
+    }
+    
+    private func setDiameterUnitAction() {
+        guard let view = settingsView.stackView.arrangedSubviews[1] as? SettingsItemView else { return }
+        view.segmentedControlAction = {
+            switch view.unitSegmentedControl.selectedSegmentIndex {
+            case let index where index == 0:
+                self.presenter.updateDiameterType(with: index)
+            case let index where index == 1:
+                self.presenter.updateDiameterType(with: index)
             default:
                 break
             }
@@ -106,7 +123,17 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func setHeightUnit(with unitType: lengthUnitType) {
-        guard let view = settingsView.stackView.arrangedSubviews.first as? SettingsItemView else { return }
+        guard let view = settingsView.stackView.arrangedSubviews[0] as? SettingsItemView else { return }
+        switch unitType {
+        case .meters:
+            view.unitSegmentedControl.selectedSegmentIndex = 0
+        case .feet:
+            view.unitSegmentedControl.selectedSegmentIndex = 1
+        }
+    }
+    
+    func setDiameterUnit(with unitType: lengthUnitType) {
+        guard let view = settingsView.stackView.arrangedSubviews[1] as? SettingsItemView else { return }
         switch unitType {
         case .meters:
             view.unitSegmentedControl.selectedSegmentIndex = 0

@@ -11,7 +11,9 @@ protocol SettingsPresenterProtocol {
     func provideLabelTitles()
     func provideSegmentedControlTitles()
     func provideHeightUnitType()
+    func provideDiameterUnitType()
     func updateHeightType(with index: Int)
+    func updateDiameterType(with index: Int)
 }
 
 // MARK: - Enums
@@ -39,6 +41,14 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         }
     }
     
+    var diameterUnit: lengthUnitType {
+        get {
+            DataManager.shared.getLengthUnit(for: #function)
+        } set {
+            DataManager.shared.setLengthUnit(for: #function, with: newValue)
+        }
+    }
+    
     // MARK: - Init
     init(view: SettingsViewProtocol, dataManager: DataManagerProtocol) {
         self.view = view
@@ -59,8 +69,8 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func provideSegmentedControlTitles() {
-        let dict = [[0: "m", 1: "ft"],
-                    [0: "m", 1: "ft"],
+        let dict = [[0: "m",  1: "ft"],
+                    [0: "m",  1: "ft"],
                     [0: "kg", 1: "lb"],
                     [0: "kg", 1: "lb"]]
         view.setSegmentedControlTitles(with: dict)
@@ -70,12 +80,27 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         view.setHeightUnit(with: heightUnit)
     }
     
+    func provideDiameterUnitType() {
+        view.setDiameterUnit(with: diameterUnit)
+    }
+    
     func updateHeightType(with index: Int) {
         switch index {
         case 0:
             heightUnit = .meters
         case 1:
             heightUnit = .feet
+        default:
+            break
+        }
+    }
+    
+    func updateDiameterType(with index: Int) {
+        switch index {
+        case 0:
+            diameterUnit = .meters
+        case 1:
+            diameterUnit = .feet
         default:
             break
         }
