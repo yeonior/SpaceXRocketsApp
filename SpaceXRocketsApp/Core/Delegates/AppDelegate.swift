@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dataManager.changeFirstLauchStatus()
             dataManager.setDefaultUnits()
         }
-        
+        	
         return true
     }
     

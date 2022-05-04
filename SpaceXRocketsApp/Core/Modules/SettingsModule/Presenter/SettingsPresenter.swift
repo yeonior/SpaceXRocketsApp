@@ -12,8 +12,10 @@ protocol SettingsPresenterProtocol {
     func provideSegmentedControlTitles()
     func provideHeightUnitType()
     func provideDiameterUnitType()
+    func provideMassUnitType()
     func updateHeightType(with index: Int)
     func updateDiameterType(with index: Int)
+    func updateMassType(with index: Int)
 }
 
 // MARK: - Enums
@@ -46,6 +48,14 @@ final class SettingsPresenter: SettingsPresenterProtocol {
             DataManager.shared.getLengthUnit(for: #function)
         } set {
             DataManager.shared.setLengthUnit(for: #function, with: newValue)
+        }
+    }
+    
+    var massUnit: massUnitType {
+        get {
+            DataManager.shared.getMassUnit(for: #function)
+        } set {
+            DataManager.shared.setMassUnit(for: #function, with: newValue)
         }
     }
     
@@ -84,6 +94,10 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         view.setDiameterUnit(with: diameterUnit)
     }
     
+    func provideMassUnitType() {
+        view.setMassUnit(with: massUnit)
+    }
+    
     func updateHeightType(with index: Int) {
         switch index {
         case 0:
@@ -101,6 +115,17 @@ final class SettingsPresenter: SettingsPresenterProtocol {
             diameterUnit = .meters
         case 1:
             diameterUnit = .feet
+        default:
+            break
+        }
+    }
+    
+    func updateMassType(with index: Int) {
+        switch index {
+        case 0:
+            massUnit = .kilos
+        case 1:
+            massUnit = .pounds
         default:
             break
         }

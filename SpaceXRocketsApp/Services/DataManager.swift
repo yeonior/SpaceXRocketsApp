@@ -18,6 +18,8 @@ protocol DataManagerProtocol: AnyObject {
     func setDefaultUnits()
     func setLengthUnit(for name: String, with unit: lengthUnitType)
     func getLengthUnit(for name: String) -> lengthUnitType
+    func setMassUnit(for name: String, with unit: massUnitType)
+    func getMassUnit(for name: String) -> massUnitType
 }
 
 final class DataManager: DataManagerProtocol {
@@ -72,6 +74,7 @@ final class DataManager: DataManagerProtocol {
     func setDefaultUnits() {
         setLengthUnit(for: "heightUnit", with: .feet)
         setLengthUnit(for: "diameterUnit", with: .feet)
+        setMassUnit(for: "massUnit", with: .pounds)
     }
     
     func setLengthUnit(for name: String, with unit: lengthUnitType) {
@@ -82,5 +85,15 @@ final class DataManager: DataManagerProtocol {
         let rawValue = userDefaults.string(forKey: name)!
         let lengthUnitType = lengthUnitType(rawValue: rawValue)!
         return lengthUnitType
+    }
+    
+    func setMassUnit(for name: String, with unit: massUnitType) {
+        userDefaults.set(unit.rawValue, forKey: name)
+    }
+    
+    func getMassUnit(for name: String) -> massUnitType {
+        let rawValue = userDefaults.string(forKey: name)!
+        let massUnitType = massUnitType(rawValue: rawValue)!
+        return massUnitType
     }
 }

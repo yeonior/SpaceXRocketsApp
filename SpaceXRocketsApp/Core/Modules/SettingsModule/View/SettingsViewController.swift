@@ -14,6 +14,7 @@ protocol SettingsViewProtocol: AnyObject {
     func setSegmentedControlTitles(with titles: [[Int: String]])
     func setHeightUnit(with unitType: lengthUnitType)
     func setDiameterUnit(with unitType: lengthUnitType)
+    func setMassUnit(with unitType: massUnitType)
 }
 
 final class SettingsViewController: UIViewController {
@@ -35,8 +36,10 @@ final class SettingsViewController: UIViewController {
         presenter.provideSegmentedControlTitles()
         setHeightUnitAction()
         setDiameterUnitAction()
+        setMassUnitAction()
         presenter.provideHeightUnitType()
         presenter.provideDiameterUnitType()
+        presenter.provideMassUnitType()
     }
     
     // MARK: - Private methods
@@ -95,6 +98,20 @@ final class SettingsViewController: UIViewController {
             }
         }
     }
+    
+    private func setMassUnitAction() {
+        guard let view = settingsView.stackView.arrangedSubviews[2] as? SettingsItemView else { return }
+        view.segmentedControlAction = {
+            switch view.unitSegmentedControl.selectedSegmentIndex {
+            case let index where index == 0:
+                self.presenter.updateMassType(with: index)
+            case let index where index == 1:
+                self.presenter.updateMassType(with: index)
+            default:
+                break
+            }
+        }
+    }
 }
 
 // MARK: - SettingsViewProtocol
@@ -138,6 +155,16 @@ extension SettingsViewController: SettingsViewProtocol {
         case .meters:
             view.unitSegmentedControl.selectedSegmentIndex = 0
         case .feet:
+            view.unitSegmentedControl.selectedSegmentIndex = 1
+        }
+    }
+    
+    func setMassUnit(with unitType: massUnitType) {
+        guard let view = settingsView.stackView.arrangedSubviews[2] as? SettingsItemView else { return }
+        switch unitType {
+        case .kilos:
+            view.unitSegmentedControl.selectedSegmentIndex = 0
+        case .pounds:
             view.unitSegmentedControl.selectedSegmentIndex = 1
         }
     }
