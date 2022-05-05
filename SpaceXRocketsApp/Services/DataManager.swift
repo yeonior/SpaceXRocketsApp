@@ -75,6 +75,7 @@ final class DataManager: DataManagerProtocol {
         setLengthUnit(for: "heightUnit", with: .feet)
         setLengthUnit(for: "diameterUnit", with: .feet)
         setMassUnit(for: "massUnit", with: .pounds)
+        setMassUnit(for: "payloadUnit", with: .pounds)
     }
     
     func setLengthUnit(for name: String, with unit: lengthUnitType) {

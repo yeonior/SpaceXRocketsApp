@@ -15,6 +15,7 @@ protocol SettingsViewProtocol: AnyObject {
     func setHeightUnit(with unitType: lengthUnitType)
     func setDiameterUnit(with unitType: lengthUnitType)
     func setMassUnit(with unitType: massUnitType)
+    func setPayloadUnit(with unitType: massUnitType)
 }
 
 final class SettingsViewController: UIViewController {
@@ -37,9 +38,11 @@ final class SettingsViewController: UIViewController {
         setHeightUnitAction()
         setDiameterUnitAction()
         setMassUnitAction()
+        setPayloadUnitAction()
         presenter.provideHeightUnitType()
         presenter.provideDiameterUnitType()
         presenter.provideMassUnitType()
+        presenter.providePayloadUnitType()
     }
     
     // MARK: - Private methods
@@ -112,6 +115,20 @@ final class SettingsViewController: UIViewController {
             }
         }
     }
+    
+    private func setPayloadUnitAction() {
+        guard let view = settingsView.stackView.arrangedSubviews[3] as? SettingsItemView else { return }
+        view.segmentedControlAction = {
+            switch view.unitSegmentedControl.selectedSegmentIndex {
+            case let index where index == 0:
+                self.presenter.updatePayloadType(with: index)
+            case let index where index == 1:
+                self.presenter.updatePayloadType(with: index)
+            default:
+                break
+            }
+        }
+    }
 }
 
 // MARK: - SettingsViewProtocol
@@ -161,6 +178,16 @@ extension SettingsViewController: SettingsViewProtocol {
     
     func setMassUnit(with unitType: massUnitType) {
         guard let view = settingsView.stackView.arrangedSubviews[2] as? SettingsItemView else { return }
+        switch unitType {
+        case .kilos:
+            view.unitSegmentedControl.selectedSegmentIndex = 0
+        case .pounds:
+            view.unitSegmentedControl.selectedSegmentIndex = 1
+        }
+    }
+    
+    func setPayloadUnit(with unitType: massUnitType) {
+        guard let view = settingsView.stackView.arrangedSubviews[3] as? SettingsItemView else { return }
         switch unitType {
         case .kilos:
             view.unitSegmentedControl.selectedSegmentIndex = 0
