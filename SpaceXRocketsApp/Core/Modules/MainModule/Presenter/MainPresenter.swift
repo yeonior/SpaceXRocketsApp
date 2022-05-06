@@ -34,30 +34,31 @@ final class MainPresenter: MainPresenterProtocol {
         let rockets = dataManager.getRockets()
         let rocket = rockets[serialNumber - 1]
         
+        // parameters
         var height: String {
-            switch dataManager.getLengthUnit(for: "heightUnit") {
+            switch dataManager.getLengthUnit(for: Parameter.height.rawValue) {
             case .feet:
-                guard let newValue = rocket.height.feet else { return "N/A" }
+                guard let newValue = rocket.height.feet else { return Parameter.unknown.rawValue }
                 return String(newValue)
             case .meters:
-                guard let newValue = rocket.height.meters else { return "N/A" }
+                guard let newValue = rocket.height.meters else { return Parameter.unknown.rawValue }
                 return String(newValue)
             }
         }
         
         var diameter: String {
-            switch dataManager.getLengthUnit(for: "diameterUnit") {
+            switch dataManager.getLengthUnit(for: Parameter.diameter.rawValue) {
             case .feet:
-                guard let newValue = rocket.diameter.feet else { return "N/A" }
+                guard let newValue = rocket.diameter.feet else { return Parameter.unknown.rawValue }
                 return String(newValue)
             case .meters:
-                guard let newValue = rocket.diameter.meters else { return "N/A" }
+                guard let newValue = rocket.diameter.meters else { return Parameter.unknown.rawValue }
                 return String(newValue)
             }
         }
         
         var mass: String {
-            switch dataManager.getMassUnit(for: "massUnit") {
+            switch dataManager.getMassUnit(for: Parameter.mass.rawValue) {
             case .kilos: return TextFormatter.numberWithCommas(rocket.mass.kg)
             case .pounds: return TextFormatter.numberWithCommas(rocket.mass.lb)
             }
@@ -66,48 +67,50 @@ final class MainPresenter: MainPresenterProtocol {
         var payloadWeight: String {
             for payloadWeight in rocket.payloadWeights {
                 // checking the leo weight
-                guard payloadWeight.id == "leo" else { return "N/A" }
-                switch dataManager.getMassUnit(for: "payloadUnit") {
+                guard payloadWeight.id == "leo" else { return Parameter.unknown.rawValue }
+                switch dataManager.getMassUnit(for: Parameter.payload.rawValue) {
                 case .kilos: return TextFormatter.numberWithCommas(payloadWeight.kg)
                 case .pounds: return TextFormatter.numberWithCommas(payloadWeight.lb)
                 }
             }
-            return "N/A"
+            return Parameter.unknown.rawValue
         }
         
+        // units
         var heightUnit: String {
-            switch dataManager.getLengthUnit(for: "heightUnit") {
-            case .feet: return "Height, ft"
-            case .meters: return "Height, m"
+            switch dataManager.getLengthUnit(for: Parameter.height.rawValue) {
+            case .feet: return Parameter.height.rawValue + ", " + LengthUnit.feet.rawValue
+            case .meters: return Parameter.height.rawValue + ", " + LengthUnit.meters.rawValue
             }
         }
         
         var diameterUnit: String {
-            switch dataManager.getLengthUnit(for: "diameterUnit") {
-            case .feet: return "Diameter, ft"
-            case .meters: return "Diameter, m"
+            switch dataManager.getLengthUnit(for: Parameter.diameter.rawValue) {
+            case .feet: return Parameter.diameter.rawValue + ", " + LengthUnit.feet.rawValue
+            case .meters: return Parameter.diameter.rawValue + ", " + LengthUnit.meters.rawValue
             }
         }
         
         var massUnit: String {
-            switch dataManager.getMassUnit(for: "massUnit") {
-            case .kilos: return "Mass, kg"
-            case .pounds: return "Mass, lb"
+            switch dataManager.getMassUnit(for: Parameter.mass.rawValue) {
+            case .kilos: return Parameter.mass.rawValue + ", " + MassUnit.kilos.rawValue
+            case .pounds: return Parameter.mass.rawValue + ", " + MassUnit.pounds.rawValue
             }
         }
         
         var payloadWeightUnit: String {
             for payloadWeight in rocket.payloadWeights {
                 // checking the leo weight
-                guard payloadWeight.id == "leo" else { return "N/A" }
-                switch dataManager.getMassUnit(for: "payloadUnit") {
-                case .kilos: return "Payload, kg"
-                case .pounds: return "Payload, lb"
+                guard payloadWeight.id == "leo" else { return Parameter.unknown.rawValue }
+                switch dataManager.getMassUnit(for: Parameter.payload.rawValue) {
+                case .kilos: return Parameter.payload.rawValue + ", " + MassUnit.kilos.rawValue
+                case .pounds: return Parameter.payload.rawValue + ", " + MassUnit.kilos.rawValue
                 }
             }
-            return "N/A"
+            return Parameter.unknown.rawValue
         }
         
+        // model
         let rocketData = RocketData(
             id: rocket.id,
             flickrImages: rocket.flickrImages,

@@ -30,6 +30,7 @@ final class MainTableViewViewModel: NSObject, MainTableViewViewModelProtocol {
     
     // MARK: - Init
     init(data: RocketData) {
+        
         let info = MainInfoSectionViewModel(firstFlight: data.firstFlight,
                                             country: data.country,
                                             costPerLaunch: data.costPerLaunch)

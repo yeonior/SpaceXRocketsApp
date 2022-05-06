@@ -24,7 +24,6 @@ final class SettingsView: UIView {
     
     // MARK: - Private methods
     private func setup(with number: Int) {
-        
         var arrangedSubviews: [UIView] = []
         for _ in 1...number {
             arrangedSubviews.append(SettingsItemView())

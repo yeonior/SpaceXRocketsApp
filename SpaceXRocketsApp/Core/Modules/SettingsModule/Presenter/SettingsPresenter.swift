@@ -10,23 +10,31 @@ protocol SettingsPresenterProtocol {
     func provideBarButtonTitle()
     func provideLabelTitles()
     func provideSegmentedControlTitles()
-    func provideHeightUnitType()
-    func provideDiameterUnitType()
-    func provideMassUnitType()
-    func providePayloadUnitType()
-    func updateHeightType(with index: Int)
-    func updateDiameterType(with index: Int)
-    func updateMassType(with index: Int)
-    func updatePayloadType(with index: Int)
+    func provideHeightUnit()
+    func provideDiameterUnit()
+    func provideMassUnit()
+    func providePayloadUnit()
+    func updateHeightUnit(with index: Int)
+    func updateDiameterUnit(with index: Int)
+    func updateMassUnit(with index: Int)
+    func updatePayloadUnit(with index: Int)
 }
 
 // MARK: - Enums
-enum lengthUnitType: String {
+enum Parameter: String {
+    case height     = "Height"
+    case diameter   = "Diameter"
+    case mass       = "Mass"
+    case payload    = "Payload"
+    case unknown    = "N/A"
+}
+
+enum LengthUnit: String {
     case meters = "m"
     case feet   = "ft"
 }
 
-enum massUnitType: String {
+enum MassUnit: String {
     case kilos  = "kg"
     case pounds = "lbs"
 }
@@ -37,35 +45,35 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     weak var view: SettingsViewProtocol!
     let dataManager: DataManagerProtocol!
     
-    var heightUnit: lengthUnitType {
+    var heightUnit: LengthUnit {
         get {
-            DataManager.shared.getLengthUnit(for: #function)
+            DataManager.shared.getLengthUnit(for: Parameter.height.rawValue)
         } set {
-            DataManager.shared.setLengthUnit(for: #function, with: newValue)
+            DataManager.shared.setLengthUnit(for: Parameter.height.rawValue, with: newValue)
         }
     }
     
-    var diameterUnit: lengthUnitType {
+    var diameterUnit: LengthUnit {
         get {
-            DataManager.shared.getLengthUnit(for: #function)
+            DataManager.shared.getLengthUnit(for: Parameter.diameter.rawValue)
         } set {
-            DataManager.shared.setLengthUnit(for: #function, with: newValue)
+            DataManager.shared.setLengthUnit(for: Parameter.diameter.rawValue, with: newValue)
         }
     }
     
-    var massUnit: massUnitType {
+    var massUnit: MassUnit {
         get {
-            DataManager.shared.getMassUnit(for: #function)
+            DataManager.shared.getMassUnit(for: Parameter.mass.rawValue)
         } set {
-            DataManager.shared.setMassUnit(for: #function, with: newValue)
+            DataManager.shared.setMassUnit(for: Parameter.mass.rawValue, with: newValue)
         }
     }
     
-    var payloadUnit: massUnitType {
+    var payloadUnit: MassUnit {
         get {
-            DataManager.shared.getMassUnit(for: #function)
+            DataManager.shared.getMassUnit(for: Parameter.payload.rawValue)
         } set {
-            DataManager.shared.setMassUnit(for: #function, with: newValue)
+            DataManager.shared.setMassUnit(for: Parameter.payload.rawValue, with: newValue)
         }
     }
     
@@ -75,6 +83,7 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         self.dataManager = dataManager
     }
     
+    // providing titles
     func provideTitle() {
         view.setTitle(with: "Settings")
     }
@@ -84,35 +93,40 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func provideLabelTitles() {
-        let array = ["Height", "Diameter", "Mass", "Payload"]
+        let array = [Parameter.height.rawValue,
+                     Parameter.diameter.rawValue,
+                     Parameter.mass.rawValue,
+                     Parameter.payload.rawValue]
         view.setLabelTitles(with: array)
     }
     
     func provideSegmentedControlTitles() {
-        let dict = [[0: "m",  1: "ft"],
-                    [0: "m",  1: "ft"],
-                    [0: "kg", 1: "lb"],
-                    [0: "kg", 1: "lb"]]
+        let dict = [[0: LengthUnit.meters.rawValue, 1: LengthUnit.feet.rawValue],
+                    [0: LengthUnit.meters.rawValue, 1: LengthUnit.feet.rawValue],
+                    [0: MassUnit.kilos.rawValue,    1: MassUnit.pounds.rawValue],
+                    [0: MassUnit.kilos.rawValue,    1: MassUnit.pounds.rawValue]]
         view.setSegmentedControlTitles(with: dict)
     }
     
-    func provideHeightUnitType() {
+    // providing units
+    func provideHeightUnit() {
         view.setHeightUnit(with: heightUnit)
     }
     
-    func provideDiameterUnitType() {
+    func provideDiameterUnit() {
         view.setDiameterUnit(with: diameterUnit)
     }
     
-    func provideMassUnitType() {
+    func provideMassUnit() {
         view.setMassUnit(with: massUnit)
     }
     
-    func providePayloadUnitType() {
+    func providePayloadUnit() {
         view.setPayloadUnit(with: payloadUnit)
     }
     
-    func updateHeightType(with index: Int) {
+    // updating units
+    func updateHeightUnit(with index: Int) {
         switch index {
         case 0:
             heightUnit = .meters
@@ -123,7 +137,7 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         }
     }
     
-    func updateDiameterType(with index: Int) {
+    func updateDiameterUnit(with index: Int) {
         switch index {
         case 0:
             diameterUnit = .meters
@@ -134,7 +148,7 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         }
     }
     
-    func updateMassType(with index: Int) {
+    func updateMassUnit(with index: Int) {
         switch index {
         case 0:
             massUnit = .kilos
@@ -145,7 +159,7 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         }
     }
     
-    func updatePayloadType(with index: Int) {
+    func updatePayloadUnit(with index: Int) {
         switch index {
         case 0:
             payloadUnit = .kilos

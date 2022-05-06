@@ -79,7 +79,6 @@ final class MainViewController: UIViewController {
         }
     }
     
-    private let observerKeyPath = "contentSize"
     private var mainViewHeightConstraint: NSLayoutConstraint?
     private var isFirstLoad = true
     
@@ -93,13 +92,13 @@ final class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         resetViewState()
         mainView.tableView.addObserver(self,
-                                       forKeyPath: observerKeyPath,
+                                       forKeyPath: ObserverConstants.tableViewContentSizeKeyPath,
                                        options: .new,
                                        context: nil)
         if isFirstLoad {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(updateCollectionView(_:)),
-                                                   name: NotificationNames.collectionViewUpdateNotification,
+                                                   name: ObserverConstants.collectionViewUpdateNotificationName,
                                                    object: nil)
             isFirstLoad = false
         }
@@ -116,13 +115,13 @@ final class MainViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        mainView.tableView.removeObserver(self, forKeyPath: observerKeyPath)
+        mainView.tableView.removeObserver(self, forKeyPath: ObserverConstants.tableViewContentSizeKeyPath)
         super.viewWillDisappear(animated)
     }
     
     // observing the table view to get height
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == observerKeyPath {
+        if keyPath == ObserverConstants.tableViewContentSizeKeyPath {
             if object is UITableView {
                 if let newvalue = change?[.newKey] {
                     let newsize  = newvalue as! CGSize

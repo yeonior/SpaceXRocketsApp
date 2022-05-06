@@ -12,10 +12,10 @@ protocol SettingsViewProtocol: AnyObject {
     func setBarButtonTitle(with title: String)
     func setLabelTitles(with titles: [String])
     func setSegmentedControlTitles(with titles: [[Int: String]])
-    func setHeightUnit(with unitType: lengthUnitType)
-    func setDiameterUnit(with unitType: lengthUnitType)
-    func setMassUnit(with unitType: massUnitType)
-    func setPayloadUnit(with unitType: massUnitType)
+    func setHeightUnit(with unit: LengthUnit)
+    func setDiameterUnit(with unit: LengthUnit)
+    func setMassUnit(with unit: MassUnit)
+    func setPayloadUnit(with unit: MassUnit)
 }
 
 final class SettingsViewController: UIViewController {
@@ -35,20 +35,20 @@ final class SettingsViewController: UIViewController {
         presenter.provideBarButtonTitle()
         presenter.provideLabelTitles()
         presenter.provideSegmentedControlTitles()
-        setHeightUnitAction()
-        setDiameterUnitAction()
-        setMassUnitAction()
-        setPayloadUnitAction()
-        presenter.provideHeightUnitType()
-        presenter.provideDiameterUnitType()
-        presenter.provideMassUnitType()
-        presenter.providePayloadUnitType()
+        setHeightItemAction()
+        setDiameterItemAction()
+        setMassItemAction()
+        setPayloadItemAction()
+        presenter.provideHeightUnit()
+        presenter.provideDiameterUnit()
+        presenter.provideMassUnit()
+        presenter.providePayloadUnit()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // updating collection view
-        NotificationCenter.default.post(name: NotificationNames.collectionViewUpdateNotification, object: nil)
+        NotificationCenter.default.post(name: ObserverConstants.collectionViewUpdateNotificationName, object: nil)
     }
     
     // MARK: - Private methods
@@ -80,56 +80,57 @@ final class SettingsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    private func setHeightUnitAction() {
+    // setting item actions
+    private func setHeightItemAction() {
         guard let view = settingsView.stackView.arrangedSubviews[0] as? SettingsItemView else { return }
         view.segmentedControlAction = {
             switch view.unitSegmentedControl.selectedSegmentIndex {
             case let index where index == 0:
-                self.presenter.updateHeightType(with: index)
+                self.presenter.updateHeightUnit(with: index)
             case let index where index == 1:
-                self.presenter.updateHeightType(with: index)
+                self.presenter.updateHeightUnit(with: index)
             default:
                 break
             }
         }
     }
     
-    private func setDiameterUnitAction() {
+    private func setDiameterItemAction() {
         guard let view = settingsView.stackView.arrangedSubviews[1] as? SettingsItemView else { return }
         view.segmentedControlAction = {
             switch view.unitSegmentedControl.selectedSegmentIndex {
             case let index where index == 0:
-                self.presenter.updateDiameterType(with: index)
+                self.presenter.updateDiameterUnit(with: index)
             case let index where index == 1:
-                self.presenter.updateDiameterType(with: index)
+                self.presenter.updateDiameterUnit(with: index)
             default:
                 break
             }
         }
     }
     
-    private func setMassUnitAction() {
+    private func setMassItemAction() {
         guard let view = settingsView.stackView.arrangedSubviews[2] as? SettingsItemView else { return }
         view.segmentedControlAction = {
             switch view.unitSegmentedControl.selectedSegmentIndex {
             case let index where index == 0:
-                self.presenter.updateMassType(with: index)
+                self.presenter.updateMassUnit(with: index)
             case let index where index == 1:
-                self.presenter.updateMassType(with: index)
+                self.presenter.updateMassUnit(with: index)
             default:
                 break
             }
         }
     }
     
-    private func setPayloadUnitAction() {
+    private func setPayloadItemAction() {
         guard let view = settingsView.stackView.arrangedSubviews[3] as? SettingsItemView else { return }
         view.segmentedControlAction = {
             switch view.unitSegmentedControl.selectedSegmentIndex {
             case let index where index == 0:
-                self.presenter.updatePayloadType(with: index)
+                self.presenter.updatePayloadUnit(with: index)
             case let index where index == 1:
-                self.presenter.updatePayloadType(with: index)
+                self.presenter.updatePayloadUnit(with: index)
             default:
                 break
             }
@@ -139,6 +140,8 @@ final class SettingsViewController: UIViewController {
 
 // MARK: - SettingsViewProtocol
 extension SettingsViewController: SettingsViewProtocol {
+    
+    // setting titles
     func setTitle(with title: String) {
         self.title = title
     }
@@ -162,7 +165,8 @@ extension SettingsViewController: SettingsViewProtocol {
         }
     }
     
-    func setHeightUnit(with unitType: lengthUnitType) {
+    // setting units
+    func setHeightUnit(with unitType: LengthUnit) {
         guard let view = settingsView.stackView.arrangedSubviews[0] as? SettingsItemView else { return }
         switch unitType {
         case .meters:
@@ -172,7 +176,7 @@ extension SettingsViewController: SettingsViewProtocol {
         }
     }
     
-    func setDiameterUnit(with unitType: lengthUnitType) {
+    func setDiameterUnit(with unitType: LengthUnit) {
         guard let view = settingsView.stackView.arrangedSubviews[1] as? SettingsItemView else { return }
         switch unitType {
         case .meters:
@@ -182,7 +186,7 @@ extension SettingsViewController: SettingsViewProtocol {
         }
     }
     
-    func setMassUnit(with unitType: massUnitType) {
+    func setMassUnit(with unitType: MassUnit) {
         guard let view = settingsView.stackView.arrangedSubviews[2] as? SettingsItemView else { return }
         switch unitType {
         case .kilos:
@@ -192,7 +196,7 @@ extension SettingsViewController: SettingsViewProtocol {
         }
     }
     
-    func setPayloadUnit(with unitType: massUnitType) {
+    func setPayloadUnit(with unitType: MassUnit) {
         guard let view = settingsView.stackView.arrangedSubviews[3] as? SettingsItemView else { return }
         switch unitType {
         case .kilos:

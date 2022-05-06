@@ -16,10 +16,10 @@ protocol DataManagerProtocol: AnyObject {
     func setLaunches(_ launches: [LaunchModel])
     func getLaunches() -> [LaunchModel]
     func setDefaultUnits()
-    func setLengthUnit(for name: String, with unit: lengthUnitType)
-    func getLengthUnit(for name: String) -> lengthUnitType
-    func setMassUnit(for name: String, with unit: massUnitType)
-    func getMassUnit(for name: String) -> massUnitType
+    func setLengthUnit(for name: String, with unit: LengthUnit)
+    func getLengthUnit(for name: String) -> LengthUnit
+    func setMassUnit(for name: String, with unit: MassUnit)
+    func getMassUnit(for name: String) -> MassUnit
 }
 
 final class DataManager: DataManagerProtocol {
@@ -72,29 +72,36 @@ final class DataManager: DataManagerProtocol {
     }
     
     func setDefaultUnits() {
-        setLengthUnit(for: "heightUnit", with: .feet)
-        setLengthUnit(for: "diameterUnit", with: .feet)
-        setMassUnit(for: "massUnit", with: .pounds)
-        setMassUnit(for: "payloadUnit", with: .pounds)
+        setLengthUnit(for: Parameter.height.rawValue, with: .feet)
+        setLengthUnit(for: Parameter.diameter.rawValue, with: .feet)
+        setMassUnit(for: Parameter.mass.rawValue, with: .pounds)
+        setMassUnit(for: Parameter.payload.rawValue, with: .pounds)
     }
     
-    func setLengthUnit(for name: String, with unit: lengthUnitType) {
+    func removeDefaultsUnits() {
+        userDefaults.removeObject(forKey: "heightUnit")
+        userDefaults.removeObject(forKey: "diameterUnit")
+        userDefaults.removeObject(forKey: "massUnit")
+        userDefaults.removeObject(forKey: "payloadUnit")
+    }
+    
+    func setLengthUnit(for name: String, with unit: LengthUnit) {
         userDefaults.set(unit.rawValue, forKey: name)
     }
     
-    func getLengthUnit(for name: String) -> lengthUnitType {
+    func getLengthUnit(for name: String) -> LengthUnit {
         let rawValue = userDefaults.string(forKey: name)!
-        let lengthUnitType = lengthUnitType(rawValue: rawValue)!
+        let lengthUnitType = LengthUnit(rawValue: rawValue)!
         return lengthUnitType
     }
     
-    func setMassUnit(for name: String, with unit: massUnitType) {
+    func setMassUnit(for name: String, with unit: MassUnit) {
         userDefaults.set(unit.rawValue, forKey: name)
     }
     
-    func getMassUnit(for name: String) -> massUnitType {
+    func getMassUnit(for name: String) -> MassUnit {
         let rawValue = userDefaults.string(forKey: name)!
-        let massUnitType = massUnitType(rawValue: rawValue)!
+        let massUnitType = MassUnit(rawValue: rawValue)!
         return massUnitType
     }
 }

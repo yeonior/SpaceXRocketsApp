@@ -10,9 +10,7 @@ import UIKit
 final class SettingsItemView: UIView {
     
     // MARK: - Properties
-    var segmentedControlAction: Callback? = {
-        print("value changed")
-    }
+    var segmentedControlAction: Callback?
 
     // MARK: - Subviews
     lazy var titleLabel: UILabel = {

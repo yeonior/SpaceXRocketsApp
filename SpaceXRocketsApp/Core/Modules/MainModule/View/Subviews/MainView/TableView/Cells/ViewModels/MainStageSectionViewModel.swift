@@ -5,7 +5,7 @@
 //  Created by Ruslan on 11.04.2022.
 //
 
-private enum UnitType: String {
+fileprivate enum UnitType: String {
     case ton = "ton"
     case sec = "sec"
 }
