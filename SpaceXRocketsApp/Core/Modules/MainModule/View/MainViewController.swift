@@ -81,6 +81,7 @@ final class MainViewController: UIViewController {
     
     private let observerKeyPath = "contentSize"
     private var mainViewHeightConstraint: NSLayoutConstraint?
+    private var isFirstLoad = true
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -91,7 +92,17 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         resetViewState()
-        mainView.tableView.addObserver(self, forKeyPath: observerKeyPath, options: .new, context: nil)
+        mainView.tableView.addObserver(self,
+                                       forKeyPath: observerKeyPath,
+                                       options: .new,
+                                       context: nil)
+        if isFirstLoad {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(updateCollectionView(_:)),
+                                                   name: NotificationNames.collectionViewUpdateNotification,
+                                                   object: nil)
+            isFirstLoad = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -199,6 +210,14 @@ final class MainViewController: UIViewController {
     
     private func showSettings() {
         router.showSettingsModule()
+    }
+    
+    @objc
+    func updateCollectionView(_ notification: Notification) {
+        DispatchQueue.global().async {
+            self.presenter.fetchData(by: self.serialNumber)
+            self.presenter.provideCollectionViewViewModel()
+        }
     }
 }
 

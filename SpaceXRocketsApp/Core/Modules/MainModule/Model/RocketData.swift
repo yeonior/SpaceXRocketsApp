@@ -9,12 +9,15 @@ struct RocketData {
     let id: String
     let flickrImages: [String]
     let name: String
-    let height, diameter: Diameter
-    let mass: Mass
-    let payloadWeights: [PayloadWeight]
+    let height, diameter, mass, payloadWeight: Parameter
     let firstFlight, country: String
     let costPerLaunch: Int
     let firstStage, secondStage: Stage
+    
+    struct Parameter {
+        let value: String
+        let unit: String
+    }
     
     struct Stage {
         let engines: Int

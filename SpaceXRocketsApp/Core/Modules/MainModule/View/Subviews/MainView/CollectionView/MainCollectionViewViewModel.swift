@@ -26,36 +26,14 @@ final class MainCollectionViewViewModel: NSObject, MainCollectionViewViewModelPr
         var cells = [MainCollectionViewCellViewModelProtocol]()
         for rocket in data {
             
-            var heightText = ""
-            var diameterText = ""
-            var payloadText = ""
-            
-            if let height = rocket.height.feet {
-                heightText = String(height)
-            } else {
-                heightText = "N/A"
-            }
-            
-            if let diameter = rocket.diameter.feet {
-                diameterText = String(diameter)
-            } else {
-                diameterText = "N/A"
-            }
-            
-            if rocket.payloadWeights.first?.id == "leo", let payload = rocket.payloadWeights.first?.lb {
-                payloadText = TextFormatter.numberWithCommas(payload)
-            } else {
-                payloadText = "N/A"
-            }
-            
-            let heightCell = MainCollectionViewCellViewModel(text: heightText,
-                                                         detailText: "Height, ft")
-            let diameterCell = MainCollectionViewCellViewModel(text: diameterText,
-                                                           detailText: "Diameter, ft")
-            let massCell = MainCollectionViewCellViewModel(text: TextFormatter.numberWithCommas(rocket.mass.lb),
-                                                       detailText: "Mass, lb")
-            let payloadCell = MainCollectionViewCellViewModel(text: payloadText,
-                                                          detailText: "Payload, lb")
+            let heightCell = MainCollectionViewCellViewModel(text: rocket.height.value,
+                                                             detailText: rocket.height.unit)
+            let diameterCell = MainCollectionViewCellViewModel(text: rocket.diameter.value,
+                                                               detailText: rocket.diameter.unit)
+            let massCell = MainCollectionViewCellViewModel(text: rocket.mass.value,
+                                                           detailText: rocket.mass.unit)
+            let payloadCell = MainCollectionViewCellViewModel(text: rocket.payloadWeight.value,
+                                                              detailText: rocket.payloadWeight.unit)
             
             cells.append(heightCell)
             cells.append(diameterCell)

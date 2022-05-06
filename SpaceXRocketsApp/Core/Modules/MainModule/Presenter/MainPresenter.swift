@@ -33,14 +33,89 @@ final class MainPresenter: MainPresenterProtocol {
     func fetchData(by serialNumber: Int) {
         let rockets = dataManager.getRockets()
         let rocket = rockets[serialNumber - 1]
+        
+        var height: String {
+            switch dataManager.getLengthUnit(for: "heightUnit") {
+            case .feet:
+                guard let newValue = rocket.height.feet else { return "N/A" }
+                return String(newValue)
+            case .meters:
+                guard let newValue = rocket.height.meters else { return "N/A" }
+                return String(newValue)
+            }
+        }
+        
+        var diameter: String {
+            switch dataManager.getLengthUnit(for: "diameterUnit") {
+            case .feet:
+                guard let newValue = rocket.diameter.feet else { return "N/A" }
+                return String(newValue)
+            case .meters:
+                guard let newValue = rocket.diameter.meters else { return "N/A" }
+                return String(newValue)
+            }
+        }
+        
+        var mass: String {
+            switch dataManager.getMassUnit(for: "massUnit") {
+            case .kilos: return TextFormatter.numberWithCommas(rocket.mass.kg)
+            case .pounds: return TextFormatter.numberWithCommas(rocket.mass.lb)
+            }
+        }
+        
+        var payloadWeight: String {
+            for payloadWeight in rocket.payloadWeights {
+                // checking the leo weight
+                guard payloadWeight.id == "leo" else { return "N/A" }
+                switch dataManager.getMassUnit(for: "payloadUnit") {
+                case .kilos: return TextFormatter.numberWithCommas(payloadWeight.kg)
+                case .pounds: return TextFormatter.numberWithCommas(payloadWeight.lb)
+                }
+            }
+            return "N/A"
+        }
+        
+        var heightUnit: String {
+            switch dataManager.getLengthUnit(for: "heightUnit") {
+            case .feet: return "Height, ft"
+            case .meters: return "Height, m"
+            }
+        }
+        
+        var diameterUnit: String {
+            switch dataManager.getLengthUnit(for: "diameterUnit") {
+            case .feet: return "Diameter, ft"
+            case .meters: return "Diameter, m"
+            }
+        }
+        
+        var massUnit: String {
+            switch dataManager.getMassUnit(for: "massUnit") {
+            case .kilos: return "Mass, kg"
+            case .pounds: return "Mass, lb"
+            }
+        }
+        
+        var payloadWeightUnit: String {
+            for payloadWeight in rocket.payloadWeights {
+                // checking the leo weight
+                guard payloadWeight.id == "leo" else { return "N/A" }
+                switch dataManager.getMassUnit(for: "payloadUnit") {
+                case .kilos: return "Payload, kg"
+                case .pounds: return "Payload, lb"
+                }
+            }
+            return "N/A"
+        }
+        
         let rocketData = RocketData(
             id: rocket.id,
             flickrImages: rocket.flickrImages,
             name: rocket.name,
-            height: rocket.height,
-            diameter: rocket.diameter,
-            mass: rocket.mass,
-            payloadWeights: rocket.payloadWeights,
+            height: RocketData.Parameter(value: height, unit: heightUnit),
+            diameter: RocketData.Parameter(value: diameter, unit: diameterUnit),
+            mass: RocketData.Parameter(value: mass, unit: massUnit),
+            payloadWeight: RocketData.Parameter(value: payloadWeight, unit: payloadWeightUnit),
             firstFlight: rocket.firstFlight,
             country: rocket.country,
             costPerLaunch: rocket.costPerLaunch,

@@ -45,6 +45,7 @@
 		A2768143281C0D9C00C0172F /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2768142281C0D9C00C0172F /* SettingsItemView.swift */; };
 		A2852F8E27FE1EBF000CDA92 /* MainShowButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F8D27FE1EBF000CDA92 /* MainShowButtonCell.swift */; };
 		A2852F9127FE3B12000CDA92 /* MainSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2852F9027FE3B12000CDA92 /* MainSectionHeader.swift */; };
+		A288C7F028254B6800FD209A /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = A288C7EF28254B6800FD209A /* NotificationNames.swift */; };
 		A299754E2806ACC80015FB9A /* Launches.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A299754D2806ACC80015FB9A /* Launches.JSON */; };
 		A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA228028AD400B28901 /* MainPresenter.swift */; };
 		A2A19BA52802B1A500B28901 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA42802B1A500B28901 /* DataManager.swift */; };
@@ -105,6 +106,7 @@
 		A2768142281C0D9C00C0172F /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
 		A2852F8D27FE1EBF000CDA92 /* MainShowButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainShowButtonCell.swift; sourceTree = "<group>"; };
 		A2852F9027FE3B12000CDA92 /* MainSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeader.swift; sourceTree = "<group>"; };
+		A288C7EF28254B6800FD209A /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		A299754D2806ACC80015FB9A /* Launches.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Launches.JSON; sourceTree = "<group>"; };
 		A2A19BA228028AD400B28901 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		A2A19BA42802B1A500B28901 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				A2DB9D0527FD88A700339D48 /* Font.swift */,
 				A2A19BA62802C57C00B28901 /* Size.swift */,
 				A24BBC7528004F0600EA5A87 /* API.swift */,
+				A288C7EF28254B6800FD209A /* NotificationNames.swift */,
 				A2D383AF2805BE6A007F22C3 /* TextFormatter.swift */,
 				A245027A2808A355005FF06C /* UIImage + extension.swift */,
 				A237D245280C59C8007655BD /* UIScrollView + extension.swift */,
@@ -670,6 +673,7 @@
 				A237D248280C6A53007655BD /* UIViewController + extension.swift in Sources */,
 				A237D23F280C314E007655BD /* MainCollectionViewCell.swift in Sources */,
 				A24BBC7C2800543900EA5A87 /* Router.swift in Sources */,
+				A288C7F028254B6800FD209A /* NotificationNames.swift in Sources */,
 				A25FBF4C28171C1B003F9280 /* SettingsViewController.swift in Sources */,
 				A2D383B02805BE6A007F22C3 /* TextFormatter.swift in Sources */,
 				A237D241280C3321007655BD /* MainCollectionViewCellViewModel.swift in Sources */,

@@ -45,6 +45,12 @@ final class SettingsViewController: UIViewController {
         presenter.providePayloadUnitType()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // updating collection view
+        NotificationCenter.default.post(name: NotificationNames.collectionViewUpdateNotification, object: nil)
+    }
+    
     // MARK: - Private methods
     private func configureUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil,
