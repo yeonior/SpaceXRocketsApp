@@ -51,16 +51,18 @@ final class SettingsItemView: UIView {
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, unitSegmentedControl])
         stackView.axis = .horizontal
-        stackView.spacing = 28
+        stackView.spacing = SettingsViewSizeConstants.spacingBetweenLabelAndSegmentedControl
         stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            unitSegmentedControl.widthAnchor.constraint(equalToConstant: 115),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
+            unitSegmentedControl.widthAnchor.constraint(equalToConstant: SettingsViewSizeConstants.segmentedControlWidth),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                               constant: SettingsViewSizeConstants.leftPadding),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                constant: -SettingsViewSizeConstants.rightPadding),
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])

@@ -30,7 +30,7 @@ final class SettingsView: UIView {
         }
         stackView = UIStackView(arrangedSubviews: arrangedSubviews)
         stackView.axis = .vertical
-        stackView.spacing = 24
+        stackView.spacing = SettingsViewSizeConstants.spacingItems
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         

@@ -18,6 +18,16 @@ protocol SettingsViewProtocol: AnyObject {
     func setPayloadUnit(with unit: MassUnit)
 }
 
+struct SettingsViewSizeConstants {
+    static let topPadding: CGFloat = 120
+    static let leftPadding: CGFloat = 32
+    static let rightPadding: CGFloat = 16
+    static let spacingItems: CGFloat = 24.0
+    static let spacingBetweenLabelAndSegmentedControl: CGFloat = 28.0
+    static let segmentedControlWidth: CGFloat = 115
+    static let height: CGFloat = 216
+}
+
 final class SettingsViewController: UIViewController {
     
     // MARK: - Subviews
@@ -69,9 +79,10 @@ final class SettingsViewController: UIViewController {
         NSLayoutConstraint.activate([
             settingsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             settingsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            settingsView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            settingsView.topAnchor.constraint(equalTo: view.topAnchor,
+                                              constant: SettingsViewSizeConstants.topPadding),
             settingsView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            settingsView.heightAnchor.constraint(equalToConstant: 216)
+            settingsView.heightAnchor.constraint(equalToConstant: SettingsViewSizeConstants.height)
         ])
     }
     

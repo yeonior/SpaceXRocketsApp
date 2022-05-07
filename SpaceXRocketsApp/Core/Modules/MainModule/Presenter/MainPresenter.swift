@@ -104,7 +104,7 @@ final class MainPresenter: MainPresenterProtocol {
                 guard payloadWeight.id == "leo" else { return Parameter.unknown.rawValue }
                 switch dataManager.getMassUnit(for: Parameter.payload.rawValue) {
                 case .kilos: return Parameter.payload.rawValue + ", " + MassUnit.kilos.rawValue
-                case .pounds: return Parameter.payload.rawValue + ", " + MassUnit.kilos.rawValue
+                case .pounds: return Parameter.payload.rawValue + ", " + MassUnit.pounds.rawValue
                 }
             }
             return Parameter.unknown.rawValue
