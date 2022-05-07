@@ -36,7 +36,7 @@ enum LengthUnit: String {
 
 enum MassUnit: String {
     case kilos  = "kg"
-    case pounds = "lbs"
+    case pounds = "lb"
 }
 
 final class SettingsPresenter: SettingsPresenterProtocol {

@@ -90,7 +90,7 @@ final class DataManager: DataManagerProtocol {
     }
     
     func getLengthUnit(for name: String) -> LengthUnit {
-        let rawValue = userDefaults.string(forKey: name)!
+        guard let rawValue = userDefaults.string(forKey: name) else { return .feet}
         let lengthUnitType = LengthUnit(rawValue: rawValue)!
         return lengthUnitType
     }
@@ -100,7 +100,7 @@ final class DataManager: DataManagerProtocol {
     }
     
     func getMassUnit(for name: String) -> MassUnit {
-        let rawValue = userDefaults.string(forKey: name)!
+        guard let rawValue = userDefaults.string(forKey: name) else { return .pounds}
         let massUnitType = MassUnit(rawValue: rawValue)!
         return massUnitType
     }
