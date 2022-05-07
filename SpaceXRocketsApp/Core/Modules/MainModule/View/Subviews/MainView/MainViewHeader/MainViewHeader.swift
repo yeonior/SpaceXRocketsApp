@@ -10,6 +10,7 @@ import UIKit
 private struct MainViewHeaderSizeConstants {
     static let titleLabelHeight: CGFloat = 32.0
     static let titleLabelYOffset: CGFloat = 8.0
+    static let spacingBetweenLabelAndButton: CGFloat = 8.0
 }
 
 final class MainViewHeader: UIView {
@@ -34,6 +35,7 @@ final class MainViewHeader: UIView {
     
     lazy var settingsButton: UIButton = {
         $0.imageView?.tintColor = .white
+        $0.imageView?.contentMode = .scaleAspectFit
         $0.contentVerticalAlignment = .fill
         $0.contentHorizontalAlignment = .fill
         $0.isUserInteractionEnabled = false
@@ -75,7 +77,8 @@ final class MainViewHeader: UIView {
             titleLabel.heightAnchor.constraint(equalToConstant: MainViewHeaderSizeConstants.titleLabelHeight),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                 constant: MainViewSizeConstants.leftPadding),
-            titleLabel.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor,
+                                                 constant: -MainViewHeaderSizeConstants.spacingBetweenLabelAndButton),
             settingsButton.heightAnchor.constraint(equalTo: titleLabel.heightAnchor),
             settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor),
             settingsButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
