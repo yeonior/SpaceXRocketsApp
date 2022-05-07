@@ -45,10 +45,7 @@ final class SettingsViewController: UIViewController {
         presenter.provideBarButtonTitle()
         presenter.provideLabelTitles()
         presenter.provideSegmentedControlTitles()
-        setHeightItemAction()
-        setDiameterItemAction()
-        setMassItemAction()
-        setPayloadItemAction()
+        setSegmentedControlActions()
         presenter.provideHeightUnit()
         presenter.provideDiameterUnit()
         presenter.provideMassUnit()
@@ -91,59 +88,28 @@ final class SettingsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    // setting item actions
-    private func setHeightItemAction() {
-        guard let view = settingsView.stackView.arrangedSubviews[0] as? SettingsItemView else { return }
-        view.segmentedControlAction = {
-            switch view.unitSegmentedControl.selectedSegmentIndex {
-            case let index where index == 0:
-                self.presenter.updateHeightUnit(with: index)
-            case let index where index == 1:
-                self.presenter.updateHeightUnit(with: index)
-            default:
-                break
+    // setting actions
+    private func setSegmentedControlActions() {
+        for (index, view) in settingsView.stackView.arrangedSubviews.enumerated() {
+            setAction(index: index, view: view) { i in
+                switch index {
+                case 0: self.presenter.updateHeightUnit(with: i)
+                case 1: self.presenter.updateDiameterUnit(with: i)
+                case 2: self.presenter.updateMassUnit(with: i)
+                case 3: self.presenter.updatePayloadUnit(with: i)
+                default: break
+                }
             }
         }
     }
     
-    private func setDiameterItemAction() {
-        guard let view = settingsView.stackView.arrangedSubviews[1] as? SettingsItemView else { return }
+    private func setAction(index: Int, view: UIView, action: @escaping (Int) -> ()) {
+        guard let view = view as? SettingsItemView else { return }
         view.segmentedControlAction = {
             switch view.unitSegmentedControl.selectedSegmentIndex {
-            case let index where index == 0:
-                self.presenter.updateDiameterUnit(with: index)
-            case let index where index == 1:
-                self.presenter.updateDiameterUnit(with: index)
-            default:
-                break
-            }
-        }
-    }
-    
-    private func setMassItemAction() {
-        guard let view = settingsView.stackView.arrangedSubviews[2] as? SettingsItemView else { return }
-        view.segmentedControlAction = {
-            switch view.unitSegmentedControl.selectedSegmentIndex {
-            case let index where index == 0:
-                self.presenter.updateMassUnit(with: index)
-            case let index where index == 1:
-                self.presenter.updateMassUnit(with: index)
-            default:
-                break
-            }
-        }
-    }
-    
-    private func setPayloadItemAction() {
-        guard let view = settingsView.stackView.arrangedSubviews[3] as? SettingsItemView else { return }
-        view.segmentedControlAction = {
-            switch view.unitSegmentedControl.selectedSegmentIndex {
-            case let index where index == 0:
-                self.presenter.updatePayloadUnit(with: index)
-            case let index where index == 1:
-                self.presenter.updatePayloadUnit(with: index)
-            default:
-                break
+            case let i where i == 0: action(i)
+            case let i where i == 1: action(i)
+            default: break
             }
         }
     }
