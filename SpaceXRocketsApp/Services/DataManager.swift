@@ -8,8 +8,8 @@
 import Foundation
 
 protocol DataManagerProtocol: AnyObject {
-    func getFirstLaunchStatus() -> Bool
-    func changeFirstLauchStatus()
+    func getAppFirstLaunchStatus() -> Bool
+    func changeAppFirstLauchStatus()
     func getData(from stringURL: String) -> Data
     func setRockets(_ rockets: [RocketModel])
     func getRockets() -> [RocketModel]
@@ -27,6 +27,7 @@ final class DataManager: DataManagerProtocol {
     // MARK: - Properties
     static let shared = DataManager()
     private let userDefaults = UserDefaults.standard
+    private let appLaunchKey = "launchedBefore"
     private var rockets: [RocketModel]?
     private var launches: [LaunchModel]?
     
@@ -34,12 +35,12 @@ final class DataManager: DataManagerProtocol {
     private init() {}
     
     // MARK: - Methods
-    func getFirstLaunchStatus() -> Bool {
-        userDefaults.bool(forKey: "launchedBefore")
+    func getAppFirstLaunchStatus() -> Bool {
+        userDefaults.bool(forKey: appLaunchKey)
     }
     
-    func changeFirstLauchStatus() {
-        userDefaults.set(true, forKey: "launchedBefore")
+    func changeAppFirstLauchStatus() {
+        userDefaults.set(true, forKey: appLaunchKey)
     }
     
     func getData(from stringURL: String) -> Data {
@@ -76,13 +77,6 @@ final class DataManager: DataManagerProtocol {
         setLengthUnit(for: Parameter.diameter.rawValue, with: .feet)
         setMassUnit(for: Parameter.mass.rawValue, with: .pounds)
         setMassUnit(for: Parameter.payload.rawValue, with: .pounds)
-    }
-    
-    func removeDefaultsUnits() {
-        userDefaults.removeObject(forKey: "heightUnit")
-        userDefaults.removeObject(forKey: "diameterUnit")
-        userDefaults.removeObject(forKey: "massUnit")
-        userDefaults.removeObject(forKey: "payloadUnit")
     }
     
     func setLengthUnit(for name: String, with unit: LengthUnit) {
