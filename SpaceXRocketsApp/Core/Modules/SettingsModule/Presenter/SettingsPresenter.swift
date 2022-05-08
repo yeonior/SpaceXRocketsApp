@@ -30,13 +30,13 @@ enum Parameter: String {
 }
 
 enum LengthUnit: String {
-    case meters = "m"
     case feet   = "ft"
+    case meters = "m"
 }
 
 enum MassUnit: String {
-    case kilos  = "kg"
     case pounds = "lb"
+    case kilos  = "kg"
 }
 
 final class SettingsPresenter: SettingsPresenterProtocol {
@@ -83,6 +83,8 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         self.dataManager = dataManager
     }
     
+    // MARK: - Methods
+    
     // providing titles
     func provideTitle() {
         view.setTitle(with: "Settings")
@@ -101,10 +103,10 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     }
     
     func provideSegmentedControlTitles() {
-        let dict = [[0: LengthUnit.meters.rawValue, 1: LengthUnit.feet.rawValue],
-                    [0: LengthUnit.meters.rawValue, 1: LengthUnit.feet.rawValue],
-                    [0: MassUnit.kilos.rawValue,    1: MassUnit.pounds.rawValue],
-                    [0: MassUnit.kilos.rawValue,    1: MassUnit.pounds.rawValue]]
+        let dict = [[0: LengthUnit.feet.rawValue, 1: LengthUnit.meters.rawValue],
+                    [0: LengthUnit.feet.rawValue, 1: LengthUnit.meters.rawValue],
+                    [0: MassUnit.pounds.rawValue, 1: MassUnit.kilos.rawValue],
+                    [0: MassUnit.pounds.rawValue, 1: MassUnit.kilos.rawValue]]
         view.setSegmentedControlTitles(with: dict)
     }
     
@@ -129,9 +131,9 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     func updateHeightUnit(with index: Int) {
         switch index {
         case 0:
-            heightUnit = .meters
-        case 1:
             heightUnit = .feet
+        case 1:
+            heightUnit = .meters
         default:
             break
         }
@@ -140,9 +142,9 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     func updateDiameterUnit(with index: Int) {
         switch index {
         case 0:
-            diameterUnit = .meters
-        case 1:
             diameterUnit = .feet
+        case 1:
+            diameterUnit = .meters
         default:
             break
         }
@@ -151,9 +153,9 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     func updateMassUnit(with index: Int) {
         switch index {
         case 0:
-            massUnit = .kilos
-        case 1:
             massUnit = .pounds
+        case 1:
+            massUnit = .kilos
         default:
             break
         }
@@ -162,9 +164,9 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     func updatePayloadUnit(with index: Int) {
         switch index {
         case 0:
-            payloadUnit = .kilos
-        case 1:
             payloadUnit = .pounds
+        case 1:
+            payloadUnit = .kilos
         default:
             break
         }

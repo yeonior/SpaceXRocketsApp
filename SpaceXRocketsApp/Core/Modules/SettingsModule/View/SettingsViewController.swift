@@ -146,9 +146,9 @@ extension SettingsViewController: SettingsViewProtocol {
     func setHeightUnit(with unitType: LengthUnit) {
         guard let view = settingsView.stackView.arrangedSubviews[0] as? SettingsItemView else { return }
         switch unitType {
-        case .meters:
-            view.unitSegmentedControl.selectedSegmentIndex = 0
         case .feet:
+            view.unitSegmentedControl.selectedSegmentIndex = 0
+        case .meters:
             view.unitSegmentedControl.selectedSegmentIndex = 1
         }
     }
@@ -156,9 +156,9 @@ extension SettingsViewController: SettingsViewProtocol {
     func setDiameterUnit(with unitType: LengthUnit) {
         guard let view = settingsView.stackView.arrangedSubviews[1] as? SettingsItemView else { return }
         switch unitType {
-        case .meters:
-            view.unitSegmentedControl.selectedSegmentIndex = 0
         case .feet:
+            view.unitSegmentedControl.selectedSegmentIndex = 0
+        case .meters:
             view.unitSegmentedControl.selectedSegmentIndex = 1
         }
     }
@@ -166,9 +166,9 @@ extension SettingsViewController: SettingsViewProtocol {
     func setMassUnit(with unitType: MassUnit) {
         guard let view = settingsView.stackView.arrangedSubviews[2] as? SettingsItemView else { return }
         switch unitType {
-        case .kilos:
-            view.unitSegmentedControl.selectedSegmentIndex = 0
         case .pounds:
+            view.unitSegmentedControl.selectedSegmentIndex = 0
+        case .kilos:
             view.unitSegmentedControl.selectedSegmentIndex = 1
         }
     }
@@ -176,9 +176,9 @@ extension SettingsViewController: SettingsViewProtocol {
     func setPayloadUnit(with unitType: MassUnit) {
         guard let view = settingsView.stackView.arrangedSubviews[3] as? SettingsItemView else { return }
         switch unitType {
-        case .kilos:
-            view.unitSegmentedControl.selectedSegmentIndex = 0
         case .pounds:
+            view.unitSegmentedControl.selectedSegmentIndex = 0
+        case .kilos:
             view.unitSegmentedControl.selectedSegmentIndex = 1
         }
     }
