@@ -43,7 +43,7 @@ extension DetailsCollectionViewModel: UICollectionViewDataSource {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCollectionCell.identifier, for: indexPath) as? DetailsCollectionCell {
             
-            // the information cell for rockets with no lauches
+            // information cell for rockets with no launches
             if cells.count == 0 {
                 cell.mainLabel.text = "No information available"
                 cell.imageView.image = UIImage(systemName: "xmark.circle.fill")

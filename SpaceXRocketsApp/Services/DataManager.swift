@@ -7,22 +7,27 @@
 
 import Foundation
 
-protocol DataManagerProtocol: AnyObject {
+protocol DataManagerReadable: AnyObject {
     func getAppFirstLaunchStatus() -> Bool
-    func changeAppFirstLauchStatus()
     func getData(from stringURL: String) -> Data
-    func setRockets(_ rockets: [RocketModel])
     func getRockets() -> [RocketModel]
-    func setLaunches(_ launches: [LaunchModel])
     func getLaunches() -> [LaunchModel]
-    func setDefaultUnits()
-    func setLengthUnit(for name: String, with unit: LengthUnit)
     func getLengthUnit(for name: String) -> LengthUnit
-    func setMassUnit(for name: String, with unit: MassUnit)
     func getMassUnit(for name: String) -> MassUnit
 }
 
-final class DataManager: DataManagerProtocol {
+protocol DataManagerWritable: AnyObject {
+    func setAppFirstLauchStatus()
+    func setRockets(_ rockets: [RocketModel])
+    func setLaunches(_ launches: [LaunchModel])
+    func setDefaultUnits()
+    func setLengthUnit(for name: String, with unit: LengthUnit)
+    func setMassUnit(for name: String, with unit: MassUnit)
+}
+
+typealias DataManagerProtocol = DataManagerReadable & DataManagerWritable
+
+final class DataManager {
     
     // MARK: - Properties
     static let shared = DataManager()
@@ -33,43 +38,20 @@ final class DataManager: DataManagerProtocol {
     
     // MARK: - Init
     private init() {}
-    
-    // MARK: - Methods
-    func getAppFirstLaunchStatus() -> Bool {
-        userDefaults.bool(forKey: appLaunchKey)
-    }
-    
-    func changeAppFirstLauchStatus() {
+}
+
+// MARK: - DataManagerReadable
+extension DataManager: DataManagerReadable {
+    func setAppFirstLauchStatus() {
         userDefaults.set(true, forKey: appLaunchKey)
-    }
-    
-    func getData(from stringURL: String) -> Data {
-        guard let url = URL(string: stringURL),
-              let data = try? Data(contentsOf: url) else { return Data() }
-        
-        return data
     }
     
     func setRockets(_ rockets: [RocketModel]) {
         self.rockets = rockets
     }
     
-    func getRockets() -> [RocketModel] {
-        var safeRockets = [RocketModel]()
-        safeRockets = rockets ?? []
-        
-        return safeRockets
-    }
-    
     func setLaunches(_ launches: [LaunchModel]) {
         self.launches = launches
-    }
-    
-    func getLaunches() -> [LaunchModel] {
-        var safeLaunches = [LaunchModel]()
-        safeLaunches = launches ?? []
-        
-        return safeLaunches
     }
     
     func setDefaultUnits() {
@@ -83,19 +65,49 @@ final class DataManager: DataManagerProtocol {
         userDefaults.set(unit.rawValue, forKey: name)
     }
     
+    func setMassUnit(for name: String, with unit: MassUnit) {
+        userDefaults.set(unit.rawValue, forKey: name)
+    }
+}
+
+// MARK: - DataManagerWritable
+extension DataManager: DataManagerWritable {
+    func getAppFirstLaunchStatus() -> Bool {
+        userDefaults.bool(forKey: appLaunchKey)
+    }
+    
+    func getData(from stringURL: String) -> Data {
+        guard let url = URL(string: stringURL),
+              let data = try? Data(contentsOf: url) else { return Data() }
+        
+        return data
+    }
+    
+    func getRockets() -> [RocketModel] {
+        var safeRockets = [RocketModel]()
+        safeRockets = rockets ?? []
+        
+        return safeRockets
+    }
+    
+    func getLaunches() -> [LaunchModel] {
+        var safeLaunches = [LaunchModel]()
+        safeLaunches = launches ?? []
+        
+        return safeLaunches
+    }
+    
     func getLengthUnit(for name: String) -> LengthUnit {
         guard let rawValue = userDefaults.string(forKey: name) else { return .feet}
         let lengthUnitType = LengthUnit(rawValue: rawValue)!
+        
         return lengthUnitType
-    }
-    
-    func setMassUnit(for name: String, with unit: MassUnit) {
-        userDefaults.set(unit.rawValue, forKey: name)
     }
     
     func getMassUnit(for name: String) -> MassUnit {
         guard let rawValue = userDefaults.string(forKey: name) else { return .pounds}
         let massUnitType = MassUnit(rawValue: rawValue)!
+        
         return massUnitType
     }
 }

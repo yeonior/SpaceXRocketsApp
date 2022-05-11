@@ -7,16 +7,21 @@
 
 import UIKit
 
-protocol SettingsViewProtocol: AnyObject {
+protocol SettingsViewTitlesProtocol: AnyObject {
     func setTitle(with title: String)
     func setBarButtonTitle(with title: String)
     func setLabelTitles(with titles: [String])
     func setSegmentedControlTitles(with titles: [[Int: String]])
+}
+
+protocol SettingsViewUnitsProtocol: AnyObject {
     func setHeightUnit(with unit: LengthUnit)
     func setDiameterUnit(with unit: LengthUnit)
     func setMassUnit(with unit: MassUnit)
     func setPayloadUnit(with unit: MassUnit)
 }
+
+typealias SettingsViewProtocol = SettingsViewTitlesProtocol & SettingsViewUnitsProtocol
 
 struct SettingsViewSizeConstants {
     static let topPadding: CGFloat = 120
@@ -116,8 +121,7 @@ final class SettingsViewController: UIViewController {
 }
 
 // MARK: - SettingsViewProtocol
-extension SettingsViewController: SettingsViewProtocol {
-    
+extension SettingsViewController: SettingsViewTitlesProtocol {
     // setting titles
     func setTitle(with title: String) {
         self.title = title
@@ -141,7 +145,10 @@ extension SettingsViewController: SettingsViewProtocol {
             view.unitSegmentedControl.setTitle((titles[index])[1], forSegmentAt: 1)
         }
     }
-    
+}
+
+// MARK: - SettingsViewUnitsProtocol
+extension SettingsViewController: SettingsViewUnitsProtocol {
     // setting units
     func setHeightUnit(with unitType: LengthUnit) {
         guard let view = settingsView.stackView.arrangedSubviews[0] as? SettingsItemView else { return }

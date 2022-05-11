@@ -5,11 +5,15 @@
 //  Created by Ruslan on 25.04.2022.
 //
 
-protocol SettingsPresenterProtocol {
+// MARK: - Protocols
+protocol SettingsPresenterTitlesProtocol {
     func provideTitle()
     func provideBarButtonTitle()
     func provideLabelTitles()
     func provideSegmentedControlTitles()
+}
+
+protocol SettingsPresenterUnitsProtocol {
     func provideHeightUnit()
     func provideDiameterUnit()
     func provideMassUnit()
@@ -19,6 +23,8 @@ protocol SettingsPresenterProtocol {
     func updateMassUnit(with index: Int)
     func updatePayloadUnit(with index: Int)
 }
+
+typealias SettingsPresenterProtocol = SettingsPresenterTitlesProtocol & SettingsPresenterUnitsProtocol
 
 // MARK: - Enums
 enum Parameter: String {
@@ -39,12 +45,13 @@ enum MassUnit: String {
     case kilos  = "kg"
 }
 
-final class SettingsPresenter: SettingsPresenterProtocol {
+final class SettingsPresenter {
     
     // MARK: - Properties
     weak var view: SettingsViewProtocol!
     let dataManager: DataManagerProtocol!
     
+    // units
     var heightUnit: LengthUnit {
         get {
             DataManager.shared.getLengthUnit(for: Parameter.height.rawValue)
@@ -82,9 +89,10 @@ final class SettingsPresenter: SettingsPresenterProtocol {
         self.view = view
         self.dataManager = dataManager
     }
-    
-    // MARK: - Methods
-    
+}
+
+// MARK: - SettingsPresenterTitlesProtocol
+extension SettingsPresenter: SettingsPresenterTitlesProtocol {
     // providing titles
     func provideTitle() {
         view.setTitle(with: "Settings")
@@ -109,7 +117,10 @@ final class SettingsPresenter: SettingsPresenterProtocol {
                     [0: MassUnit.pounds.rawValue, 1: MassUnit.kilos.rawValue]]
         view.setSegmentedControlTitles(with: dict)
     }
-    
+}
+
+// MARK: - SettingsPresenterUnitsProtocol
+extension SettingsPresenter: SettingsPresenterUnitsProtocol {
     // providing units
     func provideHeightUnit() {
         view.setHeightUnit(with: heightUnit)
@@ -130,45 +141,33 @@ final class SettingsPresenter: SettingsPresenterProtocol {
     // updating units
     func updateHeightUnit(with index: Int) {
         switch index {
-        case 0:
-            heightUnit = .feet
-        case 1:
-            heightUnit = .meters
-        default:
-            break
+        case 0: heightUnit = .feet
+        case 1: heightUnit = .meters
+        default: break
         }
     }
     
     func updateDiameterUnit(with index: Int) {
         switch index {
-        case 0:
-            diameterUnit = .feet
-        case 1:
-            diameterUnit = .meters
-        default:
-            break
+        case 0: diameterUnit = .feet
+        case 1: diameterUnit = .meters
+        default: break
         }
     }
     
     func updateMassUnit(with index: Int) {
         switch index {
-        case 0:
-            massUnit = .pounds
-        case 1:
-            massUnit = .kilos
-        default:
-            break
+        case 0: massUnit = .pounds
+        case 1: massUnit = .kilos
+        default: break
         }
     }
     
     func updatePayloadUnit(with index: Int) {
         switch index {
-        case 0:
-            payloadUnit = .pounds
-        case 1:
-            payloadUnit = .kilos
-        default:
-            break
+        case 0: payloadUnit = .pounds
+        case 1: payloadUnit = .kilos
+        default: break
         }
     }
 }
