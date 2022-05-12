@@ -136,7 +136,7 @@ final class MainPresenter: MainPresenterProtocol {
     func provideBackgroundImage() {
         guard let rocketData = rocketData else { return }
         // providing a random image
-        let imageData = dataManager.getData(from: rocketData.flickrImages.randomElement()!)
+        let imageData = dataManager.fetchData(from: rocketData.flickrImages.randomElement()!)
         view.setBackgroundImage(with: imageData)
     }
     

@@ -225,8 +225,8 @@ extension MainViewController: MainViewProtocol {
     func setBackgroundImage(with data: Data) {
         DispatchQueue.main.sync {
             backgroundImageView.image = UIImage(data: data)
-            UIView.animate(withDuration: 0.5) { [unowned self] in
-                backgroundImageView.alpha = 1.0
+            UIView.animate(withDuration: 0.5) {
+                self.backgroundImageView.alpha = 1.0
             }
             activityIndicatorView.stopAnimating()
         }

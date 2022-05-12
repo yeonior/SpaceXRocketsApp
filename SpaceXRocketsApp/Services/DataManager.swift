@@ -9,7 +9,6 @@ import Foundation
 
 protocol DataManagerReadable: AnyObject {
     func getAppFirstLaunchStatus() -> Bool
-    func getData(from stringURL: String) -> Data
     func getRockets() -> [RocketModel]
     func getLaunches() -> [LaunchModel]
     func getLengthUnit(for name: String) -> LengthUnit
@@ -25,13 +24,18 @@ protocol DataManagerWritable: AnyObject {
     func setMassUnit(for name: String, with unit: MassUnit)
 }
 
-typealias DataManagerProtocol = DataManagerReadable & DataManagerWritable
+protocol DataManagerFetchesProtocol: AnyObject {
+    func fetchData(from stringURL: String) -> Data
+}
+
+typealias DataManagerProtocol = DataManagerReadable & DataManagerWritable & DataManagerFetchesProtocol
 
 final class DataManager {
     
     // MARK: - Properties
     static let shared = DataManager()
     private let userDefaults = UserDefaults.standard
+    private let concurrentQueue = DispatchQueue(label: "concurrent-queue", attributes: .concurrent)
     private let appLaunchKey = "launchedBefore"
     private var rockets: [RocketModel]?
     private var launches: [LaunchModel]?
@@ -40,8 +44,48 @@ final class DataManager {
     private init() {}
 }
 
+
 // MARK: - DataManagerReadable
 extension DataManager: DataManagerReadable {
+    func getAppFirstLaunchStatus() -> Bool {
+        userDefaults.bool(forKey: appLaunchKey)
+    }
+    
+    func getRockets() -> [RocketModel] {
+        var safeRockets = [RocketModel]()
+        concurrentQueue.sync { [weak self] in
+            safeRockets = self?.rockets ?? []
+        }
+        
+        return safeRockets
+    }
+    
+    func getLaunches() -> [LaunchModel] {
+        var safeLaunches = [LaunchModel]()
+        concurrentQueue.sync { [weak self] in
+            safeLaunches = self?.launches ?? []
+        }
+        
+        return safeLaunches
+    }
+    
+    func getLengthUnit(for name: String) -> LengthUnit {
+        guard let rawValue = userDefaults.string(forKey: name) else { return .feet}
+        let lengthUnitType = LengthUnit(rawValue: rawValue)!
+        
+        return lengthUnitType
+    }
+    
+    func getMassUnit(for name: String) -> MassUnit {
+        guard let rawValue = userDefaults.string(forKey: name) else { return .pounds}
+        let massUnitType = MassUnit(rawValue: rawValue)!
+        
+        return massUnitType
+    }
+}
+
+// MARK: - DataManagerWritable
+extension DataManager: DataManagerWritable {
     func setAppFirstLauchStatus() {
         userDefaults.set(true, forKey: appLaunchKey)
     }
@@ -70,44 +114,12 @@ extension DataManager: DataManagerReadable {
     }
 }
 
-// MARK: - DataManagerWritable
-extension DataManager: DataManagerWritable {
-    func getAppFirstLaunchStatus() -> Bool {
-        userDefaults.bool(forKey: appLaunchKey)
-    }
-    
-    func getData(from stringURL: String) -> Data {
+// MARK: - DataManagerFetchesProtocol
+extension DataManager: DataManagerFetchesProtocol {
+    func fetchData(from stringURL: String) -> Data {
         guard let url = URL(string: stringURL),
               let data = try? Data(contentsOf: url) else { return Data() }
         
         return data
-    }
-    
-    func getRockets() -> [RocketModel] {
-        var safeRockets = [RocketModel]()
-        safeRockets = rockets ?? []
-        
-        return safeRockets
-    }
-    
-    func getLaunches() -> [LaunchModel] {
-        var safeLaunches = [LaunchModel]()
-        safeLaunches = launches ?? []
-        
-        return safeLaunches
-    }
-    
-    func getLengthUnit(for name: String) -> LengthUnit {
-        guard let rawValue = userDefaults.string(forKey: name) else { return .feet}
-        let lengthUnitType = LengthUnit(rawValue: rawValue)!
-        
-        return lengthUnitType
-    }
-    
-    func getMassUnit(for name: String) -> MassUnit {
-        guard let rawValue = userDefaults.string(forKey: name) else { return .pounds}
-        let massUnitType = MassUnit(rawValue: rawValue)!
-        
-        return massUnitType
     }
 }
