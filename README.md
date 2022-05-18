@@ -10,13 +10,15 @@ The project contains three different screens:
 
 ## Technology stack
 * UIKit
-* MVP + Assembly + Router, MVVM
+* GCD
+* MVP + Assembly + Router
 
 ## Description
 * Building UI programmatically
 * Networking with URLSession
 * Using UITableView and UICollectionView
 * Storing user settings with UserDefaults
+* Multithreading with GCD
 * Unit changing
 * Text formatting
 
