@@ -1,4 +1,5 @@
-# SpaceXRocketsApp
+<img width="920" alt="SpaceXRocketsAppHeader" src="https://user-images.githubusercontent.com/81576794/170486101-40f6a689-c3d8-4ba8-8a94-1994a804a4f3.png">
+
 This app shows information about SpaceX rockets and also about their past and current launches.
 
 ## Preview
