@@ -38,7 +38,7 @@ final class NetworkManager: NetworkManagerProtocol {
                 return
             }
             
-            // trying to get the data
+            // trying to get data
             guard let data = data else { return }
             do {
                 let elements = try JSONDecoder().decode(T.self, from: data)

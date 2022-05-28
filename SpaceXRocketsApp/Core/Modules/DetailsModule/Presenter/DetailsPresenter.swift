@@ -9,8 +9,8 @@ import Foundation
 
 protocol DetailsPresenterProtocol {
     init(view: DetailsViewProtocol,
-         networkManager: NetworkManagerProtocol,
-         dataManager: DataManagerProtocol)
+         dataManager: DataManagerProtocol,
+         networkManager: NetworkManagerProtocol)
     func fetchData()
     func provideViewModel(with serialNumber: Int)
 }
@@ -19,16 +19,16 @@ final class DetailsPresenter: DetailsPresenterProtocol {
     
     // MARK: - Properties
     weak var view: DetailsViewProtocol!
-    let networkManager: NetworkManagerProtocol!
     unowned let dataManager: DataManagerProtocol!
+    let networkManager: NetworkManagerProtocol!
     
     // MARK: - Init
     init(view: DetailsViewProtocol,
-         networkManager: NetworkManagerProtocol,
-         dataManager: DataManagerProtocol) {
+         dataManager: DataManagerProtocol,
+         networkManager: NetworkManagerProtocol) {
         self.view = view
-        self.networkManager = networkManager
         self.dataManager = dataManager
+        self.networkManager = networkManager
     }
     
     // MARK: - Methods

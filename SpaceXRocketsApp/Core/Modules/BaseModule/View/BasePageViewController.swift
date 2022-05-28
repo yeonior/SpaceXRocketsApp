@@ -13,7 +13,7 @@ protocol BaseViewProtocol: AnyObject {
 }
 
 private struct BasePageViewSizeConstants {
-    static let additionalPageViewSaveAreaAtTheBottom: CGFloat = 12.0
+    static let additionalBottomSafeAreaInset: CGFloat = 12.0
     static let additionalPageControlHeight: CGFloat = 26.0
 }
 
@@ -29,7 +29,7 @@ final class BasePageViewController: UIPageViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePageViewController()
+        configureUI()
         configurePageControl()
         setScrollViewDelegate()
         presenter.fetchPages()
@@ -41,10 +41,10 @@ final class BasePageViewController: UIPageViewController {
     }
     
     // MARK: - Private methods
-    private func configurePageViewController() {
+    private func configureUI() {
         dataSource = self
-        additionalSafeAreaInsets.bottom = BasePageViewSizeConstants.additionalPageViewSaveAreaAtTheBottom
         view.backgroundColor = Color.background.uiColor
+        additionalSafeAreaInsets.bottom = BasePageViewSizeConstants.additionalBottomSafeAreaInset
     }
     
     private func configurePageControl() {

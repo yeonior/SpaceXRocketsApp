@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DataManagerReadable: AnyObject {
-    func getAppFirstLaunchStatus() -> Bool
+    func getAppFirstRunStatus() -> Bool
     func getRockets() -> [RocketModel]
     func getLaunches() -> [LaunchModel]
     func getLengthUnit(for name: String) -> LengthUnit
@@ -16,7 +16,7 @@ protocol DataManagerReadable: AnyObject {
 }
 
 protocol DataManagerWritable: AnyObject {
-    func setAppFirstLauchStatus()
+    func setAppFirstRunStatus()
     func setRockets(_ rockets: [RocketModel])
     func setLaunches(_ launches: [LaunchModel])
     func setDefaultUnits()
@@ -47,7 +47,7 @@ final class DataManager {
 
 // MARK: - DataManagerReadable
 extension DataManager: DataManagerReadable {
-    func getAppFirstLaunchStatus() -> Bool {
+    func getAppFirstRunStatus() -> Bool {
         userDefaults.bool(forKey: appLaunchKey)
     }
     
@@ -86,7 +86,7 @@ extension DataManager: DataManagerReadable {
 
 // MARK: - DataManagerWritable
 extension DataManager: DataManagerWritable {
-    func setAppFirstLauchStatus() {
+    func setAppFirstRunStatus() {
         userDefaults.set(true, forKey: appLaunchKey)
     }
     

@@ -55,8 +55,8 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         
         let view = DetailsViewController()
         let presenter = DetailsPresenter(view: view,
-                                         networkManager: networkManager,
-                                         dataManager: dataManager)
+                                         dataManager: dataManager,
+                                         networkManager: networkManager)
         
         view.router = router
         view.presenter = presenter

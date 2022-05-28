@@ -43,6 +43,7 @@ final class Router: RouterProtocol, Routing {
         assemblyBuilder.buildMainModule(with: serialNumber, router: self)
     }
     
+    // for the failure case of the fetching data
     func activateEmptyMainViewController() -> MainViewController {
         MainViewController()
     }
@@ -56,6 +57,6 @@ final class Router: RouterProtocol, Routing {
     func showSettingsModule() {
         let viewController = assemblyBuilder.buildSettingsModule(router: self)
         let navController = UINavigationController(rootViewController: viewController)
-        navigationController?.present(navController, animated: true, completion: nil)
+        navigationController.present(navController, animated: true, completion: nil)
     }
 }
