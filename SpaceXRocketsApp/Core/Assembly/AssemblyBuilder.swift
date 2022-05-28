@@ -27,8 +27,8 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
                                           navigationOrientation: .horizontal,
                                           options: nil)
         let presenter = BasePresenter(view: view,
-                                      networkManager: networkManager,
-                                      dataManager: dataManager)
+                                      dataManager: dataManager,
+                                      networkManager: networkManager)
         
         view.router = router
         view.presenter = presenter

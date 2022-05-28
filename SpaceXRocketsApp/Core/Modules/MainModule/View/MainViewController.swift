@@ -27,31 +27,30 @@ struct MainViewSizeConstants {
 final class MainViewController: UIViewController {
     
     // MARK: - Subviews
-    lazy var scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         $0.bounces = false
-        $0.showsHorizontalScrollIndicator = false
         $0.showsVerticalScrollIndicator = false
+        $0.showsHorizontalScrollIndicator = false
         $0.contentInsetAdjustmentBehavior = .never
         return $0
     }(UIScrollView())
     
-    lazy var baseView = UIView()
+    private let baseView = UIView()
     
-    lazy var backgroundImageView: UIImageView = {
-        $0.backgroundColor = Color.background.uiColor
+    private let backgroundImageView: UIImageView = {
         $0.alpha = 0
+        $0.backgroundColor = Color.background.uiColor
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
         return $0
     }(UIImageView())
     
-    lazy var mainView = MainView()
+    private let mainView = MainView()
     
-    lazy var activityIndicatorView: UIActivityIndicatorView = {
+    private let activityIndicatorView: UIActivityIndicatorView = {
         $0.style = .large
-        $0.center = view.center
-        $0.startAnimating()
         $0.color = Color.activityIndicatorView.uiColor
+        $0.startAnimating()
         return $0
     }(UIActivityIndicatorView())
     
@@ -72,9 +71,9 @@ final class MainViewController: UIViewController {
     private var collectionViewViewModel: MainCollectionViewViewModel? {
         didSet {
             DispatchQueue.main.sync {
-                mainView.collectionView?.dataSource = collectionViewViewModel
-                mainView.collectionView?.delegate = collectionViewViewModel
-                mainView.collectionView?.reloadData()
+                mainView.collectionView.dataSource = collectionViewViewModel
+                mainView.collectionView.delegate = collectionViewViewModel
+                mainView.collectionView.reloadData()
             }
         }
     }
@@ -90,14 +89,12 @@ final class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        resetViewState()
-        mainView.tableView.addObserver(self,
-                                       forKeyPath: ObserverConstants.tableViewContentSizeKeyPath,
-                                       options: .new,
-                                       context: nil)
+        resetViewPosition()
+        addObserverToTableView()
+        
         if isFirstLoad {
             NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(updateCollectionView(_:)),
+                                                   selector: #selector(updateCollectionView),
                                                    name: ObserverConstants.collectionViewUpdateNotificationName,
                                                    object: nil)
             isFirstLoad = false
@@ -107,6 +104,7 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         hideNavigationBar()
+        
         // requesting data
         guard tableViewViewModel == nil
            || collectionViewViewModel == nil
@@ -115,7 +113,7 @@ final class MainViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        mainView.tableView.removeObserver(self, forKeyPath: ObserverConstants.tableViewContentSizeKeyPath)
+        removeObserverFromTableView()
         super.viewWillDisappear(animated)
     }
     
@@ -136,6 +134,7 @@ final class MainViewController: UIViewController {
         
         view.backgroundColor = Color.mainBackground.uiColor
         mainView.header.buttonAction = showSettings
+        activityIndicatorView.center = view.center
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         baseView.translatesAutoresizingMaskIntoConstraints = false
@@ -148,24 +147,38 @@ final class MainViewController: UIViewController {
         baseView.addSubview(mainView)
         view.addSubview(activityIndicatorView)
         
-        // constraints
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
         let baseViewHeightConstraint = baseView.heightAnchor.constraint(equalTo: view.heightAnchor)
         baseViewHeightConstraint.priority = UILayoutPriority(250)
-        NSLayoutConstraint.activate([
+        
+        let scrollViewConstraints = [
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ]
+        
+        let baseViewConstraints = [
             baseView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             baseView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             baseView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             baseView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             baseView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            baseViewHeightConstraint,
+            baseViewHeightConstraint
+        ]
+        
+        let backgroundImageViewConstraints = [
             backgroundImageView.topAnchor.constraint(equalTo: baseView.topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
-            backgroundImageView.heightAnchor.constraint(equalToConstant: MainViewSizeConstants.backgroundImageViewHeight),
+            backgroundImageView.heightAnchor.constraint(equalToConstant: MainViewSizeConstants.backgroundImageViewHeight)
+        ]
+        
+        let mainViewConstraints = [
             mainView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor,
                                           constant: -MainViewSizeConstants.cornerRadius),
             mainView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
@@ -173,7 +186,12 @@ final class MainViewController: UIViewController {
             mainView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor,
                                              constant: MainViewSizeConstants.cornerRadius),
             mainView.tableView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor)
-        ])
+        ]
+        
+        NSLayoutConstraint.activate(scrollViewConstraints)
+        NSLayoutConstraint.activate(baseViewConstraints)
+        NSLayoutConstraint.activate(backgroundImageViewConstraints)
+        NSLayoutConstraint.activate(mainViewConstraints)
         
         mainViewHeightConstraint = mainView.heightAnchor.constraint(equalToConstant: MainViewSizeConstants.height)
         mainViewHeightConstraint?.isActive = true
@@ -202,17 +220,28 @@ final class MainViewController: UIViewController {
         router.showDetailsModule(with: serialNumber, and: title ?? "")
     }
     
-    private func resetViewState() {
-        scrollView.scrollToTop(animated: true)
-        mainView.collectionView?.scrollToLeft(animated: true)
-    }
-    
     private func showSettings() {
         router.showSettingsModule()
     }
     
+    private func addObserverToTableView() {
+        mainView.tableView.addObserver(self,
+                                       forKeyPath: ObserverConstants.tableViewContentSizeKeyPath,
+                                       options: .new,
+                                       context: nil)
+    }
+    
+    private func removeObserverFromTableView() {
+        mainView.tableView.removeObserver(self, forKeyPath: ObserverConstants.tableViewContentSizeKeyPath)
+    }
+    
+    private func resetViewPosition() {
+        scrollView.scrollToTop(animated: true)
+        mainView.collectionView.scrollToLeft(animated: true)
+    }
+    
     @objc
-    func updateCollectionView(_ notification: Notification) {
+    private func updateCollectionView() {
         DispatchQueue.global().async {
             self.presenter.fetchData(by: self.serialNumber)
             self.presenter.provideCollectionViewViewModel()

@@ -8,8 +8,8 @@
 import UIKit
 
 protocol RouterProtocol {
-    var navigationController: UINavigationController! { get }
-    var assemblyBuilder: AssemblyBuilderProtocol! { get }
+    init(navigationController: UINavigationController,
+         assemblyBuilder: AssemblyBuilderProtocol)
 }
 
 protocol Routing {

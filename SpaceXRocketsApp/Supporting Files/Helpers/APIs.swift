@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum API {
+enum APIs {
     case rockets
     case launches
     

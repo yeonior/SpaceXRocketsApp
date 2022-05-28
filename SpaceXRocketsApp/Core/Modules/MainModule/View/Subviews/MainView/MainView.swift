@@ -10,40 +10,15 @@ import UIKit
 final class MainView: UIView {
     
     // MARK: - Subviews
-    lazy var header = MainViewHeader()
-    var collectionView: UICollectionView?
-    lazy var tableView = UITableView()
+    let header = MainViewHeader()
     
-    // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Private methods
-    private func setup() {
-        
-        // view
-        layer.cornerRadius = MainViewSizeConstants.cornerRadius
-        clipsToBounds = true
-        
-        // collectionView
+    var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 12
         
-        collectionView = UICollectionView(frame: .zero,
-                                          collectionViewLayout: layout)
-        collectionView?.contentInset = UIEdgeInsets(top: 0,
-                                                    left: 32,
-                                                    bottom: 0,
-                                                    right: 32)
-        
-        guard let collectionView = collectionView else { return }
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
         collectionView.register(MainCollectionViewCell.self,
                                 forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
         collectionView.alwaysBounceHorizontal = true
@@ -53,12 +28,11 @@ final class MainView: UIView {
         collectionView.backgroundView?.backgroundColor = Color.lauchesPageBackground.uiColor
         collectionView.backgroundColor = Color.lauchesPageBackground.uiColor
         
-        // tableView
-        tableView = UITableView(frame: bounds, style: .grouped)
-//        tableView.tableFooterView = UIView(frame: CGRect(x: 0,
-//                                                         y: 0,
-//                                                         width: self.tableView.bounds.size.width,
-//                                                         height: .leastNonzeroMagnitude))
+        return collectionView
+    }()
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: bounds, style: .grouped)
         tableView.register(MainInfoSectionCell.self,
                            forCellReuseIdentifier: MainInfoSectionCell.identifier)
         tableView.register(MainStageSectionCell.self,
@@ -69,13 +43,28 @@ final class MainView: UIView {
                            forHeaderFooterViewReuseIdentifier: MainSectionHeader.identifier)
         tableView.backgroundColor = Color.mainViewHeaderBackground.uiColor
         tableView.separatorColor = .clear
-        tableView.bounces = true
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.isScrollEnabled = false
-//        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        tableView.contentInsetAdjustmentBehavior = .never
-//        tableView.contentInset.bottom = 100
+        
+        return tableView
+    }()
+    
+    // MARK: - Init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private methods
+    private func configureUI() {
+        
+        clipsToBounds = true
+        layer.cornerRadius = MainViewSizeConstants.cornerRadius
         
         header.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -85,19 +74,33 @@ final class MainView: UIView {
         addSubview(collectionView)
         addSubview(tableView)
         
-        // constraints
-        NSLayoutConstraint.activate([
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let headerConstraints = [
             header.topAnchor.constraint(equalTo: topAnchor),
             header.heightAnchor.constraint(equalToConstant: MainViewSizeConstants.headerHeight),
             header.leadingAnchor.constraint(equalTo: leadingAnchor),
             header.trailingAnchor.constraint(equalTo: trailingAnchor),
+        ]
+        
+        let collectionViewConstraints = [
             collectionView.topAnchor.constraint(equalTo: header.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: MainCollectionViewSizeConstants.cellHeight),
+        ]
+        
+        let tableViewConstraints = [
             tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+        ]
+        
+        NSLayoutConstraint.activate(headerConstraints)
+        NSLayoutConstraint.activate(collectionViewConstraints)
+        NSLayoutConstraint.activate(tableViewConstraints)
     }
 }
