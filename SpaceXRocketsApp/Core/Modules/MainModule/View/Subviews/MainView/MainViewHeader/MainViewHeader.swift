@@ -19,12 +19,6 @@ final class MainViewHeader: UIView {
     var buttonAction: Callback?
     
     // MARK: - Subviews
-//    lazy var indicatorView: UIView = {
-//        $0.backgroundColor = Color.dragIndicator.uiColor
-//        $0.layer.cornerRadius = 2
-//        return $0
-//    }(UIView())
-    
     lazy var titleLabel: UILabel = {
         $0.textAlignment = .left
         $0.backgroundColor = .clear
@@ -33,8 +27,8 @@ final class MainViewHeader: UIView {
         return $0
     }(UILabel())
     
-    lazy var settingsButton: UIButton = {
-        $0.imageView?.tintColor = .white
+    private let settingsButton: UIButton = {
+        $0.imageView?.tintColor = Color.settingsButton.uiColor
         $0.imageView?.contentMode = .scaleAspectFit
         $0.contentVerticalAlignment = .fill
         $0.contentHorizontalAlignment = .fill
@@ -45,7 +39,7 @@ final class MainViewHeader: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
@@ -53,47 +47,51 @@ final class MainViewHeader: UIView {
     }
     
     // MARK: - Methods
-    private func setup() {
+    private func configureViews() {
         
         backgroundColor = Color.mainViewHeaderBackground.uiColor
         settingsButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
-//        indicatorView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         
-//        addSubview(indicatorView)
         addSubview(titleLabel)
         addSubview(settingsButton)
         
-        // constraints
-        NSLayoutConstraint.activate([
-//            indicatorView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-//            indicatorView.heightAnchor.constraint(equalToConstant: 4),
-//            indicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            indicatorView.widthAnchor.constraint(equalToConstant: 50),
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let titleLabelConstraints = [
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor,
                                                 constant: MainViewHeaderSizeConstants.titleLabelYOffset),
             titleLabel.heightAnchor.constraint(equalToConstant: MainViewHeaderSizeConstants.titleLabelHeight),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                 constant: MainViewSizeConstants.leftPadding),
             titleLabel.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor,
-                                                 constant: -MainViewHeaderSizeConstants.spacingBetweenLabelAndButton),
+                                                 constant: -MainViewHeaderSizeConstants.spacingBetweenLabelAndButton)
+        ]
+        
+        let settingsButtonConstraints = [
             settingsButton.heightAnchor.constraint(equalTo: titleLabel.heightAnchor),
             settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor),
             settingsButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             settingsButton.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                      constant: -MainViewSizeConstants.rightPadding)
-        ])
-    }
-    
-    func activateButton() {
-        settingsButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
-        settingsButton.isUserInteractionEnabled = true
+        ]
+        
+        NSLayoutConstraint.activate(titleLabelConstraints)
+        NSLayoutConstraint.activate(settingsButtonConstraints)
     }
     
     @objc
     private func didTapButton() {
         buttonAction?()
+    }
+    
+    func activateButton() {
+        settingsButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        settingsButton.isUserInteractionEnabled = true
     }
 }

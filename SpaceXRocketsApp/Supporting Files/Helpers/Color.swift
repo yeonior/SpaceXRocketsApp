@@ -19,7 +19,6 @@ enum Color {
     case mainViewHeader
     case mainViewHeaderBackground
     
-    case dragIndicator
     case dragIndicatorBackground
     
     case mainCollectionCellMainLabel
@@ -54,6 +53,8 @@ enum Color {
     case segmentedControlNormalText
     case segmentedControlSelectedText
     
+    case settingsButton
+    
     var uiColor: UIColor {
         switch self {
         case    .mainBackground,
@@ -75,11 +76,11 @@ enum Color {
                 .tableViewCellDetailsLabel,
                 .showButtonText,
                 .navigationBarTitleColor,
-                .navigationBarButtonColor:
+                .navigationBarButtonColor,
+                .settingsButton:
             return hexStringToUIColor(hex: "#F6F6F6")
             
         case    .pageIndicator,
-                .dragIndicator,
                 .mainCollectionCellDetailsLabel,
                 .tableViewCellUnitLabel,
                 .detailsCollectionCellDetailsLabel,

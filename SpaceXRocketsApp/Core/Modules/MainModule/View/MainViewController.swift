@@ -8,10 +8,10 @@
 import UIKit
 
 protocol MainViewProtocol: AnyObject {
-    func setBackgroundImage(with data: Data)
+    func setBackgroundImage(from data: Data)
     func setHeaderWithName(_ name: String)
-    func setTableViewViewModel(_ viewModel: MainTableViewViewModel)
     func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel)
+    func setTableViewViewModel(_ viewModel: MainTableViewViewModel)
 }
 
 struct MainViewSizeConstants {
@@ -59,21 +59,21 @@ final class MainViewController: UIViewController {
     var router: Routing!
     var serialNumber: Int!
     
-    private var tableViewViewModel: MainTableViewViewModel? {
-        didSet {
-            DispatchQueue.main.sync {
-                mainView.tableView.dataSource = tableViewViewModel
-                mainView.tableView.delegate = tableViewViewModel
-                mainView.tableView.reloadData()
-            }
-        }
-    }
     private var collectionViewViewModel: MainCollectionViewViewModel? {
         didSet {
             DispatchQueue.main.sync {
                 mainView.collectionView.dataSource = collectionViewViewModel
                 mainView.collectionView.delegate = collectionViewViewModel
                 mainView.collectionView.reloadData()
+            }
+        }
+    }
+    private var tableViewViewModel: MainTableViewViewModel? {
+        didSet {
+            DispatchQueue.main.sync {
+                mainView.tableView.dataSource = tableViewViewModel
+                mainView.tableView.delegate = tableViewViewModel
+                mainView.tableView.reloadData()
             }
         }
     }
@@ -90,26 +90,14 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         resetViewPosition()
+        addObserverToCollectionView()
         addObserverToTableView()
-        
-        if isFirstLoad {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(updateCollectionView),
-                                                   name: ObserverConstants.collectionViewUpdateNotificationName,
-                                                   object: nil)
-            isFirstLoad = false
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         hideNavigationBar()
-        
-        // requesting data
-        guard tableViewViewModel == nil
-           || collectionViewViewModel == nil
-           || backgroundImageView.image == nil else { return }
-        fetchData()
+        requestData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -197,13 +185,17 @@ final class MainViewController: UIViewController {
         mainViewHeightConstraint?.isActive = true
     }
     
-    private func fetchData() {
+    private func requestData() {
+        guard tableViewViewModel == nil
+           || collectionViewViewModel == nil
+           || backgroundImageView.image == nil else { return }
+        
         DispatchQueue.global().async {
             self.presenter.fetchData(by: self.serialNumber)
             self.presenter.provideBackgroundImage()
             self.presenter.provideRocketName()
-            self.presenter.provideTableViewViewModel()
             self.presenter.provideCollectionViewViewModel()
+            self.presenter.provideTableViewViewModel()
         }
     }
     
@@ -222,6 +214,16 @@ final class MainViewController: UIViewController {
     
     private func showSettings() {
         router.showSettingsModule()
+    }
+    
+    private func addObserverToCollectionView() {
+        if isFirstLoad {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(updateCollectionView),
+                                                   name: ObserverConstants.collectionViewUpdateNotificationName,
+                                                   object: nil)
+            isFirstLoad = false
+        }
     }
     
     private func addObserverToTableView() {
@@ -251,7 +253,7 @@ final class MainViewController: UIViewController {
 
 // MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
-    func setBackgroundImage(with data: Data) {
+    func setBackgroundImage(from data: Data) {
         DispatchQueue.main.sync {
             backgroundImageView.image = UIImage(data: data)
             UIView.animate(withDuration: 0.5) {
@@ -270,16 +272,16 @@ extension MainViewController: MainViewProtocol {
         }
     }
     
-    func setTableViewViewModel(_ viewModel: MainTableViewViewModel) {
-        self.tableViewViewModel = viewModel
-        self.tableViewViewModel?.buttonAction = showLaunches
+    func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel) {
+        self.collectionViewViewModel = viewModel
         DispatchQueue.main.sync {
             activityIndicatorView.stopAnimating()
         }
     }
     
-    func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel) {
-        self.collectionViewViewModel = viewModel
+    func setTableViewViewModel(_ viewModel: MainTableViewViewModel) {
+        self.tableViewViewModel = viewModel
+        self.tableViewViewModel?.buttonAction = showLaunches
         DispatchQueue.main.sync {
             activityIndicatorView.stopAnimating()
         }

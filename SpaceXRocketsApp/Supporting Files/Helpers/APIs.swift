@@ -7,16 +7,7 @@
 
 import Foundation
 
-enum APIs {
-    case rockets
-    case launches
-    
-    var url: URL {
-        switch self {
-        case .rockets:
-            return URL(string: "https://api.spacexdata.com/v4/rockets")!
-        case .launches:
-            return URL(string: "https://api.spacexdata.com/v4/launches")!
-        }
-    }
+struct APIs {
+    static let rockets = "https://api.spacexdata.com/v4/rockets"
+    static let launches = "https://api.spacexdata.com/v4/launches"
 }

@@ -33,7 +33,7 @@ final class DetailsPresenter: DetailsPresenterProtocol {
     
     // MARK: - Methods
     func fetchData() {
-        let url = APIs.launches.url
+        guard let url = URL(string: APIs.launches) else { return }
         networkManager.request(fromURL: url) { (result: Result<[LaunchModel], Error>) in
             switch result {
             case .success(let launches):

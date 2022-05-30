@@ -24,7 +24,7 @@ final class BasePageViewController: UIPageViewController {
     var presenter: BasePresenterProtocol!
     
     private var viewControllersToDisplay: [UIViewController] = []
-    private let startPageIndex = 0
+    private let defaultPageIndex = 0
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -56,7 +56,7 @@ final class BasePageViewController: UIPageViewController {
     }
     
     private func setViewControllerToDisplay() {
-        setViewControllers([viewControllersToDisplay[startPageIndex]],
+        setViewControllers([viewControllersToDisplay[defaultPageIndex]],
                            direction: .forward,
                            animated: true,
                            completion: nil)
@@ -138,7 +138,7 @@ extension BasePageViewController: UIPageViewControllerDataSource {
     
     // the current page index reflecting in the page control
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        startPageIndex
+        defaultPageIndex
     }
 }
 

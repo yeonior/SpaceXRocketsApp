@@ -53,10 +53,10 @@ final class MainCollectionViewCell: UICollectionViewCell, MainCollectionViewCell
         return $0
     }(UILabel())
     
-    // MARK: - Lifecycle
+    // MARK: - Init
     private override init(frame: CGRect) {
         super.init(frame: frame)
-        setupLabels()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
@@ -64,7 +64,7 @@ final class MainCollectionViewCell: UICollectionViewCell, MainCollectionViewCell
     }
     
     // MARK: - Private methods
-    private func setupLabels() {
+    private func configureViews() {
         
         contentView.backgroundColor = Color.detailsCollectionCellBackground.uiColor
         contentView.layer.cornerRadius = MainCollectionCellSizeConstants.cornerRadius
@@ -75,21 +75,31 @@ final class MainCollectionViewCell: UICollectionViewCell, MainCollectionViewCell
         contentView.addSubview(mainLabel)
         contentView.addSubview(detailsLabel)
         
-        // constraints
-        NSLayoutConstraint.activate([
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let mainLabelConstraints = [
             mainLabel.topAnchor.constraint(equalTo: topAnchor,
                                            constant: MainCollectionCellSizeConstants.labelsTopPadding),
             mainLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                constant: MainCollectionCellSizeConstants.labelsLeftPadding),
             mainLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                constant: -MainCollectionCellSizeConstants.labelsRightPadding),
+                                                constant: -MainCollectionCellSizeConstants.labelsRightPadding)
+        ]
+        
+        let detailsLabelConstraints = [
             detailsLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
                                                  constant: -MainCollectionCellSizeConstants.labelsBottomPadding),
             detailsLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                   constant: MainCollectionCellSizeConstants.labelsLeftPadding),
             detailsLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                    constant: -MainCollectionCellSizeConstants.labelsRightPadding)
-        ])
+        ]
+        
+        NSLayoutConstraint.activate(mainLabelConstraints)
+        NSLayoutConstraint.activate(detailsLabelConstraints)
     }
     
     private func updateLabels() {

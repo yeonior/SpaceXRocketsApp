@@ -32,7 +32,7 @@ final class BasePresenter: BasePresenterProtocol {
     
     // MARK: - Methods
     func fetchPages() {
-        let url = APIs.rockets.url
+        guard let url = URL(string: APIs.rockets) else { return }
         networkManager.request(fromURL: url) { (result: Result<[RocketModel], Error>) in
             switch result {
             case .success(let rockets):
