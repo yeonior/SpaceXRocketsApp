@@ -12,8 +12,7 @@ enum MainTextCellTextType: String {
     case costPerLaunch  = "Cost per launch"
     case engines        = "Engines"
     case fuelAmountTons = "Fuel amount"
-    case burnTimeSEC    = "Burn time"
-
+    case burnTimeSec    = "Burn time"
 }
 
 enum MainSectionType: String {

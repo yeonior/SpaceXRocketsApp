@@ -8,7 +8,7 @@
 import UIKit
 
 private struct MainStageSectionSizeConstants {
-    static let mainLabelWidth: CGFloat = (Size.screenWidth.floatValue - MainViewSizeConstants.leftPadding - MainViewSizeConstants.rightPadding) / 1.7
+    static let mainLabelWidth: CGFloat = (Sizes.screenWidth - Sizes.leftPadding - Sizes.rightPadding) / 1.7
     static let detailsLabelWidth: CGFloat = 80.0
     static let unitLabelWidth: CGFloat = 28.0
     static let labelsHeight: CGFloat = 24.0
@@ -28,7 +28,7 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
     }
     
     // MARK: - Subviews
-    lazy var mainLabel: UILabel = {
+    private let mainLabel: UILabel = {
         $0.font = Font.tableViewCellMainLabel.uiFont
         $0.textColor = Color.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
@@ -38,7 +38,7 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
         return $0
     }(UILabel())
     
-    lazy var detailsLabel: UILabel = {
+    private let detailsLabel: UILabel = {
         $0.font = Font.tableViewCellDetailsLabel.uiFont
         $0.textColor = Color.tableViewCellDetailsLabel.uiColor
         $0.textAlignment = .right
@@ -48,7 +48,7 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
         return $0
     }(UILabel())
     
-    let unitLabel: UILabel = {
+    private let unitLabel: UILabel = {
         $0.font = Font.tableViewCellUnitLabel.uiFont
         $0.textColor = Color.tableViewCellUnitLabel.uiColor
         $0.textAlignment = .right
@@ -56,11 +56,26 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
         return $0
     }(UILabel())
     
+    private lazy var subStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [detailsLabel, unitLabel])
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = MainStageSectionSizeConstants.spacingBetweenDetailsAndUnitLabels
+        return stackView
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [mainLabel, subStackView])
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = MainStageSectionSizeConstants.spacingBetweenMainAndDetailsLabels
+        return stackView
+    }()
+    
     // MARK: - Init
     private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupView()
-        setupLabels()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
@@ -68,26 +83,32 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
     }
     
     // MARK: - Private methods
-    private func setupView() {
+    private func configureViews() {
+        
         contentView.backgroundColor = Color.tableViewCellBackground.uiColor
         isUserInteractionEnabled = false
-    }
-    
-    private func setupLabels() {
-        
-        let subStackView = UIStackView(arrangedSubviews: [detailsLabel, unitLabel])
-        subStackView.axis = .horizontal
-        subStackView.distribution = .fill
-        subStackView.spacing = MainStageSectionSizeConstants.spacingBetweenDetailsAndUnitLabels
-        
-        let stackView = UIStackView(arrangedSubviews: [mainLabel, subStackView])
-        stackView.axis = .horizontal
-        stackView.distribution = .fill
-        stackView.spacing = MainStageSectionSizeConstants.spacingBetweenMainAndDetailsLabels
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
         contentView.addSubview(stackView)
+        
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let stackViewConstraints = [
+            stackView.heightAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.labelsHeight),
+            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                               constant: Sizes.leftPadding),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                constant: -Sizes.rightPadding)
+        ]
+        
+        let mainLabelConstraints = [
+            mainLabel.widthAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.mainLabelWidth),
+            mainLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor)
+        ]
         
         let unitLabelConstraint = unitLabel.widthAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.unitLabelWidth)
         unitLabelConstraint.priority = UILayoutPriority(753)
@@ -96,19 +117,9 @@ final class MainStageSectionCell: UITableViewCell, MainCellProtocol {
         let subStackViewConstraint = subStackView.widthAnchor.constraint(greaterThanOrEqualTo: stackView.widthAnchor, multiplier: 0.3)
         subStackViewConstraint.priority = UILayoutPriority(751)
         
-        NSLayoutConstraint.activate([
-            stackView.heightAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.labelsHeight),
-            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                               constant: MainViewSizeConstants.leftPadding),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                constant: -MainViewSizeConstants.rightPadding),
-            mainLabel.widthAnchor.constraint(equalToConstant: MainStageSectionSizeConstants.mainLabelWidth),
-            mainLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            unitLabelConstraint,
-            detailsLabelConstraint,
-            subStackViewConstraint
-        ])
+        NSLayoutConstraint.activate(stackViewConstraints)
+        NSLayoutConstraint.activate(mainLabelConstraints)
+        NSLayoutConstraint.activate([unitLabelConstraint, detailsLabelConstraint, subStackViewConstraint])
     }
     
     private func updateLabels() {

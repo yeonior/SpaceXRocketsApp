@@ -49,7 +49,7 @@
 		A299754E2806ACC80015FB9A /* Launches.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A299754D2806ACC80015FB9A /* Launches.JSON */; };
 		A2A19BA328028AD400B28901 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA228028AD400B28901 /* MainPresenter.swift */; };
 		A2A19BA52802B1A500B28901 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA42802B1A500B28901 /* DataManager.swift */; };
-		A2A19BA72802C57C00B28901 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA62802C57C00B28901 /* Size.swift */; };
+		A2A19BA72802C57C00B28901 /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A19BA62802C57C00B28901 /* Sizes.swift */; };
 		A2D383AA2805831C007F22C3 /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383A92805831C007F22C3 /* LaunchModel.swift */; };
 		A2D383AC280587A5007F22C3 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AB280587A5007F22C3 /* DetailsViewController.swift */; };
 		A2D383AE280587DD007F22C3 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D383AD280587DD007F22C3 /* DetailsPresenter.swift */; };
@@ -110,7 +110,7 @@
 		A299754D2806ACC80015FB9A /* Launches.JSON */ = {isa = PBXFileReference; explicitFileType = text.json; path = Launches.JSON; sourceTree = "<group>"; };
 		A2A19BA228028AD400B28901 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		A2A19BA42802B1A500B28901 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		A2A19BA62802C57C00B28901 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		A2A19BA62802C57C00B28901 /* Sizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sizes.swift; sourceTree = "<group>"; };
 		A2D383A92805831C007F22C3 /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
 		A2D383AB280587A5007F22C3 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A2D383AD280587DD007F22C3 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
@@ -511,7 +511,7 @@
 			children = (
 				A2DB9D0727FD997C00339D48 /* Color.swift */,
 				A2DB9D0527FD88A700339D48 /* Font.swift */,
-				A2A19BA62802C57C00B28901 /* Size.swift */,
+				A2A19BA62802C57C00B28901 /* Sizes.swift */,
 				A24BBC7528004F0600EA5A87 /* APIs.swift */,
 				A288C7EF28254B6800FD209A /* ObserverConstants.swift */,
 				A2D383AF2805BE6A007F22C3 /* TextFormatter.swift */,
@@ -658,7 +658,7 @@
 				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
 				A25FCF312803EFD900A34EBA /* MainTableViewViewModel.swift in Sources */,
-				A2A19BA72802C57C00B28901 /* Size.swift in Sources */,
+				A2A19BA72802C57C00B28901 /* Sizes.swift in Sources */,
 				A2852F9127FE3B12000CDA92 /* MainSectionHeader.swift in Sources */,
 				A25FCF2B2803E83700A34EBA /* MainTableViewCellViewModel.swift in Sources */,
 				A2516722280B15F800FFFB56 /* NavigationController.swift in Sources */,

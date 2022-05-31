@@ -25,6 +25,6 @@ struct RocketData {
     struct Stage {
         let engines: Int
         let fuelAmountTons: Double
-        let burnTimeSEC: Int?
+        let burnTimeSec: Int?
     }
 }

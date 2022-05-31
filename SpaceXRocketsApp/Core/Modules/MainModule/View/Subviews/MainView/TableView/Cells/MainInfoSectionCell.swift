@@ -12,8 +12,8 @@ protocol MainCellProtocol {
 }
 
 private struct MainInfoSectionSizeConstants {
-    static let mainLabelWidth: CGFloat = (Size.screenWidth.floatValue - MainViewSizeConstants.leftPadding - MainViewSizeConstants.rightPadding) * 1.1 / 3.0
-    static let detailsLabelWidth: CGFloat = Size.screenWidth.floatValue * 1.9 / 3.0
+    static let mainLabelWidth: CGFloat = (Sizes.screenWidth - Sizes.leftPadding - Sizes.rightPadding) * 1.1 / 3.0
+    static let detailsLabelWidth: CGFloat = Sizes.screenWidth * 1.9 / 3.0
     static let labelsHeight: CGFloat = 24.0
 }
 
@@ -29,7 +29,7 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     }
     
     // MARK: - Subviews
-    lazy var mainLabel: UILabel = {
+    private let mainLabel: UILabel = {
         $0.font = Font.tableViewCellMainLabel.uiFont
         $0.textColor = Color.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
@@ -39,7 +39,7 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
         return $0
     }(UILabel())
     
-    lazy var detailsLabel: UILabel = {
+    private let detailsLabel: UILabel = {
         $0.font = Font.tableViewCellDetailsLabel.uiFont
         $0.textColor = Color.tableViewCellDetailsLabel.uiColor
         $0.textAlignment = .right
@@ -49,11 +49,18 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
         return $0
     }(UILabel())
     
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 0
+        return stackView
+    }()
+    
     // MARK: - Init
     private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupView()
-        setupLabels()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
@@ -61,33 +68,35 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     }
     
     // MARK: - Private methods
-    private func setupView() {
+    private func configureViews() {
         contentView.backgroundColor = Color.tableViewCellBackground.uiColor
         isUserInteractionEnabled = false
-    }
-    
-    private func setupLabels() {
-        
-        let stackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
-        stackView.axis = .horizontal
-        stackView.distribution = .fill
-        stackView.spacing = 0
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
         contentView.addSubview(stackView)
+        
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let stackView = [
+            stackView.heightAnchor.constraint(equalToConstant: MainInfoSectionSizeConstants.labelsHeight),
+            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Sizes.leftPadding),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Sizes.rightPadding)
+        ]
+        
+        let mainLabelConstraints = [
+            mainLabel.widthAnchor.constraint(equalToConstant: MainInfoSectionSizeConstants.mainLabelWidth)
+        ]
         
         let detailsLabelContraint = detailsLabel.widthAnchor.constraint(lessThanOrEqualToConstant: MainInfoSectionSizeConstants.detailsLabelWidth)
         detailsLabelContraint.priority = UILayoutPriority(1000)
         
-        NSLayoutConstraint.activate([
-            stackView.heightAnchor.constraint(equalToConstant: MainInfoSectionSizeConstants.labelsHeight),
-            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: MainViewSizeConstants.leftPadding),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -MainViewSizeConstants.rightPadding),
-            mainLabel.widthAnchor.constraint(equalToConstant: MainInfoSectionSizeConstants.mainLabelWidth),
-            detailsLabelContraint
-        ])
+        NSLayoutConstraint.activate(stackView)
+        NSLayoutConstraint.activate(mainLabelConstraints)
+        NSLayoutConstraint.activate([detailsLabelContraint])
     }
     
     private func updateLabels() {

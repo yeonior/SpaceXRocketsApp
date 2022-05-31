@@ -12,8 +12,8 @@ protocol MainPresenterProtocol {
     func fetchData(by serialNumber: Int)
     func provideBackgroundImage()
     func provideRocketName()
-    func provideTableViewViewModel()
     func provideCollectionViewViewModel()
+    func provideTableViewViewModel()
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -124,10 +124,10 @@ final class MainPresenter: MainPresenterProtocol {
             costPerLaunch: rocket.costPerLaunch,
             firstStage: RocketData.Stage(engines: rocket.firstStage.engines,
                                          fuelAmountTons: rocket.firstStage.fuelAmountTons,
-                                         burnTimeSEC: rocket.firstStage.burnTimeSEC),
+                                         burnTimeSec: rocket.firstStage.burnTimeSec),
             secondStage: RocketData.Stage(engines: rocket.secondStage.engines,
                                           fuelAmountTons: rocket.secondStage.fuelAmountTons,
-                                          burnTimeSEC: rocket.secondStage.burnTimeSEC)
+                                          burnTimeSec: rocket.secondStage.burnTimeSec)
         )
         
         self.rocketData = rocketData
@@ -146,15 +146,15 @@ final class MainPresenter: MainPresenterProtocol {
         view.setHeaderWithName(name)
     }
     
-    func provideTableViewViewModel() {
-        guard let rocketData = rocketData else { return }
-        let viewModel = MainTableViewViewModel(data: rocketData)
-        view.setTableViewViewModel(viewModel)
-    }
-    
     func provideCollectionViewViewModel() {
         guard let rocketData = rocketData else { return }
         let viewModel = MainCollectionViewViewModel(data: [rocketData])
         view.setCollectionViewViewModel(viewModel)
+    }
+    
+    func provideTableViewViewModel() {
+        guard let rocketData = rocketData else { return }
+        let viewModel = MainTableViewViewModel(data: rocketData)
+        view.setTableViewViewModel(viewModel)
     }
 }

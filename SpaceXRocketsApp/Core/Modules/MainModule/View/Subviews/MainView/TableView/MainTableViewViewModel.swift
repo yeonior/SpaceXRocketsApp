@@ -20,8 +20,6 @@ private struct MainTableViewSizeConstants {
     static let secondHalfSectionFooterHeight: CGFloat = 32.0
 }
 
-typealias Callback = () -> Void
-
 final class MainTableViewViewModel: NSObject, MainTableViewViewModelProtocol {
     
     // MARK: - Properties
@@ -38,12 +36,12 @@ final class MainTableViewViewModel: NSObject, MainTableViewViewModelProtocol {
         let firstStage = MainStageSectionViewModel(sectionName: .firstStage,
                                                    engines: data.firstStage.engines,
                                                    fuelAmountTons: data.firstStage.fuelAmountTons,
-                                                   burnTimeSEC: data.firstStage.burnTimeSEC)
+                                                   burnTimeSec: data.firstStage.burnTimeSec)
         
         let secondStage = MainStageSectionViewModel(sectionName: .secondStage,
                                                     engines: data.secondStage.engines,
                                                     fuelAmountTons: data.secondStage.fuelAmountTons,
-                                                    burnTimeSEC: data.secondStage.burnTimeSEC)
+                                                    burnTimeSec: data.secondStage.burnTimeSec)
         
         let button = MainButtonSectionViewModel()
         

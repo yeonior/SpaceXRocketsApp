@@ -16,12 +16,10 @@ protocol MainViewProtocol: AnyObject {
 
 struct MainViewSizeConstants {
     static let cornerRadius: CGFloat = 32.0
-    static let height: CGFloat = Size.screenHeight.floatValue / 2
+    static let height: CGFloat = Sizes.screenHeight / 2
     static let headerHeight: CGFloat = 112.0
     static let additionalHeight: CGFloat = headerHeight + MainCollectionViewSizeConstants.cellHeight
-    static let backgroundImageViewHeight: CGFloat = Size.screenHeight.floatValue / 2
-    static let leftPadding: CGFloat = 32.0
-    static let rightPadding: CGFloat = 32.0
+    static let backgroundImageViewHeight: CGFloat = Sizes.screenHeight / 2
 }
 
 final class MainViewController: UIViewController {

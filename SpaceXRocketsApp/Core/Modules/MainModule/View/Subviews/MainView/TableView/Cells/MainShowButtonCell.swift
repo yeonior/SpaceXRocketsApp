@@ -36,36 +36,42 @@ final class MainShowButtonCell: UITableViewCell {
     // MARK: - Init
     private override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        baseView.frame = contentView.bounds
+    }
+    
     // MARK: - Private methods
-    private func setup() {
+    private func configureViews() {
         
         showButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        
-        baseView.translatesAutoresizingMaskIntoConstraints = false
         showButton.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(baseView)
         baseView.addSubview(showButton)
         
-        NSLayoutConstraint.activate([
-            baseView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            baseView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            baseView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            baseView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let showButtonConstraints = [
             showButton.topAnchor.constraint(equalTo: baseView.topAnchor),
             showButton.bottomAnchor.constraint(equalTo: baseView.bottomAnchor),
             showButton.leadingAnchor.constraint(equalTo: baseView.leadingAnchor,
-                                                constant: MainViewSizeConstants.leftPadding),
+                                                constant: Sizes.leftPadding),
             showButton.trailingAnchor.constraint(equalTo: baseView.trailingAnchor,
-                                                 constant: -MainViewSizeConstants.rightPadding)
-        ])
+                                                 constant: -Sizes.rightPadding)
+        ]
+        
+        NSLayoutConstraint.activate(showButtonConstraints)
     }
     
     @objc

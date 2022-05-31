@@ -17,7 +17,7 @@ struct DetailsViewSizeConstants {
     static let collectionViewMinimumLineSpacing: CGFloat = 16.0
     static let collectionViewMinimumInteritemSpacing: CGFloat = 64.0
     static let collectionViewTopContentInset: CGFloat = 40.0
-    static let collectionViewItemWidth: CGFloat = Size.screenWidth.floatValue - collectionViewMinimumInteritemSpacing
+    static let collectionViewItemWidth: CGFloat = Sizes.screenWidth - collectionViewMinimumInteritemSpacing
     static let collectionViewItemHeight: CGFloat = 100.0
 }
 

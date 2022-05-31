@@ -13,6 +13,8 @@ private struct MainViewHeaderSizeConstants {
     static let spacingBetweenLabelAndButton: CGFloat = 8.0
 }
 
+typealias Callback = () -> Void
+
 final class MainViewHeader: UIView {
     
     // MARK: - Properties
@@ -68,7 +70,7 @@ final class MainViewHeader: UIView {
                                                 constant: MainViewHeaderSizeConstants.titleLabelYOffset),
             titleLabel.heightAnchor.constraint(equalToConstant: MainViewHeaderSizeConstants.titleLabelHeight),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                constant: MainViewSizeConstants.leftPadding),
+                                                constant: Sizes.leftPadding),
             titleLabel.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor,
                                                  constant: -MainViewHeaderSizeConstants.spacingBetweenLabelAndButton)
         ]
@@ -78,7 +80,7 @@ final class MainViewHeader: UIView {
             settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor),
             settingsButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             settingsButton.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                     constant: -MainViewSizeConstants.rightPadding)
+                                                     constant: -Sizes.rightPadding)
         ]
         
         NSLayoutConstraint.activate(titleLabelConstraints)

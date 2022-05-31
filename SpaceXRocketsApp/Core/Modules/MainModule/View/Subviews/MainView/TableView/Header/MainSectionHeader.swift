@@ -24,7 +24,7 @@ final class MainSectionHeader: UITableViewHeaderFooterView {
     // MARK: - Init
     private override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        setup()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
@@ -32,21 +32,27 @@ final class MainSectionHeader: UITableViewHeaderFooterView {
     }
     
     // MARK: - Private methods
-    private func setup() {
+    private func configureViews() {
         
         contentView.backgroundColor = Color.tableViewCellBackground.uiColor
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         contentView.addSubview(titleLabel)
         
-        NSLayoutConstraint.activate([
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let titleLabelConstraints = [
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                constant: MainViewSizeConstants.leftPadding),
+                                                constant: Sizes.leftPadding),
             titleLabel.trailingAnchor.constraint(greaterThanOrEqualTo: contentView.trailingAnchor,
-                                                constant: -MainViewSizeConstants.rightPadding)
-        ])
+                                                constant: -Sizes.rightPadding)
+        ]
+        
+        NSLayoutConstraint.activate(titleLabelConstraints)
     }
 }
