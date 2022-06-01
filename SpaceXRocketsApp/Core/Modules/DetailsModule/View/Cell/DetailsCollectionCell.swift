@@ -31,7 +31,7 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
     private var successSign: Bool?
     
     // MARK: - Subviews
-    lazy var mainLabel: UILabel = {
+    let mainLabel: UILabel = {
         $0.font = Font.detailsCollectionCellMainLabel.uiFont
         $0.textColor = Color.detailsCollectionCellMainLabel.uiColor
         $0.textAlignment = .left
@@ -42,7 +42,7 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
         return $0
     }(UILabel())
     
-    lazy var detailsLabel: UILabel = {
+    private let detailsLabel: UILabel = {
         $0.font = Font.detailsCollectionCellDetailLabel.uiFont
         $0.textColor = Color.detailsCollectionCellDetailsLabel.uiColor
         $0.textAlignment = .left
@@ -53,29 +53,36 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
         return $0
     }(UILabel())
     
-    lazy var imageView: UIImageView = {
+    let imageView: UIImageView = {
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         return $0
     }(UIImageView())
     
-    private lazy var circleImageView: UIImageView = {
+    private let circleImageView: UIImageView = {
         $0.tintColor = Color.detailsCollectionViewCellCircleBackground.uiColor
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         return $0
     }(UIImageView())
     
-    lazy var statusImageView: UIImageView = {
+    private let statusImageView: UIImageView = {
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         return $0
     }(UIImageView())
     
+    private lazy var labelsStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupLabels()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
@@ -83,17 +90,9 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
     }
     
     // MARK: - Private methods
-    private func setupLabels() {
-        
-        let labelsStackView = UIStackView(arrangedSubviews: [mainLabel, detailsLabel])
-        labelsStackView.distribution = .fill
-        labelsStackView.axis = .vertical
-        
+    private func configureViews() {
         contentView.backgroundColor = Color.detailsCollectionCellBackground.uiColor
         contentView.layer.cornerRadius = DetailsCellSizeConstants.cornerRadius
-//        contentView.layer.shadowRadius = 7
-//        contentView.layer.shadowOpacity = 0.3
-//        contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
         
         labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -105,26 +104,44 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
         contentView.addSubview(circleImageView)
         contentView.addSubview(statusImageView)
         
-        // constraints
-        NSLayoutConstraint.activate([
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let labelsStackViewConstraints = [
             labelsStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             labelsStackView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                      constant: DetailsCellSizeConstants.labelsLeftPadding),
             labelsStackView.trailingAnchor.constraint(equalTo: imageView.leadingAnchor,
-                                                      constant: -DetailsCellSizeConstants.labelsRightPadding),
+                                                      constant: -DetailsCellSizeConstants.labelsRightPadding)
+        ]
+        
+        let imageViewConstraints = [
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DetailsCellSizeConstants.imageViewRightPadding),
             imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
-            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ]
+        
+        let circleImageViewConstraints = [
             circleImageView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
             circleImageView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
             circleImageView.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.3),
             circleImageView.widthAnchor.constraint(equalTo: statusImageView.heightAnchor),
+        ]
+        
+        let statusImageViewConstraints = [
             statusImageView.leadingAnchor.constraint(equalTo: circleImageView.leadingAnchor, constant: -2),
             statusImageView.trailingAnchor.constraint(equalTo: circleImageView.trailingAnchor, constant: 2),
             statusImageView.topAnchor.constraint(equalTo: circleImageView.topAnchor, constant: -2),
             statusImageView.bottomAnchor.constraint(equalTo: circleImageView.bottomAnchor, constant: 2)
-        ])
+        ]
+        
+        NSLayoutConstraint.activate(labelsStackViewConstraints)
+        NSLayoutConstraint.activate(imageViewConstraints)
+        NSLayoutConstraint.activate(circleImageViewConstraints)
+        NSLayoutConstraint.activate(statusImageViewConstraints)
     }
     
     private func updateLabels() {

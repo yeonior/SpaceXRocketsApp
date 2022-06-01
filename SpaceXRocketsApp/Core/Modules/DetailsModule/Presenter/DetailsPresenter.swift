@@ -62,7 +62,7 @@ final class DetailsPresenter: DetailsPresenterProtocol {
         // filtering the launches till current date
         let filteredLaucnhes = laucnhes.filter { stringDate > $0.dateLocal }
         
-        // sorting the laucnhes by date
+        // sorting the launches by date
         let sortedLaunches = filteredLaucnhes.sorted { dateFormatter.date(from: $0.dateLocal)! > dateFormatter.date(from: $1.dateLocal)! }
         
         // view model

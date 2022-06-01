@@ -35,7 +35,7 @@ final class DetailsCollectionViewModel: NSObject, DetailsCollectionViewModelProt
 // MARK: - UICollectionViewDataSource
 extension DetailsCollectionViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // "1" for rockets with no lauches to show an information cell
+        // "1" for rockets with no launches to show an information cell
         cells.count == 0 ? 1 : cells.count
     }
     
@@ -43,7 +43,7 @@ extension DetailsCollectionViewModel: UICollectionViewDataSource {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCollectionCell.identifier, for: indexPath) as? DetailsCollectionCell {
             
-            // information cell for rockets with no launches
+            // an information cell for rockets with no launches
             if cells.count == 0 {
                 cell.mainLabel.text = "No information available"
                 cell.imageView.image = UIImage(systemName: "xmark.circle.fill")

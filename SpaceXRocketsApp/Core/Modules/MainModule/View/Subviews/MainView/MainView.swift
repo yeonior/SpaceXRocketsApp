@@ -10,7 +10,7 @@ import UIKit
 final class MainView: UIView {
     
     // MARK: - Subviews
-    let header = MainViewHeader()
+    let headerView = MainViewHeader()
     
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -53,7 +53,7 @@ final class MainView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
@@ -61,16 +61,16 @@ final class MainView: UIView {
     }
     
     // MARK: - Private methods
-    private func configureUI() {
+    private func configureViews() {
         
         clipsToBounds = true
         layer.cornerRadius = MainViewSizeConstants.cornerRadius
         
-        header.translatesAutoresizingMaskIntoConstraints = false
+        headerView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(header)
+        addSubview(headerView)
         addSubview(collectionView)
         addSubview(tableView)
         
@@ -79,15 +79,15 @@ final class MainView: UIView {
     
     private func applyConstraints() {
         
-        let headerConstraints = [
-            header.topAnchor.constraint(equalTo: topAnchor),
-            header.heightAnchor.constraint(equalToConstant: MainViewSizeConstants.headerHeight),
-            header.leadingAnchor.constraint(equalTo: leadingAnchor),
-            header.trailingAnchor.constraint(equalTo: trailingAnchor),
+        let headerViewConstraints = [
+            headerView.topAnchor.constraint(equalTo: topAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: MainViewSizeConstants.headerViewHeight),
+            headerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ]
         
         let collectionViewConstraints = [
-            collectionView.topAnchor.constraint(equalTo: header.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: MainCollectionViewSizeConstants.cellHeight),
@@ -99,7 +99,7 @@ final class MainView: UIView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ]
         
-        NSLayoutConstraint.activate(headerConstraints)
+        NSLayoutConstraint.activate(headerViewConstraints)
         NSLayoutConstraint.activate(collectionViewConstraints)
         NSLayoutConstraint.activate(tableViewConstraints)
     }

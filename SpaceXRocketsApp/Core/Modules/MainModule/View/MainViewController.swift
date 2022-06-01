@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainViewProtocol: AnyObject {
     func setBackgroundImage(from data: Data)
-    func setHeaderWithName(_ name: String)
+    func setHeaderViewWithName(_ name: String)
     func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel)
     func setTableViewViewModel(_ viewModel: MainTableViewViewModel)
 }
@@ -17,8 +17,8 @@ protocol MainViewProtocol: AnyObject {
 struct MainViewSizeConstants {
     static let cornerRadius: CGFloat = 32.0
     static let height: CGFloat = Sizes.screenHeight / 2
-    static let headerHeight: CGFloat = 112.0
-    static let additionalHeight: CGFloat = headerHeight + MainCollectionViewSizeConstants.cellHeight
+    static let headerViewHeight: CGFloat = 112.0
+    static let additionalHeight: CGFloat = headerViewHeight + MainCollectionViewSizeConstants.cellHeight
     static let backgroundImageViewHeight: CGFloat = Sizes.screenHeight / 2
 }
 
@@ -119,7 +119,7 @@ final class MainViewController: UIViewController {
     private func configureUI() {
         
         view.backgroundColor = Color.mainBackground.uiColor
-        mainView.header.buttonAction = showSettings
+        mainView.headerView.buttonAction = showSettings
         activityIndicatorView.center = view.center
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -261,11 +261,11 @@ extension MainViewController: MainViewProtocol {
         }
     }
     
-    func setHeaderWithName(_ name: String) {
+    func setHeaderViewWithName(_ name: String) {
         DispatchQueue.main.sync {
             title = name
-            mainView.header.titleLabel.text = name
-            mainView.header.activateButton()
+            mainView.headerView.titleLabel.text = name
+            mainView.headerView.activateButton()
             activityIndicatorView.stopAnimating()
         }
     }

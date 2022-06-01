@@ -24,8 +24,31 @@ struct DetailsViewSizeConstants {
 final class DetailsViewController: UIViewController {
     
     // MARK: - Subviews
-    var collectionView: UICollectionView?
-    lazy var activityIndicatorView: UIActivityIndicatorView = {
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = DetailsViewSizeConstants.collectionViewMinimumInteritemSpacing
+        layout.minimumLineSpacing = DetailsViewSizeConstants.collectionViewMinimumLineSpacing
+        
+        let collectionView = UICollectionView(frame: view.bounds,
+                                              collectionViewLayout: layout)
+        collectionView.contentInset = UIEdgeInsets(top: DetailsViewSizeConstants.collectionViewTopContentInset,
+                                                   left: 0,
+                                                   bottom: 0,
+                                                   right: 0)
+        collectionView.register(DetailsCollectionCell.self, forCellWithReuseIdentifier: DetailsCollectionCell.identifier)
+        collectionView.alwaysBounceVertical = true
+        collectionView.showsVerticalScrollIndicator = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundView = UIView()
+        collectionView.backgroundView?.backgroundColor = Color.lauchesPageBackground.uiColor
+        collectionView.backgroundColor = Color.lauchesPageBackground.uiColor
+        collectionView.indicatorStyle = .white
+        
+        return collectionView
+    }()
+    
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
         $0.style = .large
         $0.center = view.center
         $0.startAnimating()
@@ -40,9 +63,9 @@ final class DetailsViewController: UIViewController {
     
     private var viewModel: DetailsCollectionViewModel? {
         didSet {
-            collectionView?.dataSource = viewModel
-            collectionView?.delegate = viewModel
-            collectionView?.reloadData()
+            collectionView.dataSource = viewModel
+            collectionView.delegate = viewModel
+            collectionView.reloadData()
         }
     }
     
@@ -57,36 +80,8 @@ final class DetailsViewController: UIViewController {
     
     // MARK: - Private methods
     private func configureUI() {
-        
         view.backgroundColor = Color.background.uiColor
-        
-        activityIndicatorView.style = .large
-        activityIndicatorView.center = view.center
-        activityIndicatorView.startAnimating()
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = DetailsViewSizeConstants.collectionViewMinimumInteritemSpacing
-        layout.minimumLineSpacing = DetailsViewSizeConstants.collectionViewMinimumLineSpacing
-        
-        collectionView = UICollectionView(frame: view.frame,
-                                          collectionViewLayout: layout)
-        collectionView?.contentInset = UIEdgeInsets(top: DetailsViewSizeConstants.collectionViewTopContentInset,
-                                                    left: 0,
-                                                    bottom: 0,
-                                                    right: 0)
-        
-        guard let collectionView = collectionView else { return }
-        collectionView.register(DetailsCollectionCell.self, forCellWithReuseIdentifier: DetailsCollectionCell.identifier)
-        
         collectionView.dataSource = viewModel
-        collectionView.alwaysBounceVertical = true
-        collectionView.showsVerticalScrollIndicator = true
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundView = UIView()
-        collectionView.backgroundView?.backgroundColor = Color.lauchesPageBackground.uiColor
-        collectionView.backgroundColor = Color.lauchesPageBackground.uiColor
-        collectionView.indicatorStyle = .white
         
         view.addSubview(collectionView)
         view.addSubview(activityIndicatorView)

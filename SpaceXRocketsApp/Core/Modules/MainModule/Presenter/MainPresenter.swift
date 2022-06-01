@@ -143,7 +143,7 @@ final class MainPresenter: MainPresenterProtocol {
     func provideRocketName() {
         guard let rocketData = rocketData else { return }
         let name = rocketData.name
-        view.setHeaderWithName(name)
+        view.setHeaderViewWithName(name)
     }
     
     func provideCollectionViewViewModel() {
