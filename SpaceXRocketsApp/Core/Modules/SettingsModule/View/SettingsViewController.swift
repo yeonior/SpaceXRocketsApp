@@ -35,8 +35,15 @@ struct SettingsViewSizeConstants {
 
 final class SettingsViewController: UIViewController {
     
+    private enum Unit: Int {
+        case height     = 0
+        case diameter   = 1
+        case mass       = 2
+        case payload    = 3
+    }
+    
     // MARK: - Subviews
-    lazy var settingsView = SettingsView()
+    private let settingsView = SettingsView()
     
     // MARK: - Properties
     var presenter: SettingsPresenter!
@@ -59,8 +66,7 @@ final class SettingsViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // updating collection view
-        NotificationCenter.default.post(name: ObserverConstants.collectionViewUpdateNotificationName, object: nil)
+        updateCollectionView()
     }
     
     // MARK: - Private methods
@@ -75,17 +81,23 @@ final class SettingsViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = Color.navigationBarButtonColor.uiColor
         
         settingsView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(settingsView)
         
-        NSLayoutConstraint.activate([
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let settingsViewConstraints = [
             settingsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             settingsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             settingsView.topAnchor.constraint(equalTo: view.topAnchor,
                                               constant: SettingsViewSizeConstants.topPadding),
             settingsView.widthAnchor.constraint(equalTo: view.widthAnchor),
             settingsView.heightAnchor.constraint(equalToConstant: SettingsViewSizeConstants.height)
-        ])
+        ]
+        
+        NSLayoutConstraint.activate(settingsViewConstraints)
     }
     
     @objc
@@ -93,36 +105,39 @@ final class SettingsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    // setting actions
     private func setSegmentedControlActions() {
+        
+        func setAction(index: Int, view: UIView, action: @escaping (Int) -> ()) {
+            guard let view = view as? SettingsItemView else { return }
+            view.segmentedControlAction = {
+                switch view.unitSegmentedControl.selectedSegmentIndex {
+                case let i where i == 0: action(i)
+                case let i where i == 1: action(i)
+                default: break
+                }
+            }
+        }
+        
         for (index, view) in settingsView.stackView.arrangedSubviews.enumerated() {
-            setAction(index: index, view: view) { i in
+            setAction(index: index, view: view) { [weak self] i in
                 switch index {
-                case 0: self.presenter.updateHeightUnit(with: i)
-                case 1: self.presenter.updateDiameterUnit(with: i)
-                case 2: self.presenter.updateMassUnit(with: i)
-                case 3: self.presenter.updatePayloadUnit(with: i)
+                case 0: self?.presenter.updateHeightUnit(with: i)
+                case 1: self?.presenter.updateDiameterUnit(with: i)
+                case 2: self?.presenter.updateMassUnit(with: i)
+                case 3: self?.presenter.updatePayloadUnit(with: i)
                 default: break
                 }
             }
         }
     }
     
-    private func setAction(index: Int, view: UIView, action: @escaping (Int) -> ()) {
-        guard let view = view as? SettingsItemView else { return }
-        view.segmentedControlAction = {
-            switch view.unitSegmentedControl.selectedSegmentIndex {
-            case let i where i == 0: action(i)
-            case let i where i == 1: action(i)
-            default: break
-            }
-        }
+    private func updateCollectionView() {
+        NotificationCenter.default.post(name: ObserverConstants.collectionViewUpdateNotificationName, object: nil)
     }
 }
 
 // MARK: - SettingsViewProtocol
 extension SettingsViewController: SettingsViewTitlesProtocol {
-    // setting titles
     func setTitle(with title: String) {
         self.title = title
     }
@@ -149,9 +164,8 @@ extension SettingsViewController: SettingsViewTitlesProtocol {
 
 // MARK: - SettingsViewUnitsProtocol
 extension SettingsViewController: SettingsViewUnitsProtocol {
-    // setting units
     func setHeightUnit(with unitType: LengthUnit) {
-        guard let view = settingsView.stackView.arrangedSubviews[0] as? SettingsItemView else { return }
+        guard let view = settingsView.stackView.arrangedSubviews[Unit.height.rawValue] as? SettingsItemView else { return }
         switch unitType {
         case .feet:
             view.unitSegmentedControl.selectedSegmentIndex = 0
@@ -161,7 +175,7 @@ extension SettingsViewController: SettingsViewUnitsProtocol {
     }
     
     func setDiameterUnit(with unitType: LengthUnit) {
-        guard let view = settingsView.stackView.arrangedSubviews[1] as? SettingsItemView else { return }
+        guard let view = settingsView.stackView.arrangedSubviews[Unit.diameter.rawValue] as? SettingsItemView else { return }
         switch unitType {
         case .feet:
             view.unitSegmentedControl.selectedSegmentIndex = 0
@@ -171,7 +185,7 @@ extension SettingsViewController: SettingsViewUnitsProtocol {
     }
     
     func setMassUnit(with unitType: MassUnit) {
-        guard let view = settingsView.stackView.arrangedSubviews[2] as? SettingsItemView else { return }
+        guard let view = settingsView.stackView.arrangedSubviews[Unit.mass.rawValue] as? SettingsItemView else { return }
         switch unitType {
         case .pounds:
             view.unitSegmentedControl.selectedSegmentIndex = 0
@@ -181,7 +195,7 @@ extension SettingsViewController: SettingsViewUnitsProtocol {
     }
     
     func setPayloadUnit(with unitType: MassUnit) {
-        guard let view = settingsView.stackView.arrangedSubviews[3] as? SettingsItemView else { return }
+        guard let view = settingsView.stackView.arrangedSubviews[Unit.payload.rawValue] as? SettingsItemView else { return }
         switch unitType {
         case .pounds:
             view.unitSegmentedControl.selectedSegmentIndex = 0
