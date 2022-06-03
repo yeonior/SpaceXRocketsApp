@@ -98,11 +98,6 @@ final class MainViewController: UIViewController {
         requestData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        removeObserverFromTableView()
-        super.viewWillDisappear(animated)
-    }
-    
     // observing the table view to get height
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == ObserverConstants.tableViewContentSizeKeyPath {
@@ -229,10 +224,6 @@ final class MainViewController: UIViewController {
                                        forKeyPath: ObserverConstants.tableViewContentSizeKeyPath,
                                        options: .new,
                                        context: nil)
-    }
-    
-    private func removeObserverFromTableView() {
-        mainView.tableView.removeObserver(self, forKeyPath: ObserverConstants.tableViewContentSizeKeyPath)
     }
     
     private func resetViewPosition() {
