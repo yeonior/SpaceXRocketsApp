@@ -41,8 +41,8 @@ final class DetailsViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundView = UIView()
-        collectionView.backgroundView?.backgroundColor = Color.lauchesPageBackground.uiColor
-        collectionView.backgroundColor = Color.lauchesPageBackground.uiColor
+        collectionView.backgroundView?.backgroundColor = Colors.lauchesPageBackground.uiColor
+        collectionView.backgroundColor = Colors.lauchesPageBackground.uiColor
         collectionView.indicatorStyle = .white
         
         return collectionView
@@ -52,7 +52,7 @@ final class DetailsViewController: UIViewController {
         $0.style = .large
         $0.center = view.center
         $0.startAnimating()
-        $0.color = Color.activityIndicatorView.uiColor
+        $0.color = Colors.activityIndicatorView.uiColor
         return $0
     }(UIActivityIndicatorView())
     
@@ -80,7 +80,7 @@ final class DetailsViewController: UIViewController {
     
     // MARK: - Private methods
     private func configureUI() {
-        view.backgroundColor = Color.background.uiColor
+        view.backgroundColor = Colors.background.uiColor
         collectionView.dataSource = viewModel
         
         view.addSubview(collectionView)

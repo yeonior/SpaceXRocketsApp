@@ -44,7 +44,6 @@ final class DataManager {
     private init() {}
 }
 
-
 // MARK: - DataManagerReadable
 extension DataManager: DataManagerReadable {
     func getAppFirstRunStatus() -> Bool {
@@ -98,19 +97,19 @@ extension DataManager: DataManagerWritable {
         self.launches = launches
     }
     
-    func setDefaultUnits() {
-        setLengthUnit(for: Parameter.height.rawValue, with: .feet)
-        setLengthUnit(for: Parameter.diameter.rawValue, with: .feet)
-        setMassUnit(for: Parameter.mass.rawValue, with: .pounds)
-        setMassUnit(for: Parameter.payload.rawValue, with: .pounds)
-    }
-    
     func setLengthUnit(for name: String, with unit: LengthUnit) {
         userDefaults.set(unit.rawValue, forKey: name)
     }
     
     func setMassUnit(for name: String, with unit: MassUnit) {
         userDefaults.set(unit.rawValue, forKey: name)
+    }
+    
+    func setDefaultUnits() {
+        setLengthUnit(for: Parameter.height.rawValue, with: .feet)
+        setLengthUnit(for: Parameter.diameter.rawValue, with: .feet)
+        setMassUnit(for: Parameter.mass.rawValue, with: .pounds)
+        setMassUnit(for: Parameter.payload.rawValue, with: .pounds)
     }
 }
 

@@ -21,15 +21,15 @@ final class MainShowButtonCell: UITableViewCell {
     // MARK: - Subviews
     let showButton: UIButton = {
         $0.layer.cornerRadius = MainShowButtonSizeConstants.cornerRadius
-        $0.backgroundColor = Color.showButton.uiColor
-        $0.titleLabel?.textColor = Color.showButtonText.uiColor
-        $0.titleLabel?.font = Font.showButton.uiFont
+        $0.backgroundColor = Colors.showButton.uiColor
+        $0.titleLabel?.textColor = Colors.showButtonText.uiColor
+        $0.titleLabel?.font = Fonts.showButton.uiFont
         $0.setTitle("Show the launches", for: .normal)
         return $0
     }(UIButton())
     
     let baseView: UIView = {
-        $0.backgroundColor = Color.tableViewCellBackground.uiColor
+        $0.backgroundColor = Colors.tableViewCellBackground.uiColor
         return $0
     }(UIView())
     

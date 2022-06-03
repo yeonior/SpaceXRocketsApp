@@ -1,5 +1,5 @@
 //
-//  Color.swift
+//  Colors.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 06.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit.UIColor
 
-enum Color {
+enum Colors {
     case background
     case mainBackground
     case lauchesPageBackground
@@ -55,6 +55,7 @@ enum Color {
     
     case settingsButton
     
+    // MARK: - Properties
     var uiColor: UIColor {
         switch self {
         case    .mainBackground,
@@ -112,7 +113,7 @@ enum Color {
     }
 }
 
-extension Color {
+extension Colors {
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 

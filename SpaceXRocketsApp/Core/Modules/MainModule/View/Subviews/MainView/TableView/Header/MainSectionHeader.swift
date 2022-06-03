@@ -14,8 +14,8 @@ final class MainSectionHeader: UITableViewHeaderFooterView {
     
     // MARK: - Subviews
     let titleLabel: UILabel = {
-        $0.font = Font.tableViewStageSectionHeader.uiFont
-        $0.textColor = Color.tableViewStageSectionHeader.uiColor
+        $0.font = Fonts.tableViewStageSectionHeader.uiFont
+        $0.textColor = Colors.tableViewStageSectionHeader.uiColor
         $0.textAlignment = .left
         $0.clipsToBounds = true
         return $0
@@ -34,7 +34,7 @@ final class MainSectionHeader: UITableViewHeaderFooterView {
     // MARK: - Private methods
     private func configureViews() {
         
-        contentView.backgroundColor = Color.tableViewCellBackground.uiColor
+        contentView.backgroundColor = Colors.tableViewCellBackground.uiColor
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleLabel)

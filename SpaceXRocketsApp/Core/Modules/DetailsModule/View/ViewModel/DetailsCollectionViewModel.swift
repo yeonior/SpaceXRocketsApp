@@ -47,7 +47,7 @@ extension DetailsCollectionViewModel: UICollectionViewDataSource {
             if cells.count == 0 {
                 cell.mainLabel.text = "No information available"
                 cell.imageView.image = UIImage(systemName: "xmark.circle.fill")
-                cell.imageView.tintColor = Color.failureStatus.uiColor
+                cell.imageView.tintColor = Colors.failureStatus.uiColor
                 
                 return cell
             }

@@ -76,9 +76,9 @@ final class SettingsViewController: UIViewController {
                                                             target: self,
                                                             action: #selector(closeView))
         
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Color.navigationBarTitleColor.uiColor]
-        view.backgroundColor = Color.settingsBackground.uiColor
-        navigationItem.rightBarButtonItem?.tintColor = Color.navigationBarButtonColor.uiColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Colors.navigationBarTitleColor.uiColor]
+        view.backgroundColor = Colors.settingsBackground.uiColor
+        navigationItem.rightBarButtonItem?.tintColor = Colors.navigationBarButtonColor.uiColor
         
         settingsView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(settingsView)

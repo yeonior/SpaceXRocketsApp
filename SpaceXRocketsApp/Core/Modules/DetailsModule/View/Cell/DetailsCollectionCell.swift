@@ -32,8 +32,8 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
     
     // MARK: - Subviews
     let mainLabel: UILabel = {
-        $0.font = Font.detailsCollectionCellMainLabel.uiFont
-        $0.textColor = Color.detailsCollectionCellMainLabel.uiColor
+        $0.font = Fonts.detailsCollectionCellMainLabel.uiFont
+        $0.textColor = Colors.detailsCollectionCellMainLabel.uiColor
         $0.textAlignment = .left
         $0.numberOfLines = 1
         $0.adjustsFontSizeToFitWidth = true
@@ -43,8 +43,8 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
     }(UILabel())
     
     private let detailsLabel: UILabel = {
-        $0.font = Font.detailsCollectionCellDetailLabel.uiFont
-        $0.textColor = Color.detailsCollectionCellDetailsLabel.uiColor
+        $0.font = Fonts.detailsCollectionCellDetailLabel.uiFont
+        $0.textColor = Colors.detailsCollectionCellDetailsLabel.uiColor
         $0.textAlignment = .left
         $0.numberOfLines = 1
         $0.adjustsFontSizeToFitWidth = true
@@ -60,7 +60,7 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
     }(UIImageView())
     
     private let circleImageView: UIImageView = {
-        $0.tintColor = Color.detailsCollectionViewCellCircleBackground.uiColor
+        $0.tintColor = Colors.detailsCollectionViewCellCircleBackground.uiColor
         $0.contentMode = .scaleAspectFit
         $0.clipsToBounds = true
         return $0
@@ -91,7 +91,7 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
     
     // MARK: - Private methods
     private func configureViews() {
-        contentView.backgroundColor = Color.detailsCollectionCellBackground.uiColor
+        contentView.backgroundColor = Colors.detailsCollectionCellBackground.uiColor
         contentView.layer.cornerRadius = DetailsCellSizeConstants.cornerRadius
         
         labelsStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -152,21 +152,21 @@ final class DetailsCollectionCell: UICollectionViewCell, DetailsCollectionCellPr
         
         guard let success = viewModel.sign else {
             imageView.image = UIImage(systemName: "questionmark.circle.fill")
-            imageView.tintColor = Color.detailsCollectionCellImageView.uiColor
+            imageView.tintColor = Colors.detailsCollectionCellImageView.uiColor
             statusImageView.image = nil
             circleImageView.image = nil
             return
         }
         
         imageView.image = success
-                          ? UIImage(named: "spaceRocket")?.withTintColor(Color.detailsCollectionCellImageView.uiColor)
-                          : UIImage(named: "spaceRocket")?.withTintColor(Color.detailsCollectionCellImageView.uiColor).flipDiagonally()
+                          ? UIImage(named: "spaceRocket")?.withTintColor(Colors.detailsCollectionCellImageView.uiColor)
+                          : UIImage(named: "spaceRocket")?.withTintColor(Colors.detailsCollectionCellImageView.uiColor).flipDiagonally()
         circleImageView.image = UIImage(systemName: "circle.fill")
         statusImageView.image = success
                                 ? UIImage(systemName: "checkmark.circle.fill")
                                 : UIImage(systemName: "xmark.circle.fill")
         statusImageView.tintColor = success
-                                    ? Color.successStatus.uiColor
-                                    : Color.failureStatus.uiColor
+                                    ? Colors.successStatus.uiColor
+                                    : Colors.failureStatus.uiColor
     }
 }

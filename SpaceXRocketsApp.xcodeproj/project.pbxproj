@@ -61,8 +61,8 @@
 		A2DB9CFB27FD7F7000339D48 /* LabGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CF727FD7F7000339D48 /* LabGrotesque-Medium.ttf */; };
 		A2DB9CFD27FD806200339D48 /* FontNames in Resources */ = {isa = PBXBuildFile; fileRef = A2DB9CFC27FD806100339D48 /* FontNames */; };
 		A2DB9D0427FD882F00339D48 /* MainInfoSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0327FD882F00339D48 /* MainInfoSectionCell.swift */; };
-		A2DB9D0627FD88A700339D48 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0527FD88A700339D48 /* Font.swift */; };
-		A2DB9D0827FD997C00339D48 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0727FD997C00339D48 /* Color.swift */; };
+		A2DB9D0627FD88A700339D48 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0527FD88A700339D48 /* Fonts.swift */; };
+		A2DB9D0827FD997C00339D48 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB9D0727FD997C00339D48 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,8 +122,8 @@
 		A2DB9CF727FD7F7000339D48 /* LabGrotesque-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Medium.ttf"; sourceTree = "<group>"; };
 		A2DB9CFC27FD806100339D48 /* FontNames */ = {isa = PBXFileReference; lastKnownFileType = text; path = FontNames; sourceTree = "<group>"; };
 		A2DB9D0327FD882F00339D48 /* MainInfoSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoSectionCell.swift; sourceTree = "<group>"; };
-		A2DB9D0527FD88A700339D48 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		A2DB9D0727FD997C00339D48 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		A2DB9D0527FD88A700339D48 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		A2DB9D0727FD997C00339D48 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -509,8 +509,8 @@
 		A2D383B12805C141007F22C3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A2DB9D0727FD997C00339D48 /* Color.swift */,
-				A2DB9D0527FD88A700339D48 /* Font.swift */,
+				A2DB9D0727FD997C00339D48 /* Colors.swift */,
+				A2DB9D0527FD88A700339D48 /* Fonts.swift */,
 				A2A19BA62802C57C00B28901 /* Sizes.swift */,
 				A24BBC7528004F0600EA5A87 /* APIs.swift */,
 				A288C7EF28254B6800FD209A /* ObserverConstants.swift */,
@@ -649,13 +649,13 @@
 			files = (
 				A2DB9D0427FD882F00339D48 /* MainInfoSectionCell.swift in Sources */,
 				A275CA2627FC21D20020B02B /* BasePageViewController.swift in Sources */,
-				A2DB9D0827FD997C00339D48 /* Color.swift in Sources */,
+				A2DB9D0827FD997C00339D48 /* Colors.swift in Sources */,
 				A2852F8E27FE1EBF000CDA92 /* MainShowButtonCell.swift in Sources */,
 				A24BBC7928004FAD00EA5A87 /* AssemblyBuilder.swift in Sources */,
 				A25BB6C52804AC1E00FCDF02 /* MainStageSectionViewModel.swift in Sources */,
 				A2768143281C0D9C00C0172F /* SettingsItemView.swift in Sources */,
 				A2D383B52805E0AE007F22C3 /* DetailsCollectionCell.swift in Sources */,
-				A2DB9D0627FD88A700339D48 /* Font.swift in Sources */,
+				A2DB9D0627FD88A700339D48 /* Fonts.swift in Sources */,
 				A275CA2D27FC24040020B02B /* MainViewController.swift in Sources */,
 				A25FCF312803EFD900A34EBA /* MainTableViewViewModel.swift in Sources */,
 				A2A19BA72802C57C00B28901 /* Sizes.swift in Sources */,

@@ -37,7 +37,7 @@ final class MainViewController: UIViewController {
     
     private let backgroundImageView: UIImageView = {
         $0.alpha = 0
-        $0.backgroundColor = Color.background.uiColor
+        $0.backgroundColor = Colors.background.uiColor
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
         return $0
@@ -47,7 +47,7 @@ final class MainViewController: UIViewController {
     
     private let activityIndicatorView: UIActivityIndicatorView = {
         $0.style = .large
-        $0.color = Color.activityIndicatorView.uiColor
+        $0.color = Colors.activityIndicatorView.uiColor
         $0.startAnimating()
         return $0
     }(UIActivityIndicatorView())
@@ -118,7 +118,7 @@ final class MainViewController: UIViewController {
     // MARK: - Private methods
     private func configureUI() {
         
-        view.backgroundColor = Color.mainBackground.uiColor
+        view.backgroundColor = Colors.mainBackground.uiColor
         mainView.headerView.buttonAction = showSettings
         activityIndicatorView.center = view.center
         

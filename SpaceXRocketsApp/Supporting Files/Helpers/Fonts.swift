@@ -1,5 +1,5 @@
 //
-//  Font.swift
+//  Fonts.swift
 //  SpaceXRocketsApp
 //
 //  Created by Ruslan on 06.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit.UIFont
 
-enum Font {
+enum Fonts {
     private enum Style: String {
         case thin       = "Thin"
         case regular    = "Regular"
@@ -29,7 +29,8 @@ enum Font {
     
     case detailsCollectionCellMainLabel
     case detailsCollectionCellDetailLabel
-
+    
+    // MARK: - Properties
     var uiFont: UIFont {
         switch self {
         case    .mainViewHeader:

@@ -11,11 +11,11 @@ final class SettingsItemView: UIView {
     
     // MARK: - Properties
     var segmentedControlAction: Callback?
-
+    
     // MARK: - Subviews
-    lazy var titleLabel: UILabel = {
-        $0.font = Font.tableViewCellMainLabel.uiFont
-        $0.textColor = Color.tableViewCellMainLabel.uiColor
+    let titleLabel: UILabel = {
+        $0.font = Fonts.tableViewCellMainLabel.uiFont
+        $0.textColor = Colors.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
         $0.clipsToBounds = true
         $0.adjustsFontSizeToFitWidth = true
@@ -23,12 +23,31 @@ final class SettingsItemView: UIView {
         return $0
     }(UILabel())
     
-    lazy var unitSegmentedControl = UISegmentedControl()
+    lazy var unitSegmentedControl: UISegmentedControl = {
+        let itemsArray = ["", ""]
+        let segmentedControl = UISegmentedControl(items: itemsArray)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addTarget(nil, action: #selector(segmentDidChange(_:)), for: .valueChanged)
+        segmentedControl.backgroundColor = Colors.segmentedControlBackground.uiColor
+        segmentedControl.selectedSegmentTintColor = Colors.segmentedControlSelectedSegmentTintColor.uiColor
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.segmentedControlNormalText.uiColor], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.segmentedControlSelectedText.uiColor], for: .selected)
+        return segmentedControl
+    }()
+    
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, unitSegmentedControl])
+        stackView.axis = .horizontal
+        stackView.spacing = SettingsViewSizeConstants.spacingBetweenLabelAndSegmentedControl
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
@@ -36,36 +55,30 @@ final class SettingsItemView: UIView {
     }
     
     // MARK: - Private methods
-    private func setup() {
-        
-        // MARK: - TEMP
-        let itemsArray = ["", ""]
-        unitSegmentedControl = UISegmentedControl(items: itemsArray)
-        unitSegmentedControl.selectedSegmentIndex = 0
-        unitSegmentedControl.addTarget(nil, action: #selector(segmentDidChange(_:)), for: .valueChanged)
-        
-        unitSegmentedControl.backgroundColor = Color.segmentedControlBackground.uiColor
-        unitSegmentedControl.selectedSegmentTintColor = Color.segmentedControlSelectedSegmentTintColor.uiColor
-        unitSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Color.segmentedControlNormalText.uiColor], for: .normal)
-        unitSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Color.segmentedControlSelectedText.uiColor], for: .selected)
-        
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, unitSegmentedControl])
-        stackView.axis = .horizontal
-        stackView.spacing = SettingsViewSizeConstants.spacingBetweenLabelAndSegmentedControl
-        stackView.distribution = .fill
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    private func configureViews() {
         
         addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            unitSegmentedControl.widthAnchor.constraint(equalToConstant: SettingsViewSizeConstants.segmentedControlWidth),
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
+        let unitSegmentedControlConstraints = [
+            unitSegmentedControl.widthAnchor.constraint(equalToConstant: SettingsViewSizeConstants.segmentedControlWidth)
+        ]
+        
+        let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                constant: SettingsViewSizeConstants.leftPadding),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                 constant: -SettingsViewSizeConstants.rightPadding),
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        ]
+        
+        NSLayoutConstraint.activate(unitSegmentedControlConstraints)
+        NSLayoutConstraint.activate(stackViewConstraints)
     }
     
     @objc

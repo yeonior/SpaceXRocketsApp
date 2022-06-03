@@ -17,9 +17,9 @@ final class NavigationController: UINavigationController {
     
     // MARK: - Methods
     private func configureUI() {
-        let textAttributes = [NSAttributedString.Key.foregroundColor: Color.navigationBarTitleColor.uiColor]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: Colors.navigationBarTitleColor.uiColor]
         navigationBar.titleTextAttributes = textAttributes
-        navigationBar.barTintColor = Color.navigationBarColor.uiColor
-        navigationBar.tintColor = Color.navigationBarButtonColor.uiColor
+        navigationBar.barTintColor = Colors.navigationBarColor.uiColor
+        navigationBar.tintColor = Colors.navigationBarButtonColor.uiColor
     }
 }

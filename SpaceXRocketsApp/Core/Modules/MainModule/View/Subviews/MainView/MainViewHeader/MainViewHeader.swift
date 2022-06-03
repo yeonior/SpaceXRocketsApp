@@ -24,13 +24,13 @@ final class MainViewHeader: UIView {
     lazy var titleLabel: UILabel = {
         $0.textAlignment = .left
         $0.backgroundColor = .clear
-        $0.font = Font.mainViewHeader.uiFont
-        $0.textColor = Color.mainViewHeader.uiColor
+        $0.font = Fonts.mainViewHeader.uiFont
+        $0.textColor = Colors.mainViewHeader.uiColor
         return $0
     }(UILabel())
     
     private let settingsButton: UIButton = {
-        $0.imageView?.tintColor = Color.settingsButton.uiColor
+        $0.imageView?.tintColor = Colors.settingsButton.uiColor
         $0.imageView?.contentMode = .scaleAspectFit
         $0.contentVerticalAlignment = .fill
         $0.contentHorizontalAlignment = .fill
@@ -51,7 +51,7 @@ final class MainViewHeader: UIView {
     // MARK: - Methods
     private func configureViews() {
         
-        backgroundColor = Color.mainViewHeaderBackground.uiColor
+        backgroundColor = Colors.mainViewHeaderBackground.uiColor
         settingsButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

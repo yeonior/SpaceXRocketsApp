@@ -43,14 +43,14 @@ final class BasePageViewController: UIPageViewController {
     // MARK: - Private methods
     private func configureUI() {
         dataSource = self
-        view.backgroundColor = Color.background.uiColor
+        view.backgroundColor = Colors.background.uiColor
         additionalSafeAreaInsets.bottom = BasePageViewSizeConstants.additionalBottomSafeAreaInset
     }
     
     private func configurePageControl() {
         let pageControl = UIPageControl.appearance()
-        pageControl.currentPageIndicatorTintColor = Color.currentPageIndicator.uiColor
-        pageControl.pageIndicatorTintColor = Color.pageIndicator.uiColor
+        pageControl.currentPageIndicatorTintColor = Colors.currentPageIndicator.uiColor
+        pageControl.pageIndicatorTintColor = Colors.pageIndicator.uiColor
         pageControl.backgroundColor = .clear
         pageControl.isUserInteractionEnabled = false
     }

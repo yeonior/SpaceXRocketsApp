@@ -32,8 +32,8 @@ final class MainCollectionViewCell: UICollectionViewCell, MainCollectionViewCell
     
     // MARK: - Subviews
     lazy var mainLabel: UILabel = {
-        $0.font = Font.mainCollectionCellMainLabel.uiFont
-        $0.textColor = Color.mainCollectionCellMainLabel.uiColor
+        $0.font = Fonts.mainCollectionCellMainLabel.uiFont
+        $0.textColor = Colors.mainCollectionCellMainLabel.uiColor
         $0.textAlignment = .center
         $0.numberOfLines = 1
         $0.adjustsFontSizeToFitWidth = true
@@ -43,8 +43,8 @@ final class MainCollectionViewCell: UICollectionViewCell, MainCollectionViewCell
     }(UILabel())
     
     lazy var detailsLabel: UILabel = {
-        $0.font = Font.mainCollectionCellDetailsLabel.uiFont
-        $0.textColor = Color.mainCollectionCellDetailsLabel.uiColor
+        $0.font = Fonts.mainCollectionCellDetailsLabel.uiFont
+        $0.textColor = Colors.mainCollectionCellDetailsLabel.uiColor
         $0.textAlignment = .center
         $0.numberOfLines = 1
         $0.adjustsFontSizeToFitWidth = true
@@ -66,7 +66,7 @@ final class MainCollectionViewCell: UICollectionViewCell, MainCollectionViewCell
     // MARK: - Private methods
     private func configureViews() {
         
-        contentView.backgroundColor = Color.detailsCollectionCellBackground.uiColor
+        contentView.backgroundColor = Colors.detailsCollectionCellBackground.uiColor
         contentView.layer.cornerRadius = MainCollectionCellSizeConstants.cornerRadius
         
         mainLabel.translatesAutoresizingMaskIntoConstraints = false

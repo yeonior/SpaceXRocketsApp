@@ -25,8 +25,8 @@ final class MainView: UIView {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundView = UIView()
-        collectionView.backgroundView?.backgroundColor = Color.lauchesPageBackground.uiColor
-        collectionView.backgroundColor = Color.lauchesPageBackground.uiColor
+        collectionView.backgroundView?.backgroundColor = Colors.lauchesPageBackground.uiColor
+        collectionView.backgroundColor = Colors.lauchesPageBackground.uiColor
         
         return collectionView
     }()
@@ -41,7 +41,7 @@ final class MainView: UIView {
                            forCellReuseIdentifier: MainShowButtonCell.identifier)
         tableView.register(MainSectionHeader.self,
                            forHeaderFooterViewReuseIdentifier: MainSectionHeader.identifier)
-        tableView.backgroundColor = Color.mainViewHeaderBackground.uiColor
+        tableView.backgroundColor = Colors.mainViewHeaderBackground.uiColor
         tableView.separatorColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false

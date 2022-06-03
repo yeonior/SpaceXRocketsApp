@@ -30,8 +30,8 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     
     // MARK: - Subviews
     private let mainLabel: UILabel = {
-        $0.font = Font.tableViewCellMainLabel.uiFont
-        $0.textColor = Color.tableViewCellMainLabel.uiColor
+        $0.font = Fonts.tableViewCellMainLabel.uiFont
+        $0.textColor = Colors.tableViewCellMainLabel.uiColor
         $0.textAlignment = .left
         $0.clipsToBounds = true
         $0.adjustsFontSizeToFitWidth = true
@@ -40,8 +40,8 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     }(UILabel())
     
     private let detailsLabel: UILabel = {
-        $0.font = Font.tableViewCellDetailsLabel.uiFont
-        $0.textColor = Color.tableViewCellDetailsLabel.uiColor
+        $0.font = Fonts.tableViewCellDetailsLabel.uiFont
+        $0.textColor = Colors.tableViewCellDetailsLabel.uiColor
         $0.textAlignment = .right
         $0.clipsToBounds = true
         $0.adjustsFontSizeToFitWidth = true
@@ -69,7 +69,7 @@ final class MainInfoSectionCell: UITableViewCell, MainCellProtocol {
     
     // MARK: - Private methods
     private func configureViews() {
-        contentView.backgroundColor = Color.tableViewCellBackground.uiColor
+        contentView.backgroundColor = Colors.tableViewCellBackground.uiColor
         isUserInteractionEnabled = false
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
