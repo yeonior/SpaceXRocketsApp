@@ -35,7 +35,6 @@ final class DataManager {
     // MARK: - Properties
     static let shared = DataManager()
     private let userDefaults = UserDefaults.standard
-    private let concurrentQueue = DispatchQueue(label: "concurrent-queue", attributes: .concurrent)
     private let appLaunchKey = "launchedBefore"
     private var rockets: [RocketModel]?
     private var launches: [LaunchModel]?
@@ -52,8 +51,8 @@ extension DataManager: DataManagerReadable {
     
     func getRockets() -> [RocketModel] {
         var safeRockets = [RocketModel]()
-        concurrentQueue.sync { [weak self] in
-            safeRockets = self?.rockets ?? []
+        DispatchQueue.global().sync {
+            safeRockets = self.rockets ?? []
         }
         
         return safeRockets
@@ -61,8 +60,8 @@ extension DataManager: DataManagerReadable {
     
     func getLaunches() -> [LaunchModel] {
         var safeLaunches = [LaunchModel]()
-        concurrentQueue.sync { [weak self] in
-            safeLaunches = self?.launches ?? []
+        DispatchQueue.global().sync {
+            safeLaunches = self.launches ?? []
         }
         
         return safeLaunches
