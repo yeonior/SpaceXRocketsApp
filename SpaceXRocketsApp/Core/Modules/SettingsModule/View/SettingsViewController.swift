@@ -109,7 +109,7 @@ final class SettingsViewController: UIViewController {
         
         func setAction(index: Int, view: UIView, action: @escaping (Int) -> ()) {
             guard let view = view as? SettingsItemView else { return }
-            view.segmentedControlAction = {
+            view.segmentedControlAction = { [unowned view] in
                 switch view.unitSegmentedControl.selectedSegmentIndex {
                 case let i where i == 0: action(i)
                 case let i where i == 1: action(i)
@@ -119,12 +119,12 @@ final class SettingsViewController: UIViewController {
         }
         
         for (index, view) in settingsView.stackView.arrangedSubviews.enumerated() {
-            setAction(index: index, view: view) { [weak self] i in
+            setAction(index: index, view: view) { [unowned self] i in
                 switch index {
-                case 0: self?.presenter.updateHeightUnit(with: i)
-                case 1: self?.presenter.updateDiameterUnit(with: i)
-                case 2: self?.presenter.updateMassUnit(with: i)
-                case 3: self?.presenter.updatePayloadUnit(with: i)
+                case 0: presenter.updateHeightUnit(with: i)
+                case 1: presenter.updateDiameterUnit(with: i)
+                case 2: presenter.updateMassUnit(with: i)
+                case 3: presenter.updatePayloadUnit(with: i)
                 default: break
                 }
             }
