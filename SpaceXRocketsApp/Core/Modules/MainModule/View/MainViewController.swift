@@ -12,6 +12,7 @@ protocol MainViewProtocol: AnyObject {
     func setHeaderViewWithName(_ name: String)
     func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel)
     func setTableViewViewModel(_ viewModel: MainTableViewViewModel)
+    func removeCoverView()
 }
 
 struct MainViewSizeConstants {
@@ -36,7 +37,6 @@ final class MainViewController: UIViewController {
     private let baseView = UIView()
     
     private let backgroundImageView: UIImageView = {
-        $0.alpha = 0
         $0.backgroundColor = Colors.background.uiColor
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
@@ -44,6 +44,7 @@ final class MainViewController: UIViewController {
     }(UIImageView())
     
     private let mainView = MainView()
+    private let coverView = UIView()
     
     private let activityIndicatorView: UIActivityIndicatorView = {
         $0.style = .large
@@ -59,20 +60,16 @@ final class MainViewController: UIViewController {
     
     private var collectionViewViewModel: MainCollectionViewViewModel? {
         didSet {
-            DispatchQueue.main.sync {
-                mainView.collectionView.dataSource = collectionViewViewModel
-                mainView.collectionView.delegate = collectionViewViewModel
-                mainView.collectionView.reloadData()
-            }
+            mainView.collectionView.dataSource = collectionViewViewModel
+            mainView.collectionView.delegate = collectionViewViewModel
+            mainView.collectionView.reloadData()
         }
     }
     private var tableViewViewModel: MainTableViewViewModel? {
         didSet {
-            DispatchQueue.main.sync {
-                mainView.tableView.dataSource = tableViewViewModel
-                mainView.tableView.delegate = tableViewViewModel
-                mainView.tableView.reloadData()
-            }
+            mainView.tableView.dataSource = tableViewViewModel
+            mainView.tableView.delegate = tableViewViewModel
+            mainView.tableView.reloadData()
         }
     }
     
@@ -98,6 +95,11 @@ final class MainViewController: UIViewController {
         requestData()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureCoverViewFrame()
+    }
+    
     // observing the table view to get height
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == ObserverConstants.tableViewContentSizeKeyPath {
@@ -116,6 +118,7 @@ final class MainViewController: UIViewController {
         view.backgroundColor = Colors.mainBackground.uiColor
         mainView.headerView.buttonAction = showSettings
         activityIndicatorView.center = view.center
+        coverView.backgroundColor = .black
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         baseView.translatesAutoresizingMaskIntoConstraints = false
@@ -126,9 +129,14 @@ final class MainViewController: UIViewController {
         scrollView.addSubview(baseView)
         baseView.addSubview(backgroundImageView)
         baseView.addSubview(mainView)
-        view.addSubview(activityIndicatorView)
+        coverView.addSubview(activityIndicatorView)
+        view.addSubview(coverView)
         
         applyConstraints()
+    }
+    
+    private func configureCoverViewFrame() {
+        coverView.frame = view.bounds
     }
     
     private func applyConstraints() {
@@ -183,13 +191,8 @@ final class MainViewController: UIViewController {
            || collectionViewViewModel == nil
            || backgroundImageView.image == nil else { return }
         
-        DispatchQueue.global().async {
-            self.presenter.fetchData(by: self.serialNumber)
-            self.presenter.provideBackgroundImage()
-            self.presenter.provideRocketName()
-            self.presenter.provideCollectionViewViewModel()
-            self.presenter.provideTableViewViewModel()
-        }
+        self.presenter.requestData(by: self.serialNumber)
+        self.presenter.provideData()
     }
     
     private func hideNavigationBar() {
@@ -234,7 +237,7 @@ final class MainViewController: UIViewController {
     @objc
     private func updateCollectionView() {
         DispatchQueue.global().async {
-            self.presenter.fetchData(by: self.serialNumber)
+            self.presenter.requestData(by: self.serialNumber)
             self.presenter.provideCollectionViewViewModel()
         }
     }
@@ -243,36 +246,30 @@ final class MainViewController: UIViewController {
 // MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
     func setBackgroundImage(from data: Data) {
-        DispatchQueue.main.sync {
-            backgroundImageView.image = UIImage(data: data)
-            UIView.animate(withDuration: 0.5) {
-                self.backgroundImageView.alpha = 1.0
-            }
-            activityIndicatorView.stopAnimating()
-        }
+        backgroundImageView.image = UIImage(data: data)
     }
     
     func setHeaderViewWithName(_ name: String) {
-        DispatchQueue.main.sync {
-            title = name
-            mainView.headerView.titleLabel.text = name
-            mainView.headerView.activateButton()
-            activityIndicatorView.stopAnimating()
-        }
+        title = name
+        mainView.headerView.titleLabel.text = name
+        mainView.headerView.activateButton()
     }
     
     func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel) {
         self.collectionViewViewModel = viewModel
-        DispatchQueue.main.sync {
-            activityIndicatorView.stopAnimating()
-        }
     }
     
     func setTableViewViewModel(_ viewModel: MainTableViewViewModel) {
         self.tableViewViewModel = viewModel
         self.tableViewViewModel?.buttonAction = showLaunches
-        DispatchQueue.main.sync {
-            activityIndicatorView.stopAnimating()
+    }
+    
+    func removeCoverView() {
+        activityIndicatorView.stopAnimating()
+        UIView.animate(withDuration: 0.3) {
+            self.coverView.alpha = 0.0
+        } completion: { _ in
+            self.coverView.removeFromSuperview()
         }
     }
 }

@@ -9,11 +9,9 @@ import Foundation
 
 protocol MainPresenterProtocol {
     init(view: MainViewProtocol, dataManager: DataManagerProtocol)
-    func fetchData(by serialNumber: Int)
-    func provideBackgroundImage()
-    func provideRocketName()
+    func requestData(by serialNumber: Int)
     func provideCollectionViewViewModel()
-    func provideTableViewViewModel()
+    func provideData()
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -22,6 +20,7 @@ final class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol!
     let dataManager: DataManagerProtocol!
     var rocketData: RocketData?
+    let dispatchGroup = DispatchGroup()
     
     // MARK: - Init
     init(view: MainViewProtocol, dataManager: DataManagerProtocol) {
@@ -30,7 +29,7 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     // MARK: - Methods
-    func fetchData(by serialNumber: Int) {
+    func requestData(by serialNumber: Int) {
         let rockets = dataManager.getRockets()
         let rocket = rockets[serialNumber - 1]
         
@@ -133,28 +132,54 @@ final class MainPresenter: MainPresenterProtocol {
         self.rocketData = rocketData
     }
     
-    func provideBackgroundImage() {
-        guard let rocketData = rocketData else { return }
-        // providing a random image
-        let imageData = dataManager.fetchData(from: rocketData.flickrImages.randomElement()!)
-        view.setBackgroundImage(from: imageData)
-    }
-    
-    func provideRocketName() {
-        guard let rocketData = rocketData else { return }
-        let name = rocketData.name
-        view.setHeaderViewWithName(name)
-    }
-    
     func provideCollectionViewViewModel() {
         guard let rocketData = rocketData else { return }
         let viewModel = MainCollectionViewViewModel(data: [rocketData])
-        view.setCollectionViewViewModel(viewModel)
+        DispatchQueue.main.sync {
+            view.setCollectionViewViewModel(viewModel)
+        }
     }
     
-    func provideTableViewViewModel() {
+    func provideData() {
         guard let rocketData = rocketData else { return }
-        let viewModel = MainTableViewViewModel(data: rocketData)
-        view.setTableViewViewModel(viewModel)
+        
+        var imageData: Data?
+        var name: String?
+        var collectionViewViewModel: MainCollectionViewViewModel?
+        var tableViewViewModel: MainTableViewViewModel?
+        
+        let backgroundImageWorkItem = DispatchWorkItem {
+            imageData = self.dataManager.fetchData(from: rocketData.flickrImages.randomElement()!)
+        }
+        
+        let rocketNameWorkItem = DispatchWorkItem {
+            name = rocketData.name
+        }
+        
+        let collectionViewViewModelWorkItem = DispatchWorkItem {
+            collectionViewViewModel = MainCollectionViewViewModel(data: [rocketData])
+        }
+        
+        let tableViewViewModelWorkItem = DispatchWorkItem {
+            tableViewViewModel = MainTableViewViewModel(data: rocketData)
+        }
+        
+        DispatchQueue.global().async(group: dispatchGroup, execute: backgroundImageWorkItem)
+        DispatchQueue.global().async(group: dispatchGroup, execute: rocketNameWorkItem)
+        DispatchQueue.global().async(group: dispatchGroup, execute: collectionViewViewModelWorkItem)
+        DispatchQueue.global().async(group: dispatchGroup, execute: tableViewViewModelWorkItem)
+        
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            guard let imageData = imageData,
+                let name = name,
+                let collectionViewViewModel = collectionViewViewModel,
+                let tableViewViewModel = tableViewViewModel else { return }
+            
+            self.view.setBackgroundImage(from: imageData)
+            self.view.setHeaderViewWithName(name)
+            self.view.setCollectionViewViewModel(collectionViewViewModel)
+            self.view.setTableViewViewModel(tableViewViewModel)
+            self.view.removeCoverView()
+        }
     }
 }
