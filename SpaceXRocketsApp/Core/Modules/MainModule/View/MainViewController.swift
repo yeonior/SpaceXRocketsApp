@@ -252,7 +252,6 @@ extension MainViewController: MainViewProtocol {
     func setHeaderViewWithName(_ name: String) {
         title = name
         mainView.headerView.titleLabel.text = name
-        mainView.headerView.activateButton()
     }
     
     func setCollectionViewViewModel(_ viewModel: MainCollectionViewViewModel) {

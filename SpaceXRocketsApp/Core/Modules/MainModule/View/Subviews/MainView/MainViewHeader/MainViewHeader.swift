@@ -30,11 +30,11 @@ final class MainViewHeader: UIView {
     }(UILabel())
     
     private let settingsButton: UIButton = {
+        $0.setImage(UIImage(systemName: "gearshape"), for: .normal)
         $0.imageView?.tintColor = Colors.settingsButton.uiColor
         $0.imageView?.contentMode = .scaleAspectFit
         $0.contentVerticalAlignment = .fill
         $0.contentHorizontalAlignment = .fill
-        $0.isUserInteractionEnabled = false
         return $0
     }(UIButton())
     
@@ -90,10 +90,5 @@ final class MainViewHeader: UIView {
     @objc
     private func didTapButton() {
         buttonAction?()
-    }
-    
-    func activateButton() {
-        settingsButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
-        settingsButton.isUserInteractionEnabled = true
     }
 }
