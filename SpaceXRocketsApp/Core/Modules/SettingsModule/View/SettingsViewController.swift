@@ -64,11 +64,6 @@ final class SettingsViewController: UIViewController {
         presenter.providePayloadUnit()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        updateCollectionView()
-    }
-    
     // MARK: - Private methods
     private func configureUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil,
@@ -109,12 +104,13 @@ final class SettingsViewController: UIViewController {
         
         func setAction(index: Int, view: UIView, action: @escaping (Int) -> ()) {
             guard let view = view as? SettingsItemView else { return }
-            view.segmentedControlAction = { [unowned view] in
+            view.segmentedControlAction = { [unowned view, unowned self] in
                 switch view.unitSegmentedControl.selectedSegmentIndex {
                 case let i where i == 0: action(i)
                 case let i where i == 1: action(i)
                 default: break
                 }
+                self.updateCollectionView()
             }
         }
         
