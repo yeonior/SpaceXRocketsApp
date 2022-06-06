@@ -7,7 +7,7 @@ The project contains three different screens:
 
 | Rockets | Launches | Settings |
 :---:|:---:|:---:
-![Rockets](https://user-images.githubusercontent.com/81576794/167312093-ab680e6c-7f51-4903-aa07-c6ff9cf9bd9b.gif) | ![Launches](https://user-images.githubusercontent.com/81576794/167311398-bbb438a4-1b3f-4629-9b25-1eaf46d77d6b.gif) | ![Settings](https://user-images.githubusercontent.com/81576794/167311762-5214683a-08a8-45a0-aa43-6a02e7d41a44.gif)
+![Rockets](https://user-images.githubusercontent.com/81576794/172187622-25edc1ce-9d07-4ca4-9405-384fce343816.gif) | ![Launches](https://user-images.githubusercontent.com/81576794/167311398-bbb438a4-1b3f-4629-9b25-1eaf46d77d6b.gif) | ![Settings](https://user-images.githubusercontent.com/81576794/167311762-5214683a-08a8-45a0-aa43-6a02e7d41a44.gif)
 
 ## Technology stack
 * UIKit
